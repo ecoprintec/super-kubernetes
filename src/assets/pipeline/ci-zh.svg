@@ -63,19 +63,19 @@
                     <path fill="#326E93" fill-rule="nonzero" d="M159.273 16L168 20.5 159.273 25 159.273 21 136 21 136 20 159.273 20z" transform="translate(-107 -240) translate(75 208) translate(32 32)"/>
                     <path fill="url(#x6xrrah4bb)" fill-rule="nonzero" d="M243.273 101L252 105.5 243.273 110 243.273 106 220 106 220 105 243.273 105z" transform="translate(-107 -240) translate(75 208) translate(32 32)"/>
                     <path fill="#326E93" fill-rule="nonzero" d="M201.273 59.5L210 64 201.273 68.5 201.273 64.5 178 64.5 178 63.5 201.273 63.5z" transform="translate(-107 -240) translate(75 208) translate(32 32) rotate(90 194 64)"/>
-                    <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
+                    <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
                         <tspan x="0" y="65">拉取代码</tspan>
                     </text>
-                    <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
+                    <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
                         <tspan x="88" y="65">代码检查</tspan>
                     </text>
-                    <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
+                    <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
                         <tspan x="228" y="24">单元测试</tspan>
                     </text>
-                    <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
+                    <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
                         <tspan x="172" y="149">镜像构建</tspan>
                     </text>
-                    <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
+                    <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-107 -240) translate(75 208) translate(32 32)">
                         <tspan x="266" y="149">推送</tspan>
                     </text>
                 </g>

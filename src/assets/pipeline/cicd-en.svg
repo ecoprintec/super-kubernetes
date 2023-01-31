@@ -36,7 +36,7 @@
                                     </g>
                                 </g>
                             </g>
-                            <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32) translate(172 84)">
+                            <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32) translate(172 84)">
                                 <tspan x="10" y="65">Push</tspan>
                             </text>
                         </g>
@@ -49,7 +49,7 @@
                                     <path d="M12 19H6.392C3.966 19 2 17.034 2 14.608c0-2.008 1.348-3.701 3.188-4.225C5.918 7.297 8.69 5 12 5c3.866 0 7 3.134 7 7s-3.134 7-7 7z" opacity=".9" transform="translate(10 10)"/>
                                 </g>
                             </g>
-                            <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32) translate(81 84)">
+                            <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32) translate(81 84)">
                                 <tspan x="-20" y="65">Deployment&amp;Test</tspan>
                             </text>
                         </g>
@@ -85,16 +85,16 @@
                         <path fill="url(#imu7404o1b)" fill-rule="nonzero" d="M280.614 76L280.614 105.773 233 105.773 233 110 224 105.244 233 100.489 233 104.716 279.614 104.716 279.614 77.057 279.614 76z" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)"/>
                         <path fill="url(#d6ciaha8bc)" fill-rule="nonzero" d="M75.273 16L84 20.5 75.273 25 75.273 21 52 21 52 20 75.273 20z" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)"/>
                         <path fill="#326E93" fill-rule="nonzero" d="M159.273 16L168 20.5 159.273 25 159.273 21 136 21 136 20 159.273 20zM243.273 17L252 21.5 243.273 26 243.273 22 220 22 220 21 243.273 21z" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)"/>
-                        <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
+                        <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
                             <tspan x="0" y="65">Pull Code</tspan>
                         </text>
-                        <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
+                        <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
                             <tspan x="88" y="65">Code Check</tspan>
                         </text>
-                        <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
+                        <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
                             <tspan x="172" y="65">Unit Test</tspan>
                         </text>
-                        <text fill="#36435C" font-family="PingFangSC-Semibold, PingFang SC" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
+                        <text fill="#36435C" font-family="PingFangSC-Semibold, Maven Pro" font-size="12" font-weight="500" transform="translate(-547 -240) translate(75 208) translate(440) translate(32 32)">
                             <tspan x="252" y="65">Image Build</tspan>
                         </text>
                     </g>
