@@ -218,3 +218,11 @@
   color: $white;
   background-color: $yellow-color03;
 }
+
+body .button,
+.select-input > input,
+.table table > thead > tr > th {
+  font-family: 'Maven Pro', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
+    'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
+    'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
+}
