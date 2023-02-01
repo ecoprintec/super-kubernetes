@@ -6,6 +6,7 @@
   height: 100%;
   position: relative;
   background: $dark-color06;
+  color: white;
 
   svg {
     fill: $green-color03;
@@ -29,17 +30,16 @@
         width: 28%;
         text-align: center;
       }
-
     }
 
     .wave {
       animation: waveSvgAnim 4s linear infinite;
     }
-    
+
     .wave2 {
       animation: waveSvgAnim 6s linear infinite;
     }
-    
+
     @keyframes waveSvgAnim {
       0% {
         transform: translateX(0px);
@@ -47,6 +47,6 @@
       100% {
         transform: translateX(-100px);
       }
-    }  
+    }
   }
 }

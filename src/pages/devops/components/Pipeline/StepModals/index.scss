@@ -5,7 +5,7 @@
 }
 
 .clickable {
-  color: $green;
+  color: $blue;
   cursor: pointer;
   margin-left: 15px;
 }
@@ -94,9 +94,9 @@
     }
 
     textarea {
-      border-color: #abb4be;
+      border-color: $blue;
       padding: 4px 12px;
-      color: #242e42;
+      color: $text-color;
       caret-color: #242e42;
       border-radius: 4px;
       transition: all 0.3s ease-in-out;

@@ -4,15 +4,16 @@
   margin-bottom: 12px;
   padding: 11px 20px;
   border-radius: 4px;
-  border: solid 1px $border-color;
-  background-color: $white;
+  border: solid 1px #4c5053;
+  background-color: black;
 
   .title {
     font-weight: $font-bold;
-
+    color: white;
     :global {
       label.checkbox span.label-value {
         font-weight: $font-bold;
+        color: #8e9297;
       }
     }
   }

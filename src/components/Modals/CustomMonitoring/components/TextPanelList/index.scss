@@ -23,7 +23,7 @@
       overflow: hidden;
     }
     p {
-      @include TypographyParagraph($dark-color01);
+      @include TypographyParagraph(inherit);
     }
 
     .loadingTip {

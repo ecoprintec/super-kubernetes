@@ -30,14 +30,14 @@
     .recharts-default-tooltip {
       display: flex;
       flex-direction: column-reverse;
- 
+
       /*
        * must use !important in
        * borderColor color padding border white-space
        */
       color: #fff !important;
       background-color: rgba(36, 46, 66, 0.95) !important;
-   
+
       opacity: 0.9;
       border-radius: 4px;
 
@@ -46,7 +46,4 @@
       }
     }
   }
-
 }
-
-

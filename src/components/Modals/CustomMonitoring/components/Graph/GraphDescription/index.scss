@@ -2,13 +2,12 @@
 @import '~scss/mixins';
 
 .wrapper {
-
   & > div {
     padding: 12px 20px;
   }
 
   h3 {
-    @include TypographySymbolText()
+    @include TypographySymbolText();
   }
 
   p {

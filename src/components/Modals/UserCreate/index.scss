@@ -1,5 +1,5 @@
-@import "~scss/variables";
-@import "~scss/mixins";
+@import '~scss/variables';
+@import '~scss/mixins';
 
 .password {
   width: 455px;
@@ -15,7 +15,7 @@
   overflow: hidden;
 
   & > div {
-    @include TypographyTitleH6($white);
+    @include TypographyTitleH6(white);
   }
 
   & > p {

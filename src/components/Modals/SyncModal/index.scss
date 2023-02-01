@@ -1,15 +1,17 @@
+@import '~scss/variables';
+
 .wrapper {
   margin-bottom: 12px;
   h6 {
     font-weight: 600;
     font-size: 12px;
     line-height: 20px;
-    color: #242e42;
+    color: $text-color;
     margin-bottom: 8px;
   }
 
   &_item {
-    background: #f9fbfd;
+    background: $white;
     border-radius: 4px;
     padding: 12px;
 
@@ -36,14 +38,14 @@
 .column_card {
   padding: 12px;
   border: 1px solid #ccd3db;
-  background: #fff;
+  background: $lightest;
   border-radius: 4px;
 }
 
 .checkbox_item {
   display: flex;
   padding: 12px;
-  background: #fff;
+  background: $lightest;
   border: 1px solid #ccd3db;
   border-radius: 4px;
 
@@ -60,7 +62,7 @@
     margin-left: 12px;
     p {
       font-weight: 600;
-      color: #242e42;
+      color: $text-color;
     }
   }
 }

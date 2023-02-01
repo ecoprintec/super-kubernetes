@@ -25,6 +25,10 @@
       & + button {
         margin-left: 4px;
       }
+
+      svg {
+        color: $lightest;
+      }
     }
 
     .message {

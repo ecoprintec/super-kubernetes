@@ -14,7 +14,7 @@
 
   .focus {
     border-color: $light-color06 !important;
-    background: #fff !important;
+    background: $lightest !important;
   }
 
   .search {
@@ -59,6 +59,7 @@
 
       input {
         background: none;
+        color: $text-color;
       }
     }
   }
@@ -157,21 +158,21 @@
 }
 
 .dropdownClass {
-  background: $dark-color07;
+  background: $white;
   color: #fff;
   font-size: 12px;
   padding: 0;
   border-radius: 4px;
 
   & > div:hover {
-    background-color: $dark-color06;
+    background-color: $lightest;
   }
 }
 
 .body {
   height: 720px;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: #111212;
   flex: 1;
   overflow: hidden;
   @at-root {
@@ -182,7 +183,7 @@
     .bodyClassName {
       & > div > div > div {
         & > div:nth-child(even) {
-          background: #f9fbfd;
+          background: $lightest;
         }
       }
     }

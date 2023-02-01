@@ -22,7 +22,7 @@
         font-weight: 600;
         font-size: 12px;
         line-height: 20px;
-        color: #242e42;
+        color: $text-color;
       }
       p {
         color: #79879c;
@@ -40,7 +40,7 @@
     }
 
     .wrapper_gray {
-      background: #f9fbfd;
+      background: black;
       border-radius: 4px;
       padding: 12px;
       margin-right: 12px;
@@ -55,7 +55,7 @@
         position: relative;
         margin-left: 0;
         .syncStatus_icon {
-          background: #fff;
+          background: #36393e;
           border-radius: 50%;
           position: absolute;
           bottom: 0;
@@ -69,7 +69,7 @@
   }
 
   .info_card {
-    background: #fff;
+    background: #36393e;
     padding: 12px;
     border-radius: 4px;
   }

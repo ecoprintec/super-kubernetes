@@ -42,8 +42,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150px;
-  height: 30px;
+  //width: 150px;
+  height: 37px;
   transform: translate(-50%, -50%);
 
   .inAppsPage & {
@@ -85,4 +85,12 @@
 
 .loginInfo {
   margin-left: 33px;
+  padding: 5px 11px;
+  border-radius: 3px;
+  div {
+    color: white;
+  }
+  &:hover {
+    background-color: #ffffff33;
+  }
 }
