@@ -25,6 +25,8 @@ import ServiceStore from 'stores/service'
 export default {
   'resource.delete': {
     on({ store, detail, success, ...props }) {
+      // console.log('detail', detail)
+      // console.log('store', store)
       const modal = Modal.open({
         onOk: () => {
           store.delete(detail).then(() => {
