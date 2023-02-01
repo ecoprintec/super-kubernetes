@@ -60,11 +60,11 @@ $sub: $blue-color03;
 $warning: $yellow-color03;
 $danger: $red-color03;
 
-$title-color: $dark-color06;
+$title-color: $white;
 $second-title-color: $dark-color03;
-$text-color: $dark-color07;
-$second-text-color: $dark-color01;
-$third-text-color: $dark-color04;
+$text-color: $white;
+$second-text-color: $white;
+$third-text-color: $white;
 $placeholder-color: $dark-color03;
 $input-color: $dark-color07;
 $head-color: $dark-color07;
@@ -85,7 +85,7 @@ $input-border-radius: 4px;
 
 // background
 $bg-color: $light-color02;
-$body-bg-color: $light-color02;
+$body-bg-color: $black;
 $th-bg-color: $light-color01;
 $card-bg-color: $light-color01;
 
@@ -195,3 +195,6 @@ $tree-text-color: $dark-color07;
 $tree-node-hover-bg: $light-color02;
 $tree-node-selected-bg: $dark-color07;
 $tree-switch-hover-color: $light-color06;
+
+//add color
+$light-color09: #e8eaf6;
