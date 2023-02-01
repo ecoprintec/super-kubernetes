@@ -21,7 +21,7 @@
     display: flex;
     padding: 12px;
     margin-bottom: 8px;
-    background-color: $light-color01;
+    background-color: $lightest;
   }
 }
 
@@ -30,7 +30,8 @@
   padding: 12px;
   margin: -12px;
   margin-left: auto;
-  background-color: #dbefe2;
+  background-color: $blue;
+  color: white;
 }
 
 .footer {
@@ -49,5 +50,5 @@
   border-radius: $border-radius;
   background: $dark-color06;
   padding: 0 0.3em;
-  margin: 0 .3em;
+  margin: 0 0.3em;
 }

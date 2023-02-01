@@ -11,6 +11,8 @@
       visibility: visible;
       opacity: 1;
       top: calc(100% + 8px);
+      border: 1px solid #c1c9d1;
+      border-radius: 4px;
     }
   }
 
@@ -34,10 +36,10 @@
   color: $white;
   border: none;
   border-radius: 4px;
-  background-color: $dark;
+  background-color: $primary;
 
   &:hover {
-    background-color: $dark !important;
+    background-color: $primary !important;
   }
 
   & > div {
@@ -50,7 +52,7 @@
     margin-left: 6px;
     margin-right: 24px;
     text-align: left;
-
+    color: white;
     @include ellipsis;
   }
 

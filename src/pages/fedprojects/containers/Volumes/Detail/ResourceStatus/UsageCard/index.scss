@@ -17,8 +17,8 @@
   h3 {
     @include TypographyTitleH3();
     small {
-      margin-left: .5em;
-      @include TypographyTitleH6(); 
+      margin-left: 0.5em;
+      @include TypographyTitleH6();
     }
   }
   p {
@@ -28,7 +28,7 @@
 
 .card {
   display: inline-block;
-  width: 86px; 
+  width: 86px;
   height: 56px;
 }
 

@@ -37,6 +37,7 @@
       .for-editor {
         color: $text-color;
         border-radius: 0 0 $border-radius $border-radius;
+        background: $card-bg-color;
 
         .for-editor-edit {
           .for-line-num {

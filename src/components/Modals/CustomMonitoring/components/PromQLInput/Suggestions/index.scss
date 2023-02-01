@@ -13,7 +13,7 @@
   &Title {
     padding: 8px;
     user-select: none;
-    @include TypographySymbolText($dark-color01)
+    @include TypographySymbolText($dark-color01);
   }
 
   .item {

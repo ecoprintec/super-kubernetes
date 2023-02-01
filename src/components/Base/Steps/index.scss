@@ -1,9 +1,12 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
+$background-color: #303236;
+$indicator-current-color: #31990f;
+
 .steps {
   height: 64px;
-  background-color: $bg-color;
+  background-color: $background-color;
 
   & > ul {
     padding: 0 20px;
@@ -15,12 +18,13 @@
       padding: 12px 15px 12px;
 
       &.current {
-        background-color: $white;
+        background-color: $primary;
 
         .icon {
           &::after {
             content: '';
-            border-color: $border-focus-color;
+            border-color: white;
+            background-color: $indicator-current-color;
           }
         }
       }
@@ -29,8 +33,8 @@
         .icon {
           &::after {
             content: '';
-            border-color: $border-focus-color;
-            background-color: $border-focus-color;
+            border-color: white;
+            background-color: $primary;
           }
         }
       }
@@ -52,13 +56,14 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      border: 2px solid $border-color;
-      background-color: $white;
+      border: 2px solid white;
+      background-color: #78797b;
     }
   }
 
   .text {
     display: inline-block;
     vertical-align: middle;
+    color: white;
   }
 }

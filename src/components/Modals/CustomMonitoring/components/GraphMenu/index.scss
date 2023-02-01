@@ -2,14 +2,14 @@
 @import '~scss/mixins';
 
 .wrapper {
-  background: #fff; 
+  background: $lightest;
   padding: 12px;
   margin-bottom: 5px;
-  
+
   h3 {
     @include TypographySymbolText();
     line-height: 20px;
- 
+
     display: flex;
     justify-content: space-between;
 
@@ -26,9 +26,9 @@
     & > p {
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;      
+      white-space: nowrap;
       small {
-        display:inline-block;
+        display: inline-block;
         width: 10px;
         height: 10px;
         margin-right: 8px;
@@ -36,7 +36,7 @@
       }
     }
   }
-  
+
   .subMetrics {
     color: $dark-color01;
     & > div {

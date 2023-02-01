@@ -1,12 +1,11 @@
 @import '~scss/variables';
 
 .wrapper {
-
   display: flex;
   padding: 0 15px;
   margin-bottom: 5px;
   line-height: 44px;
-  background-color:$white;
+  background-color: $white;
   justify-content: space-between;
 
   h3 {
@@ -42,5 +41,4 @@
       }
     }
   }
-
 }

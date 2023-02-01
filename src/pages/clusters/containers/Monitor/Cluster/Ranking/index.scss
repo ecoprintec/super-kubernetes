@@ -3,7 +3,7 @@
 .wrapper {
   border-radius: $border-radius;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
-  background-color: #ffffff;
+  background-color: #36393e;
   overflow: hidden;
 }
 
@@ -29,7 +29,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 66px;
-  color: #242e42;
+  color: $text-color;
 }
 
 .toolbar {
@@ -41,6 +41,10 @@
   @at-root {
     .toolbar_buttons {
       float: right;
+      button {
+        background: $primary;
+        border: none;
+      }
     }
     .toolbar_filter {
       float: left;

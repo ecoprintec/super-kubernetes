@@ -10,10 +10,10 @@
   border: none;
   background-color: transparent;
   & > input:hover + .border {
-    border-color: rgb(121, 185, 160);
+    border-color: $primary;
   }
   & > input:focus + .border {
-    border-color: rgb(121, 185, 160);
+    border-color: $primary;
     box-shadow: 0 1px 3px 0 rgba(121, 185, 160, 0.4);
   }
 
@@ -27,9 +27,9 @@
     font-size: 12px;
     font-weight: 600;
     font-family: $font-family-id;
-    color: #242e42;
+    color: $text-color;
     border-color: #abb4be;
-    caret-color: #242e42;
+    caret-color: $text-color;
     &::placeholder {
       font-weight: 400;
     }
@@ -57,6 +57,7 @@
 
   // PlaceHolder Polyfill
   input {
+    background-color: $card-bg-color;
     /* WebKit, Blink, Edge */
     &::-webkit-input-placeholder {
       padding-top: 1px;

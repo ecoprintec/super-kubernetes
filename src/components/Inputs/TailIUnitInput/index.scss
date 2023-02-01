@@ -1,3 +1,5 @@
+@import '~scss/variables';
+
 .wrapper {
   display: flex;
   border: 1px solid #abb4be;
@@ -23,6 +25,6 @@
     font-weight: 600;
     font-size: 12px;
     line-height: 20px;
-    color: #36435c;
+    color: $text-color;
   }
 }

@@ -1,5 +1,5 @@
 @import '~scss/variables';
-@import  '~scss/mixins';
+@import '~scss/mixins';
 
 $banner-height: 144px;
 
@@ -30,7 +30,7 @@ $banner-height: 144px;
       height: 48px;
       line-height: 48px;
 
-      >span {
+      > span {
         position: static;
         transform: translateY(0);
       }

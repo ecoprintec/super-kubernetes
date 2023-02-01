@@ -1,4 +1,4 @@
-@import "~scss/variables";
+@import '~scss/variables';
 
 .wrapper {
   border: 1px solid $light-color06;
@@ -41,7 +41,7 @@
   position: absolute;
   right: 0;
   font-size: 12px;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   z-index: 3;
   line-height: 20px;
   border-radius: 16px;
@@ -63,4 +63,3 @@
   font-weight: bold;
   color: #fff;
 }
-
