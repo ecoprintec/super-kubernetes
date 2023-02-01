@@ -4,7 +4,7 @@
 .table {
   border-radius: $border-radius;
   box-shadow: $base-shadow;
-  background-color: $white;
+  background-color: #292929;
   overflow: hidden;
 
   :global {
@@ -18,14 +18,15 @@
 
   table {
     a {
-      color: #242e42;
+      color: white;
     }
 
     & > thead > tr > th {
+      color: white;
       a {
-        color: #79879c;
+        color: white;
         &:hover {
-          color: #79879c;
+          color: white;
         }
       }
     }
