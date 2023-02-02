@@ -5,9 +5,9 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@kube-design/components": "./kubeplatform-design",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@kube-design/components": "./kubeplatform-design",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
