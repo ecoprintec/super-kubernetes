@@ -1,0 +1,152 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  position: relative;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  font-family: 'Maven Pro,sans-serif';
+  cursor: pointer;
+  transition: all $trans-speed ease-in-out;
+  @include TypographySymbolText;
+
+  &-content {
+    height: 20px;
+    white-space: nowrap;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  & + .button {
+    margin-left: 12px;
+  }
+}
+
+.is-loading {
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
+  cursor: not-allowed;
+
+  .button-content {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+
+  .spin {
+    vertical-align: middle;
+  }
+}
+
+.button-size-normal {
+  padding: 5px 23px;
+
+  &.has-icon {
+    padding: 5px 20px;
+  }
+}
+
+.has-icon {
+  .icon {
+    height: 16px;
+    width: 16px;
+    vertical-align: text-bottom;
+  }
+
+  .button-content {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+  }
+}
+
+.button-default {
+  color: $sqk-btn-default-text-color;
+  border: 1px solid $sqk-btn-default-border;
+  background-color: $sqk-btn-default-border;
+  box-shadow: none;
+
+  &:hover {
+    background-color: $btn-default-hover-bg;
+    border-color: $btn-default-hover-border;
+  }
+
+  &:active {
+    background-color: $btn-default-active-bg;
+    border-color: $btn-default-active-border;
+    box-shadow: $btn-default-active-shadow;
+  }
+}
+
+.button-primary {
+  color: $sqk-btn-primary-text-color;
+  border: 1px solid $sqk-btn-primary-bg;
+  background-color: $sqk-btn-primary-bg;
+  box-shadow: none;
+
+  &:active {
+    box-shadow: $btn-primary-active-shadow;
+  }
+}
+
+.button-control {
+  color: $sqk-btn-primary-text-color;
+  border: 1px solid $sqk-btn-control-bg;
+  background-color: $sqk-btn-control-bg;
+  box-shadow: none;
+
+  &:active {
+    box-shadow: $btn-control-active-shadow;
+  }
+}
+
+.button-danger {
+  color: $btn-danger-text-color;
+  border: 1px solid $btn-danger-bg;
+  background-color: $btn-danger-bg;
+  box-shadow: $btn-danger-shadow;
+
+  &:active {
+    box-shadow: $btn-danger-active-shadow;
+  }
+}
+
+.button-flat {
+  border: 1px solid transparent;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $btn-flat-hover-bg;
+  }
+
+  &:active {
+    background-color: $btn-flat-active-bg;
+  }
+}
+
+.is-ghost {
+  background-color: transparent;
+  box-shadow: none !important;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+}
