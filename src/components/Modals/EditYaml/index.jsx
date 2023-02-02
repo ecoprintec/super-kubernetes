@@ -62,6 +62,12 @@ export default class YamlEditModal extends React.Component {
     }
   }
 
+  componentWillMount() {
+    this.props.store.getDataPodsYaml(this.props.detail).then(res => {
+      this.state.value = res
+    })
+  }
+
   componentDidMount() {
     this.init(this.props)
   }

@@ -43,6 +43,7 @@ export default class Pods extends React.Component {
     rowsPerPage: 10,
     isLoading: false,
     searchText: '',
+    selectArr: [],
   }
 
   async componentWillMount() {
@@ -177,6 +178,14 @@ export default class Pods extends React.Component {
           isLoading: false,
         })
       })
+  }
+
+  handleDeleteMulti = async () => {
+    this.props.trigger('resource.batch.deleteMulti', {
+      store: this.props.store,
+      success: this.props.getData(),
+      selectValues: this.state.selectArr,
+    })
   }
 
   render() {
@@ -315,6 +324,21 @@ export default class Pods extends React.Component {
             this.changeRowsPerPage(tableState.rowsPerPage)
             break
           // eslint-disable-next-line no-fallthrough
+          case 'rowSelectionChange':
+            // eslint-disable-next-line no-case-declarations
+            const listDataIndexs = tableState.selectedRows.data.map(
+              item => item.dataIndex
+            )
+            // eslint-disable-next-line no-case-declarations
+            const list = this.props.store.list.data.filter((item, index) => {
+              return listDataIndexs.includes(index)
+            })
+
+            this.state.selectArr = list
+            break
+          case 'rowDelete':
+            this.handleDeleteMulti()
+            break
           default:
         }
       },
