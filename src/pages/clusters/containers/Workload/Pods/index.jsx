@@ -18,16 +18,10 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
-import StatusReason from 'projects/components/StatusReason'
 import { CircularProgress, Typography } from '@mui/material'
-
-import { PODS_STATUS } from 'utils/constants'
-
 import PodStore from 'stores/pod'
-
 import MUIDataTable from 'mui-datatables'
 import { toJS } from 'mobx'
 import moment from 'moment-mini'
@@ -43,7 +37,7 @@ import SplitButton from './ItemDropdown'
 })
 export default class Pods extends React.Component {
   state = {
-    page: 1,
+    page: 0,
     count: 1,
     rowsPerPage: 10,
     isLoading: false,
@@ -57,144 +51,6 @@ export default class Pods extends React.Component {
     localStorage.setItem('pod-detail-referrer', location.pathname)
   }
 
-  get itemActions() {
-    const { getData, name, trigger } = this.props
-    return [
-      {
-        key: 'viewYaml',
-        icon: 'eye',
-        text: t('VIEW_YAML'),
-        action: 'view',
-        onClick: item =>
-          trigger('resource.yaml.edit', {
-            detail: item,
-            readOnly: true,
-          }),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        onClick: item =>
-          trigger('resource.delete', {
-            type: name,
-            detail: item,
-            success: getData,
-          }),
-      },
-    ]
-  }
-
-  getItemDesc = record => {
-    const { status, type } = record.podStatus
-    const desc =
-      type !== 'running' && type !== 'completed' ? (
-        <StatusReason
-          status={type}
-          reason={t(status)}
-          data={record}
-          type="pod"
-        />
-      ) : (
-        t(type.toUpperCase())
-      )
-
-    return desc
-  }
-
-  getPodsStatus() {
-    return PODS_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
-  }
-
-  // getColumns = () => {
-  //   const { getSortOrder } = this.props
-  //   return [
-  //     {
-  //       title: t('NAME'),
-  //       dataIndex: 'name',
-  //       sorter: true,
-  //       sortOrder: getSortOrder('name'),
-  //       search: true,
-  //       render: this.renderAvatar,
-  //     },
-  //     {
-  //       title: t('STATUS'),
-  //       dataIndex: 'status',
-  //       filters: this.getPodsStatus(),
-  //       isHideable: true,
-  //       search: true,
-  //       with: '5%',
-  //       render: (_, { podStatus }) => (
-  //         <span>{t(podStatus.type.toUpperCase())}</span>
-  //       ),
-  //     },
-  //     {
-  //       title: t('NODE_SI'),
-  //       dataIndex: 'node',
-  //       isHideable: true,
-  //       width: '18%',
-  //       render: this.renderNode,
-  //     },
-  //     {
-  //       title: t('POD_IP_ADDRESS'),
-  //       dataIndex: 'podIp',
-  //       isHideable: true,
-  //       width: '15%',
-  //     },
-  //     {
-  //       title: t('UPDATE_TIME_TCAP'),
-  //       dataIndex: 'startTime',
-  //       sorter: true,
-  //       sortOrder: getSortOrder('startTime'),
-  //       isHideable: true,
-  //       width: 150,
-  //       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-  //     },
-  //   ]
-  // }
-  //
-  // renderAvatar = (name, record) => {
-  //   const { module } = this.props
-  //   const { cluster } = this.props.match.params
-  //   const { podStatus } = record
-  //   return (
-  //     <div className={styles.avatar}>
-  //       <div className={styles.icon}>
-  //         <Icon name={ICON_TYPES[module]} size={40} />
-  //         <Indicator
-  //           className={styles.indicator}
-  //           type={podStatus.type}
-  //           flicker
-  //         />
-  //       </div>
-  //       <div>
-  //         <Link
-  //           className={styles.title}
-  //           to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
-  //         >
-  //           {name}
-  //         </Link>
-  //         <div className={styles.desc}>{this.getItemDesc(record)}</div>
-  //       </div>
-  //     </div>
-  //   )
-  // }
-
-  renderNode = (_, record) => {
-    const { cluster } = this.props.match.params
-    const { node, nodeIp } = record
-
-    if (!node) return '-'
-
-    const text = t('NODE_IP', { node, ip: nodeIp })
-
-    return <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
-  }
-
   renderStatus = podStatus => (
     <Status type={podStatus.type} name={t(podStatus.type)} flicker />
   )
@@ -204,7 +60,7 @@ export default class Pods extends React.Component {
       isLoading: true,
     })
     await this.props.store
-      .fetchList({ page, limit: this.state.rowsPerPage })
+      .fetchList({ page: page + 1, limit: this.state.rowsPerPage })
       .then(() => {
         this.setState({
           isLoading: false,
@@ -215,6 +71,63 @@ export default class Pods extends React.Component {
         this.setState({
           isLoading: false,
           page,
+        })
+      })
+  }
+
+  search = async keyword => {
+    this.setState({
+      isLoading: true,
+    })
+    await this.props.store
+      .fetchList({ name: keyword })
+      .then(() => {
+        this.setState({
+          isLoading: false,
+        })
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
+        })
+      })
+  }
+
+  filterChange = async filterList => {
+    this.setState({
+      isLoading: true,
+    })
+    const params = {}
+    if (filterList[0].length) {
+      params.name = filterList[0][0]
+    }
+
+    if (filterList[1].length) {
+      params.status = filterList[1][0]
+    }
+
+    if (filterList[2].length) {
+      params.node = filterList[2][0]
+    }
+
+    if (filterList[3].length) {
+      params.nodeIp = filterList[3][0]
+    }
+
+    if (filterList[4].length) {
+      params.createTime = filterList[4][0]
+    }
+
+    await this.props.store
+      .fetchList(params)
+      .then(() => {
+        this.setState({
+          isLoading: false,
+        })
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
         })
       })
   }
@@ -290,8 +203,6 @@ export default class Pods extends React.Component {
           sort: false,
           download: false,
           customBodyRender: (value, tableMeta) => {
-            // console.log('value',value)
-            // console.log('tableMeta',tableMeta)
             return (
               <SplitButton
                 options={[
@@ -309,11 +220,6 @@ export default class Pods extends React.Component {
                     icon: <DeleteIcon fontSize="small" />,
                     title: 'Delete pods',
                     action: () => {
-                      // this.props.trigger('workloads.pods.delete', {
-                      //   store: this.props.store,
-                      //   item: tableMeta.rowData,
-                      //   success: this.props.getData(),
-                      // })
                       this.props.trigger('resource.delete', {
                         type: tableMeta.rowData.name,
                         detail: tableMeta.rowData,
@@ -342,7 +248,6 @@ export default class Pods extends React.Component {
       sortOrder,
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
-        // console.log(action, tableState)
         switch (action) {
           case 'changePage':
             this.getData(tableState.page, tableState.sortOrder)
@@ -350,29 +255,22 @@ export default class Pods extends React.Component {
           case 'sort':
             this.sort(tableState.page, tableState.sortOrder)
             break
+          case 'search':
+            this.search(tableState.searchText)
+          // eslint-disable-next-line no-fallthrough
+          case 'filterChange':
+            this.filterChange(tableState.filterList)
+          // eslint-disable-next-line no-fallthrough
           default:
-          // console.log('action not handled.')
         }
       },
     }
 
     const { bannerProps } = this.props
     return (
-      // <ListPage {...this.props}>
-      //   <Banner {...bannerProps} />
-      //   <ResourceTable
-      //     {...tableProps}
-      //     itemActions={this.itemActions}
-      //     columns={this.getColumns()}
-      //     hideColumn={['status']}
-      //     onCreate={null}
-      //     cluster={match.params.cluster}
-      //   />
-      // </ListPage>
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <MUIDataTable
-          // title={''}
           title={
             <Typography variant="h6">
               ACME Employee list
