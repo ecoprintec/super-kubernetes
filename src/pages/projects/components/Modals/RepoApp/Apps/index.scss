@@ -59,6 +59,12 @@ $toolbar-height: 44px;
   .selectRepos {
     margin-right: 12px;
     width: 216px;
+
+    & > div > div > div {
+      ::placeholder {
+        color: $text-color;
+      }
+    }
   }
 
   .search {

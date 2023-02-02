@@ -3,7 +3,7 @@
 .wrapper {
   display: flex;
   height: 100%;
-  background: #fff;
+  background: $lightest;
   border-radius: 8px;
   overflow: hidden;
 
@@ -12,7 +12,7 @@
     padding: 20px;
     overflow: auto;
   }
-  
+
   .row {
     width: 320px;
     border-left: solid 1px #d8dee5;

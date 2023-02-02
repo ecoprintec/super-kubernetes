@@ -9,11 +9,21 @@
 .text {
   flex: 1;
   & > div:first-child {
-    @include TypographyTitleH6($dark-color07);
+    @include TypographyTitleH6(#909ba6);
   }
 
   & > div:last-child {
-    @include TypographyParagraph($dark-color01);
+    @include TypographyParagraph(#909ba6);
+  }
+
+  &.light {
+    & > div:first-child {
+      @include TypographyTitleH6(white);
+    }
+
+    & > div:last-child {
+      @include TypographyParagraph(white);
+    }
   }
 }
 
@@ -46,8 +56,8 @@
     }
     .icon {
       :global .kubed-icon {
-        color: #00aa72;
-        fill: #90e0c5;
+        color: $blue-color03;
+        fill: $blue-color01;
       }
     }
   }

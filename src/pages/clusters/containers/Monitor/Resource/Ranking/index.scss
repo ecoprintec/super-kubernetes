@@ -1,6 +1,6 @@
 @import '~scss/variables';
 
-.wrapper{
+.wrapper {
   border-radius: $border-radius;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
   background-color: #ffffff;
@@ -18,7 +18,7 @@
   border-radius: 18px;
   display: inline-block;
   background-color: $bg-color;
-  border: solid 1px #d8dee5; 
+  border: solid 1px #d8dee5;
   & > span {
     display: inline-block;
     line-height: 32px;

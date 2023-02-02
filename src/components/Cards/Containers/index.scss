@@ -1,6 +1,16 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
+:global {
+  .tag {
+    padding: 0px 6px 0px 6px;
+  }
+
+  .tag-default {
+    color: white;
+  }
+}
+
 .wrapper {
   padding: 12px;
   background-color: $card-bg-color;

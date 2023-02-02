@@ -4,14 +4,14 @@
 .wrapper {
   position: relative;
   border-radius: 4px;
-  border: 1px solid $border-color;
-  background-color: #ffffff;
+  border: 1px solid #4c5053;
+  background-color: black;
   cursor: pointer;
   transition: all $trans-speed ease-in-out;
 
   &:hover,
   &:focus {
-    border-color: $input-hover-color;
+    border-color: #2c85c4;
   }
 
   &.disabled {
@@ -28,11 +28,25 @@
   margin: -1px;
   max-height: 258px;
   border-radius: 4px;
-  border: 1px solid $input-hover-color;
+  border: 1px solid #393b3f;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
-  background-color: #fff;
+  background-color: #22262a;
   z-index: 5;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $card-bg-color;
+    border-radius: 10px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $text-color;
+    border-radius: 10px;
+  }
 }
 
 .option,
@@ -48,6 +62,9 @@
 
   &.withIcon {
     padding-left: 64px;
+  }
+  &.disabled {
+    opacity: 0.25;
   }
 
   .leftIcon {
@@ -81,13 +98,31 @@
     right: 12px;
   }
 
-  &.selected {
-    background-color: $bg-color;
-  }
+  // &.selected {
+  //   background-color: $primary;
+  //   .text {
+  //     & > div {
+  //       color: white;
+  //     }
+
+  //     & > p {
+  //       color: white;
+  //     }
+  //   }
+  // }
 }
 
 .option {
   &:hover {
-    background-color: $light-color01;
+    background-color: $primary;
+    .text {
+      & > div {
+        color: white;
+      }
+
+      & > p {
+        color: white;
+      }
+    }
   }
 }

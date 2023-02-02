@@ -26,10 +26,9 @@
 
 .contentWrapper {
   height: 376px;
-  overflow: auto;
   padding: 20px;
   border-radius: 4px;
-  background-color: #ffffff;
+  //background-color: #ffffff;
   border: solid 1px $light-color03;
 }
 
@@ -37,19 +36,10 @@
   overflow: hidden;
 
   & > div {
-    @include TypographyTitleH6($white);
+    @include TypographyTitleH6($text-color);
   }
 
   & > p {
     @include TypographyParagraph($dark-color01);
-  }
-}
-
-.selectOption {
-  display: flex;
-
-  .text {
-    display: inline-block;
-    flex: 1;
   }
 }

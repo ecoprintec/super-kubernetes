@@ -3,4 +3,18 @@
 .editor {
   min-height: 500px;
   border-radius: 4px;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $card-bg-color;
+    border-radius: 10px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $text-color;
+    border-radius: 10px;
+  }
 }
