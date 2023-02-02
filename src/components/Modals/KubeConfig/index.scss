@@ -6,7 +6,7 @@
 }
 
 .pane {
-  border-radius: 4px;
+  border-radius: 8px;
   overflow-y: auto;
 }
 
@@ -17,13 +17,13 @@
 .tipWrapper {
   width: 320px;
   margin-left: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $lightest;
 }
 
 .terminal {
   flex: 1;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: auto;
   position: relative;
   background-color: #242e42;

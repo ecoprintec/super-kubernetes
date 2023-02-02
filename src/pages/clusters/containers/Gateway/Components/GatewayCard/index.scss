@@ -34,7 +34,7 @@
     margin-right: 12px;
     padding: 12px;
     flex: 1;
-    border-radius: 4px;
+    border-radius: 8px;
     align-items: center;
 
     &:last-child {
@@ -75,7 +75,7 @@
 
 .annotations {
   margin-top: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 12px;
   background: $light-color01;
 

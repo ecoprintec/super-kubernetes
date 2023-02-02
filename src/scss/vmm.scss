@@ -29,7 +29,7 @@
 
 .card-content-container {
   background-color: $lightest !important;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 10px 15px;
 
   .table table {
@@ -179,7 +179,7 @@
   }
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 4px;
+    border-radius: 8px;
   }
 }
 .tooltip-metadata {

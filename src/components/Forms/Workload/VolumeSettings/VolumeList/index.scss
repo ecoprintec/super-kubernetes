@@ -4,7 +4,7 @@
 .wrapper {
   height: 100%;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $lightest;
 
   .add {
@@ -24,7 +24,7 @@
     display: flex;
     background-color: $bg-color;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 8px;
 
     & > div {
       color: $text-color;
