@@ -103,3 +103,27 @@
     color: white;
   }
 }
+
+.muitable {
+  background-color: $dark-color14 !important;
+  th,
+  div {
+    background-color: $dark-color14 !important;
+    color: $white-color01 !important;
+  }
+  h6,
+  a,
+  svg,
+  svg:active {
+    color: $white-color01 !important;
+  }
+  tr {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  tr:nth-child(2n) {
+    background: $dark-color15;
+    div {
+      background: $dark-color15 !important;
+    }
+  }
+}
