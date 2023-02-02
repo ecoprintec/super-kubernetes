@@ -1,6 +1,6 @@
-import Menu from "./Menu";
-import MenuItem from "./MenuItem";
+import Menu from './Menu'
+import MenuItem from './MenuItem'
 
-Menu.MenuItem = MenuItem;
+Menu.MenuItem = MenuItem
 
-export default Menu;
+export default Menu

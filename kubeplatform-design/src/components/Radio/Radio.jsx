@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { isEqual } from "lodash";
-import classNames from "classnames";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { isEqual } from 'lodash'
+import classNames from 'classnames'
 
 class Radio extends Component {
   static propTypes = {
@@ -15,43 +15,43 @@ class Radio extends Component {
     value: PropTypes.any,
     defaultChecked: PropTypes.bool,
     children: PropTypes.node,
-  };
+  }
 
   static defaultProps = {
-    prefixCls: "radio",
+    prefixCls: 'radio',
     defaultChecked: false,
-  };
+  }
 
   static contextTypes = {
     radioGroup: PropTypes.any,
-  };
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       checked: props.checked || props.defaultChecked,
-    };
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if ("checked" in nextProps && nextProps.checked !== prevState.checked) {
+    if ('checked' in nextProps && nextProps.checked !== prevState.checked) {
       return {
         checked: nextProps.checked,
-      };
+      }
     }
-    return null;
+    return null
   }
 
-  handleChange = (e) => {
-    const { disabled, onChange } = this.props;
-    const { radioGroup } = this.context;
+  handleChange = e => {
+    const { disabled, onChange } = this.props
+    const { radioGroup } = this.context
 
-    if (disabled) return;
+    if (disabled) return
 
-    if (!("checked" in this.props)) {
+    if (!('checked' in this.props)) {
       this.setState({
         checked: e.target.checked,
-      });
+      })
     }
 
     const params = {
@@ -60,26 +60,26 @@ class Radio extends Component {
         checked: e.target.checked,
       },
       stopPropagation() {
-        e.stopPropagation();
+        e.stopPropagation()
       },
       preventDefault() {
-        e.preventDefault();
+        e.preventDefault()
       },
       nativeEvent: e.nativeEvent,
-    };
+    }
 
     if (radioGroup) {
-      radioGroup.onChange(params);
-      return;
+      radioGroup.onChange(params)
+      return
     }
 
     if (onChange) {
-      onChange(params);
+      onChange(params)
     }
-  };
+  }
 
   render() {
-    const { props, context } = this;
+    const { props, context } = this
     const {
       prefixCls,
       className,
@@ -88,26 +88,26 @@ class Radio extends Component {
       defaultChecked,
       onChange,
       ...restProps
-    } = props;
-    const { checked } = this.state;
+    } = props
+    const { checked } = this.state
 
-    const { radioGroup } = context;
+    const { radioGroup } = context
 
-    const RadioProps = { ...restProps };
+    const RadioProps = { ...restProps }
 
     if (radioGroup) {
-      RadioProps.name = radioGroup.name;
-      RadioProps.checked = isEqual(props.value, radioGroup.value);
-      RadioProps.disabled = props.disabled || radioGroup.disabled;
+      RadioProps.name = radioGroup.name
+      RadioProps.checked = isEqual(props.value, radioGroup.value)
+      RadioProps.disabled = props.disabled || radioGroup.disabled
     } else {
-      RadioProps.checked = checked;
+      RadioProps.checked = checked
     }
 
     const wrapperClassString = classNames(className, {
       [`${prefixCls}-wrapper`]: true,
       [`${prefixCls}-wrapper-checked`]: RadioProps.checked,
       [`${prefixCls}-wrapper-disabled`]: RadioProps.disabled,
-    });
+    })
 
     return (
       <label
@@ -122,8 +122,8 @@ class Radio extends Component {
         <input type="radio" onChange={this.handleChange} {...RadioProps} />
         {children ? <span className="label-value">{children}</span> : null}
       </label>
-    );
+    )
   }
 }
 
-export default Radio;
+export default Radio

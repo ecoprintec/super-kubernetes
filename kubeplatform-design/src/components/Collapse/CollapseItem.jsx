@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import Icon from "../Icon";
+import Icon from '../Icon'
+import Button from '../Button'
 
-import CollapseTransition from "./CollapseTransition";
+import CollapseTransition from './CollapseTransition'
 
 export default class CollapseItem extends Component {
   static propTypes = {
@@ -16,36 +17,61 @@ export default class CollapseItem extends Component {
     handleVisible: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
-  };
+  }
 
   static defaultProps = {
     visible: false,
-  };
+  }
 
   handleVisible = () => {
-    const { specKey, handleVisible, visible } = this.props;
-    handleVisible(specKey, !visible);
-  };
+    const { specKey, handleVisible, visible } = this.props
+    handleVisible(specKey, !visible)
+  }
 
   render() {
-    const { label, children, visible, isLast, className, style } = this.props;
-    const prefixCls = "collapse";
+    const { label, children, visible, isLast, className, style } = this.props
+    const prefixCls = 'collapse'
     const classLabel = classNames({
       [`${prefixCls}-item-label`]: true,
       [`${prefixCls}-item-label-border-bottom`]: !!visible,
       [`${prefixCls}-item-label-last-border-bottom`]: isLast && !visible,
-    });
+    })
     const classContent = classNames({
       [`${prefixCls}-item-content`]: true,
       [`${prefixCls}-item-content-last-border-bottom`]: isLast && !!visible,
-    });
+    })
     return (
       <li className={classNames(`${prefixCls}-item`, className)} style={style}>
         <div className={classLabel} onClick={this.handleVisible}>
+          {this.props?.hadRemove && (
+            <Button type="danger" onClick={this.props?.onClick}>
+              <Icon
+                style={{
+                  right: '6px',
+                  position: 'inherit',
+                  top: '8px',
+                  marginTop: '10px',
+                }}
+                name="trash"
+                size={18}
+              ></Icon>
+            </Button>
+          )}
+          {this.props?.prefix_icon && (
+            <Icon
+              style={{
+                right: '6px',
+                position: 'inherit',
+                top: '8px',
+              }}
+              name={this.props?.prefix_icon}
+              size={22}
+            />
+          )}
           {label}
           <Icon
-            name={`caret-${visible ? "up" : "down"}`}
-            type={visible ? "dark" : "light"}
+            name={`caret-${visible ? 'up' : 'down'}`}
+            type={visible ? 'dark' : 'light'}
             size={20}
           />
         </div>
@@ -53,6 +79,6 @@ export default class CollapseItem extends Component {
           <div className={classContent}>{children}</div>
         </CollapseTransition>
       </li>
-    );
+    )
   }
 }

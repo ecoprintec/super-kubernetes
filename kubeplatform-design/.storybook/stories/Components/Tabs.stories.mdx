@@ -19,16 +19,22 @@ Basic usages for `Tabs` component.
 <Preview>
   <Story name="basic tabs">
     {() => {
-      const [tab, setTab] = useState("xxx");
+      const [tab, setTab] = useState("1");
       const { TabPanel } = Tabs;
       return (
-        <>
+        <div style={{ backgroundColor: "#1c1e20", padding: "100px" }}>
           <Tabs activeName={tab} onChange={(newTab) => setTab(newTab)}>
-            <TabPanel label="xxx" name="xxx" icon="cluster">
-              xxx
+            <TabPanel label="Overview" name="1" icon="cluster">
+              Overview
             </TabPanel>
-            <TabPanel label="yyy" name="yyy" icon="project">
-              yyy
+            <TabPanel label="Pods" name="2" icon="project">
+              Pods
+            </TabPanel>
+            <TabPanel label="Deployments" name="3" icon="project">
+              Deployments
+            </TabPanel>
+            <TabPanel label="StatefulSets" name="4" icon="project">
+              StatefulSets
             </TabPanel>
           </Tabs>
           <Tabs
@@ -36,11 +42,17 @@ Basic usages for `Tabs` component.
             activeName={tab}
             onChange={(newTab) => setTab(newTab)}
           >
-            <TabPanel label="xxx" name="xxx">
-              xxx
+            <TabPanel label="Overview" name="1" icon="cluster">
+              Overview
             </TabPanel>
-            <TabPanel label="yyy" name="yyy">
-              yyy
+            <TabPanel label="Pods" name="2" icon="project">
+              Pods
+            </TabPanel>
+            <TabPanel label="Deployments" name="3" icon="project">
+              Deployments
+            </TabPanel>
+            <TabPanel label="StatefulSets" name="4" icon="project">
+              StatefulSets
             </TabPanel>
           </Tabs>
           <Tabs
@@ -48,26 +60,20 @@ Basic usages for `Tabs` component.
             activeName={tab}
             onChange={(newTab) => setTab(newTab)}
           >
-            <TabPanel label="xxx" name="xxx">
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
-              xxx<br/>
+            <TabPanel label="Overview" name="1" icon="cluster">
+              Overview
             </TabPanel>
-            <TabPanel label="yyy" name="yyy">
-              yyy
+            <TabPanel label="Pods" name="2" icon="project">
+              Pods
             </TabPanel>
+            <TabPanel label="Deployments" name="3" icon="project">
+              Deployments
+            </TabPanel>
+            <TabPanel label="StatefulSets" name="4" icon="project">
+              StatefulSets
+            </TabPanel>            
           </Tabs>
-        </>
+        </div>
       );
     }}
   </Story>

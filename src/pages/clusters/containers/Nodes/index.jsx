@@ -35,6 +35,9 @@ import { Avatar, Status, Panel, Text, Modal } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 
+import MUIDataTable from 'mui-datatables'
+import Button from '@material-ui/core/Button'
+
 import { toJS } from 'mobx'
 import styles from './index.scss'
 
@@ -547,9 +550,233 @@ export default class Nodes extends React.Component {
     )
   }
 
+  handleEditMultiTaints = selectedRows => {
+    const { routing, trigger } = this.props
+    trigger('node.taint.batch', {
+      success: routing.query,
+      selectedRows,
+    })
+  }
+
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { bannerProps, tableProps, module, prefix } = this.props
     const isLoadingMonitor = this.monitoringStore.isLoading
+    const { list } = this.store
+    const data = toJS(list.data)
+    const columns = [
+      {
+        name: 'name',
+        label: 'Name',
+        options: {
+          filter: true,
+          sort: true,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            return (
+              <Avatar
+                icon={ICON_TYPES[module]}
+                iconSize={40}
+                to={
+                  record.importStatus !== 'success'
+                    ? null
+                    : `${prefix}/${record.name}`
+                }
+                title={record.name}
+                desc={record.ip}
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'status',
+        label: 'Status',
+        options: {
+          filter: false,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            const status = getNodeStatus(record)
+            const taints = record.taints
+
+            return (
+              <div className={styles.status}>
+                <Status
+                  type={status}
+                  name={t(`NODE_STATUS_${status.toUpperCase()}`)}
+                />
+                {!isEmpty(taints) && record.importStatus === 'success' && (
+                  <Tooltip content={this.renderTaintsTip(taints)}>
+                    <span className={styles.taints}>{taints.length}</span>
+                  </Tooltip>
+                )}
+              </div>
+            )
+          },
+        },
+      },
+      {
+        name: 'role',
+        label: 'Role',
+        options: {
+          filter: true,
+          sort: false,
+          customBodyRender: roles =>
+            roles.indexOf('master') === -1 ? t('WORKER') : t('CONTROL_PLANE'),
+        },
+      },
+      {
+        name: 'cpu_usage',
+        label: 'CPU Usage',
+        options: {
+          filter: false,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            const metrics = this.getRecordMetrics(record, [
+              {
+                type: 'cpu_used',
+                unit: 'Core',
+              },
+              {
+                type: 'cpu_total',
+                unit: 'Core',
+              },
+              {
+                type: 'cpu_utilisation',
+              },
+            ])
+
+            return (
+              <Text
+                title={
+                  <div className={styles.resource}>
+                    <span>{`${Math.round(
+                      metrics.cpu_utilisation * 100
+                    )}%`}</span>
+                    {metrics.cpu_utilisation >= 0.9 && (
+                      <Icon name="exclamation" />
+                    )}
+                  </div>
+                }
+                description={`${metrics.cpu_used}/${metrics.cpu_total} ${t(
+                  'CORE_PL'
+                )}`}
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'memory_usage',
+        label: 'Memory Usage',
+        options: {
+          filter: false,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            const metrics = this.getRecordMetrics(record, [
+              {
+                type: 'memory_used',
+                unit: 'Gi',
+              },
+              {
+                type: 'memory_total',
+                unit: 'Gi',
+              },
+              {
+                type: 'memory_utilisation',
+              },
+            ])
+
+            return (
+              <Text
+                title={
+                  <div className={styles.resource}>
+                    <span>{`${Math.round(
+                      metrics.memory_utilisation * 100
+                    )}%`}</span>
+                    {metrics.memory_utilisation >= 0.9 && (
+                      <Icon name="exclamation" />
+                    )}
+                  </div>
+                }
+                description={`${metrics.memory_used}/${metrics.memory_total} GiB`}
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'pods',
+        label: 'Pods',
+        options: {
+          filter: false,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            const metrics = this.getRecordMetrics(record, [
+              {
+                type: 'pod_used',
+              },
+              {
+                type: 'pod_total',
+              },
+            ])
+            const uitilisation = metrics.pod_total
+              ? parseFloat(metrics.pod_used / metrics.pod_total)
+              : 0
+
+            return (
+              <Text
+                title={`${Math.round(uitilisation * 100)}%`}
+                description={`${metrics.pod_used}/${metrics.pod_total}`}
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'role',
+        label: 'Allocated CPU',
+        options: {
+          filter: true,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            return this.renderCPUTooltip(record)
+          },
+        },
+      },
+      {
+        name: 'role',
+        label: 'Allocated Memory',
+        options: {
+          filter: true,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const record = data[dataIndex]
+            return this.renderMemoryTooltip(record)
+          },
+        },
+      },
+    ]
+    const options = {
+      filterType: 'dropdown',
+      customToolbarSelect: selectedRows => (
+        <div>
+          <Tooltip title={'Delete'} cursor="pointer" className="mr-6">
+            <Button
+              className={styles.button}
+              onClick={() => this.handleEditMultiTaints(selectedRows)}
+            >
+              {t('EDIT_TAINTS')}
+            </Button>
+          </Tooltip>
+        </div>
+      ),
+    }
+
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
@@ -564,6 +791,12 @@ export default class Nodes extends React.Component {
           tableActions={this.tableActions}
           columns={this.getColumns()}
           isLoading={tableProps.isLoading || isLoadingMonitor}
+        />
+        <MUIDataTable
+          title={'Employee List'}
+          data={data}
+          columns={columns}
+          options={options}
         />
       </ListPage>
     )

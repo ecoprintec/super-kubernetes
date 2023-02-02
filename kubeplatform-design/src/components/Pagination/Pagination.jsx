@@ -1,27 +1,27 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import Button from "../Button";
+import Button from '../Button'
 
 export default class Pagination extends Component {
   get totalPage() {
-    const { total, limit } = this.props;
-    const left = total % limit;
-    return left === 0 ? Math.max(total / limit, 1) : (total - left) / limit + 1;
+    const { total, limit } = this.props
+    const left = total % limit
+    return left === 0 ? Math.max(total / limit, 1) : (total - left) / limit + 1
   }
 
   handlePrev = () => {
-    const { page, onChange } = this.props;
-    onChange && onChange(Math.max(page - 1, 1));
-  };
+    const { page, onChange } = this.props
+    onChange && onChange(Math.max(page - 1, 1))
+  }
 
   handleNext = () => {
-    const { page, onChange } = this.props;
-    onChange && onChange(Math.min(page + 1, this.totalPage));
-  };
+    const { page, onChange } = this.props
+    onChange && onChange(Math.min(page + 1, this.totalPage))
+  }
 
   render() {
-    const { page } = this.props;
-    const totalPage = this.totalPage;
+    const { page } = this.props
+    const totalPage = this.totalPage
     return (
       <div className="pagination">
         <Button
@@ -42,6 +42,6 @@ export default class Pagination extends Component {
           onClick={this.handleNext}
         />
       </div>
-    );
+    )
   }
 }

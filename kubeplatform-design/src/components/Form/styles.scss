@@ -14,13 +14,19 @@
 
   &-control {
     position: relative;
+    .input {
+      background: #1c1e21;
+      color: #8e9297;
+      border: 1px solid #393b3f;
+      caret-color: #8e9297;
+    }
   }
 
   &-label {
     display: block;
     margin-bottom: 4px;
     @include TypographyParagraph;
-    color: $form-item-label-color;
+    color: #8e9297;
   }
 
   &-error {
@@ -65,16 +71,21 @@
   margin-bottom: 12px;
   padding: 11px 16px;
   border-radius: $border-radius;
-  border: solid 1px $border-color;
+  border: solid 1px #4c5053;
+  // background-color: #1e2124;
 
   &-title {
     font-weight: $font-bold;
-    color: $form-item-label-color;
+    color: #8e9297;
 
     label.checkbox span.label-value {
       font-weight: $font-bold;
       padding-left: 11px;
-      color: $form-item-label-color;
+      color: #8e9297;
+    }
+
+    label.checkbox.input {
+      padding-left: 11px;
     }
 
     &-toggle {
@@ -82,6 +93,9 @@
 
       .icon {
         margin-right: 8px;
+        .kubed-icon {
+          color: #8e9297;
+        }
       }
     }
   }
@@ -95,7 +109,7 @@
     margin: 0 -8px;
     margin-top: $base-margin;
     border-radius: $border-radius;
-    background-color: $form-group-content-bg;
+    //background-color: #1e2124;
   }
 
   &-hide {

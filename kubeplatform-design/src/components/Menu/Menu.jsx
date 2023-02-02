@@ -1,7 +1,7 @@
-import React, { Component, cloneElement } from "react";
-import classnames from "classnames";
-import { noop, isFunction } from "lodash";
-import PropTypes from "prop-types";
+import React, { Component, cloneElement } from 'react'
+import classnames from 'classnames'
+import { noop, isFunction } from 'lodash'
+import PropTypes from 'prop-types'
 
 class Menu extends Component {
   static propTypes = {
@@ -12,52 +12,52 @@ class Menu extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
     selectedKey: PropTypes.string,
-  };
+  }
 
   static defaultProps = {
     onClick: noop,
     style: {},
-  };
+  }
 
   handleClick = (e, key, value) => {
-    const { onClick } = this.props;
+    const { onClick } = this.props
     if (isFunction(onClick)) {
-      onClick(e, key, value);
+      onClick(e, key, value)
     }
-  };
+  }
 
   renderMenuItem = (component, index) => {
     if (!component) {
-      return null;
+      return null
     }
 
-    if (!component) return null;
+    if (!component) return null
 
-    const { selectedKey } = this.props;
+    const { selectedKey } = this.props
 
     const newChildProps = {
       specKey: component.key || `menu-${index}`,
       onClick: this.handleClick,
       selected: component.key === selectedKey,
-    };
+    }
 
-    return cloneElement(component, newChildProps);
-  };
+    return cloneElement(component, newChildProps)
+  }
 
   render() {
-    const { children, className, style, width, label } = this.props;
+    const { children, className, style, width, label } = this.props
 
-    const classString = classnames("menu", className);
+    const classString = classnames('menu', className)
 
-    const widthStyle = width ? { width } : null;
+    const widthStyle = width ? { width } : null
 
     return (
-      <ul className={classString} style={Object.assign({}, style, widthStyle)}>
+      <ul className={classString} style={{ ...style, ...widthStyle }}>
         {label && <div className="menu-label">{label}</div>}
         {React.Children.map(children, this.renderMenuItem)}
       </ul>
-    );
+    )
   }
 }
 
-export default Menu;
+export default Menu

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { get, isEmpty, isEqual } from "lodash";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { get, isEmpty } from 'lodash'
 
-import ColGroup from "./ColGroup";
-import Thead from "./Thead";
-import Tbody from "./Tbody";
-import TableContext from "./context";
+import ColGroup from './ColGroup'
+import Thead from './Thead'
+import Tbody from './Tbody'
+import TableContext from './context'
 
-import Loading from "../Loading";
+import Loading from '../Loading'
 
 export default class Table extends Component {
   static propTypes = {
@@ -22,10 +22,10 @@ export default class Table extends Component {
     footer: PropTypes.node,
     onChange: PropTypes.func,
     expandedRowRender: PropTypes.func,
-  };
+  }
 
   static defaultProps = {
-    rowKey: "name",
+    rowKey: 'name',
     columns: [],
     dataSource: [],
     filters: {},
@@ -33,82 +33,75 @@ export default class Table extends Component {
     loading: false,
     defaultExpandAllRows: false,
     onChange() {},
-  };
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    const [heads, columns] = this.getColumns(props);
-    this.state = { heads, columns };
+    const [heads, columns] = this.getColumns(props)
+    this.state = { heads, columns }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!isEqual(this.props.columns, prevProps.columns)) {
-      const [heads, columns] = this.getColumns(this.props);
+    if (this.props.columns.length !== prevProps.columns.length) {
+      const [heads, columns] = this.getColumns(this.props)
       this.setState({
         heads,
         columns,
-      });
+      })
     }
   }
 
   getColumns(props) {
-    const { columns } = props;
+    const { columns } = props
 
-    const heads = [];
-    const newColumns = [];
-    const walk = (data) => {
-      heads.push([]);
-      const index = heads.length - 1;
-      const children = [];
-      data.forEach((clm) => {
+    const heads = []
+    const newColumns = []
+    const walk = data => {
+      heads.push([])
+      const index = heads.length - 1
+      const children = []
+      data.forEach(clm => {
         if (clm.children) {
-          children.push(...clm.children);
+          children.push(...clm.children)
           heads[index].push({
             title: clm.title,
             colspan: clm.children.length,
-          });
+          })
         } else {
-          newColumns.push(clm);
-          heads[index].push(clm);
+          newColumns.push(clm)
+          heads[index].push(clm)
         }
-      });
+      })
       if (children.length > 0) {
-        walk(children);
+        walk(children)
       }
-      heads[index].forEach((head) => {
-        head.rowspan = heads.length - index;
+      heads[index].forEach(head => {
+        head.rowspan = heads.length - index
         if (head.colspan) {
-          head.rowspan -= 1;
+          head.rowspan -= 1
         }
-      });
-    };
-    walk(columns);
-    return [heads, newColumns];
+      })
+    }
+    walk(columns)
+    return [heads, newColumns]
   }
 
   get hasSelected() {
-    return get(this.props, "rowSelection.selectedRowKeys.length") > 0;
+    return get(this.props, 'rowSelection.selectedRowKeys.length') > 0
   }
 
   render() {
-    const {
-      title,
-      footer,
-      loading,
-      className,
-      emptyText,
-      ...rest
-    } = this.props;
+    const { title, footer, loading, className, emptyText, ...rest } = this.props
     return (
       <TableContext.Provider value={{ ...rest, ...this.state }}>
         <Loading spinning={loading}>
           <div
             className={classNames(
-              "table",
+              'table',
               {
-                "table-has-selected": this.hasSelected,
-                "table-multi-heads": this.state.heads.length > 1,
+                'table-has-selected': this.hasSelected,
+                'table-multi-heads': this.state.heads.length > 1,
               },
               className
             )}
@@ -128,6 +121,6 @@ export default class Table extends Component {
           </div>
         </Loading>
       </TableContext.Provider>
-    );
+    )
   }
 }
