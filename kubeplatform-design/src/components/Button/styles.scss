@@ -75,8 +75,9 @@
 }
 
 .button-default {
-  border: 1px solid $btn-default-border;
-  background-color: $btn-default-border;
+  color: $sqk-btn-default-text-color;
+  border: 1px solid $sqk-btn-default-border;
+  background-color: $sqk-btn-default-border;
   box-shadow: none;
 
   &:hover {
