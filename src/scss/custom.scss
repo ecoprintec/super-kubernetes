@@ -240,3 +240,35 @@ body .MuiTab-wrapper {
   font-weight: 700;
   text-transform: capitalize;
 }
+body {
+  .src-components-Layout-Nav-index__subNav
+    > ul
+    > li.src-components-Layout-Nav-index__open.src-components-Layout-Nav-index__childSelect {
+    border-left: none;
+  }
+  .src-components-Layout-Nav-index__subNav
+    > ul
+    > li.src-components-Layout-Nav-index__childSelect
+    .src-components-Layout-Nav-index__title {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .src-components-Layout-Nav-index__select {
+    font-weight: 700;
+  }
+  .src-components-Layout-Header-index__navs button {
+    background-color: transparent;
+    color: #fff;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 14px;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .button-content {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: unset;
+    }
+  }
+}
