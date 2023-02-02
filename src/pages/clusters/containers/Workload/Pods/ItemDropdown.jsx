@@ -1,29 +1,18 @@
 import * as React from 'react'
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import Grow from '@mui/material/Grow'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
 import MenuItem from '@mui/material/MenuItem'
 import MenuList from '@mui/material/MenuList'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 import styles from './index.scss'
 
 export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false)
   const anchorRef = React.useRef(null)
-  // const [selectedIndex, setSelectedIndex] = React.useState(1)
-
-  // const handleClick = () => {
-  //   console.info(`You clicked ${options[selectedIndex]}`)
-  // }
-
-  // const handleMenuItemClick = (event, index) => {
-  //   setSelectedIndex(index)
-  //   setOpen(false)
-  // }
-
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen)
   }
@@ -38,12 +27,7 @@ export default function SplitButton(props) {
   const options = props.options
   return (
     <React.Fragment>
-      <ButtonGroup
-        // variant="contained"
-        ref={anchorRef}
-        // aria-label="split button"
-      >
-        {/* <Button onClick={handleClick}>{options[selectedIndex]}</Button> */}
+      <ButtonGroup ref={anchorRef}>
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
@@ -55,7 +39,7 @@ export default function SplitButton(props) {
             border: '0px',
           }}
         >
-          <ArrowDropDownIcon />
+          <MoreVertIcon />
         </Button>
       </ButtonGroup>
       <Popper
