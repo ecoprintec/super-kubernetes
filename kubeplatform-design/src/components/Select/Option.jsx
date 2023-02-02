@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import Checkbox from "../Checkbox/Checkbox";
-import Icon from "../Icon";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import Checkbox from '../Checkbox/Checkbox'
+import Icon from '../Icon'
 
 export default class Option extends React.Component {
   static propTypes = {
@@ -10,24 +10,24 @@ export default class Option extends React.Component {
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
     multi: PropTypes.bool,
-  };
+  }
 
   static defaultProps = {
     onChange() {},
     multi: false,
-  };
+  }
 
   renderIcon = () => {
-    const { isActive } = this.props;
+    const { isActive } = this.props
     return isActive ? (
       <div className="select-option-icon">
         <Icon name="check" type="coloured" />
       </div>
-    ) : null;
-  };
+    ) : null
+  }
 
   renderCheckbox = () => {
-    const { disabled, isActive } = this.props;
+    const { disabled, isActive } = this.props
     return (
       <Checkbox
         size="small"
@@ -35,11 +35,11 @@ export default class Option extends React.Component {
         disabled={disabled}
         onChange={this.handleCancelBubble}
       />
-    );
-  };
+    )
+  }
 
   renderContent = () => {
-    const { multi, children } = this.props;
+    const { multi, children } = this.props
     return multi ? (
       <>
         {this.renderCheckbox()}
@@ -50,32 +50,32 @@ export default class Option extends React.Component {
         <span className="select-option-label">{children}</span>
         {this.renderIcon()}
       </>
-    );
-  };
+    )
+  }
 
   handleCancelBubble = (checked, value, e) => {
-    this.props.onClick(this.props.option);
-  };
+    this.props.onClick(this.props.option)
+  }
 
-  handleSelectedValue = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    this.props.onClick(this.props.option);
-  };
+  handleSelectedValue = e => {
+    e.stopPropagation()
+    e.preventDefault()
+    this.props.onClick(this.props.option)
+  }
 
   render() {
-    const { disabled, isActive } = this.props;
+    const { disabled, isActive } = this.props
 
     return (
       <div
-        className={classNames("select-option", {
-          "select-option-disabled": disabled,
-          "select-option-active": isActive,
+        className={classNames('select-option', {
+          'select-option-disabled': disabled,
+          'select-option-active': isActive,
         })}
         onClick={this.handleSelectedValue}
       >
         {this.renderContent()}
       </div>
-    );
+    )
   }
 }

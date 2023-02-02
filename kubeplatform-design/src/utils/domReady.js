@@ -1,46 +1,46 @@
 const IEContentLoaded = (w, callback) => {
-  const d = w.document;
-  let done = false;
+  const d = w.document
+  let done = false
   const init = () => {
     if (!done) {
-      done = true;
-      callback();
+      done = true
+      callback()
     }
-  };
+  }
   const polling = () => {
     try {
-      d.documentElement.doScroll("left");
+      d.documentElement.doScroll('left')
     } catch (e) {
-      setTimeout(polling, 50);
-      return;
+      setTimeout(polling, 50)
+      return
     }
-    init();
-  };
-  polling();
+    init()
+  }
+  polling()
   d.onreadystatechange = () => {
-    if (d.readyState === "complete") {
-      d.onreadystatechange = null;
-      init();
+    if (d.readyState === 'complete') {
+      d.onreadystatechange = null
+      init()
     }
-  };
-};
+  }
+}
 
-const DOMReady = (fn) => {
+const DOMReady = fn => {
   if (document.addEventListener) {
     if (
-      ["complete", "loaded", "interactive"].indexOf(document.readyState) > -1
+      ['complete', 'loaded', 'interactive'].indexOf(document.readyState) > -1
     ) {
-      setTimeout(fn, 0);
+      setTimeout(fn, 0)
     } else {
       const loadFn = () => {
-        document.removeEventListener("DOMContentLoaded", loadFn, false);
-        fn();
-      };
-      document.addEventListener("DOMContentLoaded", loadFn, false);
+        document.removeEventListener('DOMContentLoaded', loadFn, false)
+        fn()
+      }
+      document.addEventListener('DOMContentLoaded', loadFn, false)
     }
   } else if (document.attachEvent) {
-    IEContentLoaded(window, fn);
+    IEContentLoaded(window, fn)
   }
-};
+}
 
-export default DOMReady;
+export default DOMReady

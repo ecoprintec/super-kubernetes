@@ -137,7 +137,7 @@ export default class TableDataWrapper extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div>
+      <div style={{ backgroundColor: "#1c1e20", padding: "50px" }}>
         {children({
           list: this.state.list,
           columns: this.columns,

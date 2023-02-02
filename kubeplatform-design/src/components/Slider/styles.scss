@@ -10,6 +10,9 @@
     margin-left: 20px;
     margin-right: 8px;
   }
+  .is-right {
+    color: $paragraph-color;
+  }
 }
 
 .slider {
@@ -20,28 +23,28 @@
   margin-bottom: 14px;
 
   &-rail {
-    height: 10px;
-    border-radius: 5px;
+    height: 2px;
+    border-radius: 1px;
     background-color: $bg-color;
   }
 
   &-track {
     position: absolute;
     top: 5px;
-    height: 10px;
+    height: 2px;
     border-radius: 5px;
-    background-color: $primary;
+    background-color: $click-bg-color;
   }
 
   &-handler {
     position: absolute;
-    top: 0;
+    top: -3px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 1px solid $primary;
-    background-color: #fff;
-    box-shadow: 0 4px 8px 0 rgba(85, 188, 138, 0.36);
+    border: 1px solid $select-border-color;
+    // background-color: #fff;
+    // box-shadow: 0 4px 8px 0 rgba(85, 188, 138, 0.36);
     transition: box-shadow $trans-speed ease-in-out;
     cursor: pointer;
     outline: none;
@@ -60,7 +63,7 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background-color: $primary;
+      background-color: $click-bg-color;
       transition: transform $trans-speed ease-in-out;
     }
 
@@ -82,7 +85,7 @@
     & > span {
       position: absolute;
       top: 0;
-      @include TypographyParagraph;
+      @include TypographyParagraph($select-text-color);
       user-select: none;
       white-space: nowrap;
       transform: translateX(-50%);

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Tr from "./Tr";
-import Th from "./Th";
-import TableContext from "./context";
+import React, { Component } from 'react'
+import Tr from './Tr'
+import Th from './Th'
+import TableContext from './context'
 
 export default class Thead extends Component {
   render() {
@@ -28,7 +28,7 @@ export default class Thead extends Component {
                 checkboxRowSpan={heads.length}
                 isSelectAll
               >
-                {(column) => (
+                {column => (
                   <Th
                     key={column.key || column.dataIndex}
                     column={column}
@@ -42,6 +42,6 @@ export default class Thead extends Component {
           </thead>
         )}
       </TableContext.Consumer>
-    );
+    )
   }
 }

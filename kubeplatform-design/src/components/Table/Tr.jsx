@@ -1,66 +1,66 @@
-import React, { Component } from "react";
-import classNames from "classnames";
-import { Checkbox } from "../Checkbox";
-import Icon from "../Icon";
-import { isFunction } from "lodash";
+import React, { Component } from 'react'
+import classNames from 'classnames'
+import { isFunction } from 'lodash'
+import { Checkbox } from '../Checkbox'
+import Icon from '../Icon'
 
 export default class Tr extends Component {
   state = {
     showExpand: this.props.defaultExpandAllRows,
-  };
-
-  get isChecked() {
-    const { rowKey, rowSelection = {}, record, isSelectAll } = this.props;
-    const { selectedRowKeys = [] } = rowSelection;
-    return !isSelectAll && selectedRowKeys.includes(record[rowKey]);
   }
 
-  handleChange = (checked) => {
-    const { rowKey, rowSelection = {}, record } = this.props;
-    const { selectedRowKeys = [], onSelect } = rowSelection;
+  get isChecked() {
+    const { rowKey, rowSelection = {}, record, isSelectAll } = this.props
+    const { selectedRowKeys = [] } = rowSelection
+    return !isSelectAll && selectedRowKeys.includes(record[rowKey])
+  }
+
+  handleChange = checked => {
+    const { rowKey, rowSelection = {}, record } = this.props
+    const { selectedRowKeys = [], onSelect } = rowSelection
 
     if (onSelect) {
       if (checked) {
-        onSelect(record, checked, [...selectedRowKeys, record[rowKey]]);
+        onSelect(record, checked, [...selectedRowKeys, record[rowKey]])
       } else {
         onSelect(
           record,
           checked,
-          selectedRowKeys.filter((key) => key !== record[rowKey])
-        );
+          selectedRowKeys.filter(key => key !== record[rowKey])
+        )
       }
     }
-  };
+  }
 
-  handleAllChange = (checked) => {
-    const { rowKey, rowSelection = {}, records } = this.props;
-    const { onSelectAll, getCheckboxProps } = rowSelection;
+  handleAllChange = checked => {
+    const { rowKey, rowSelection = {}, records } = this.props
+    const { onSelectAll, getCheckboxProps } = rowSelection
 
     if (onSelectAll) {
       if (checked) {
         onSelectAll(
           checked,
           records
-            .filter((item) => {
+            .filter(item => {
               if (getCheckboxProps) {
-                const result = getCheckboxProps(item);
+                const result = getCheckboxProps(item)
                 if (result && result.disabled) {
-                  return false;
+                  return false
                 }
               }
-              return true;
+              return true
             })
-            .map((item) => item[rowKey])
-        );
+            .map(item => item[rowKey])
+        )
       } else {
-        onSelectAll(checked, []);
+        onSelectAll(checked, [])
       }
     }
-  };
+  }
 
   toggleExpand = () => {
-    this.setState(({ showExpand }) => ({ showExpand: !showExpand }));
-  };
+    this.setState(({ showExpand }) => ({ showExpand: !showExpand }))
+  }
 
   renderSelection() {
     const {
@@ -70,17 +70,17 @@ export default class Tr extends Component {
       isSelectAll,
       record,
       records,
-    } = this.props;
+    } = this.props
 
     if (!rowSelection) {
-      return null;
+      return null
     }
 
-    const { selectedRowKeys = [], getCheckboxProps } = rowSelection;
+    const { selectedRowKeys = [], getCheckboxProps } = rowSelection
 
     if (isSelectAll) {
       if (index > 0) {
-        return null;
+        return null
       }
 
       return (
@@ -88,14 +88,14 @@ export default class Tr extends Component {
           <Checkbox
             checked={
               selectedRowKeys.length ===
-                records.filter((item) => {
+                records.filter(item => {
                   if (getCheckboxProps) {
-                    const result = getCheckboxProps(item);
+                    const result = getCheckboxProps(item)
                     if (result && result.disabled) {
-                      return false;
+                      return false
                     }
                   }
-                  return true;
+                  return true
                 }).length && selectedRowKeys.length > 0
             }
             indeterminate={
@@ -106,12 +106,12 @@ export default class Tr extends Component {
             disabled={records.length <= 0}
           />
         </th>
-      );
+      )
     }
 
-    let props = {};
+    let props = {}
     if (isFunction(getCheckboxProps)) {
-      props = getCheckboxProps(record);
+      props = getCheckboxProps(record)
     }
 
     return (
@@ -122,68 +122,68 @@ export default class Tr extends Component {
           onChange={this.handleChange}
         />
       </td>
-    );
+    )
   }
 
   renderExpandToggle() {
-    const { record, expandedRowRender, rowExpandable } = this.props;
-    const { showExpand } = this.state;
-    const disabled = rowExpandable && !rowExpandable(record);
+    const { record, expandedRowRender, rowExpandable } = this.props
+    const { showExpand } = this.state
+    const disabled = rowExpandable && !rowExpandable(record)
 
     if (!expandedRowRender) {
-      return null;
+      return null
     }
 
     return (
       <td>
         <Icon
-          name={showExpand ? "minus-square" : "plus-square"}
+          name={showExpand ? 'minus-square' : 'plus-square'}
           onClick={this.toggleExpand}
           clickable={!disabled}
           disabled={disabled}
         />
       </td>
-    );
+    )
   }
 
   renderExpand() {
-    const { record, rowSelection, columns, expandedRowRender } = this.props;
-    const { showExpand } = this.state;
+    const { record, rowSelection, columns, expandedRowRender } = this.props
+    const { showExpand } = this.state
 
     if (!expandedRowRender || !showExpand) {
-      return null;
+      return null
     }
 
-    const colSpan = rowSelection ? columns.length + 2 : columns.length + 1;
+    const colSpan = rowSelection ? columns.length + 2 : columns.length + 1
 
     return (
       <tr
-        className={classNames("table-row table-row-expand", {
-          "table-row-selected": this.isChecked,
+        className={classNames('table-row table-row-expand', {
+          'table-row-selected': this.isChecked,
         })}
       >
         <td colSpan={colSpan}>{expandedRowRender(record)}</td>
       </tr>
-    );
+    )
   }
 
   render() {
-    const { columns, children, rowKeyData } = this.props;
+    const { columns, children, rowKeyData } = this.props
 
     return (
       <>
         <tr
-          className={classNames("table-row", {
-            "table-row-selected": this.isChecked,
+          className={classNames('table-row', {
+            'table-row-selected': this.isChecked,
           })}
           data-row-key={rowKeyData}
         >
           {this.renderSelection()}
-          {columns.map((column) => children(column))}
+          {columns.map(column => children(column))}
           {this.renderExpandToggle()}
         </tr>
         {this.renderExpand()}
       </>
-    );
+    )
   }
 }

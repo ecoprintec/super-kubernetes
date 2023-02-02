@@ -5,30 +5,31 @@
   width: 376px;
   padding: 6px 12px;
   border-radius: $border-radius;
-  border: solid 1px $input-border-color;
-  background-color: $white;
+  border: solid 1px #393b3f;
+  background-color: #1c1e21;
   box-sizing: border-box;
   @include TypographySymbolText;
   transition: all $trans-speed ease-in-out;
   outline: none;
-  caret-color: $dark-color06;
+  caret-color: #808b95;
+  color: #808b95;
 
   &::placeholder {
     font-weight: $font-normal;
-    color: $dark-color03;
+    color: #67707a;
   }
 
   &:not([readonly]):not([disabled]):hover {
-    border-color: $input-hover-color;
+    border-color: #2d85c4;
   }
 
   &:not([readonly]):not([disabled]):focus {
-    border-color: $input-focus-color;
+    border-color: #2d85c4;
   }
 
   &[readonly],
   &[disabled] {
-    background-color: $light-color02;
+    background-color: #1c1e2133;
   }
 
   &[readonly] {

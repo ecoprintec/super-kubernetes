@@ -24,7 +24,10 @@ $popper-z-index: 100;
 }
 
 .popper-content {
-  padding: 9px 14px;
+  padding: 12px;
+  background: $bg-popepr-color;
+  border-radius: 4px;
+  color: $click-text-color;
 }
 
 .popper-arrow {
@@ -32,7 +35,7 @@ $popper-z-index: 100;
   display: block;
   width: $arrow-border-width;
   height: $arrow-border-width;
-  background-color: $popper-background;
+  background-color: $bg-popepr-color;
   transform: rotate(45deg);
   z-index: -1;
 }

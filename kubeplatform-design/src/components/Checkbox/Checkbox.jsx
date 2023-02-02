@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 export default class Checkbox extends Component {
   static propTypes = {
@@ -14,41 +14,41 @@ export default class Checkbox extends Component {
     children: PropTypes.node,
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func,
-  };
+  }
 
   static defaultProps = {
     indeterminate: false,
     onChange() {},
-  };
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    if ("checked" in this.props) {
-      this.isControlled = true;
+    if ('checked' in this.props) {
+      this.isControlled = true
     }
 
     this.state = {
       checked: !!this.props.checked,
-    };
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.isControlled && this.props.checked !== prevState.checked) {
-      this.setState({ checked: this.props.checked });
+      this.setState({ checked: this.props.checked })
     }
   }
 
-  handleChange = (e) => {
-    const { onChange, value } = this.props;
-    const { checked } = this.state;
+  handleChange = e => {
+    const { onChange, value } = this.props
+    const { checked } = this.state
 
     if (!this.isControlled) {
-      this.setState({ checked: !checked });
+      this.setState({ checked: !checked })
     }
 
-    onChange(!checked, value, e);
-  };
+    onChange(!checked, value, e)
+  }
 
   render() {
     const {
@@ -58,12 +58,12 @@ export default class Checkbox extends Component {
       indeterminate,
       checked,
       ...rest
-    } = this.props;
+    } = this.props
 
     return (
       <label
         className={classNames(
-          "checkbox",
+          'checkbox',
           {
             indeterminate,
             checked: this.state.checked,
@@ -80,6 +80,6 @@ export default class Checkbox extends Component {
         />
         {children ? <span className="label-value">{children}</span> : null}
       </label>
-    );
+    )
   }
 }
