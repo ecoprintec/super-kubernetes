@@ -114,4 +114,16 @@ export default class PodStore extends Base {
     const url = `/api/v1/namespaces/${params[5]}/pods/${params[0]}`
     return this.submitting(request.delete(url))
   }
+
+  @action
+  deleteMulti(params) {
+    const url = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`
+    return this.submitting(request.delete(url))
+  }
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/api/v1/namespaces/${detail[5]}/pods/${detail[0]}`
+    return await this.submitting(request.get(url))
+  }
 }

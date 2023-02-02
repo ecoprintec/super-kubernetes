@@ -19,6 +19,8 @@
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
+import DeleteCustom from 'components/Modals/Delete/DeleteCustom'
+
 import StopModal from 'components/Modals/Stop'
 import ServiceStore from 'stores/service'
 
@@ -35,9 +37,54 @@ export default {
             success && success()
           })
         },
+
         store,
-        modal: DeleteModal,
-        resource: detail.name,
+        modal: DeleteCustom,
+        confirmDel: `Are you sure delete : ${detail[0]} ?`,
+        resource: detail[0],
+        ...props,
+      })
+    },
+  },
+  'resource.batch.deleteMulti': {
+    on({ store, success, selectValues, ...props }) {
+      const serviceStore = new ServiceStore()
+      const { data } = store.list
+
+      const selectNames = selectValues.map(item => item.name)
+
+      const modal = Modal.open({
+        onOk: async () => {
+          const reqs = []
+
+          data.forEach(item => {
+            const selectValue = selectValues.find(
+              value =>
+                value.name === item.name && value.namespace === item.namespace
+            )
+
+            if (selectValue) {
+              reqs.push(store.deleteMulti(item))
+              if (store.module === 'statefulsets') {
+                reqs.push(
+                  serviceStore.delete({ ...item, name: item.spec.serviceName })
+                )
+              }
+            }
+          })
+
+          await Promise.all(reqs)
+
+          Modal.close(modal)
+          Notify.success({ content: t('DELETED_SUCCESSFULLY') })
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        title: 'Multi delete pods',
+        resource: selectNames.join(', '),
+        modal: DeleteCustom,
+        confirmDel: `Are you sure delete : ${selectNames.join(', ')} ?`,
+        store,
         ...props,
       })
     },
