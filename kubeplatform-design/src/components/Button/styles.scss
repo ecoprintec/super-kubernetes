@@ -8,6 +8,7 @@
   border-radius: 8px;
   text-transform: uppercase;
   box-sizing: border-box;
+  font-family: 'Maven Pro,sans-serif';
   cursor: pointer;
   transition: all $trans-speed ease-in-out;
   @include TypographySymbolText;
@@ -91,10 +92,10 @@
 }
 
 .button-primary {
-  color: $btn-primary-text-color;
-  border: 1px solid $btn-primary-bg;
-  background-color: $btn-primary-bg;
-  box-shadow: $btn-primary-shadow;
+  color: $sqk-btn-primary-text-color;
+  border: 1px solid $sqk-btn-primary-bg;
+  background-color: $sqk-btn-primary-bg;
+  box-shadow: none;
 
   &:active {
     box-shadow: $btn-primary-active-shadow;
@@ -102,10 +103,10 @@
 }
 
 .button-control {
-  color: $btn-control-text-color;
-  border: 1px solid $btn-control-bg;
-  background-color: $btn-control-bg;
-  box-shadow: $btn-control-shadow;
+  color: $sqk-btn-primary-text-color;
+  border: 1px solid $sqk-btn-control-bg;
+  background-color: $sqk-btn-control-bg;
+  box-shadow: none;
 
   &:active {
     box-shadow: $btn-control-active-shadow;
