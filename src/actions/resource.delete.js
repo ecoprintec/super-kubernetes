@@ -40,7 +40,7 @@ export default {
 
         store,
         modal: DeleteCustom,
-        confirmDel: `Are you sure delete : ${detail[0]} ?`,
+        confirmDel: `Are you sure delete ? If you agree then type : ${detail[0]} in form and click OK.`,
         resource: detail[0],
         ...props,
       })
@@ -83,7 +83,9 @@ export default {
         title: 'Multi delete pods',
         resource: selectNames.join(', '),
         modal: DeleteCustom,
-        confirmDel: `Are you sure delete : ${selectNames.join(', ')} ?`,
+        confirmDel: `AAre you sure delete ? If you agree then type : ${selectNames.join(
+          ', '
+        )} in form and click OK.`,
         store,
         ...props,
       })
