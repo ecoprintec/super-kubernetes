@@ -1,14 +1,14 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component, cloneElement, isValidElement } from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { noop } from "lodash";
-import Popper from "../Popper";
+import React, { Component, cloneElement, isValidElement } from 'react'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import { noop } from 'lodash'
+import Popper from '../Popper'
 
 class Dropdown extends Component {
   static propTypes = {
     trigger: PropTypes.string,
-    theme: PropTypes.oneOf(["dark", ""]),
+    theme: PropTypes.oneOf(['dark', '']),
     content: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.element,
@@ -22,39 +22,39 @@ class Dropdown extends Component {
     closeAfterMouseLeave: PropTypes.bool,
     children: PropTypes.node,
     onClick: PropTypes.func,
-  };
+  }
 
   static defaultProps = {
-    theme: "",
-    trigger: "click",
-    placement: "bottomLeft",
+    theme: '',
+    trigger: 'click',
+    placement: 'bottomLeft',
     showArrow: false,
     closeAfterClick: true,
     closeAfterMouseLeave: false,
     onClick: noop,
-  };
+  }
 
   render() {
-    const { className, children, onClick, theme, ...restProps } = this.props;
-    const isTriggerValid = isValidElement(children);
+    const { className, children, onClick, theme, ...restProps } = this.props
+    const isTriggerValid = isValidElement(children)
 
     return (
       <Popper
         {...restProps}
         type="dropdown"
-        className={classNames("dropdown", `dropdown-${theme}`, className)}
+        className={classNames('dropdown', `dropdown-${theme}`, className)}
         onClick={onClick}
       >
         {isTriggerValid ? (
           cloneElement(children, {
-            className: classNames("is-trigger", children.props.className),
+            className: classNames('is-trigger', children.props.className),
           })
         ) : (
           <span className="is-trigger">{children}</span>
         )}
       </Popper>
-    );
+    )
   }
 }
 
-export default Dropdown;
+export default Dropdown

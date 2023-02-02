@@ -1,6 +1,6 @@
-import Basic from "./Basic";
-import Generator from "../../utils/Generator";
+import Basic from './Basic'
+import Generator from '../../utils/Generator'
 
-const LevelLeft = Generator({ componentCls: "level-left" })(Basic);
+const LevelLeft = Generator({ componentCls: 'level-left' })(Basic)
 
-export default LevelLeft;
+export default LevelLeft

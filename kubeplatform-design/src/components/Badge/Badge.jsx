@@ -1,49 +1,47 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 class Badge extends Component {
   static propTypes = {
     count: PropTypes.number,
     children: PropTypes.node,
     overflowCount: PropTypes.number,
-    status: PropTypes.oneOf(["default", "success", "error", "warning"]),
+    status: PropTypes.oneOf(['default', 'success', 'error', 'warning']),
     style: PropTypes.object,
     text: PropTypes.string,
     className: PropTypes.string,
-  };
+  }
 
   static defaultProps = {
-    status: "success",
+    status: 'success',
     overflowCount: 99,
     count: 0,
-  };
+  }
 
   renderBadge = () => {
-    const { status, text, overflowCount, count } = this.props;
+    const { status, text, overflowCount, count } = this.props
 
-    let number = "";
+    let number = ''
 
     if (text) {
-      number = text;
+      number = text
     } else if (overflowCount && count > overflowCount) {
-      number = `${overflowCount}+`;
+      number = `${overflowCount}+`
     } else {
-      number = count;
+      number = count
     }
-    return (
-      <span className={classNames(`is-${status}`, "badge")}>{number}</span>
-    );
-  };
+    return <span className={classNames(`is-${status}`, 'badge')}>{number}</span>
+  }
 
   render = () => {
-    const { style, className, children } = this.props;
+    const { style, className, children } = this.props
     return (
-      <div className={classNames("badge-wrapper", className)} style={style}>
+      <div className={classNames('badge-wrapper', className)} style={style}>
         {children}
         {this.renderBadge()}
       </div>
-    );
-  };
+    )
+  }
 }
-export default Badge;
+export default Badge

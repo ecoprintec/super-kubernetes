@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { isEmpty } from "lodash";
-import Tr from "./Tr";
-import Td from "./Td";
-import TableContext from "./context";
+import React, { Component } from 'react'
+import { isEmpty } from 'lodash'
+import Tr from './Tr'
+import Td from './Td'
+import TableContext from './context'
 
 export default class Tbody extends Component {
   render() {
@@ -18,7 +18,7 @@ export default class Tbody extends Component {
           rowExpandable,
         }) => (
           <tbody>
-            {dataSource.map((item) => (
+            {dataSource.map(item => (
               <Tr
                 key={item[rowKey]}
                 record={item}
@@ -30,7 +30,7 @@ export default class Tbody extends Component {
                 defaultExpandAllRows={defaultExpandAllRows}
                 rowExpandable={rowExpandable}
               >
-                {(column) => (
+                {column => (
                   <Td
                     key={column.key || column.dataIndex}
                     column={column}
@@ -42,6 +42,6 @@ export default class Tbody extends Component {
           </tbody>
         )}
       </TableContext.Consumer>
-    );
+    )
   }
 }

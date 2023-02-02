@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { omit, isNumber } from "lodash";
-import Icon from "./LoadingIcon";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { omit, isNumber } from 'lodash'
+import Icon from './LoadingIcon'
 
 const sizeObj = {
   small: 20,
   medium: 32,
   large: 48,
-};
+}
 
 class Loading extends Component {
   static propTypes = {
@@ -16,39 +16,39 @@ class Loading extends Component {
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     spinning: PropTypes.bool,
     children: PropTypes.element,
-  };
+  }
 
   static defaultProps = {
     spinning: true,
-    size: "medium",
-  };
+    size: 'medium',
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       spinning: props.spinning,
-    };
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { spinning: prevSpinning } = prevState;
-    const { spinning } = nextProps;
+    const { spinning: prevSpinning } = prevState
+    const { spinning } = nextProps
 
     if (prevSpinning !== spinning) {
-      return { spinning };
+      return { spinning }
     }
 
-    return null;
+    return null
   }
 
   isNestedPattern() {
-    const { children } = this.props;
-    return children;
+    const { children } = this.props
+    return children
   }
 
   renderIndicator() {
-    const { size } = this.props;
+    const { size } = this.props
 
     return (
       <span className="spin-dot spin-dot-spin">
@@ -56,10 +56,10 @@ class Loading extends Component {
           name="loading"
           type="dark"
           size={isNumber(size) ? size : sizeObj[size]}
-          style={{ display: "block", margin: "auto" }}
+          style={{ display: 'block', margin: 'auto' }}
         />
       </span>
-    );
+    )
   }
 
   render() {
@@ -69,36 +69,36 @@ class Loading extends Component {
       children,
       wrapperClassName,
       ...restProps
-    } = this.props;
-    const { spinning } = this.state;
+    } = this.props
+    const { spinning } = this.state
 
     const spinClassName = classNames(
-      "spin",
+      'spin',
       {
-        "spin-sm": size === "small",
-        "spin-lg": size === "large",
-        "spin-spinning": spinning,
+        'spin-sm': size === 'small',
+        'spin-lg': size === 'large',
+        'spin-spinning': spinning,
       },
       className
-    );
+    )
 
-    const divProps = omit(restProps, ["spinning"]);
+    const divProps = omit(restProps, ['spinning'])
 
     const spinElement = (
       <div {...divProps} className={spinClassName}>
         {this.renderIndicator()}
       </div>
-    );
+    )
 
     if (this.isNestedPattern()) {
-      let animateClassName = `spin-nested-loading`;
+      let animateClassName = `spin-nested-loading`
       if (wrapperClassName) {
-        animateClassName += ` ${wrapperClassName}`;
+        animateClassName += ` ${wrapperClassName}`
       }
       const containerClassName = classNames({
-        "spin-container": true,
-        "spin-blur": spinning,
-      });
+        'spin-container': true,
+        'spin-blur': spinning,
+      })
       return (
         <div {...divProps} className={animateClassName}>
           {spinning && <div key="loading">{spinElement}</div>}
@@ -106,10 +106,10 @@ class Loading extends Component {
             {children}
           </div>
         </div>
-      );
+      )
     }
-    return spinning && spinElement;
+    return spinning && spinElement
   }
 }
 
-export default Loading;
+export default Loading

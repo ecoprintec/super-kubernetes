@@ -1,16 +1,32 @@
 @import '../../styles/variables';
 
+$color-custom: #909ba6;
+$hover-bg-color: #373a3d;
+
 .pagination {
   display: inline-flex;
   align-items: center;
 
   & > span {
     margin: 0 12px;
+    color: $color-custom;
   }
 
   .button {
     height: 32px;
     padding: 5px 12px;
     border-radius: $border-radius;
+
+    &:hover {
+      background-color: $hover-bg-color;
+
+      .icon svg {
+        color: $white;
+      }
+    }
+  }
+
+  .icon svg {
+    color: $color-custom;
   }
 }

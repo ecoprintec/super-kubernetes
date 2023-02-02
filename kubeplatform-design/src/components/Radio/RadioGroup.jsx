@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { isFunction } from "lodash";
-import Radio from "./Radio";
-import RadioButton from "./RadioButton";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { isFunction } from 'lodash'
+import Radio from './Radio'
+import RadioButton from './RadioButton'
 
 class RadioGroup extends Component {
   static propTypes = {
@@ -20,36 +20,36 @@ class RadioGroup extends Component {
     children: PropTypes.node,
     mode: PropTypes.string,
     buttonWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  };
+  }
 
   static childContextTypes = {
     radioGroup: PropTypes.any,
-  };
+  }
 
   static defaultProps = {
-    prefixCls: "radio-group",
-    buttonWidth: "auto",
-    mode: "",
-  };
+    prefixCls: 'radio-group',
+    buttonWidth: 'auto',
+    mode: '',
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    let newValue;
-    if ("value" in props) {
-      newValue = props.value;
-    } else if ("defaultValue" in props) {
-      newValue = props.defaultValue;
+    let newValue
+    if ('value' in props) {
+      newValue = props.value
+    } else if ('defaultValue' in props) {
+      newValue = props.defaultValue
     }
 
     this.state = {
       value: newValue,
-    };
+    }
   }
 
   getChildContext() {
-    const { disabled, name, buttonWidth } = this.props;
-    const { value } = this.state;
+    const { disabled, name, buttonWidth } = this.props
+    const { value } = this.state
     return {
       radioGroup: {
         onChange: this.handleChange,
@@ -58,42 +58,42 @@ class RadioGroup extends Component {
         name,
         buttonWidth,
       },
-    };
+    }
   }
 
   static getDerivedStateFromProps(nextProps) {
-    if ("value" in nextProps) {
-      return { value: nextProps.value };
+    if ('value' in nextProps) {
+      return { value: nextProps.value }
     }
 
-    let newValue = null;
-    let matched = false;
+    let newValue = null
+    let matched = false
 
-    React.Children.forEach(nextProps.children, (radio) => {
+    React.Children.forEach(nextProps.children, radio => {
       if (radio && radio.props && radio.props.checked) {
-        newValue = radio.props.value;
-        matched = true;
+        newValue = radio.props.value
+        matched = true
       }
-    });
+    })
 
-    return matched ? { value: newValue } : null;
+    return matched ? { value: newValue } : null
   }
 
-  handleChange = (e) => {
-    const { onChange, name } = this.props;
-    const { value: stateValue } = this.state;
-    const { value } = e.target;
-    if (!e.target.checked) return;
-    if (!("value" in this.props)) {
+  handleChange = e => {
+    const { onChange, name } = this.props
+    const { value: stateValue } = this.state
+    const { value } = e.target
+    if (!e.target.checked) return
+    if (!('value' in this.props)) {
       this.setState({
         value,
-      });
+      })
     }
 
     if (isFunction(onChange) && value !== stateValue) {
-      onChange(value, name);
+      onChange(value, name)
     }
-  };
+  }
 
   render() {
     const {
@@ -106,32 +106,32 @@ class RadioGroup extends Component {
       children,
       disabled,
       mode,
-    } = this.props;
-    const { value } = this.state;
+    } = this.props
+    const { value } = this.state
 
-    let newChildren = children;
+    let newChildren = children
 
     if (options && options.length > 0) {
-      newChildren = options.map((option) => {
+      newChildren = options.map(option => {
         const restProps = {
           name,
           className,
-        };
-
-        let newLabel = null;
-        if (typeof option === "string") {
-          restProps.value = option;
-          restProps.checked = value === option;
-          restProps.disabled = disabled;
-          newLabel = option;
-        } else {
-          restProps.value = option.value;
-          restProps.checked = value === option.value;
-          restProps.disabled = option.disabled || disabled;
-          newLabel = option.label;
         }
 
-        const RadioComponent = mode === "button" ? RadioButton : Radio;
+        let newLabel = null
+        if (typeof option === 'string') {
+          restProps.value = option
+          restProps.checked = value === option
+          restProps.disabled = disabled
+          newLabel = option
+        } else {
+          restProps.value = option.value
+          restProps.checked = value === option.value
+          restProps.disabled = option.disabled || disabled
+          newLabel = option.label
+        }
+
+        const RadioComponent = mode === 'button' ? RadioButton : Radio
 
         return (
           <RadioComponent
@@ -141,21 +141,21 @@ class RadioGroup extends Component {
           >
             {newLabel}
           </RadioComponent>
-        );
-      });
+        )
+      })
     }
 
     return (
       <div
         className={classNames(prefixCls, wrapClassName, {
-          "radio-group-button": mode === "button",
+          'radio-group-button': mode === 'button',
         })}
         style={style}
       >
         {newChildren}
       </div>
-    );
+    )
   }
 }
 
-export default RadioGroup;
+export default RadioGroup

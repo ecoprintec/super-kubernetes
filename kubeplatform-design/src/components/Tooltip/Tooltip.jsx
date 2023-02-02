@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import Popper from "../Popper";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import Popper from '../Popper'
+
 class Tooltip extends Component {
   static propTypes = {
     always: PropTypes.bool,
@@ -10,30 +11,30 @@ class Tooltip extends Component {
     content: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
     placement: PropTypes.string,
     children: PropTypes.node,
-  };
+  }
 
   static defaultProps = {
     always: false,
-    trigger: "hover",
-    placement: "top",
-  };
+    trigger: 'hover',
+    placement: 'top',
+  }
 
   render() {
-    const { children, className, content, ...restProps } = this.props;
+    const { children, className, content, ...restProps } = this.props
 
-    if ([undefined, null, ""].includes(content)) return children;
+    if ([undefined, null, ''].includes(content)) return children
 
     return (
       <Popper
         {...restProps}
         content={content}
-        className={classNames("tooltip", className)}
+        className={classNames('tooltip', className)}
         type="tooltip"
       >
         {children}
       </Popper>
-    );
+    )
   }
 }
 
-export default Tooltip;
+export default Tooltip

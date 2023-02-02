@@ -1,6 +1,12 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins';
 
+#story--components-select--select {
+  p {
+    color: $select-text-color;
+  }
+}
+
 .select {
   position: relative;
   width: $input-default-width;
@@ -11,9 +17,10 @@
     width: 100%;
     height: 32px;
     padding: 0 12px;
-    border: 1px solid $input-border-color;
+    // border: 1px solid $input-border-color;
+    box-shadow: $select-border-color;
     border-radius: $border-radius;
-    background-color: $white;
+    // background-color: $white;
     transition: border-color $trans-speed ease-in-out;
     box-sizing: border-box;
     cursor: pointer;
@@ -29,8 +36,9 @@
   }
 
   &.is-open .select-control {
-    border-color: $input-focus-color;
-    box-shadow: $input-focus-shadow;
+    // border-color: $green-color06;
+    // box-shadow: $input-focus-shadow;
+    box-shadow: $select-border-color-active;
   }
 
   &-value-wrapper {
@@ -48,7 +56,8 @@
       display: inline-flex;
       align-items: center;
       max-width: 100%;
-      @include TypographySymbolText;
+      // @include TypographySymbolText;
+      color: $select-text-color;
       @include ellipsis;
     }
 
@@ -108,7 +117,7 @@
       width: 100%;
       background: 0 0;
       cursor: pointer;
-      @include TypographySymbolText;
+      @include TypographySymbolText($select-text-color);
 
       &::placeholder {
         font-weight: $font-normal;
@@ -136,23 +145,42 @@
     margin-top: 4px;
     padding: 4px 0;
     border-radius: $border-radius;
-    background-color: $heading-color;
-    box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.16);
+    background-color: $bg-dark-theme-second;
+    box-shadow: $box-shadow-first;
     box-sizing: border-box;
     overflow-y: auto;
     z-index: 1000;
 
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #36393e;
+      border-radius: 10px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #909ba6;
+      border-radius: 10px;
+    }
+
     .select-option {
       display: flex;
       padding: 6px 12px;
-      @include TypographyParagraph($white);
+      @include TypographyParagraph($select-text-color);
       font-family: $font-family-id;
       box-sizing: border-box;
       cursor: pointer;
 
-      &-active,
+      &-active {
+        color: $click-text-color;
+        font-weight: $font-bold;
+      }
       &:hover {
-        background: $dark-color06;
+        background: $green-color06;
+        color: $click-text-color;
         font-weight: $font-bold;
       }
 
@@ -219,7 +247,7 @@
     &-empty {
       padding: 20px 0;
       text-align: center;
-      color: $white;
+      color: $click-text-color;
     }
   }
 
@@ -273,7 +301,7 @@
           padding-right: 8px;
           font-weight: normal;
           cursor: default;
-          color: $white;
+          color: $click-text-color;
         }
 
         &-icon {
@@ -290,7 +318,7 @@
     .select-control {
       opacity: 0.5;
       cursor: not-allowed;
-      background-color: $input-disabled-color;
+      background-color: #1e2020;
     }
 
     .select-input input {

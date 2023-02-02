@@ -1,6 +1,11 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
+$notify-success-color-custom: #4caf50;
+$notify-info-color-custom: #329dce;
+$notify-warning-color-custom: #f5a623;
+$notify-error-color-custom: #ca2621;
+
 .notify-wrapper {
   .notify {
     position: fixed;
@@ -16,80 +21,53 @@
       position: relative;
       border-radius: $border-radius;
       border: solid 1px $notify-default-color;
-      background-color: $notify-default-color;
       margin: 10px 0 20px;
       color: $notify-default-text;
       pointer-events: auto;
 
+      .notify-title {
+        color: $white;
+      }
+
+      .notice-close {
+        .kubed-icon {
+          color: $white;
+        }
+      }
+
       &-error {
-        border-color: $notify-error-color;
+        background-color: $notify-error-color-custom;
+        border-color: $notify-error-color-custom;
 
         .notify-icon {
-          background-color: $notify-error-color;
-        }
-
-        .notify-title {
-          color: $notify-error-text;
-        }
-
-        .notice-close {
-          .kubed-icon {
-            color: $notify-error-text;
-          }
+          background-color: $notify-error-color-custom;
         }
       }
 
       &-warning {
-        border-color: $notify-warning-color;
+        background-color: $notify-warning-color-custom;
+        border-color: $notify-warning-color-custom;
 
         .notify-icon {
-          background-color: $notify-warning-color;
-        }
-
-        .notify-title {
-          color: $notify-warning-text;
-        }
-
-        .notice-close {
-          .kubed-icon {
-            color: $notify-warning-text;
-          }
+          background-color: $notify-warning-color-custom;
         }
       }
 
       &-success {
-        border-color: $notify-success-color;
+        background-color: $notify-success-color-custom;
+        border-color: $notify-success-color-custom;
 
         .notify-icon {
-          background-color: $notify-success-color;
-        }
-
-        .notify-title {
-          color: $notify-success-text;
-        }
-
-        .notice-close {
-          .kubed-icon {
-            color: $notify-success-text;
-          }
+          background-color: $notify-success-color-custom;
         }
       }
 
       &-info {
-        border-color: $notify-info-color;
+        background-color: $notify-info-color-custom;
+        border-color: $notify-info-color-custom;
 
         .notify-icon {
-          background-color: $notify-info-color;
-        }
-
-        .notify-title {
-          color: $notify-info-text;
-        }
-
-        .notice-close {
-          .kubed-icon {
-            color: $notify-info-text;
-          }
+          background-color: $notify-info-color-custom;
         }
       }
     }
@@ -102,7 +80,7 @@
       top: 0;
       bottom: 0;
       left: 0;
-      width: 56px;
+      width: 36px;
       text-align: center;
       .icon {
         height: 100% !important;
@@ -110,7 +88,7 @@
     }
     .notify-text {
       height: 100%;
-      margin-left: 56px;
+      margin-left: 20px;
       padding: 7px 16px;
     }
 

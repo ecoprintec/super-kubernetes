@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import Checkbox from "./Checkbox";
+import Checkbox from './Checkbox'
 
 export default class CheckboxGroup extends Component {
   static propTypes = {
@@ -18,49 +18,49 @@ export default class CheckboxGroup extends Component {
     ),
     value: PropTypes.array,
     onChange: PropTypes.func,
-    direction: PropTypes.oneOf(["row", "column"]),
+    direction: PropTypes.oneOf(['row', 'column']),
     className: PropTypes.string,
     disabled: PropTypes.bool,
     children: PropTypes.node,
-  };
+  }
 
   static defaultProps = {
-    direction: "row",
+    direction: 'row',
     options: [],
     value: [],
     onChange() {},
-  };
+  }
 
   state = {
     values: this.props.value || [],
-  };
+  }
 
   handleOptionChange = (checked, value) => {
-    const { onChange } = this.props;
-    const { values } = this.state;
-    let newValues = [];
+    const { onChange } = this.props
+    const { values } = this.state
+    let newValues = []
     if (checked) {
-      newValues = [...values, value];
+      newValues = [...values, value]
     } else {
-      newValues = values.filter((item) => item !== value);
+      newValues = values.filter(item => item !== value)
     }
 
-    this.setState({ values: newValues }, () => onChange(newValues));
-  };
+    this.setState({ values: newValues }, () => onChange(newValues))
+  }
 
   render() {
-    const { className, name, direction, options, children } = this.props;
-    const { values } = this.state;
+    const { className, name, direction, options, children } = this.props
+    const { values } = this.state
 
     if (children && children.length > 0) {
-      const childContent = React.Children.map(children, (child) =>
+      const childContent = React.Children.map(children, child =>
         React.cloneElement(child, {
           ...child.props,
           name,
           checked: values.includes(child.props.value),
           onChange: this.handleOptionChange,
         })
-      );
+      )
 
       return (
         <div
@@ -69,7 +69,7 @@ export default class CheckboxGroup extends Component {
         >
           {childContent}
         </div>
-      );
+      )
     }
 
     return (
@@ -77,7 +77,7 @@ export default class CheckboxGroup extends Component {
         data-direction={direction}
         className={classNames(`checkbox-group`, className)}
       >
-        {options.map((option) => (
+        {options.map(option => (
           <Checkbox
             key={option.value}
             name={name}
@@ -89,6 +89,6 @@ export default class CheckboxGroup extends Component {
           </Checkbox>
         ))}
       </div>
-    );
+    )
   }
 }

@@ -87,7 +87,7 @@ class Header extends React.Component {
           <div className={styles.navs}>
             {globals.app.enableGlobalNav && (
               <Button
-                type="flat"
+                type="default"
                 icon="cogwheel"
                 onClick={this.props.onToggleNav}
               >
@@ -96,7 +96,7 @@ class Header extends React.Component {
             )}
             {globals.app.enableAppStore && (
               <Button
-                type="flat"
+                type="default"
                 icon="appcenter"
                 onClick={this.handleLinkClick('/apps')}
                 className={classnames({
@@ -107,7 +107,7 @@ class Header extends React.Component {
               </Button>
             )}
             <Button
-              type="flat"
+              type="default"
               icon="dashboard"
               onClick={this.handleLinkClick('/')}
               className={classnames({
