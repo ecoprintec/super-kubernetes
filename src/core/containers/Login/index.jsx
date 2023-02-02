@@ -18,20 +18,25 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import { Grid, Box, Typography, Container, TextField } from '@material-ui/core'
+import IconButton from '@material-ui/core/IconButton'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import InputLabel from '@material-ui/core/InputLabel'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import FormControl from '@material-ui/core/FormControl'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import FilledInput from '@material-ui/core/FilledInput'
+import Button from '@material-ui/core/Button'
 import cookie from 'utils/cookie'
-
-import {
-  Alert,
-  Button,
-  Form,
-  Input,
-  InputPassword,
-} from '@kube-design/components'
-
+import Alert from '@material-ui/lab/Alert'
+import { Form } from '@kube-design/components'
 import { get } from 'lodash'
-
 import { Base64 } from 'js-base64'
+import Logo from '../../../assets/login-logo.svg'
+import HexaDeco from '../../../assets/background/hexaDecorationWhite.svg'
 import styles from './index.scss'
+import './index.css'
 
 function encrypt(salt, str) {
   return mix(salt, Base64.encode(str))
@@ -60,6 +65,7 @@ export default class Login extends Component {
     formData: {},
     isSubmmiting: false,
     errorCount: 0,
+    showPassword: false,
   }
 
   handleOAuthLogin = server => e => {
@@ -97,59 +103,149 @@ export default class Login extends Component {
       })
   }
 
+  handleClickShowPassword = () => {
+    this.setState({ ...this.state, showPassword: !this.state.showPassword })
+  }
+
   render() {
     const { formData, isSubmmiting, errorMessage } = this.state
     return (
-      <div>
-        <a href="/" className={styles.logo}>
-          <img src="/assets/logo.svg" alt="" />
-        </a>
-        <div className={styles.login}>
-          <div className={styles.header}>{t('WELCOME')}</div>
-          <div className={styles.divider}></div>
-          {get(globals, 'oauthServers', []).map(server => (
-            <div
-              key={server.url}
-              className={styles.oauth}
-              data-url={server.url}
-              onClick={this.handleOAuthLogin(server)}
-            >
-              <span>{t('LOG_IN_WITH_TITLE', { title: server.title })}</span>
-            </div>
-          ))}
-          {errorMessage && (
-            <Alert
-              className="margin-t12 margin-b12"
-              type="error"
-              message={t(errorMessage)}
+      <Grid container>
+        <Grid item lg={4} md={5} xs={1}>
+          <Container className={styles.left_login_container}>
+            <img
+              className={`${styles.image_background_hexa} ${styles.hexa_1}`}
+              src={HexaDeco}
+              alt=""
             />
-          )}
-          <Form data={formData} onSubmit={this.handleSubmit}>
-            <Form.Item
-              label={t('USERNAME_OR_EMAIL')}
-              rules={[
-                {
-                  required: true,
-                  message: t('INPUT_USERNAME_OR_EMAIL_TIP'),
-                },
-              ]}
+            <img
+              className={`${styles.image_background_hexa} ${styles.hexa_2}`}
+              src={HexaDeco}
+              alt=""
+            />
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              className={styles.left_login_openheading}
             >
-              <Input name="username" placeholder="user@example.com" />
-            </Form.Item>
-            <Form.Item
-              label={t('PASSWORD')}
-              rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
-            >
-              <InputPassword name="password" placeholder=" " />
-            </Form.Item>
-            <div className={styles.footer}>
-              <Button type="control" htmlType="submit" loading={isSubmmiting}>
-                {t('LOG_IN')}
-              </Button>
-            </div>
-          </Form>
-        </div>
-      </div>
+              <img className="logo-login" src={Logo} alt="" />
+            </Box>
+            <Typography>
+              <h3 className={`${styles.left_login_text} ${styles.opening}`}>
+                Welcome to Kubesphere
+              </h3>
+              <span
+                className={`${styles.left_login_text} ${styles.openingnotice}`}
+              >
+                Please sign in to continue
+              </span>
+            </Typography>
+          </Container>
+        </Grid>
+        <Grid item lg={8} md={7} xs={12}>
+          <Container className={styles.right_login_container}>
+            <Box component={'div'} className={styles.full}>
+              <Box component={'div'} className={styles.login_wrapper}>
+                <Box component={'div'} className={styles.login_card_wrapper}>
+                  <Typography className={styles.login_right_opening}>
+                    <Box
+                      display={'flex'}
+                      justifyContent={'center'}
+                      alignItems={'flex-end'}
+                    >
+                      <h3 className={styles.heading}>{t('Sign in')}</h3>
+                    </Box>
+                  </Typography>
+                  {get(globals, 'oauthServers', []).map(server => (
+                    <div
+                      key={server.url}
+                      className={styles.oauth}
+                      data-url={server.url}
+                      onClick={this.handleOAuthLogin(server)}
+                    >
+                      <span>
+                        {t('LOG_IN_WITH_TITLE', { title: server.title })}
+                      </span>
+                    </div>
+                  ))}
+                  <Box component={'div'} className={styles.login_right}>
+                    <Form
+                      className={styles.form}
+                      data={formData}
+                      onSubmit={this.handleSubmit}
+                    >
+                      <Form.Item
+                        rules={[
+                          {
+                            required: true,
+                            message: t('INPUT_USERNAME_OR_EMAIL_TIP'),
+                          },
+                        ]}
+                      >
+                        <TextField
+                          className={styles.input_login}
+                          variant="filled"
+                          required
+                          name="username"
+                          label={t('Username')}
+                        />
+                      </Form.Item>
+                      <FormControl className={styles.input_login}>
+                        <InputLabel htmlFor="standard-adornment-password">
+                          {t('Password')}
+                          &nbsp;*
+                        </InputLabel>
+                        <Form.Item
+                          rules={[
+                            {
+                              required: true,
+                              message: t('PASSWORD_EMPTY_DESC'),
+                            },
+                          ]}
+                        >
+                          <FilledInput
+                            required
+                            name="password"
+                            type={this.state.showPassword ? 'text' : 'password'}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={this.handleClickShowPassword}
+                                >
+                                  {this.state.showPassword ? (
+                                    <VisibilityOff htmlColor={'white'} />
+                                  ) : (
+                                    <Visibility htmlColor={'white'} />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                          />
+                        </Form.Item>
+                      </FormControl>
+                      <div className="signin-button">
+                        <Button
+                          loading={isSubmmiting}
+                          htmlType="submit"
+                          type="control"
+                          className={'signin-button'}
+                        >
+                          {t('CONTINUE')}
+                          <ArrowForwardIcon />
+                        </Button>
+                      </div>
+                    </Form>
+                    {errorMessage && (
+                      <Alert severity="error">{t(errorMessage)}</Alert>
+                    )}
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Container>
+        </Grid>
+      </Grid>
     )
   }
 }
