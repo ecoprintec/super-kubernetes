@@ -47,7 +47,7 @@
 
 .title {
   @include TypographyTitleH4($white);
-  color: #909ba6;
+  color: #fff;
   max-width: 360px;
   @include ellipsis;
 }

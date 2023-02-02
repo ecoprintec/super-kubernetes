@@ -7,7 +7,7 @@
   background-color: #36393e;
 
   a {
-    color: #81858b;
+    color: #fff;
     &:hover {
       color: $primary;
     }
@@ -70,7 +70,7 @@
       & > td {
         height: 56px;
         padding: 8px 12px;
-        @include TypographyParagraph(#81858b);
+        @include TypographyParagraph(#fff);
         word-break: break-all;
         box-sizing: border-box;
       }

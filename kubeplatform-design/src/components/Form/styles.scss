@@ -16,9 +16,9 @@
     position: relative;
     .input {
       background: #1c1e21;
-      color: #8e9297;
+      color: #fff;
       border: 1px solid #393b3f;
-      caret-color: #8e9297;
+      caret-color: #fff;
     }
   }
 
@@ -26,7 +26,7 @@
     display: block;
     margin-bottom: 4px;
     @include TypographyParagraph;
-    color: #8e9297;
+    color: #fff;
   }
 
   &-error {
@@ -76,12 +76,12 @@
 
   &-title {
     font-weight: $font-bold;
-    color: #8e9297;
+    color: #fff;
 
     label.checkbox span.label-value {
       font-weight: $font-bold;
       padding-left: 11px;
-      color: #8e9297;
+      color: #fff;
     }
 
     label.checkbox.input {
@@ -94,7 +94,7 @@
       .icon {
         margin-right: 8px;
         .kubed-icon {
-          color: #8e9297;
+          color: #fff;
         }
       }
     }

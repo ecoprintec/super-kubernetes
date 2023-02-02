@@ -9,11 +9,11 @@
 .text {
   flex: 1;
   & > div:first-child {
-    @include TypographyTitleH6(#909ba6);
+    @include TypographyTitleH6(#fff);
   }
 
   & > div:last-child {
-    @include TypographyParagraph(#909ba6);
+    @include TypographyParagraph(#fff);
   }
 
   &.light {

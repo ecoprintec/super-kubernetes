@@ -48,11 +48,11 @@ $dark-color03: #e3e9ef;
 $dark-color04: #d8dee5;
 $dark-color05: #d1d7df;
 $dark-color06: #ccd3db;
-$dark-color07: #c1c9d1;
+$dark-color07: #ffffff;
 $dark-color08: #abb4be;
 $dark-color09: #36393e;
-$dark-color10: #909ba6;
-$dark-color11: #8e9297;
+$dark-color10: #ffffff;
+$dark-color11: #ffffff;
 $dark-color12: #262b2f;
 $light-color01: #36393e;
 $light-color02: #36393e;
@@ -105,18 +105,18 @@ $sub: $blue-color03;
 $warning: $yellow-color03;
 $danger: $red-color03;
 
-$title-color: #909ba6;
-$second-title-color: #909ba6;
+$title-color: #fff;
+$second-title-color: #fff;
 $content-color: $dark-color11;
-$text-color: #909ba6;
-$second-text-color: #909ba6;
-$third-text-color: #909ba6;
-$placeholder-color: #909ba6;
-$input-color: #909ba6;
-$head-color: #909ba6;
+$text-color: #fff;
+$second-text-color: #fff;
+$third-text-color: #fff;
+$placeholder-color: #fff;
+$input-color: #fff;
+$head-color: #fff;
 
 // border
-$border-color: #909ba6;
+$border-color: #fff;
 $border-color-second: #87909c80;
 $border-hover-color: $primary;
 $second-border-color: $primary;
@@ -124,7 +124,7 @@ $border-focus-color: $primary;
 $border-radius: 4px;
 
 // input
-$input-border-color: #909ba6;
+$input-border-color: #fff;
 $input-hover-color: $primary;
 $input-focus-color: $primary;
 $input-error-color: $red-color03;
