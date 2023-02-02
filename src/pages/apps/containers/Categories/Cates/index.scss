@@ -12,15 +12,18 @@
     padding: 0 16px 0 20px;
     line-height: 44px;
     font-weight: bold;
-    background-color: $card-bg-color;
+    background-color: $white;
+    color: white;
 
     label {
       width: 50%;
 
       &.add {
         text-align: right;
+
         svg {
           cursor: pointer;
+          color: white;
         }
       }
     }
@@ -36,7 +39,8 @@
 
       &:hover,
       &.active {
-        background-color: $bg-color;
+        background-color: $blue;
+        color: black;
       }
 
       &.hasAction {

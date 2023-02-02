@@ -1,3 +1,5 @@
+@import 'vmm';
+
 .input-password {
   width: 100% !important;
   max-width: 455px;
@@ -11,18 +13,18 @@
   }
 
   &-dark {
-    color: $white !important;
+    color: $title-color !important;
     background-color: $dark !important;
 
     .recharts-cartesian-axis {
       text {
-        fill: $grey;
+        fill: $content-color;
       }
     }
 
     .recharts-cartesian-grid {
       line {
-        stroke: $grey;
+        stroke: $content-color;
       }
     }
   }
@@ -91,20 +93,19 @@
     position: relative;
     font-weight: 500;
     min-width: 117px;
-    color: #36435c;
+    color: $text-color;
     padding: 4px 24px;
-    border-radius: 16px !important;
+    // border-radius: 16px !important;
     border: none;
     background-color: transparent;
-    box-shadow: none !important;
+    // box-shadow: none !important;
 
-    &:hover,
-    &:active {
-      background-color: transparent;
-    }
-
+    // &:hover,
+    // &:active {
+    //   background-color: transparent;
+    // }
     &.checked {
-      background-color: #36435c;
+      background-color: $primary;
       color: #ffffff;
     }
   }
@@ -194,7 +195,7 @@
 }
 
 .form-group {
-  background-color: #fff;
+  background-color: black;
 }
 
 .datepicker {
@@ -217,12 +218,4 @@
 .tag-error {
   color: $white;
   background-color: $yellow-color03;
-}
-
-body .button,
-.select-input > input,
-.table table > thead > tr > th {
-  font-family: 'Maven Pro', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
-    'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
-    'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
 }

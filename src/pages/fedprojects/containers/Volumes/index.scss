@@ -3,12 +3,12 @@
 
 .capacity {
   h3 {
-    @include TypographyTitleH6()
+    @include TypographyTitleH6();
   }
 
   small {
     color: $dark-color01;
-    margin-left: .3em;
+    margin-left: 0.3em;
   }
 
   p {

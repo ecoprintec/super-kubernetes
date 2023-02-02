@@ -5,7 +5,7 @@
   .header {
     display: flex;
     padding: 12px;
-    background-color: $th-bg-color;
+    background-color: $lightest;
 
     .search {
       width: 100%;
@@ -29,12 +29,12 @@
   .body {
     min-height: 80px;
     padding: 12px;
-    background-color: $th-bg-color;
+    background-color: $lightest;
   }
 
   .footer {
     padding: 10px 12px;
-    background-color: $th-bg-color;
+    background-color: $lightest;
 
     :global .level-left {
       @include TypographyParagraph($dark-color01);
@@ -66,14 +66,14 @@
     left: 0;
     margin: 0 -4px;
     padding: 12px 16px;
-    background-color: $dark-color07;
+    background-color: $lightest;
     border-color: $dark-color07;
 
     .content .text {
       div,
       a,
       p {
-        color: $white;
+        color: white;
       }
 
       a:hover {
@@ -82,7 +82,7 @@
     }
 
     .content .monitors {
-      color: $white;
+      color: white;
     }
   }
 

@@ -3,7 +3,7 @@
 
 .wrapper {
   border-radius: $border-radius;
-  background-color: #ffffff;
+  background-color: $white;
   box-shadow: $base-shadow;
   margin-bottom: 12px;
 
@@ -24,7 +24,7 @@
     left: 20px;
     padding: 6px;
     border-radius: 100px 0 100px 100px;
-    background-color: $bg-color;
+    background-color: #69727a;
   }
 
   .title {
@@ -49,14 +49,14 @@
   }
 
   & > a {
-    @include TypographySymbolText(#3385b0);
+    @include TypographySymbolText($primary);
   }
 }
 
 .tip {
   position: relative;
   padding: 12px 60px 12px 52px;
-  background-color: #fff;
+  background-color: #36393e;
   border-top: 1px solid $light-color03;
   cursor: pointer;
 

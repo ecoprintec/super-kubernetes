@@ -21,7 +21,8 @@
         transform: translateY(-50%);
       }
 
-      &.checked, &:hover {
+      &.checked,
+      &:hover {
         &::after {
           left: 24px;
           top: 50%;
@@ -38,7 +39,7 @@
 
 .accessMode {
   display: inline-block;
-  
+
   :global {
     .name {
       font-size: $size-normal;

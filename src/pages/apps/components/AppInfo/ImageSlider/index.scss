@@ -66,14 +66,13 @@ $N75: #8c96ad;
       width: 24px;
       height: 20px;
       cursor: pointer;
-      >span{
+      > span {
         display: inline-block;
         width: 100%;
         height: 2px;
         background-color: $N30;
         &.active {
           background-color: $primary;
-
         }
       }
     }
@@ -137,7 +136,7 @@ $N75: #8c96ad;
         height: auto;
         max-width: 1000px;
         animation-name: fadeIn;
-        animation-duration: .5s;
+        animation-duration: 0.5s;
         //transition: all .5s ease-in-out;
       }
     }

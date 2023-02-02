@@ -6,7 +6,7 @@
   padding: 12px;
   border: 1px solid $border-color;
   border-radius: $border-radius;
-  background-color: $white;
+  background-color: $card-bg-color;
   cursor: pointer;
   transition: all $trans-speed ease-in-out;
 
@@ -27,7 +27,7 @@
   padding: 12px 12px 20px 12px;
   border-radius: 4px 4px 0 0;
   border: solid 1px $border-hover-color;
-  background-color: $white;
+  background-color: $card-bg-color;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
 }
 
@@ -42,17 +42,15 @@
 
 .placement {
   display: flex;
-  gap: 12px;
-  align-items: center;
 
   & > div {
     min-width: 200px;
     margin-right: 12px;
-    flex: 1;
   }
 
   .icon {
-    flex: none;
+    @include vertical-center;
+    right: 12px;
   }
 }
 

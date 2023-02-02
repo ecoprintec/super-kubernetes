@@ -3,24 +3,26 @@
 .chart {
   position: relative;
   padding: 0;
-  background-color: $lightest;
+  background-color: #242728;
+  color: #f9fbfd;
 }
 
 .title {
   position: absolute;
   left: 10px;
   top: 10px;
-  color: $dark-grey;
+  color: #b6c2cd;
   height: 20px;
   line-height: 20px;
 
   span {
     margin-right: 10px;
-    color: $dark;
+    color: white;
     font-weight: bold;
 
     strong {
       font-size: 22px;
+      color: white;
     }
   }
 }

@@ -18,7 +18,7 @@
   }
 
   @media (max-width: 100px) {
-    .appItem{
+    .appItem {
       width: calc(50% - 11px);
 
       &:nth-of-type(3n + 3) {
@@ -36,7 +36,7 @@
     border-radius: 8px;
     padding: 32px 0;
     box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
-    background-color: #fff;
+    background-color: $lightest;
     text-align: center;
 
     p {

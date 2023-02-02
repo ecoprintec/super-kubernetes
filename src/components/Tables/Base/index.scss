@@ -10,6 +10,7 @@
   :global {
     .table-body {
       padding: 0 12px 12px;
+      background-color: #36393e;
     }
     .table-footer {
       padding: 8px 20px;
@@ -18,16 +19,7 @@
 
   table {
     a {
-      color: #242e42;
-    }
-
-    & > thead > tr > th {
-      a {
-        color: #79879c;
-        &:hover {
-          color: #79879c;
-        }
-      }
+      color: #8e9297;
     }
   }
 }
@@ -35,14 +27,19 @@
 .button {
   min-width: 96px;
 }
+.buttonCustomDefault {
+  margin-right: 10px;
+  width: 80px;
+  height: 32px;
+}
 
 .cancelSelect {
   color: #fff;
   &:hover {
-    background-color: $dark-color06;
+    background-color: #ffffff33;
   }
   &:active {
-    background-color: $dark-color05;
+    background-color: #ffffff33;
   }
 }
 
@@ -97,4 +94,12 @@
 
 .columnMenu {
   width: 160px;
+  border: solid 1px #4c5053;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+  background-color: black;
+
+  span {
+    color: white;
+  }
 }

@@ -5,7 +5,7 @@
   padding: 20px;
   padding-bottom: 0;
   border-bottom: none;
-  background-color: #fff;
+  background-color: $white;
 
   :global .kubed-icon-question {
     fill: #ab2f29;
@@ -30,14 +30,14 @@
   .resource {
     padding: 8px 12px;
     border-radius: $border-radius;
-    background-color: #fff;
+    background-color: $white;
     cursor: pointer;
 
     &.selected {
       background-color: $dark-color07;
 
       .resourceName {
-        color: #fff;
+        color: $text-color;
       }
 
       .resourceType {

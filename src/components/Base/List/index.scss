@@ -1,12 +1,17 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
+::selection {
+  background: #2d84c4;
+  color: #fff;
+}
+
 .item {
   position: relative;
   padding: 11px 12px;
   margin-bottom: 8px;
   border-radius: 4px;
-  background-color: $white;
+  background-color: #22262a;
   border: solid 1px $border-color;
   transition: all $trans-speed ease-in-out;
 
@@ -39,11 +44,14 @@
     height: 32px;
     padding: 0px 4px;
     border-radius: 4px;
-    background-color: #fff;
 
     & > button {
       width: 56px;
       margin-left: 4px;
+
+      &:hover {
+        background: #36393e;
+      }
     }
   }
 }
@@ -68,7 +76,6 @@
 .texts {
   display: flex;
   overflow: hidden;
-  flex: 1;
 }
 
 .text {
@@ -82,11 +89,17 @@
   .title {
     @include ellipsis;
     @include TypographyTitleH6($dark-color07);
+    color: #83878c;
+
+    .a {
+      color: #3d90ce;
+    }
   }
 
   .description {
     @include ellipsis;
     @include TypographyParagraph($dark-color01);
+    color: #a0a0a0;
   }
 }
 
@@ -95,7 +108,7 @@
   padding: 11px 12px;
   border-radius: 4px;
   border: 1px dashed $border-color;
-  background-color: $white;
+  background-color: #22262a;
   cursor: pointer;
   transition: all $trans-speed ease-in-out;
 

@@ -64,7 +64,7 @@
         display: block;
         font-size: $size-normal;
         line-height: 1.43;
-        color: #242e42;
+        color: white;
       }
 
       span {
@@ -75,7 +75,8 @@
 
     .tag {
       margin-left: 8px;
-      color: #fff;
+      color: $white;
+      background: #97d3ff;
     }
   }
 }

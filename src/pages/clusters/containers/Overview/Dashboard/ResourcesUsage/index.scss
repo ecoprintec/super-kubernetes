@@ -6,15 +6,18 @@
 
 .chart {
   width: 372px;
-
+  color: white;
+  tspan {
+    fill: white;
+  }
   :global {
     .recharts-polar-grid-concentric {
-      .recharts-polar-grid-concentric-circle{
-        stroke: $light-color04;
+      .recharts-polar-grid-concentric-circle {
+        stroke: $text-color;
 
         &:last-child {
-          fill: $light-color02;
-          opacity: .5;
+          fill: $lightest;
+          opacity: 0.5;
         }
       }
     }

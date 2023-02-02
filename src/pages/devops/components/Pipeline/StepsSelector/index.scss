@@ -12,10 +12,10 @@
   display: flex;
   padding: 12px 12px 12px 24px;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: $white;
   border: solid 1px $light-color03;
   margin-bottom: 8px;
-  color: #242e42;
+  color: $text-color;
   cursor: pointer;
 
   &:hover {
@@ -82,11 +82,4 @@
   box-shadow: 0 8px 16px 0 rgba(35, 45, 65, 0.28);
   background-color: #242e42;
   border: solid 1px #242e42;
-}
-
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }

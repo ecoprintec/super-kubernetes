@@ -24,14 +24,4 @@
       margin-left: 4px;
     }
   }
-
-  .tag {
-    & > span:last-of-type {
-      display: inline;
-
-      & > span:first-of-type {
-        height: 20px;
-      }
-    }
-  }
 }

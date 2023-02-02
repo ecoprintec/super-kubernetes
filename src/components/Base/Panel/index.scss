@@ -8,7 +8,7 @@
 
 .title {
   margin-bottom: 8px;
-  @include TypographySymbolText();
+  @include TypographySymbolText($panel-text-color-tittle);
 }
 
 .panel {

@@ -5,7 +5,7 @@
   position: relative;
   padding: 20px 24px;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: $lightest;
   border: solid 1px $light-color03;
 
   .text {
@@ -37,7 +37,7 @@
 .icon {
   position: relative;
   display: inline-block;
-  
+
   .istio {
     display: block;
     position: absolute;

@@ -18,12 +18,14 @@
 
 import { has, isString } from 'lodash'
 import React from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { inject, Provider } from 'mobx-react'
 import pathToRegexp from 'path-to-regexp'
 
 import { ICON_TYPES } from 'utils/constants'
 import { renderRoutes } from 'utils/router.config'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 import BaseInfo from './BaseInfo'
 
@@ -92,28 +94,32 @@ class DetailPage extends React.Component {
   }
 
   renderNav(routes) {
+    const { pathname } = this.props.location
     const { params } = this.props.match
-
     return (
-      <div className={styles.nav}>
-        {routes.map(route => {
-          if (!route.title) {
-            return null
-          }
-
-          return (
-            <NavLink
-              key={route.path}
-              className={styles.navItem}
-              activeClassName={styles.active}
-              to={pathToRegexp.compile(route.path)(params)}
-            >
-              {t(route.title)}
-            </NavLink>
-          )
-        })}
-      </div>
+      <Tabs
+        value={pathname}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={(event, newPath) => this.handleChange(newPath)}
+        variant="scrollable"
+        scrollButtons="auto"
+      >
+        {routes
+          .filter(option => option.title)
+          .map(option => (
+            <Tab
+              key={option?.path}
+              label={t(option?.title)}
+              value={pathToRegexp.compile(option?.path)(params)}
+            />
+          ))}
+      </Tabs>
     )
+  }
+
+  handleChange = newPath => {
+    this.props.history.push(newPath)
   }
 
   render() {

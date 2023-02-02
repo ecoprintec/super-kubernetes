@@ -3,27 +3,71 @@
 // --------------------------------------------------
 
 // init
-$dark-color01: #79879c;
-$dark-color02: #6b7b95;
-$dark-color03: #5f708a;
-$dark-color04: #4a5974;
-$dark-color05: #404e68;
-$dark-color06: #36435c;
-$dark-color07: #242e42;
-$dark-color08: #181d28;
-$light-color01: #f9fbfd;
-$light-color02: #eff4f9;
-$light-color03: #e3e9ef;
-$light-color04: #d8dee5;
-$light-color05: #d1d7df;
-$light-color06: #ccd3db;
-$light-color07: #c1c9d1;
-$light-color08: #abb4be;
+// $dark-color01: #79879c;
+// $dark-color02: #6b7b95;
+// $dark-color03: #5f708a;
+// $dark-color04: #4a5974;
+// $dark-color05: #404e68;
+// $dark-color06: #36435c;
+// $dark-color07: #242e42;
+// $dark-color08: #181d28;
+// $light-color01: #f9fbfd;
+// $light-color02: #eff4f9;
+// $light-color03: #e3e9ef;
+// $light-color04: #d8dee5;
+// $light-color05: #d1d7df;
+// $light-color06: #ccd3db;
+// $light-color07: #c1c9d1;
+// $light-color08: #abb4be;
+// $green-color01: #c4e6d4;
+// $green-color02: #a2d8bb;
+// $green-color03: #55bc8a;
+// $green-color04: #479e88;
+// $green-color05: #3b747a;
+// $blue-color01: #c7deef;
+// $blue-color02: #7eb8dc;
+// $blue-color03: #329dce;
+// $blue-color04: #3385b0;
+// $blue-color05: #326e93;
+// $red-color01: #fae7e5;
+// $red-color02: #ea8573;
+// $red-color03: #ca2621;
+// $red-color04: #ab2f29;
+// $red-color05: #8c3231;
+// $yellow-color01: #ffe1be;
+// $yellow-color02: #ffc781;
+// $yellow-color03: #f5a623;
+// $yellow-color04: #e0992c;
+// $yellow-color05: #8d663e;
+// $white: #ffffff;
+// $black: #000000;
+
+$dark-color01: #f9fbfd;
+$dark-color02: #eff4f9;
+$dark-color03: #e3e9ef;
+$dark-color04: #d8dee5;
+$dark-color05: #d1d7df;
+$dark-color06: #ccd3db;
+$dark-color07: #c1c9d1;
+$dark-color08: #abb4be;
+$dark-color09: #36393e;
+$dark-color10: #909ba6;
+$dark-color11: #8e9297;
+$dark-color12: #262b2f;
+$light-color01: #36393e;
+$light-color02: #36393e;
+$light-color03: #36393e;
+$light-color04: #36393e;
+$light-color05: #36393e;
+$light-color06: #36393e;
+$light-color07: #36393e;
+$light-color08: #36393e;
 $green-color01: #c4e6d4;
 $green-color02: #a2d8bb;
 $green-color03: #55bc8a;
 $green-color04: #479e88;
 $green-color05: #3b747a;
+$green-color06: #3d90ce;
 $blue-color01: #c7deef;
 $blue-color02: #7eb8dc;
 $blue-color03: #329dce;
@@ -39,15 +83,16 @@ $yellow-color02: #ffc781;
 $yellow-color03: #f5a623;
 $yellow-color04: #e0992c;
 $yellow-color05: #8d663e;
-$white: #ffffff;
-$black: #000000;
+$white: #36393e;
+$black: white;
+$white-color01: #f4f4f4;
 
 // specific color
-$dark: $dark-color07;
-$dark-grey: $dark-color03;
-$grey: $dark-color01;
-$lightest: $light-color01;
-$light: $light-color02;
+$dark: $light-color02;
+$dark-grey: $light-color02;
+$grey: $light-color02;
+$lightest: #212324;
+$light: #212324;
 $green: $green-color03;
 $blue: $blue-color03;
 $yellow: $yellow-color03;
@@ -55,39 +100,42 @@ $yellow-dark: $yellow-color04;
 $red: $red-color03;
 $red-dark: $red-color04;
 
-$primary: $green-color03;
+$primary: #3d90ce;
 $sub: $blue-color03;
 $warning: $yellow-color03;
 $danger: $red-color03;
 
-$title-color: $dark-color06;
-$second-title-color: $dark-color03;
-$text-color: $dark-color07;
-$second-text-color: $dark-color01;
-$third-text-color: $dark-color04;
-$placeholder-color: $dark-color03;
-$input-color: $dark-color07;
-$head-color: $dark-color07;
+$title-color: #909ba6;
+$second-title-color: #909ba6;
+$content-color: $dark-color11;
+$text-color: #909ba6;
+$second-text-color: #909ba6;
+$third-text-color: #909ba6;
+$placeholder-color: #909ba6;
+$input-color: #909ba6;
+$head-color: #909ba6;
 
 // border
-$border-color: $light-color06;
-$border-hover-color: $dark-color01;
-$second-border-color: $light-color02;
-$border-focus-color: $green-color03;
+$border-color: #909ba6;
+$border-color-second: #87909c80;
+$border-hover-color: $primary;
+$second-border-color: $primary;
+$border-focus-color: $primary;
 $border-radius: 4px;
 
 // input
-$input-border-color: $light-color08;
-$input-hover-color: $dark-color01;
-$input-focus-color: $green-color03;
+$input-border-color: #909ba6;
+$input-hover-color: $primary;
+$input-focus-color: $primary;
 $input-error-color: $red-color03;
 $input-border-radius: 4px;
 
 // background
-$bg-color: $light-color02;
-$body-bg-color: $light-color02;
-$th-bg-color: $light-color01;
-$card-bg-color: $light-color01;
+$bg-color: #242729;
+$body-bg-color: #242729;
+$th-bg-color: #36393e;
+$card-bg-color: #212324;
+$second-bg-color: $dark-color12;
 
 $btn-default-bg: $light-color02;
 $btn-default-border: $light-color06;
@@ -97,8 +145,8 @@ $btn-default-active-bg: $light-color08;
 $btn-default-active-border: $light-color07;
 $btn-primary-bg: $green-color03;
 $btn-primary-hover-bg: $green-color03;
-$btn-control-bg: $dark-color07;
-$btn-control-hover-bg: $dark-color07;
+$btn-control-bg: #212324; //$dark-color07;
+$btn-control-hover-bg: #212324; //$dark-color07;
 $btn-danger-bg: $red-color03;
 $btn-danger-active-bg: $red-color04;
 $btn-flat-hover-bg: $light-color03;
@@ -135,11 +183,14 @@ $card-selector-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.08);
 $tr-shadow: inset 0 2px 4px 0 rgba(72, 91, 127, 0.2);
 
 // font
-$font-family: 'Maven Pro', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
+$font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
   'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
   'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
-$font-family-id: 'Maven Pro', $font-family;
+$font-family-id: Roboto, $font-family;
 $font-family-code: 'PT Mono', Monaco, Menlo, Consolas, 'Courier New', monospace;
+$font-family-1: Roboto, $font-family;
+$font-family-2: Proxima Nova, $font-family;
+$mobile-max-width: 768px;
 
 $size-small: 12px;
 $size-normal: 14px;
@@ -195,3 +246,16 @@ $tree-text-color: $dark-color07;
 $tree-node-hover-bg: $light-color02;
 $tree-node-selected-bg: $dark-color07;
 $tree-switch-hover-color: $light-color06;
+
+// notify-confirm,
+$background-title-color: $dark-color09;
+$text-color-title: $white;
+$button-primary: $green-color06;
+
+//panel
+$panel-text-color-tittle: $dark-color10;
+
+//radio
+$radio-bg-text-color: $dark-color11;
+
+$side-menu-width: 52px;
