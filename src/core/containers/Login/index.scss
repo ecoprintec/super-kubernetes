@@ -97,3 +97,197 @@
     padding-top: 20px;
   }
 }
+.left_login_container {
+  background-color: #3f51b5;
+  height: calc(100vh);
+  padding: 48px !important;
+  position: relative;
+  overflow: hidden;
+  .image_background_hexa {
+    position: absolute;
+    opacity: 0.15;
+    &.hexa_1 {
+      top: -295px;
+      left: -25px;
+      width: 500px;
+    }
+    &.hexa_2 {
+      bottom: -90px;
+      width: 500px;
+      left: 275px;
+    }
+  }
+  .left_login_openheading {
+    margin-bottom: 215px;
+  }
+  .logo_login {
+    width: 50px;
+    margin-left: -10px;
+    &_label {
+      color: #fff;
+      font-size: 22px;
+    }
+  }
+  .left_login_text {
+    &.opening {
+      color: #fff;
+      font-size: 3rem;
+      margin-bottom: 35px;
+      line-height: 50px;
+      &notice {
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+    }
+  }
+  .left_login_action {
+    margin-top: 96px;
+    .back {
+      color: rgba(255, 255, 255, 0.64);
+      padding-left: 0px !important;
+      display: flex;
+      align-items: flex-start;
+      &:hover {
+        background-color: transparent;
+      }
+      div {
+        margin-left: 5px;
+        margin-top: 2px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+.right_login_container {
+  background-color: #424242;
+}
+.login_right_opening {
+  max-width: 480px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  width: 100%;
+  .heading {
+    color: #329dce !important;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .register_btn {
+    font-size: 0.875rem;
+    padding: 5px 0px;
+    color: black;
+    &:hover {
+      color: #3f51b5;
+      background-color: transparent;
+    }
+  }
+}
+.right_login_action {
+  margin-top: 10px;
+  padding: 0px 8px;
+  color: white;
+  .forgot_password {
+    font-size: 14px;
+    color: white;
+    &:hover {
+      color: #304ffe;
+    }
+  }
+}
+.signin-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 12px;
+  margin-top: 10px;
+  button {
+    background-color: #3f51b5 !important;
+    height: 42px !important;
+    border-radius: 8px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    &:hover {
+      background-color: #283593 !important;
+      box-shadow: 0px 2px 4px -1px rgba(80, 80, 80, 0.2),
+        0px 4px 5px 0px rgba(80, 80, 80, 0.14),
+        0px 1px 10px 0px rgba(80, 80, 80, 0.12) !important;
+      border: none;
+    }
+    svg {
+      fill: white;
+    }
+    span {
+      color: white;
+      font-size: 15px;
+      font-family: 'Maven Pro';
+      font-weight: 500;
+    }
+  }
+}
+.MuiInputAdornment-root .MuiButtonBase-root {
+  padding: 0;
+}
+.error-wrapper-message {
+  background-color: #d32f2f !important;
+  color: white !important;
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 8px !important;
+}
+.height100vh {
+  height: calc(100vh);
+}
+.full {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 48px 160px;
+  justify-items: center;
+  height: calc(100vh);
+  .login_wrapper {
+    width: 100%;
+    margin: 0 auto;
+    .login_card_wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      .login_right_opening {
+        max-width: 480px;
+        width: 100%;
+        .heading {
+          color: #3f51b5;
+          font-size: 32px;
+          font-weight: 700;
+          font-family: 'Maven Pro';
+        }
+      }
+
+      .login_right {
+        width: 100%;
+        .form {
+          width: 100%;
+        }
+        .input_login {
+          width: 100%;
+          margin-top: 30px;
+          border: none;
+          border-radius: 8px !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1330px) {
+  .full {
+    padding: 40px 80px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .left_login_container {
+    display: none !important;
+  }
+}
