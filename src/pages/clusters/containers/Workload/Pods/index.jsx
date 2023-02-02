@@ -28,6 +28,7 @@ import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SplitButton from './ItemDropdown'
+import styles from '../../../../../components/Tables/Base/index.scss'
 
 @withClusterList({
   store: new PodStore(),
@@ -338,6 +339,7 @@ export default class Pods extends React.Component {
           data={data}
           columns={columns}
           options={options}
+          className={styles.muitable}
         />
       </ListPage>
     )
