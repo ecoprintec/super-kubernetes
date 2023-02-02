@@ -106,6 +106,7 @@
 
 .muitable {
   background-color: $dark-color14 !important;
+  padding: 16px 24px 16px 24px;
   th,
   div {
     background-color: $dark-color14 !important;
@@ -117,13 +118,18 @@
   svg:active {
     color: $white-color01 !important;
   }
-  tr {
-    border-bottom: 1px solid #e0e0e0;
+  tr td,
+  tr th {
+    border-bottom: 1px solid $dark-color16 !important;
   }
   tr:nth-child(2n) {
     background: $dark-color15;
     div {
       background: $dark-color15 !important;
     }
+  }
+  tfoot tr,
+  tfoot td {
+    border-bottom: 0px !important;
   }
 }
