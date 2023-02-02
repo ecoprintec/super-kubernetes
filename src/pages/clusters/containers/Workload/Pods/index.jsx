@@ -132,6 +132,48 @@ export default class Pods extends React.Component {
       })
   }
 
+  changeRowsPerPage = async limit => {
+    this.setState({
+      isLoading: true,
+    })
+    await this.props.store
+      .fetchList({ page: this.state.page, limit })
+      .then(() => {
+        this.setState({
+          isLoading: false,
+          rowsPerPage: limit,
+        })
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
+        })
+      })
+  }
+
+  sort = async sortOrder => {
+    this.setState({
+      isLoading: true,
+    })
+    const params = {}
+    params.sortBy = sortOrder.name
+    if (sortOrder?.direction === 'asc') {
+      params.ascending = true
+    }
+    await this.props.store
+      .fetchList(params)
+      .then(() => {
+        this.setState({
+          isLoading: false,
+        })
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
+        })
+      })
+  }
+
   render() {
     const { isLoading, sortOrder } = this.state
     const columns = [
@@ -244,7 +286,7 @@ export default class Pods extends React.Component {
       page: this.state.page,
       count: this.props.store.list.total,
       rowsPerPage: this.state.rowsPerPage,
-      rowsPerPageOptions: [],
+      rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
       sortOrder,
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
@@ -253,13 +295,16 @@ export default class Pods extends React.Component {
             this.getData(tableState.page, tableState.sortOrder)
             break
           case 'sort':
-            this.sort(tableState.page, tableState.sortOrder)
+            this.sort(tableState.sortOrder)
             break
           case 'search':
             this.search(tableState.searchText)
           // eslint-disable-next-line no-fallthrough
           case 'filterChange':
             this.filterChange(tableState.filterList)
+          // eslint-disable-next-line no-fallthrough
+          case 'changeRowsPerPage':
+            this.changeRowsPerPage(tableState.rowsPerPage)
           // eslint-disable-next-line no-fallthrough
           default:
         }
