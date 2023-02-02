@@ -14,14 +14,15 @@ label.checkbox {
   position: relative;
   cursor: pointer;
   &:not(.disabled) {
-    &:hover {
-      &:before {
-        background-color: $bg-color;
-      }
-    }
+    // &:hover {
+    // &:before {
+    // background-color: $bg-color;
+    // background-color: #36393e;
+    // }
+    // }
     &:active {
       &:before {
-        background-color: $bg-color;
+        background-color: transparent;
       }
       &.checked:before,
       &.indeterminate:before {
@@ -36,10 +37,11 @@ label.checkbox {
     display: inline-block;
     width: $checkbox-size;
     height: $checkbox-size;
-    border: 1px solid $border-color;
+    border: 2px solid #8e9297;
     border-radius: 2px;
     outline: none !important;
-    background-color: #fff;
+    background-color: transparent;
+    // background-color: #fff;
     transition: border 0.2s ease;
     transform: translateY(-50%);
     box-sizing: border-box;
@@ -49,7 +51,7 @@ label.checkbox {
   &.checked:before,
   &.checked:hover:before {
     border-color: transparent;
-    background-color: $primary;
+    background-color: #0090e7;
   }
   &.checked:after {
     position: absolute;
@@ -60,7 +62,7 @@ label.checkbox {
     height: $checkbox-after-height;
     border-width: 0 1.6px 1.6px 0;
     border-style: solid;
-    border-color: #fff;
+    border-color: black;
     transform: rotate(45deg);
     backface-visibility: hidden;
     box-sizing: content-box;
@@ -77,7 +79,7 @@ label.checkbox {
     &:before,
     &:hover:before {
       border-color: transparent;
-      background-color: $primary;
+      background-color: #0090e7;
     }
     &:after {
       position: absolute;
@@ -97,7 +99,7 @@ label.checkbox {
   & span.label-value {
     display: inline-block;
     vertical-align: middle;
-    @include TypographyParagraph;
+    @include TypographyParagraph(#909ba6);
     padding: 0 8px;
     user-select: none;
   }

@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { isEmpty, trim } from "lodash";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { isEmpty, trim } from 'lodash'
 
-import Icon from "../Icon";
+import Icon from '../Icon'
 
-import Input from "./Input";
+import Input from './Input'
 
 export default class InputSearch extends React.Component {
   static propTypes = {
@@ -16,18 +16,18 @@ export default class InputSearch extends React.Component {
     placeholder: PropTypes.string,
     onSearch: PropTypes.func,
     disabled: PropTypes.bool,
-  };
+  }
 
   static defaultProps = {
     style: {},
     onSearch() {},
     disabled: false,
-  };
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { value: props.value, defaultValue: props.value };
+    this.state = { value: props.value, defaultValue: props.value }
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -35,38 +35,38 @@ export default class InputSearch extends React.Component {
       return {
         value: props.value,
         defaultValue: props.value,
-      };
+      }
     }
-    return null;
+    return null
   }
 
-  handleChange = (e) => {
-    const { value } = e.target;
+  handleChange = e => {
+    const { value } = e.target
     this.setState({ value }, () => {
       if (isEmpty(value)) {
-        this.props.onSearch();
+        this.props.onSearch()
       }
-    });
-  };
+    })
+  }
 
-  handleClear = (e) => {
-    e.nativeEvent.stopImmediatePropagation();
-    this.setState({ value: "" }, () => {
-      this.props.onSearch(this.state.value);
-    });
-  };
+  handleClear = e => {
+    e.nativeEvent.stopImmediatePropagation()
+    this.setState({ value: '' }, () => {
+      this.props.onSearch(this.state.value)
+    })
+  }
 
-  handleKeyUp = (e) => {
+  handleKeyUp = e => {
     if (e.keyCode === 13) {
-      const { value } = this.state;
+      const { value } = this.state
       if (!isEmpty(value)) {
-        this.props.onSearch(trim(this.state.value));
+        this.props.onSearch(trim(this.state.value))
       }
     }
-  };
+  }
 
   render() {
-    const { value } = this.state;
+    const { value } = this.state
     const {
       name,
       placeholder,
@@ -75,19 +75,19 @@ export default class InputSearch extends React.Component {
       style,
       onSearch,
       ...rest
-    } = this.props;
+    } = this.props
 
     return (
       <div
         className={classNames(
-          "has-icons-left",
-          "has-icons-right",
-          "input-search",
+          'has-icons-left',
+          'has-icons-right',
+          'input-search',
           className
         )}
         style={style}
       >
-        <Icon className="is-left" name="magnifier" />
+        <Icon className="is-right" name="magnifier" />
         <Input
           type="text"
           placeholder={placeholder}
@@ -96,7 +96,7 @@ export default class InputSearch extends React.Component {
           name={name}
           disabled={disabled}
           {...rest}
-          value={value || ""}
+          value={value || ''}
         />
         {!isEmpty(value) && (
           <Icon
@@ -107,6 +107,6 @@ export default class InputSearch extends React.Component {
           />
         )}
       </div>
-    );
+    )
   }
 }

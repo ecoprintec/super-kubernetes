@@ -1,3 +1,3 @@
-import LocaleProvider from "./LocaleProvider";
+import LocaleProvider from './LocaleProvider'
 
-export default LocaleProvider;
+export default LocaleProvider

@@ -50,7 +50,7 @@ label.radio {
     &:before,
     &:hover:before {
       border: none;
-      background-color: $primary;
+      background-color: $click-bg-color;
       box-shadow: 0 1px 2px 0 rgba(0, 41, 27, 0.04);
     }
     &:after {
@@ -121,9 +121,6 @@ label.radio.disabled {
     &:focus {
       background-color: $btn-default-bg;
     }
-    &:hover {
-      background-color: $btn-default-hover-bg;
-    }
     &:active {
       background-color: $btn-default-active-bg;
     }
@@ -133,8 +130,8 @@ label.radio.disabled {
       cursor: not-allowed;
     }
     &.checked {
-      color: $btn-control-text-color;
-      background-color: $btn-control-bg;
+      background-color: $click-bg-color;
+      color: $click-text-color;
       z-index: 10;
     }
 
@@ -153,7 +150,8 @@ label.radio.disabled {
 
 .radio-group-button {
   padding: 1px;
-  border-radius: 16px;
-  background-color: $secondary-bg-color;
-  border: 1px solid $border-color;
+  border-radius: 5px;
+  // background-color: $secondary-bg-color;
+  // border: 1px solid $border-color;
+  box-shadow: $select-border-color;
 }

@@ -1,36 +1,36 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import svgSprite from "./spirits";
-import domReady from "../../utils/domReady";
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import svgSprite from './spirits'
+import domReady from '../../utils/domReady'
 
-const idPrefix = "icon-";
+const idPrefix = 'icon-'
 
 const prepend = (el, target) => {
   if (target.firstChild) {
-    target.insertBefore(el, target.firstChild);
+    target.insertBefore(el, target.firstChild)
   } else {
-    target.appendChild(el);
+    target.appendChild(el)
   }
-};
+}
 
 const appendSvg = () => {
-  const svgContainer = document.createElement("div");
-  svgContainer.innerHTML = svgSprite;
-  const svg = svgContainer.getElementsByTagName("svg")[0];
+  const svgContainer = document.createElement('div')
+  svgContainer.innerHTML = svgSprite
+  const svg = svgContainer.getElementsByTagName('svg')[0]
   if (svg) {
-    svg.setAttribute("aria-hidden", "true");
-    svg.style.position = "absolute";
-    svg.style.width = 0;
-    svg.style.height = 0;
-    svg.style.overflow = "hidden";
-    prepend(svg, document.body);
+    svg.setAttribute('aria-hidden', 'true')
+    svg.style.position = 'absolute'
+    svg.style.width = 0
+    svg.style.height = 0
+    svg.style.overflow = 'hidden'
+    prepend(svg, document.body)
   }
-};
+}
 
-if (typeof window !== "undefined" && !window.iconfont__svg__inject) {
-  window.iconfont__svg__inject = true;
-  domReady(appendSvg);
+if (typeof window !== 'undefined' && !window.iconfont__svg__inject) {
+  window.iconfont__svg__inject = true
+  domReady(appendSvg)
 }
 
 export default class Icon extends PureComponent {
@@ -46,18 +46,18 @@ export default class Icon extends PureComponent {
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
     color: PropTypes.object,
-  };
+  }
 
   static defaultProps = {
-    type: "dark",
-    size: "small",
-    prefix: "kubed-icon",
+    type: 'light',
+    size: 'small',
+    prefix: 'kubed-icon',
     style: {},
     changeable: false,
     clickable: false,
     disabled: false,
     onClick() {},
-  };
+  }
 
   render() {
     const {
@@ -72,36 +72,33 @@ export default class Icon extends PureComponent {
       changeable,
       disabled,
       color,
-    } = this.props;
+    } = this.props
 
-    let styles = style;
-    let colorStyles = {};
+    let styles = style
+    let colorStyles = {}
 
-    const isNumberSize = !isNaN(Number(size));
+    const isNumberSize = !isNaN(Number(size))
 
     if (isNumberSize) {
-      styles = Object.assign({}, style, {
-        width: `${size}px`,
-        height: `${size}px`,
-      });
+      styles = { ...style, width: `${size}px`, height: `${size}px` }
     }
 
     if (color) {
       colorStyles = {
         color: color.primary,
         fill: color.secondary,
-      };
+      }
     }
     return (
       <span
         style={styles}
         className={classNames(
-          "icon",
+          'icon',
           {
             [`is-${size}`]: !isNumberSize,
-            "icon-clickable": clickable,
-            "icon-changeable": changeable && !disabled,
-            "icon-disabled": disabled,
+            'icon-clickable': clickable,
+            'icon-changeable': changeable && !disabled,
+            'icon-disabled': disabled,
           },
           className
         )}
@@ -114,6 +111,6 @@ export default class Icon extends PureComponent {
           <use xlinkHref={`#${idPrefix + name}`} />
         </svg>
       </span>
-    );
+    )
   }
 }

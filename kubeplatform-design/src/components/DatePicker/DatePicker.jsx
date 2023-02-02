@@ -1,44 +1,44 @@
-import React, { Component } from "react";
-import ReactDomServer from "react-dom/server";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import Flatpickr from "flatpickr";
-import { isEqual, noop, omit } from "lodash";
-import getDefaultLocale from "./locale";
-import Icon from "../Icon";
+import React, { Component } from 'react'
+import ReactDomServer from 'react-dom/server'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import Flatpickr from 'flatpickr'
+import { isEqual, noop, omit } from 'lodash'
+import getDefaultLocale from './locale'
+import Icon from '../Icon'
 
-import CustomUI from "./plugins/customUI";
+import CustomUI from './plugins/customUI'
 
 const propsKey = [
-  "onChange",
-  "onOpen",
-  "onClose",
-  "onMonthChange",
-  "onYearChange",
-  "onReady",
-  "onValueUpdate",
-  "onDayCreate",
-  "defaultDate",
-  "enableTime",
-  "enableSeconds",
-  "defaultHour",
-  "defaultMinute",
-  "dateFormat",
-  "formatDate",
-  "hourIncrement",
-  "minuteIncrement",
-  "enable",
-  "disable",
-  "maxDate",
-  "minDate",
-  "mode",
-  "conjunction",
-  "noCalendar",
-  "enableSeconds",
-  "weekNumbers",
-  "appendTo",
-  "locale",
-];
+  'onChange',
+  'onOpen',
+  'onClose',
+  'onMonthChange',
+  'onYearChange',
+  'onReady',
+  'onValueUpdate',
+  'onDayCreate',
+  'defaultDate',
+  'enableTime',
+  'enableSeconds',
+  'defaultHour',
+  'defaultMinute',
+  'dateFormat',
+  'formatDate',
+  'hourIncrement',
+  'minuteIncrement',
+  'enable',
+  'disable',
+  'maxDate',
+  'minDate',
+  'mode',
+  'conjunction',
+  'noCalendar',
+  'enableSeconds',
+  'weekNumbers',
+  'appendTo',
+  'locale',
+]
 
 const defaultOptions = {
   locale: {},
@@ -46,7 +46,7 @@ const defaultOptions = {
   time_24hr: true,
   nextArrow: ReactDomServer.renderToString(<Icon name="next" size={20} />),
   prevArrow: ReactDomServer.renderToString(<Icon name="previous" size={20} />),
-};
+}
 
 class DatePicker extends Component {
   static propTypes = {
@@ -77,7 +77,7 @@ class DatePicker extends Component {
     disabled: PropTypes.bool,
     enableTime: PropTypes.bool,
     mode: PropTypes.string,
-  };
+  }
 
   static defaultProps = {
     options: {},
@@ -86,100 +86,100 @@ class DatePicker extends Component {
     onClose: noop,
     onClear: noop,
     showClearBtn: true,
-    mode: "single",
-  };
+    mode: 'single',
+  }
 
   constructor(props) {
-    super(props);
-    this.instance = null;
+    super(props)
+    this.instance = null
     this.state = {
       value:
-        "value" in props || "defaultValue" in props
+        'value' in props || 'defaultValue' in props
           ? props.value || props.defaultValue
           : undefined,
       isHover: false,
       isOpen: false,
       isFocus: false,
-    };
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if ("value" in nextProps && !isEqual(nextProps.value, prevState.value)) {
+    if ('value' in nextProps && !isEqual(nextProps.value, prevState.value)) {
       return {
         value: nextProps.value,
-      };
+      }
     }
-    return null;
+    return null
   }
 
   componentDidMount() {
-    const { props } = this;
-    const { options: propsOptions } = this.props;
-    const { value } = this.state;
+    const { props } = this
+    const { options: propsOptions } = this.props
+    const { value } = this.state
     const options = {
       ...defaultOptions,
       ...propsOptions,
-    };
+    }
 
-    propsKey.forEach((key) => {
+    propsKey.forEach(key => {
       if (props[key]) {
-        options[key] = props[key];
+        options[key] = props[key]
       }
-    });
-    options.locale = { ...getDefaultLocale(), ...options.locale };
-    this.instance = new Flatpickr(this.node, this.bindEvents(options));
+    })
+    options.locale = { ...getDefaultLocale(), ...options.locale }
+    this.instance = new Flatpickr(this.node, this.bindEvents(options))
 
-    this.instance.setDate(value, false);
+    this.instance.setDate(value, false)
   }
 
   componentDidUpdate(prevProps) {
-    const { props } = this;
-    const { options: propsOptions } = this.props;
-    const prevOptions = { ...prevProps.options };
-    const nextOptions = { ...propsOptions };
+    const { props } = this
+    const { options: propsOptions } = this.props
+    const prevOptions = { ...prevProps.options }
+    const nextOptions = { ...propsOptions }
 
-    propsKey.forEach((key) => {
+    propsKey.forEach(key => {
       if (key in this.props) {
-        nextOptions[key] = props[key];
+        nextOptions[key] = props[key]
       }
       if (key in prevProps) {
-        prevOptions[key] = prevProps[key];
+        prevOptions[key] = prevProps[key]
       }
-    });
+    })
 
-    let optionsKeys = Object.getOwnPropertyNames(nextOptions);
+    let optionsKeys = Object.getOwnPropertyNames(nextOptions)
     optionsKeys = omit(optionsKeys, [
-      "onChange",
-      "onOpen",
-      "onClose",
-      "onMonthChange",
-      "onYearChange",
-      "onReady",
-      "onValueUpdate",
-      "onDayCreate",
-    ]);
+      'onChange',
+      'onOpen',
+      'onClose',
+      'onMonthChange',
+      'onYearChange',
+      'onReady',
+      'onValueUpdate',
+      'onDayCreate',
+    ])
     for (let index = optionsKeys.length - 1; index >= 0; index -= 1) {
-      const key = optionsKeys[index];
-      const value = nextOptions[key];
+      const key = optionsKeys[index]
+      const value = nextOptions[key]
       if (value !== prevOptions[key]) {
-        this.instance.set(key, value);
+        this.instance.set(key, value)
       }
     }
 
-    if ("value" in this.props && this.instance) {
-      this.instance.setDate(props.value, false);
+    if ('value' in this.props && this.instance) {
+      this.instance.setDate(props.value, false)
     }
   }
 
   componentWillUnmount() {
     if (this.instance) {
-      this.instance.destroy();
-      this.instance = null;
+      this.instance.destroy()
+      this.instance = null
     }
   }
 
   bindEvents = (options = {}) => {
-    const { onOpen, onClose, onChange } = this.props;
+    const { onOpen, onClose, onChange } = this.props
     const nextOptions = {
       ...options,
       onOpen: (dates, dateStr, instance) => {
@@ -190,14 +190,14 @@ class DatePicker extends Component {
             isOpen: true,
           },
           () => {
-            onOpen(dates, dateStr, instance);
+            onOpen(dates, dateStr, instance)
           }
-        );
+        )
       },
 
       onClose: (dates, dateStr, instance) => {
         if (this.node.blur) {
-          this.node.blur();
+          this.node.blur()
         }
         this.setState(
           {
@@ -206,62 +206,62 @@ class DatePicker extends Component {
             isOpen: false,
           },
           () => {
-            this.instance.setDate(dates, false);
-            onClose(dates, dateStr, instance);
+            this.instance.setDate(dates, false)
+            onClose(dates, dateStr, instance)
           }
-        );
+        )
       },
 
       onChange: (dates, dateStr, instance) => {
         this.setState({ value: dates }, () => {
-          onChange(dates, dateStr, instance);
-        });
+          onChange(dates, dateStr, instance)
+        })
       },
-    };
+    }
 
-    return nextOptions;
-  };
+    return nextOptions
+  }
 
   handleMouseEnter = () => {
-    const { showClearBtn } = this.props;
-    const { isHover, isOpen } = this.state;
+    const { showClearBtn } = this.props
+    const { isHover, isOpen } = this.state
     if (showClearBtn && !isHover && !isOpen) {
-      this.setState({ isHover: true });
+      this.setState({ isHover: true })
     }
-  };
+  }
 
   handleMouseLeave = () => {
-    const { showClearBtn } = this.props;
-    const { isHover } = this.state;
+    const { showClearBtn } = this.props
+    const { isHover } = this.state
     if (showClearBtn && isHover) {
-      this.setState({ isHover: false });
+      this.setState({ isHover: false })
     }
-  };
+  }
 
-  handleClear = (e) => {
-    e.stopPropagation();
-    const { onClear, onChange } = this.props;
+  handleClear = e => {
+    e.stopPropagation()
+    const { onClear, onChange } = this.props
     if (this.instance.isOpen) {
-      this.instance.close();
+      this.instance.close()
     }
 
-    if (!("value" in this.props)) {
-      this.setState({ value: "" }, () => {
-        this.instance.setDate([], false);
-      });
+    if (!('value' in this.props)) {
+      this.setState({ value: '' }, () => {
+        this.instance.setDate([], false)
+      })
     }
-    onClear();
-    onChange([], "", this.instance);
-  };
+    onClear()
+    onChange([], '', this.instance)
+  }
 
   renderIcon() {
-    const { showClearBtn, disabled } = this.props;
-    const { value, isHover, isFocus } = this.state;
+    const { showClearBtn, disabled } = this.props
+    const { value, isHover, isFocus } = this.state
     const iconName =
-      "noCalendar" in this.props && "enableTime" in this.props
-        ? "clock"
-        : "calendar";
-    if (showClearBtn && (isFocus || isHover) && !disabled && value !== "") {
+      'noCalendar' in this.props && 'enableTime' in this.props
+        ? 'clock'
+        : 'calendar'
+    if (showClearBtn && (isFocus || isHover) && !disabled && value !== '') {
       return (
         <Icon
           className="is-right"
@@ -269,10 +269,10 @@ class DatePicker extends Component {
           clickable
           onClick={this.handleClear}
         />
-      );
+      )
     }
 
-    return <Icon className="is-right" name={iconName} />;
+    return <Icon className="is-right" name={iconName} />
   }
 
   render() {
@@ -283,37 +283,37 @@ class DatePicker extends Component {
       className,
       showClearBtn,
       ...props
-    } = this.props;
-    const { isHover, isOpen } = this.state;
+    } = this.props
+    const { isHover, isOpen } = this.state
 
-    propsKey.forEach((key) => {
-      delete props[key];
-    });
+    propsKey.forEach(key => {
+      delete props[key]
+    })
 
-    delete props.onClear;
+    delete props.onClear
 
     props.className = classNames(
-      "datepicker-input input",
-      { "is-hover": isHover },
-      { "is-active": isOpen }
-    );
+      'datepicker-input input',
+      { 'is-hover': isHover }
+      // { "is-active": isOpen }
+    )
 
     return (
       <div
-        className={classNames("datepicker has-icons-right", className)}
+        className={classNames('datepicker has-icons-right', className)}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <input
           {...props}
-          ref={(n) => {
-            this.node = n;
+          ref={n => {
+            this.node = n
           }}
         />
         {this.renderIcon()}
       </div>
-    );
+    )
   }
 }
 
-export default DatePicker;
+export default DatePicker

@@ -1,16 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { get, isEmpty, isUndefined, isFunction } from "lodash";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { get, isEmpty, isUndefined, isFunction } from 'lodash'
 
-import Tag from "../Tag";
-import Icon from "../Icon";
-import Loading from "../Loading";
-import Option from "./Option";
-import LocaleProvider from "../LocaleProvider";
-import { getScrollParents } from "../../utils";
+import Tag from '../Tag'
+import Icon from '../Icon'
+import Loading from '../Loading'
+import Option from './Option'
+import LocaleProvider from '../LocaleProvider'
+import { getScrollParents } from '../../utils'
 
-const { locale } = LocaleProvider;
+const { locale } = LocaleProvider
 
 export default class Select extends React.Component {
   static propTypes = {
@@ -45,15 +45,15 @@ export default class Select extends React.Component {
     optionRenderer: PropTypes.func,
     valueRenderer: PropTypes.func,
     dorpdownRender: PropTypes.func,
-  };
+  }
 
   static defaultProps = {
-    className: "",
+    className: '',
     style: {},
     searchable: false,
     disabled: false,
     clearable: false,
-    placeholder: "KUBE_PLEASE_SELECT",
+    placeholder: 'KUBE_PLEASE_SELECT',
     name: null,
     multi: false,
     prefixIcon: null,
@@ -61,85 +61,89 @@ export default class Select extends React.Component {
     options: [],
     onChange() {},
     onPaging() {},
-  };
+  }
 
   state = {
     visible: false,
-    value: this.props.multi ? [] : "",
-    inputValue: "",
+    value: this.props.multi ? [] : '',
+    inputValue: '',
     inputVisible: true,
-  };
+  }
 
-  inputRef = React.createRef();
-  selectRef = React.createRef();
-  optionsRef = React.createRef();
-  inputValueRef = React.createRef();
-  reachBottom = false;
+  inputRef = React.createRef()
+
+  selectRef = React.createRef()
+
+  optionsRef = React.createRef()
+
+  inputValueRef = React.createRef()
+
+  reachBottom = false
 
   componentDidMount() {
-    this.handleInitValue();
+    this.handleInitValue()
 
     if (this.selectRef && this.selectRef.current) {
-      this.addScrollEvents();
+      this.addScrollEvents()
     }
 
-    document.body.addEventListener("click", this.handleDocumentClick);
+    document.body.addEventListener('click', this.handleDocumentClick)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { value, options } = this.props;
+    const { value, options } = this.props
     if (prevProps.options.length !== options.length) {
-      this.reachBottom = false;
+      this.reachBottom = false
     }
 
     if (!isUndefined(value) && value !== prevState.value) {
-      if (value === "" || value === null) {
+      if (value === '' || value === null) {
         this.setState({
           value,
           inputValue: value,
           inputVisible: true,
-        });
+        })
       } else {
         this.setState({
           value,
           inputValue: value,
           inputVisible: false,
-        });
+        })
       }
     }
 
     if (this.state.visible && !prevState.visible) {
-      this.handleParentScroll();
+      this.handleParentScroll()
     }
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener("click", this.handleDocumentClick);
+    document.body.removeEventListener('click', this.handleDocumentClick)
   }
 
   addScrollEvents = () => {
-    this.scrollParents = getScrollParents(this.selectRef.current);
+    this.scrollParents = getScrollParents(this.selectRef.current)
 
     if (this.scrollParents.length > 0) {
-      this.scrollParents.forEach((parent) => {
-        parent.addEventListener("scroll", this.handleParentScroll);
-      });
+      this.scrollParents.forEach(parent => {
+        parent.addEventListener('scroll', this.handleParentScroll)
+      })
     }
-  };
+  }
 
   removeScrollEvents = () => {
     if (this.scrollParents.length > 0) {
-      this.scrollParents.forEach((parent) => {
-        parent.removeEventListener("scroll", this.handleParentScroll);
-      });
+      this.scrollParents.forEach(parent => {
+        parent.removeEventListener('scroll', this.handleParentScroll)
+      })
     }
-  };
+  }
 
   handleInitValue = () => {
-    const { value, defaultValue } = this.props;
+    const { value, defaultValue } = this.props
 
     if (!isUndefined(value) && !isEmpty(value)) {
-      return this.setState({ value, inputValue: value, inputVisible: false });
+      return this.setState({ value, inputValue: value, inputVisible: false })
     }
 
     if (!isUndefined(defaultValue)) {
@@ -147,108 +151,108 @@ export default class Select extends React.Component {
         value: defaultValue,
         inputValue: defaultValue,
         inputVisible: false,
-      });
+      })
     }
-  };
+  }
 
-  handleParentScroll = (e) => {
-    const { visible } = this.state;
+  handleParentScroll = e => {
+    const { visible } = this.state
 
     if (
       this.optionsRef &&
       this.optionsRef.current &&
       this.scrollParents.length > 0
     ) {
-      const scrollParent = e ? e.target : this.scrollParents[0];
-      const controlRect = this.selectRef.current.getBoundingClientRect();
-      const optionsRect = this.optionsRef.current.getBoundingClientRect();
+      const scrollParent = e ? e.target : this.scrollParents[0]
+      const controlRect = this.selectRef.current.getBoundingClientRect()
+      const optionsRect = this.optionsRef.current.getBoundingClientRect()
 
-      const top = controlRect.top + controlRect.height;
-      const optionsMargin = 4;
+      const top = controlRect.top + controlRect.height
+      const optionsMargin = 4
 
-      this.optionsRef.current.style.left = `${controlRect.left}px`;
+      this.optionsRef.current.style.left = `${controlRect.left}px`
 
       if (scrollParent === window || scrollParent === document) {
         const hasRoomBelow =
-          top + optionsRect.height + optionsMargin < window.innerHeight;
+          top + optionsRect.height + optionsMargin < window.innerHeight
         const hasRoomAbove =
-          controlRect.top - optionsRect.height - optionsMargin * 2 > 0;
+          controlRect.top - optionsRect.height - optionsMargin * 2 > 0
         if ((!hasRoomBelow && !hasRoomAbove) || hasRoomBelow) {
-          this.optionsRef.current.style.top = `${top}px`;
+          this.optionsRef.current.style.top = `${top}px`
         }
         if (!hasRoomBelow && hasRoomAbove) {
-          this.optionsRef.current.style.top = `${
-            controlRect.top - optionsRect.height - optionsMargin * 2
-          }px`;
+          this.optionsRef.current.style.top = `${controlRect.top -
+            optionsRect.height -
+            optionsMargin * 2}px`
         }
       } else {
-        const scrollRect = scrollParent.getBoundingClientRect();
-        const scrollerBottom = scrollRect.top + scrollRect.height;
+        const scrollRect = scrollParent.getBoundingClientRect()
+        const scrollerBottom = scrollRect.top + scrollRect.height
         const hasRoomBelow =
-          top + optionsRect.height + optionsMargin < scrollerBottom;
+          top + optionsRect.height + optionsMargin < scrollerBottom
         const hasRoomAbove =
           controlRect.top - optionsRect.height - optionsMargin * 2 >
-          scrollRect.top;
+          scrollRect.top
         if ((!hasRoomBelow && !hasRoomAbove) || hasRoomBelow) {
-          this.optionsRef.current.style.top = `${top}px`;
+          this.optionsRef.current.style.top = `${top}px`
           if (scrollRect.top > top && visible) {
-            this.handleOptionsClose();
+            this.handleOptionsClose()
           }
         }
         if (!hasRoomBelow && hasRoomAbove) {
-          this.optionsRef.current.style.top = `${
-            controlRect.top - optionsRect.height - optionsMargin * 2
-          }px`;
+          this.optionsRef.current.style.top = `${controlRect.top -
+            optionsRect.height -
+            optionsMargin * 2}px`
           if (scrollerBottom < controlRect.top && visible) {
-            this.handleOptionsClose();
+            this.handleOptionsClose()
           }
         }
       }
     }
-  };
+  }
 
   updateInputDOM = ({ width, focus }) => {
     if (this.inputRef && this.inputRef.current) {
-      this.inputRef.current.style.width = width;
+      this.inputRef.current.style.width = width
       if (focus) {
-        this.inputRef.current.focus();
+        this.inputRef.current.focus()
       }
     }
-  };
+  }
 
-  handleOptionClick = (option) => {
+  handleOptionClick = option => {
     if (option.disabled) {
-      return;
+      return
     }
 
-    const { multi, searchable } = this.props;
-    const { visible, value } = this.state;
-    const selectValue = option.value;
+    const { multi, searchable } = this.props
+    const { visible, value } = this.state
+    const selectValue = option.value
 
     if (multi) {
-      let chooseValue = [...value];
+      let chooseValue = [...value]
       if (value.includes(selectValue)) {
-        chooseValue = chooseValue.filter((v) => v !== selectValue);
+        chooseValue = chooseValue.filter(v => v !== selectValue)
       } else {
-        chooseValue = [...chooseValue, selectValue];
+        chooseValue = [...chooseValue, selectValue]
       }
 
       if (isEmpty(chooseValue)) {
-        this.setState({ inputVisible: true });
+        this.setState({ inputVisible: true })
       }
 
       this.setState(
-        { value: chooseValue, inputValue: "", inputVisible: false },
+        { value: chooseValue, inputValue: '', inputVisible: false },
         () => {
           if (searchable) {
             this.updateInputDOM({
-              width: isEmpty(this.state.value) ? "100%" : "2px",
+              width: isEmpty(this.state.value) ? '100%' : '2px',
               focus: true,
-            });
+            })
           }
-          this.props.onChange(this.state.value);
+          this.props.onChange(this.state.value)
         }
-      );
+      )
     } else {
       this.setState(
         {
@@ -258,131 +262,131 @@ export default class Select extends React.Component {
           inputVisible: false,
         },
         () => {
-          this.props.onChange(this.state.value);
+          this.props.onChange(this.state.value)
         }
-      );
+      )
     }
-  };
+  }
 
-  handleOptionsOpen = (e) => {
-    const { visible } = this.state;
-    const { searchable } = this.props;
+  handleOptionsOpen = e => {
+    const { visible } = this.state
+    const { searchable } = this.props
 
-    this.setState({ visible: searchable ? true : !visible });
+    this.setState({ visible: searchable ? true : !visible })
 
-    searchable && this.handleInputStatus(true);
-  };
+    searchable && this.handleInputStatus(true)
+  }
 
   handleOptionsClose = () => {
-    const { visible } = this.state;
-    this.setState({ visible: !visible });
-  };
+    const { visible } = this.state
+    this.setState({ visible: !visible })
+  }
 
-  handleOptionsScroll = (e) => {
+  handleOptionsScroll = e => {
     if (this.reachBottom) {
-      return;
+      return
     }
 
-    const { onFetch, pagination = {} } = this.props;
-    const { page = 1 } = pagination;
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const { onFetch, pagination = {} } = this.props
+    const { page = 1 } = pagination
+    const { scrollTop, scrollHeight, clientHeight } = e.target
     if (scrollTop + clientHeight - scrollHeight >= 0) {
-      this.reachBottom = true;
-      onFetch({ page: page + 1, more: true });
+      this.reachBottom = true
+      onFetch({ page: page + 1, more: true })
     }
-  };
+  }
 
-  handleDocumentClick = (e) => {
-    const { visible } = this.state;
+  handleDocumentClick = e => {
+    const { visible } = this.state
     if (visible && this.selectRef && this.selectRef.current) {
       if (!this.selectRef.current.contains(e.target)) {
-        this.handleOptionsClose();
+        this.handleOptionsClose()
       }
     }
-  };
+  }
 
-  handleInputStatus = (visible) => {
-    const { value, inputValue } = this.state;
-    const { multi, searchable, options } = this.props;
-    const option = options.find((item) => item.value === value) || {};
-    const currentInputValue = multi ? "" : option.value || inputValue || "";
+  handleInputStatus = visible => {
+    const { value, inputValue } = this.state
+    const { multi, searchable, options } = this.props
+    const option = options.find(item => item.value === value) || {}
+    const currentInputValue = multi ? '' : option.value || inputValue || ''
     this.setState(
       { inputVisible: visible, inputValue: currentInputValue },
       () => {
         if (multi && searchable) {
           this.updateInputDOM({
-            width: isEmpty(value) ? "100%" : "2px",
+            width: isEmpty(value) ? '100%' : '2px',
             focus: visible,
-          });
+          })
         }
       }
-    );
-  };
+    )
+  }
 
-  handleInputChange = (e) => {
-    const value = e.target.value;
-    const { multi, searchable, onFetch, onChange } = this.props;
+  handleInputChange = e => {
+    const value = e.target.value
+    const { multi, searchable, onFetch, onChange } = this.props
 
-    const newState = { inputValue: value };
+    const newState = { inputValue: value }
     if (!multi) {
-      newState.value = value;
+      newState.value = value
     }
     this.setState(newState, () => {
       if (multi && searchable) {
         const width = isEmpty(this.state.value)
-          ? "100%"
-          : `${get(this.inputValueRef, "current.clientWidth", 0) + 5}px`;
-        this.updateInputDOM({ width });
+          ? '100%'
+          : `${get(this.inputValueRef, 'current.clientWidth', 0) + 5}px`
+        this.updateInputDOM({ width })
       }
-      onChange(this.state.value);
-    });
+      onChange(this.state.value)
+    })
 
     if (isFunction(onFetch)) {
-      onFetch({ name: value });
+      onFetch({ name: value })
     }
-  };
+  }
 
   handleMultiValueDelete = (e, i) => {
-    e.nativeEvent.stopImmediatePropagation();
-    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation()
+    e.stopPropagation()
 
-    let { value } = this.state;
-    value.splice(i, 1);
+    const { value } = this.state
+    value.splice(i, 1)
     this.setState({ value }, () => {
-      this.props.onChange(value);
-    });
+      this.props.onChange(value)
+    })
 
     if (isEmpty(value)) {
       if (this.props.searchable) {
-        this.updateInputDOM({ width: "100%" });
+        this.updateInputDOM({ width: '100%' })
       }
-      this.setState({ inputVisible: true });
+      this.setState({ inputVisible: true })
     }
-  };
+  }
 
-  handleClearValue = (e) => {
-    e.nativeEvent.stopImmediatePropagation();
-    e.stopPropagation();
-    const { multi, searchable, onChange, onFetch } = this.props;
+  handleClearValue = e => {
+    e.nativeEvent.stopImmediatePropagation()
+    e.stopPropagation()
+    const { multi, searchable, onChange, onFetch } = this.props
 
     this.setState(
       {
-        value: multi ? [] : "",
-        inputValue: "",
+        value: multi ? [] : '',
+        inputValue: '',
         inputVisible: true,
       },
       () => {
-        onChange();
+        onChange()
         if (searchable && isFunction(onFetch)) {
-          onFetch();
+          onFetch()
         }
       }
-    );
-  };
+    )
+  }
 
   renderIcon = () => {
-    const { clearable, disabled } = this.props;
-    const { visible, inputValue } = this.state;
+    const { clearable, disabled } = this.props
+    const { visible, inputValue } = this.state
     return (
       <span
         className="select-icon"
@@ -398,34 +402,34 @@ export default class Select extends React.Component {
           )}
         </span>
       </span>
-    );
-  };
+    )
+  }
 
-  renderPrefixIcon = (icon) => {
-    const nodeType = typeof icon;
+  renderPrefixIcon = icon => {
+    const nodeType = typeof icon
     return icon ? (
       <span className="select-icon select-icon-prefixIcon">
         <span className="select-icon-item">
-          {nodeType === "function" ? prefixIcon() : icon}
+          {nodeType === 'function' ? prefixIcon() : icon}
         </span>
       </span>
-    ) : null;
-  };
+    ) : null
+  }
 
   renderOptions = () => {
-    const { visible } = this.state;
-    const { options, isLoading, pagination = {}, onFetch } = this.props;
-    const { page = 1, total = 0, limit = 10 } = pagination;
+    const { visible } = this.state
+    const { options, isLoading, pagination = {}, onFetch } = this.props
+    const { page = 1, total = 0, limit = 10 } = pagination
 
-    if (!visible || !get(this.selectRef, "current")) {
-      return null;
+    if (!visible || !get(this.selectRef, 'current')) {
+      return null
     }
 
-    const dimensions = this.selectRef.current.getBoundingClientRect();
-    const optionsTop = dimensions.top + dimensions.height;
-    const optionsLeft = dimensions.left;
+    const dimensions = this.selectRef.current.getBoundingClientRect()
+    const optionsTop = dimensions.top + dimensions.height
+    const optionsLeft = dimensions.left
 
-    const canFetch = isFunction(onFetch) && page * limit < total;
+    const canFetch = isFunction(onFetch) && page * limit < total
 
     return (
       <div
@@ -447,32 +451,32 @@ export default class Select extends React.Component {
           </div>
         )}
       </div>
-    );
-  };
+    )
+  }
 
   renderEmpty = () => {
     return (
       <div className="select-options-empty">
-        {locale.get("KUBE_NO_AVAILABLE_DATA")}
+        {locale.get('KUBE_NO_AVAILABLE_DATA')}
       </div>
-    );
-  };
+    )
+  }
 
-  renderDorpdownRender = (options) => {
-    const { dorpdownRender } = this.props;
-    const optionNode = this.renderOption(options);
+  renderDorpdownRender = options => {
+    const { dorpdownRender } = this.props
+    const optionNode = this.renderOption(options)
 
     if (dorpdownRender) {
-      return dorpdownRender(optionNode);
+      return dorpdownRender(optionNode)
     }
-    return optionNode;
-  };
+    return optionNode
+  }
 
-  renderOption = (options) => {
-    const { value } = this.state;
-    const { multi, optionRenderer } = this.props;
-    const isActive = (v) =>
-      multi ? value.includes(v.value) : v.disabled ? false : v.value === value;
+  renderOption = options => {
+    const { value } = this.state
+    const { multi, optionRenderer } = this.props
+    const isActive = v =>
+      multi ? value.includes(v.value) : v.disabled ? false : v.value === value
 
     return options.map((item, i) => {
       if (item.options) {
@@ -481,44 +485,43 @@ export default class Select extends React.Component {
             <p className="select-group-title">{item.label}</p>
             {this.renderOption(item.options)}
           </div>
-        );
-      } else {
-        return (
-          <Option
-            key={i}
-            multi={multi}
-            disabled={item.disabled}
-            onClick={this.handleOptionClick}
-            isActive={isActive(item)}
-            option={item}
-          >
-            {optionRenderer ? optionRenderer(item) : item.label}
-          </Option>
-        );
+        )
       }
-    });
-  };
+      return (
+        <Option
+          key={i}
+          multi={multi}
+          disabled={item.disabled}
+          onClick={this.handleOptionClick}
+          isActive={isActive(item)}
+          option={item}
+        >
+          {optionRenderer ? optionRenderer(item) : item.label}
+        </Option>
+      )
+    })
+  }
 
   renderInput = () => {
-    const { searchable, name, placeholder, multi } = this.props;
-    const { inputVisible, inputValue, value } = this.state;
+    const { searchable, name, placeholder, multi } = this.props
+    const { inputVisible, inputValue, value } = this.state
     const multiClassName =
       multi && searchable
-        ? classNames("select-input", {
-            "select-input-multi": !isEmpty(value) && multi,
+        ? classNames('select-input', {
+            'select-input-multi': !isEmpty(value) && multi,
           })
-        : classNames("select-input", {
-            "select-input-opacity": !inputVisible,
-            "select-input-multi": !isEmpty(value) && multi,
-          });
+        : classNames('select-input', {
+            'select-input-opacity': !inputVisible,
+            'select-input-multi': !isEmpty(value) && multi,
+          })
 
-    const localePlaceholder = locale.get(placeholder);
+    const localePlaceholder = locale.get(placeholder)
     const multiPlaceholder =
       multi && searchable
         ? isEmpty(value)
           ? localePlaceholder
-          : ""
-        : localePlaceholder;
+          : ''
+        : localePlaceholder
 
     return (
       <div className={multiClassName}>
@@ -526,7 +529,7 @@ export default class Select extends React.Component {
           name={name}
           ref={this.inputRef}
           placeholder={multiPlaceholder}
-          value={inputValue || ""}
+          value={inputValue || ''}
           onChange={this.handleInputChange}
           readOnly={!searchable}
           autoComplete="off"
@@ -535,16 +538,16 @@ export default class Select extends React.Component {
           {inputValue}
         </span>
       </div>
-    );
-  };
+    )
+  }
 
   renderMultiValue = (value, i) => {
-    const { valueRenderer, options } = this.props;
+    const { valueRenderer, options } = this.props
 
-    const option = options.find((item) => item.value === value) || {
+    const option = options.find(item => item.value === value) || {
       label: value,
       value,
-    };
+    }
 
     return (
       <Tag className="select-multi-value-item" key={i}>
@@ -554,63 +557,63 @@ export default class Select extends React.Component {
           </span>
           <span
             className="select-multi-value-item-icon"
-            onClick={(e) => this.handleMultiValueDelete(e, i)}
+            onClick={e => this.handleMultiValueDelete(e, i)}
           >
             <Icon name="close" type="light" />
           </span>
         </span>
       </Tag>
-    );
-  };
+    )
+  }
 
   renderBaseValues = () => {
-    const { value, inputVisible } = this.state;
-    const { multi, valueRenderer, options } = this.props;
+    const { value, inputVisible } = this.state
+    const { multi, valueRenderer, options } = this.props
 
     if (multi) {
       if (isEmpty(value)) {
-        return null;
+        return null
       }
-      return value.map(this.renderMultiValue);
+      return value.map(this.renderMultiValue)
     }
 
-    let option = { label: value, value };
-    options.forEach((item) => {
+    let option = { label: value, value }
+    options.forEach(item => {
       if (item.value === value) {
-        option = item;
+        option = item
       } else if (item.options) {
-        item.options.forEach((op) => {
+        item.options.forEach(op => {
           if (op.value === value) {
-            option = op;
+            option = op
           }
-        });
+        })
       }
-    });
+    })
 
     return (
       <div
         className={classNames({
-          "select-value": !multi,
-          "select-value-opacity": inputVisible,
-          "select-multi-value": multi,
+          'select-value': !multi,
+          'select-value-opacity': inputVisible,
+          'select-multi-value': multi,
         })}
       >
         {valueRenderer ? valueRenderer(option) : option.label}
       </div>
-    );
-  };
+    )
+  }
 
   render() {
-    const { style, className, multi, prefixIcon, disabled } = this.props;
-    const { visible } = this.state;
+    const { style, className, multi, prefixIcon, disabled } = this.props
+    const { visible } = this.state
 
     return (
       <div
         className={classNames(
-          "select",
-          { "select-multi": multi },
-          { "select-disabled": disabled },
-          { "is-open": visible },
+          'select',
+          { 'select-multi': multi },
+          { 'select-disabled': disabled },
+          { 'is-open': visible },
           className
         )}
         style={style}
@@ -629,6 +632,6 @@ export default class Select extends React.Component {
         </div>
         {this.renderOptions()}
       </div>
-    );
+    )
   }
 }

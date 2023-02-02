@@ -1,6 +1,6 @@
-import Basic from "./Basic";
-import Generator from "../../utils/Generator";
+import Basic from './Basic'
+import Generator from '../../utils/Generator'
 
-const Column = Generator({ componentCls: "column" })(Basic);
+const Column = Generator({ componentCls: 'column' })(Basic)
 
-export default Column;
+export default Column

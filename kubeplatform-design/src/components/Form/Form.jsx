@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
-import Schema from "async-validator";
-import { debounce, set, get, isFunction } from "lodash";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import Schema from 'async-validator'
+import { debounce, set, get, isFunction } from 'lodash'
 
 export default class Form extends React.Component {
   static propTypes = {
@@ -12,13 +12,13 @@ export default class Form extends React.Component {
     defaultData: PropTypes.object,
     data: PropTypes.object,
     type: PropTypes.string,
-  };
+  }
 
   static defaultProps = {
     defaultData: {},
-    className: "",
-    type: "",
-  };
+    className: '',
+    type: '',
+  }
 
   static childContextTypes = {
     formData: PropTypes.object,
@@ -27,7 +27,7 @@ export default class Form extends React.Component {
     resetValidate: PropTypes.func,
     validateResults: PropTypes.array,
     resetValidateResults: PropTypes.func,
-  };
+  }
 
   getChildContext() {
     return {
@@ -37,103 +37,109 @@ export default class Form extends React.Component {
       resetValidate: this.resetValidate,
       validateResults: this.state.errors,
       resetValidateResults: this.resetValidateResults,
-    };
+    }
   }
 
   constructor(props) {
-    super(props);
-    this.descriptor = {};
+    super(props)
+    this.descriptor = {}
 
-    this.state = { errors: [], formData: props.data || {} };
+    this.state = { errors: [], formData: props.data || {} }
 
     this.triggerFormChange = props.onChange
       ? debounce(props.onChange, 500)
-      : null;
+      : null
 
-    this.customValidator = null;
+    this.customValidator = null
   }
 
   static getDerivedStateFromProps(props, state) {
     if (props.data !== state.formData) {
-      return { formData: props.data || {} };
+      return { formData: props.data || {} }
     }
-    return null;
+    return null
   }
 
-  handleSubmit = (e) => {
-    const { onSubmit } = this.props;
+  handleSubmit = e => {
+    const { onSubmit } = this.props
 
-    e.preventDefault();
+    e.preventDefault()
 
     this.validate(() => {
-      onSubmit && onSubmit(this.state.formData);
-    });
-  };
+      onSubmit && onSubmit(this.state.formData)
+    })
+  }
 
-  validate = (callback) => {
+  validate = callback => {
     if (isFunction(this.customValidator)) {
       this.customValidator(() => {
-        this.validator(callback);
-      });
+        this.validator(callback)
+      })
     } else {
-      this.validator(callback);
+      this.validator(callback)
     }
-  };
+  }
 
-  validator = (callback) => {
-    const schema = new Schema(this.descriptor);
+  validator = callback => {
+    const schema = new Schema(this.descriptor)
     const data = Object.keys(this.descriptor).reduce(
       (prev, cur) => ({
         ...prev,
         [cur]: get(this.state.formData, cur),
       }),
       {}
-    );
+    )
 
-    schema.validate(data, { firstFields: true }, (errors) => {
+    schema.validate(data, { firstFields: true }, errors => {
       if (errors) {
-        return this.setState({ errors });
+        return this.setState({ errors })
       }
-      callback && callback();
-    });
-  };
+      callback && callback()
+    })
+  }
 
   registerValidate = (name, rules) => {
-    this.descriptor[name] = rules;
-  };
+    this.descriptor[name] = rules
+  }
 
-  resetValidate = (name) => {
-    delete this.descriptor[name];
-  };
+  resetValidate = name => {
+    delete this.descriptor[name]
+  }
 
-  resetValidateResults = (name) => {
+  resetValidateResults = name => {
     this.setState(({ errors }) => ({
-      errors: errors.filter((error) => error.field !== name),
-    }));
-  };
+      errors: errors.filter(error => error.field !== name),
+    }))
+  }
+
+  resetAllValidateResults = () => {
+    this.setState(() => ({
+      errors: [],
+    }))
+  }
 
   getData() {
-    return this.state.formData;
+    return this.state.formData
   }
 
   setData(name, value) {
-    set(this.state.formData, name, value);
+    set(this.state.formData, name, value)
   }
 
   resetData() {
-    this.setState({ formData: this.props.defaultData });
+    this.setState({ formData: this.props.defaultData })
   }
 
   setCustomValidator(validator) {
-    this.customValidator = validator;
+    this.customValidator = validator
   }
 
   render() {
-    const { className, children, type } = this.props;
-    const classNames = classnames("form", className);
+    const { className, children, type } = this.props
+    const classNames = classnames('form', className)
 
-    if (type === "inner") {
-      return <div className={classNames}>{children}</div>;
+    if (type === 'inner') {
+      return <div className={classNames}>{children}</div>
     }
 
     return (
@@ -144,6 +150,6 @@ export default class Form extends React.Component {
       >
         {children}
       </form>
-    );
+    )
   }
 }
