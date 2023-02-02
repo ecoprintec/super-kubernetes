@@ -37,7 +37,7 @@ label.checkbox {
     display: inline-block;
     width: $checkbox-size;
     height: $checkbox-size;
-    border: 2px solid #8e9297;
+    border: 2px solid #fff;
     border-radius: 2px;
     outline: none !important;
     background-color: transparent;
@@ -99,7 +99,7 @@ label.checkbox {
   & span.label-value {
     display: inline-block;
     vertical-align: middle;
-    @include TypographyParagraph(#909ba6);
+    @include TypographyParagraph(#fff);
     padding: 0 8px;
     user-select: none;
   }
