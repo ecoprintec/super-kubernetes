@@ -6,7 +6,7 @@
   height: 492px;
   background: $white;
   box-shadow: 0px 8px 16px rgba(36, 46, 66, 0.28);
-  border-radius: 4px;
+  border-radius: 8px;
   flex-direction: column;
   text-align: left;
 
@@ -70,7 +70,7 @@
       margin-top: 8px;
       padding: 12px;
       background: $light-color01;
-      border-radius: 4px;
+      border-radius: 8px;
       height: 180px;
 
       .innerBox {
@@ -79,7 +79,7 @@
         .tableItem {
           width: 100%;
           background: $white;
-          border-radius: 4px;
+          border-radius: 8px;
           padding: 8px 12px;
           margin-bottom: 4px;
 

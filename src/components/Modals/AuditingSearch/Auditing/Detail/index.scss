@@ -19,7 +19,7 @@ $chartContainerPadding: 8px;
   background: $white;
   display: flex;
   position: relative;
-  border-radius: 4px;
+  border-radius: 8px;
   z-index: 3;
   @at-root {
     .searchInput {
@@ -62,7 +62,7 @@ $chartContainerPadding: 8px;
 .toolbar {
   height: $toolbarHeight;
   line-height: $toolbarHeight;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $dark-color07;
   margin: $size-medium 0;
   color: $white;
@@ -104,7 +104,7 @@ $chartContainerPadding: 8px;
 
 .chartContainer {
   margin-bottom: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: $base-shadow;
   background-color: $white;
   display: flex;
@@ -149,7 +149,7 @@ $chartContainerPadding: 8px;
   width: 492px;
   height: calc(100% - 64px - #{$toolbarHeight} - #{$chartContainerPadding});
   border: 1px solid #d5dee7;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(72, 91, 127, 0.2);
   position: absolute;
   right: 10px;
@@ -165,7 +165,7 @@ $chartContainerPadding: 8px;
 }
 
 .table {
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $white;
   flex: 1;
   overflow: hidden;

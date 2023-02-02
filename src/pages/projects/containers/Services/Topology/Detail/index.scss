@@ -7,7 +7,7 @@
   bottom: 12px;
   right: 12px;
   width: 480px;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: $card-shadow;
   background-color: $white;
@@ -58,7 +58,7 @@
   right: 20px;
   transform: translateY(-50%);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 3px !important;
   :global {
     .icon {

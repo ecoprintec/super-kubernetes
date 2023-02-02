@@ -20,7 +20,7 @@
   position: relative;
   display: flex;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $lightest;
 
   .text {
@@ -61,7 +61,7 @@
 .wrapper {
   margin-top: 12px;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $lightest;
 }
 
@@ -88,14 +88,14 @@
 .matchWrapper {
   position: relative;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: solid 1px $light-color03;
   background-color: #ffffff;
 
   ul {
     li {
       padding: 8px 12px;
-      border-radius: 4px;
+      border-radius: 8px;
       background-color: $lightest;
       vertical-align: middle;
 
@@ -151,7 +151,7 @@
 
 .barWrapper {
   padding: 4px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: solid 1px $light-color03;
   background-color: #ffffff;
 }

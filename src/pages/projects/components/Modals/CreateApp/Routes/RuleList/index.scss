@@ -6,7 +6,7 @@
   padding: 11px 12px;
   padding-left: 64px;
   margin-bottom: 8px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $white;
   border: solid 1px $border-color;
   transition: all $trans-speed ease-in-out;
@@ -31,7 +31,7 @@
     right: 0;
     height: 62px;
     padding: 16px 4px;
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: #fff;
 
     & > button {
@@ -93,7 +93,7 @@
 .add {
   position: relative;
   padding: 11px 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px dashed $border-color;
   background-color: $white;
   cursor: pointer;
@@ -111,7 +111,7 @@
 
 .path {
   padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $bg-color;
 
   & + .path {

@@ -10,7 +10,7 @@
 
   &_item {
     background: #f9fbfd;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 12px;
 
     &_com {
@@ -26,7 +26,7 @@
       padding: 12px;
       border: 1px solid #ccd3db;
       background: #fff;
-      border-radius: 4px;
+      border-radius: 8px;
       margin-right: 12px;
 
       &:last-child {
@@ -39,7 +39,7 @@
     padding: 12px;
     background: #fff;
     border: 1px solid #ccd3db;
-    border-radius: 4px;
+    border-radius: 8px;
 
     :global {
       .checkbox {
@@ -58,11 +58,11 @@
       }
     }
   }
-  .array_checkbox_item{
+  .array_checkbox_item {
     min-width: 150px;
     align-self: center;
   }
-  .align_center{
+  .align_center {
     align-self: center;
   }
 }

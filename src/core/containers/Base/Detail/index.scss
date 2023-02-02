@@ -30,7 +30,7 @@
   align-items: center;
   height: 48px;
   padding: 0 14px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #36393e;
   margin: 0 0 12px;
 
@@ -51,7 +51,7 @@
     }
 
     &.active {
-      border-radius: 4px;
+      border-radius: 8px;
       // box-shadow: $btn-primary-shadow;
       background-color: $primary;
       border-color: $primary;

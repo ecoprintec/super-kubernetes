@@ -10,7 +10,7 @@
   position: relative;
   padding: 11px 12px;
   margin-bottom: 8px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #22262a;
   border: solid 1px $border-color;
   transition: all $trans-speed ease-in-out;
@@ -43,7 +43,7 @@
     margin: auto;
     height: 32px;
     padding: 0px 4px;
-    border-radius: 4px;
+    border-radius: 8px;
 
     & > button {
       width: 56px;
@@ -106,7 +106,7 @@
 .add {
   position: relative;
   padding: 11px 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px dashed $border-color;
   background-color: #22262a;
   cursor: pointer;

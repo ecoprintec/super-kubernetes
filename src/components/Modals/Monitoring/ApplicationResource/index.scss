@@ -13,7 +13,7 @@
   height: 82px;
   padding: 12px;
   margin-bottom: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #212323;
   border: 1px solid #36393e;
 
@@ -36,7 +36,7 @@
   min-height: 370px;
   padding: 5px 0 12px;
   margin-bottom: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $card-bg-color;
 }
 
@@ -44,12 +44,12 @@
   flex: 0 0 auto;
   height: 328px;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $card-bg-color;
   color: white;
 
   .box {
-    border-radius: 4px;
+    border-radius: 8px;
     border: 1px solid $light-color03;
     background-color: $white;
     overflow: hidden;

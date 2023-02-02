@@ -3,7 +3,7 @@
 
 .container {
   height: 64px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $white;
   margin-bottom: 12px;
 }
@@ -11,7 +11,7 @@
 .selectContainer {
   height: 66px;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: dashed 1px $light-color06;
   background-color: $white;
   cursor: pointer;
@@ -39,7 +39,7 @@
   display: flex;
   height: 66px;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: solid 1px $border-color;
   background-color: $white;
   box-sizing: border-box;
