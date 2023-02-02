@@ -183,16 +183,16 @@ $card-selector-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.08);
 $tr-shadow: inset 0 2px 4px 0 rgba(72, 91, 127, 0.2);
 
 // font
-$font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
+$font-family: 'Maven Pro', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
   'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
   'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
-$font-family-id: Roboto, $font-family;
+$font-family-id: Maven Pro, $font-family;
 $font-family-code: 'PT Mono', Monaco, Menlo, Consolas, 'Courier New', monospace;
-$font-family-1: Roboto, $font-family;
+$font-family-1: Maven Pro, $font-family;
 $font-family-2: Proxima Nova, $font-family;
 $mobile-max-width: 768px;
 
-$size-small: 12px;
+$size-small: 0.875rem;
 $size-normal: 14px;
 $size-medium: 16px; // 中号字体
 $size-mid-large: 24px;
