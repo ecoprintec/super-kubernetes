@@ -4,7 +4,7 @@
 .table {
   border-radius: $border-radius;
   box-shadow: $base-shadow;
-  background-color: #292929;
+  background-color: $white;
   overflow: hidden;
 
   :global {
