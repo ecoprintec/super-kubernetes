@@ -226,3 +226,32 @@ body .button,
     'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
     'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
 }
+body {
+  .MuiPaper-root {
+    border-radius: 8px;
+  }
+  .MuiTab-wrapper {
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  .MuiTab-textColorPrimary.Mui-selected {
+    color: #5c6bc0 !important;
+  }
+  .MuiTable-root {
+    .MuiTableBody-root tr:nth-of-type(2n) {
+      background-color: #fafafa;
+    }
+  }
+  .src-components-Layout-Nav-index__subNav
+    > ul
+    > li.src-components-Layout-Nav-index__childSelect
+    .src-components-Layout-Nav-index__title {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .src-components-Layout-Nav-index__subNav
+    > ul
+    > li.src-components-Layout-Nav-index__open.src-components-Layout-Nav-index__childSelect {
+    border-left: none;
+  }
+}

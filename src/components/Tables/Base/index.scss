@@ -101,19 +101,7 @@
 }
 
 .muitable {
-  background-color: $white !important;
   padding: 16px 24px 16px 24px;
-  th,
-  div {
-    background-color: $white !important;
-    color: $white !important;
-  }
-  h6,
-  a,
-  svg,
-  svg:active {
-    color: $white !important;
-  }
   tfoot tr,
   tfoot td {
     border-bottom: 0px !important;
