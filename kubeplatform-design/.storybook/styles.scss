@@ -60,15 +60,12 @@ p {
         margin: 0;
         margin-bottom: 8px;
       }
+
       & > div {
         color: #242e42;
       }
     }
   }
-}
-
-.sbdocs-preview {
-  background-color: rgb(34, 38, 42) !important;
 }
 
 .grid-item {
@@ -84,4 +81,24 @@ p {
 .is-dark {
   background-color: #3e5265;
   color: #c6d1dc !important;
+}
+
+.icon-container {
+  display: inline-block;
+  height: 84px;
+  width: 110px;
+  text-align: center;
+  .icon-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+
+    svg {
+      height: 36px;
+      width: 36px;
+    }
+  }
 }

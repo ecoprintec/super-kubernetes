@@ -6,13 +6,13 @@
   transition: all $trans-speed ease-in-out;
   cursor: pointer;
 
-  // &:hover {
-  // background-color: $bg-color;
-  // }
+  &:hover {
+    background-color: $bg-color;
+  }
 
-  // &:active {
-  // background-color: $btn-default-hover-bg;
-  // }
+  &:active {
+    background-color: $btn-default-hover-bg;
+  }
 }
 
 .text {

@@ -21,7 +21,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  //color: $dark;
+  color: $dark;
   font-weight: bold;
   font-size: 16px;
   line-height: 40px;
@@ -56,10 +56,10 @@
   }
 
   &.white {
-    color: white;
+    color: $white;
 
     strong {
-      color: white;
+      color: $white;
     }
   }
 
@@ -80,10 +80,10 @@
   }
 
   &.white {
-    color: white;
+    color: $white;
 
     strong {
-      color: white;
+      color: $white;
     }
   }
 
@@ -108,11 +108,11 @@
   width: auto;
   min-width: 120px;
   padding: 8px 12px;
-  color: white;
+  color: $white;
   font-size: $size-small;
   line-height: 1.67;
   border-radius: 8px;
-  background-color: black;
+  background-color: rgba(36, 46, 66, 0.8);
   box-shadow: 0 6px 12px 0 rgba(2, 5, 8, 0.08), 0 1px 2px 0 rgba(2, 5, 8, 0.08);
   z-index: 100;
 }

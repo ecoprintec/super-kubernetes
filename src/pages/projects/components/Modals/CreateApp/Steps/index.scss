@@ -8,13 +8,7 @@
   background-color: $dark-color07;
 
   & > div {
-    @include TypographySymbolText(#000);
-
-    span {
-      svg {
-        color: #22262a;
-      }
-    }
+    @include TypographySymbolText(#fff);
 
     & + div {
       position: relative;

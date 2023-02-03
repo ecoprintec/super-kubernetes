@@ -8,10 +8,10 @@
   overflow: auto;
   padding: 12px;
   width: 100%;
-  border: solid 1px #4c5053;
+  border: solid 1px $dark-color01;
   border-radius: $border-radius;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
-  background-color: black;
+  background-color: white;
   z-index: 2;
 
   .header {
@@ -51,16 +51,13 @@
       display: none;
       position: absolute;
       padding-top: 18px;
-      padding-left: 40px;
       top: 0;
       right: 0;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(239, 244, 249, 0.9);
+
       span {
         margin-right: 20px;
-        svg {
-          color: white;
-        }
       }
     }
 
@@ -81,31 +78,18 @@
         color: $dark-color01;
       }
     }
-    //color of hover item
+
     &:hover {
+      background-color: $light-color02;
       .info {
         & > :first-child {
-          color: $primary;
+          color: $blue-color03;
         }
       }
       .actions {
         display: block;
       }
     }
-  }
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: $card-bg-color;
-    border-radius: 10px;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: $text-color;
-    border-radius: 10px;
   }
 }
 
@@ -197,7 +181,7 @@
     height: 64px;
     border-radius: $border-radius;
     border: solid 1px $light-color06;
-    background-color: black;
+    background-color: white;
     & > div {
       flex-grow: 1;
       flex-shrink: 1;
@@ -234,11 +218,11 @@
       padding: 2px;
       margin: 0 2px;
       border-radius: 2px;
-      color: $primary;
+      color: $green;
       cursor: pointer;
 
       &:hover {
-        background-color: $primary;
+        background-color: $green;
         color: #fff;
       }
     }
@@ -260,7 +244,6 @@
     flex-basis: 40px;
     height: 40px;
     margin-right: 12px;
-    background: red;
   }
   .secretInfo {
     flex-grow: 1;

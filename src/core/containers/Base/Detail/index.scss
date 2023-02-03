@@ -3,7 +3,7 @@
 .sider {
   position: fixed;
   top: 88px;
-  left: 20px + $side-menu-width;
+  left: 20px;
   width: 364px;
   min-width: 360px;
   padding-right: 16px;
@@ -18,7 +18,7 @@
 
 .content {
   padding: 20px;
-  padding-left: 394px + $side-menu-width;
+  padding-left: 394px;
 
   @media screen and (max-width: 1280px) {
     padding-left: 340px;
@@ -31,7 +31,7 @@
   height: 48px;
   padding: 0 14px;
   border-radius: 8px;
-  background-color: #36393e;
+  background-color: $dark;
   margin: 0 0 12px;
 
   &Item {
@@ -41,7 +41,7 @@
     margin: 0 6px;
     padding: 0 14px;
     font-weight: 500;
-    color: white;
+    color: $white;
     border: 1px solid transparent;
     text-align: center;
     transition: all $trans-speed;
@@ -52,12 +52,12 @@
 
     &.active {
       border-radius: 8px;
-      // box-shadow: $btn-primary-shadow;
+      box-shadow: $btn-primary-shadow;
       background-color: $primary;
       border-color: $primary;
 
       &:hover {
-        color: white;
+        color: $white;
       }
     }
   }

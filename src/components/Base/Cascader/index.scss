@@ -11,8 +11,7 @@
     max-width: 400px;
     max-height: 252px;
     border-radius: $border-radius;
-    border: 1px solid $text-color;
-    background-color: $card-bg-color;
+    background-color: $text-color;
     box-shadow: 0 4px 16px 0 rgba(39, 50, 71, 0.28);
     overflow-y: auto;
     z-index: 200;
@@ -22,7 +21,7 @@
 .item {
   position: relative;
   padding: 6px 8px;
-  @include TypographySymbolText($text-color);
+  @include TypographySymbolText($white);
   cursor: pointer;
 
   &.isOpen,
@@ -36,7 +35,6 @@
         opacity: 1;
         @include vertical-center;
         right: 4px;
-        color: $text-color;
       }
     }
   }

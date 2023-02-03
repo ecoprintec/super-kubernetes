@@ -5,7 +5,7 @@
   padding: 12px;
   border-radius: 3px;
   border: dashed 1px $border-color;
-  background-color: #36393e;
+  background-color: #ffffff;
 }
 
 .histories {
@@ -33,17 +33,6 @@
       right: 12px;
     }
 
-    .text {
-      > div {
-        overflow: hidden;
-        white-space: nowrap;
-        > div {
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
-      }
-    }
-
     &:hover {
       .text {
         & > div > div {
@@ -51,8 +40,8 @@
         }
 
         :global .kubed-icon {
-          color: #7eb8dc;
-          fill: #329dce;
+          color: #00aa72;
+          fill: #90e0c5;
         }
       }
     }

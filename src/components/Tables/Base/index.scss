@@ -10,7 +10,6 @@
   :global {
     .table-body {
       padding: 0 12px 12px;
-      background-color: #36393e;
     }
     .table-footer {
       padding: 8px 20px;
@@ -19,7 +18,17 @@
 
   table {
     a {
-      color: #fff;
+      color: white;
+    }
+
+    & > thead > tr > th {
+      color: white;
+      a {
+        color: white;
+        &:hover {
+          color: white;
+        }
+      }
     }
   }
 }
@@ -27,19 +36,14 @@
 .button {
   min-width: 96px;
 }
-.buttonCustomDefault {
-  margin-right: 10px;
-  width: 80px;
-  height: 32px;
-}
 
 .cancelSelect {
   color: #fff;
   &:hover {
-    background-color: #ffffff33;
+    background-color: $dark-color06;
   }
   &:active {
-    background-color: #ffffff33;
+    background-color: $dark-color05;
   }
 }
 
@@ -94,40 +98,10 @@
 
 .columnMenu {
   width: 160px;
-  border: solid 1px #4c5053;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
-  background-color: black;
-
-  span {
-    color: white;
-  }
 }
 
 .muitable {
-  background-color: $dark-color14 !important;
   padding: 16px 24px 16px 24px;
-  th,
-  div {
-    background-color: $dark-color14 !important;
-    color: $white-color01 !important;
-  }
-  h6,
-  a,
-  svg,
-  svg:active {
-    color: $white-color01 !important;
-  }
-  tr td,
-  tr th {
-    border-bottom: 1px solid $dark-color16 !important;
-  }
-  tr:nth-child(2n) {
-    background: $dark-color15;
-    div {
-      background: $dark-color15 !important;
-    }
-  }
   tfoot tr,
   tfoot td {
     border-bottom: 0px !important;

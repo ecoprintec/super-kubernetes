@@ -43,10 +43,10 @@
     line-height: 20px;
     border: none;
     border-radius: 8px;
-    background-color: #c1c9d1;
+    background-color: $dark;
 
     &:hover {
-      // background-color: $light !important;
+      background-color: $dark !important;
     }
   }
 }

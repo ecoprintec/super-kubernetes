@@ -18,7 +18,7 @@ $trans-speed: 0.2s;
       .title {
         display: block;
         padding: 7px 12px;
-        color: #ffffff;
+        color: #4a5974;
         font-weight: 500;
         cursor: pointer;
 
@@ -46,12 +46,11 @@ $trans-speed: 0.2s;
       &.select {
         border-left: 5px solid $primary;
         & > a {
-          color: white;
-          background-color: $primary;
+          color: $primary;
 
           :global .kubed-icon {
-            color: white;
-            fill: white;
+            color: #00aa72;
+            fill: #90e0c5;
           }
         }
 
@@ -93,9 +92,10 @@ $trans-speed: 0.2s;
       }
 
       &.childSelect .title {
+        color: $primary;
         :global .kubed-icon {
-          color: white;
-          fill: white;
+          color: #00aa72;
+          fill: #90e0c5;
         }
         color: white;
         background-color: $primary;
@@ -154,14 +154,14 @@ $trans-speed: 0.2s;
 
     & > a {
       display: block;
-      color: #ffffff;
+      color: #4a5974;
     }
 
     &.select,
     &:hover,
     &:active {
       & > a {
-        color: white;
+        color: $primary;
       }
     }
 
@@ -172,7 +172,7 @@ $trans-speed: 0.2s;
       &:hover,
       &:active {
         & > a {
-          color: white;
+          color: #4a5974;
           cursor: not-allowed;
         }
       }

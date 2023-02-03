@@ -2,10 +2,6 @@
 
 .wrapper {
   position: relative;
-
-  & > div {
-    background: $white;
-  }
 }
 
 .trigger {

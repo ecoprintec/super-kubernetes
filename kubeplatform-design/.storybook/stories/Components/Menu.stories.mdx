@@ -19,14 +19,14 @@ Basic usages for ``Menu`` component.
 
 <Preview>
   <Story name="basic menu">
-    <div style={{ textAlign: "center", padding: '100px 20px', background: '#22262A' }}>
+    <div style={{ textAlign: "center", padding: '100px 20px' }}>
       <Dropdown content={
         <Menu>
           <Menu.MenuItem key="option-1">
             value-1
           </Menu.MenuItem>
           <Menu.MenuItem key="option-2">
-            value-2-name-too-long-that-exceeds
+            value-2
           </Menu.MenuItem>
           <Menu.MenuItem key="option-3">
             value-3
@@ -34,6 +34,21 @@ Basic usages for ``Menu`` component.
         </Menu>
       }>
         <Button>Menu</Button>
+      </Dropdown>
+      <Dropdown theme="dark" content={
+        <Menu>
+          <Menu.MenuItem key="option-1">
+            value-1
+          </Menu.MenuItem>
+          <Menu.MenuItem key="option-2">
+            value-2
+          </Menu.MenuItem>
+          <Menu.MenuItem key="option-3">
+            value-3
+          </Menu.MenuItem>
+        </Menu>
+      }>
+        <Button>Dark</Button>
       </Dropdown>
     </div>
   </Story>

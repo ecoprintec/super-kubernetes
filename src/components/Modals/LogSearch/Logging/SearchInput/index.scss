@@ -22,7 +22,6 @@ $inputHeight: 40px;
 .currentParam {
   font-weight: bold;
   margin-right: 8px;
-  color: white;
 }
 
 .input {
@@ -89,9 +88,9 @@ $inputHeight: 40px;
 .durationDropdown {
   position: absolute;
   width: 800px;
-  background: $lightest;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(219, 209, 199, 0.06);
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
   margin-top: 3px;
   line-height: 32px;
   z-index: 3;

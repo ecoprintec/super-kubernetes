@@ -3,7 +3,7 @@
 
 .formWrapper {
   position: relative;
-  background-color: $white;
+  background-color: #fff;
   height: calc(100% - 44px);
   overflow: hidden;
   overflow-y: auto;
@@ -31,14 +31,6 @@
 
   & > div + div {
     margin-left: 12px;
-  }
-
-  :global {
-    .select-input {
-      ::placeholder {
-        color: $text-color;
-      }
-    }
   }
 }
 

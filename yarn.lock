@@ -1323,19 +1323,7 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@kube-design/components@./kubeplatform-design":
-  version "0.0.0-development"
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    "@kube-design/components" "^1.13.0"
-    "@pitrix/lego-locale" "^0.1.10"
-    async-validator "^3.4.0"
-    bulma "^0.9.0"
-    flatpickr "^4.6.6"
-    fuse.js "^6.4.1"
-    popper.js "^1.16.1"
-
-"@kube-design/components@^1.13.0":
+"@kube-design/components@^1.23.2":
   version "1.23.2"
   resolved "https://registry.yarnpkg.com/@kube-design/components/-/components-1.23.2.tgz#d91f62949f0b9057606f2b67d04df9d820a745ab"
   integrity sha512-Y1l+1sewbFZR2WNpITGPYbZ6LiySTyXOVDI4wKTJdxJi3YqtIRknPHajCWh1quJw2Wo9kDUqD4MEpzhVL64Q4g==

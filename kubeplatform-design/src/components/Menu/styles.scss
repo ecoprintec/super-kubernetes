@@ -1,24 +1,15 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
-$menu-padder-custom: 3px;
-$menu-bg-custom: #2e3136;
-$menu-item-color-custom: #a0a0a0;
-$menu-item-hover-bg-custom: #3d90ce;
-$border-color: #4c5053;
-$menu-item-padder-custom: 6px;
-$border-radius-custom: 4px;
-
 .menu {
   margin: 0;
-  padding: $menu-padder-custom;
+  padding: $menu-padder;
   min-width: $menu-min-width;
-  border-radius: $border-radius-custom;
-  background-color: $menu-bg-custom;
+  border-radius: $border-radius;
+  background-color: $menu-bg;
   list-style: none;
   box-sizing: border-box;
   z-index: $menu-z-index;
-  border: 1px solid $border-color;
 
   &-label {
     padding: $menu-item-padder;
@@ -28,16 +19,15 @@ $border-radius-custom: 4px;
     position: relative;
     display: flex;
     align-items: center;
-    padding: $menu-item-padder-custom;
+    padding: $menu-item-padder;
     border-radius: $border-radius;
     font-weight: $font-bold;
-    color: $menu-item-color-custom;
+    color: $menu-item-color;
     line-height: 20px;
     cursor: pointer;
 
     &:hover {
-      background-color: $menu-item-hover-bg-custom;
-      color: $white;
+      background-color: $menu-item-hover-bg;
     }
 
     &-selected {

@@ -7,7 +7,7 @@
     "@babel/polyfill": "^7.12.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@kube-design/components": "./kubeplatform-design",
+    "@kube-design/components": "^1.23.2",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
@@ -83,7 +83,7 @@
   },
   "scripts": {
     "start": "concurrently -k --raw \"yarn dev:client\" \"yarn dev:server\"",
-    "build": "yarn upgrade @kube-design/components && yarn rebuild-kube-design && yarn build:client && yarn build:server",
+    "build": "yarn build:client && yarn build:server",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config scripts/webpack.dev.js -w",
     "dev:server": "cross-env NODE_ENV=development nodemon -w ./common -w ./server -e js,yaml server/server.js",
     "build:client": "webpack -p --config scripts/webpack.prod.js --display errors-only",
@@ -95,8 +95,7 @@
     "lint": "eslint src/**/*.jsx src/**/*.js",
     "postinstall": "rimraf node_modules/.cache",
     "prebuild": "rimraf dist",
-    "release": "standard-version",
-    "rebuild-kube-design": "sh ./reload_kube_design.sh"
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {

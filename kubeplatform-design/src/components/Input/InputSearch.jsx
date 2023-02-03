@@ -87,7 +87,7 @@ export default class InputSearch extends React.Component {
         )}
         style={style}
       >
-        <Icon className="is-right" name="magnifier" />
+        <Icon className="is-left" name="magnifier" />
         <Input
           type="text"
           placeholder={placeholder}

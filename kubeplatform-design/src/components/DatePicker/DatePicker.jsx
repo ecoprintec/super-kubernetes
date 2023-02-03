@@ -294,8 +294,8 @@ class DatePicker extends Component {
 
     props.className = classNames(
       'datepicker-input input',
-      { 'is-hover': isHover }
-      // { "is-active": isOpen }
+      { 'is-hover': isHover },
+      { 'is-active': isOpen }
     )
 
     return (

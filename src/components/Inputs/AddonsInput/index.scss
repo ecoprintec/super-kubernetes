@@ -11,11 +11,12 @@
     font-family: $font-family-id;
     line-height: 1.67;
     color: $text-color;
-    border: 1px solid #4c5157;
+    border: 1px solid $input-border-color;
+    background-color: #eff4f9 !important;
 
     &:nth-of-type(1) {
       border-radius: 4px 0 0 4px;
-      margin-right: 0px;
+      margin-right: -1px;
     }
 
     &:nth-of-type(2) {

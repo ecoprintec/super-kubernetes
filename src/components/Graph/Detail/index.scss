@@ -11,26 +11,15 @@
 .wrapper {
   width: 400px;
   height: 100%;
-  background: #2e3136;
-  box-shadow: 0 0 16px #0000003a;
+  background-color: #fff;
   border-radius: 8px;
-  // box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.1);
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.1);
 
   :global {
     .collapse .collapse-item-content {
       min-height: 190px;
       max-height: calc(100vh - 450px);
       overflow-y: auto;
-      background: inherit;
-    }
-
-    .collapse .collapse-item-label {
-      background-color: transparent;
-      color: inherit;
-    }
-    .collapse .collapse-item-label-border-bottom {
-      background-color: $green-color06;
-      color: #fff;
     }
   }
 

@@ -9,7 +9,7 @@
     position: relative;
 
     & > ul {
-      background-color: #212324;
+      background-color: $bg-color;
 
       & > li {
         display: inline-block;
@@ -19,20 +19,16 @@
 
         cursor: pointer;
         text-align: center;
-        color: #7e8187;
 
         &:hover,
         &:active,
         &.is-active {
-          color: $white;
-          border-bottom-style: solid;
-          border-color: #2d85c4;
-          border-width: 5px;
+          color: $primary;
         }
 
         &:active,
         &.is-active {
-          background-color: #212324;
+          background-color: $white;
         }
 
         &.is-disabled {
@@ -46,29 +42,28 @@
     &.tabs-button {
       & > ul {
         display: inline-block;
+        padding: 1px;
+        border: 1px solid $border-color;
+        border-radius: 16px;
+        background-color: $secondary-bg-color;
 
         & > li {
           padding: 4px 12px;
-          margin-right: 5px;
-          border-radius: 3;
-          border: 1px solid #303336;
+          border-radius: 14px;
 
           &:hover {
-            color: $white;
+            color: $text-color;
           }
 
           &:active {
-            background-color: #2f3236;
+            background-color: $text-color;
             color: $white;
           }
 
           &.is-active {
-            background-color: #2f3236;
+            background-color: $text-color;
+            border-color: $white;
             color: $white;
-          }
-
-          &:last-child {
-            margin-right: 0px;
           }
         }
       }
@@ -78,7 +73,7 @@
 
 .tab-content {
   padding: 12px 0;
-  color: white;
+
   .tab-panel {
     display: none;
 
@@ -90,25 +85,19 @@
 
 .tabs-container-vertical {
   flex-direction: row;
+  border: 1px solid $border-color;
 
   .tabs {
     min-width: 128px;
 
     & > ul {
       height: 100%;
+      border-right: 1px solid $border-color;
 
       & > li {
         display: block;
         padding: 12px;
-        border-bottom-style: none;
-
-        &:hover,
-        &:active,
-        &.is-active {
-          color: $white;
-          background-color: #2d85c4;
-          border-bottom-style: none;
-        }
+        border-bottom: 1px solid $border-color;
       }
     }
   }

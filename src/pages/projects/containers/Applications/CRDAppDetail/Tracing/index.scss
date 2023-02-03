@@ -21,12 +21,13 @@
 
   & > button {
     min-width: 188px;
-    background: transparent;
-    border: 1px solid #87909c80;
-    color: #fff;
+    background: white;
+    border: 1px solid #abb4be;
+    color: $dark-color06;
 
     &:hover {
-      background: transparent !important;
+      background: white !important;
+      border-color: #79879c;
     }
   }
 

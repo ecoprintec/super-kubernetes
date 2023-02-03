@@ -1,13 +1,9 @@
-@import '~scss/variables';
-
 .header {
   display: flex;
   justify-content: space-between;
 
   button {
     height: 32px;
-    background: $primary;
-    border: none;
   }
 }
 

@@ -1493,19 +1493,6 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kube-design/components@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@kube-design/components/-/components-1.13.0.tgz#4f104893bdbd70113e630b8f0df4a818e7efdc85"
-  integrity sha512-a1v3T4pvzfCEoipJ10j9Zdxqzg13H8pNksLPPRko3K6LWOkRBSaTXen6JRIXoJPLYtfvqFyUP2LGb1rNdZYufw==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    "@pitrix/lego-locale" "^0.1.10"
-    async-validator "^3.4.0"
-    bulma "^0.9.0"
-    flatpickr "^4.6.6"
-    fuse.js "^6.4.1"
-    popper.js "^1.16.1"
-
 "@mdx-js/loader@^1.5.1":
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.6.18.tgz#8d63fcc029573b3a33968c78d1c5e927ad8e497d"

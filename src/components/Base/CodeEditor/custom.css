@@ -3,20 +3,6 @@
   font-family: Monaco, Menlo, Consolas, Courier New, monospace;
   -webkit-font-smoothing: auto;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #36393e;
-  border-radius: 10px;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #fff;
-  border-radius: 10px;
-}
 
 .ace_editor.ace-chaos {
   color: #ffffff;

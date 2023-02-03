@@ -28,14 +28,10 @@
     }
 
     .tabs {
-      background: $lightest;
+      background: $light-color01;
       border: 1px solid $light-color07;
       box-sizing: border-box;
-      border-radius: 5px;
-
-      & > label {
-        color: white;
-      }
+      border-radius: 16px;
     }
 
     .subTitle {

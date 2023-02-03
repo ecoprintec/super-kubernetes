@@ -8,17 +8,17 @@
 
   :global {
     .select-control {
-      background-color: $primary !important;
+      background-color: $dark-color07 !important;
       box-shadow: none !important;
       border: none !important;
     }
 
     .select-value {
-      color: white !important;
+      color: $white !important;
     }
 
     .select-icon .kubed-icon-dark {
-      color: white;
+      color: $white;
     }
   }
 }

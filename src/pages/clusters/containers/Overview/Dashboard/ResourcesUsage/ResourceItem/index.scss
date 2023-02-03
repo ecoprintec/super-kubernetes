@@ -4,7 +4,7 @@
   display: flex;
   padding: 12px;
 
-  background-color: #212324;
+  background-color: $light-color01;
 
   & + .item {
     margin-top: 8px;

@@ -21,8 +21,10 @@ export default class Input extends Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       value: 'value' in props ? props.value : props.defaultValue,
+      type: props.type || 'text',
     }
   }
 
@@ -32,49 +34,50 @@ export default class Input extends Component {
         value: nextProps.value,
       }
     }
+
+    if ('type' in nextProps && nextProps.type !== prevState.type) {
+      return { type: nextProps.type }
+    }
     return null
   }
 
   componentDidMount() {
-    this.clearPasswordValueAttribute()
-  }
-
-  componentWillUnmount() {
-    if (this.removePasswordTimeout) {
-      clearTimeout(this.removePasswordTimeout)
+    if (this.state.type === 'password') {
+      this.clearPasswordValueAttribute()
     }
   }
 
-  clearPasswordValueAttribute = e => {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.type !== prevState.type && prevState.type === 'text') {
+      this.clearPasswordValueAttribute()
+    }
+  }
+
+  clearPasswordValueAttribute = () => {
     const { innerRef } = this.props
     const ref = innerRef || this.inputRef
-    this.removePasswordTimeout = setTimeout(() => {
-      if (
-        ref.current.getAttribute('type') === 'password' &&
-        ref.current.getAttribute('value')
-      ) {
-        ref.current.removeAttribute('value')
-      }
-    })
+    ref.current.removeAttribute('value')
   }
 
   handleChange = e => {
     const { value } = e.target
     const { value: propsValue, onChange } = this.props
     const newValue = propsValue || value
-
-    this.setState({ value: newValue }, this.clearPasswordValueAttribute)
     onChange(e, value)
+    this.setState({ value: newValue })
   }
 
   render() {
     const { className, innerRef, ...rest } = this.props
-    const { value } = this.state
+    const { value, type } = this.state
+
+    const params = { ...omit(rest, 'onChange', 'value', 'defaultValue') }
 
     return (
       <input
-        {...omit(rest, 'onChange', 'value', 'defaultValue')}
+        {...params}
         ref={innerRef || this.inputRef}
+        type={type}
         value={value}
         onChange={this.handleChange}
         className={classNames('input', className)}

@@ -14,8 +14,7 @@
   padding: 12px;
   margin-bottom: 12px;
   border-radius: 8px;
-  background-color: #212323;
-  border: 1px solid #36393e;
+  background-color: $card-bg-color;
 
   & > div {
     width: 340px;
@@ -26,9 +25,6 @@
   button {
     margin-top: 25px;
   }
-}
-.form-item-control {
-  background-color: aliceblue;
 }
 
 .chart {
@@ -46,7 +42,6 @@
   padding: 12px;
   border-radius: 8px;
   background-color: $card-bg-color;
-  color: white;
 
   .box {
     border-radius: 8px;

@@ -24,10 +24,6 @@
     .collapse-item {
       padding: 5px 6px;
     }
-    .collapse-item-content {
-      background-color: #212324;
-      // color: $dark-color07;
-    }
   }
 }
 
@@ -47,7 +43,7 @@
 
 .title {
   @include TypographyTitleH4($white);
-  color: #fff;
+  color: #242e42;
   max-width: 360px;
   @include ellipsis;
 }

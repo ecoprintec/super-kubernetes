@@ -7,7 +7,7 @@
   height: 20px;
   min-width: 40px;
   border-radius: 100px;
-  background-color: #676a70;
+  background-color: $light-color04;
   vertical-align: middle;
   line-height: 20px;
   transition: all 0.36s;
@@ -38,12 +38,12 @@
     }
   }
   &.checked {
-    background-color: #329dce;
+    background-color: $green-color03;
     &:hover {
-      background-color: #329dce;
+      background-color: $green-color04;
     }
     &:active {
-      background-color: #329dce;
+      background-color: $green-color05;
     }
     &:after {
       left: 100%;

@@ -6,10 +6,6 @@ $dark-color05: #404e68;
 $dark-color06: #36435c;
 $dark-color07: #242e42;
 $dark-color08: #181d28;
-$dark-color09: #262b2f;
-$dark-color10: #ffffff;
-$dark-color11: rgb(128, 128, 128);
-$dark-color12: #1e2124;
 $light-color01: #f9fbfd;
 $light-color02: #eff4f9;
 $light-color03: #e3e9ef;
@@ -23,7 +19,6 @@ $green-color02: #a2d8bb;
 $green-color03: #55bc8a;
 $green-color04: #479e88;
 $green-color05: #3b747a;
-$green-color06: #3d90ce;
 $blue-color01: #c7deef;
 $blue-color02: #7eb8dc;
 $blue-color03: #329dce;
@@ -42,7 +37,7 @@ $yellow-color05: #8d663e;
 $white: #ffffff;
 $black: #000000;
 
-$text-color: $dark-color06;
+$text-color: $black;
 $secondary-text-color: $light-color06;
 $heading-color: $dark-color07;
 $paragraph-color: $dark-color05;
@@ -57,15 +52,13 @@ $warning: $yellow-color03;
 $error: $red-color03;
 $info: $blue-color03;
 
-$primary: #3d90ce;
+$primary: $green-color03;
 
 $border-radius: 8px;
 
 // shadow
 $base-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
 $box-shadow: 0 4px 16px 0 rgba(39, 50, 71, 0.28);
-$box-shadow-first: 0 0 0 1px #87909c80;
-$box-shadow-first-active: 0 0 0 1px $green-color06;
 
 // font
 $font-family: 'Maven Pro', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
@@ -164,7 +157,7 @@ $input-hover-color: $dark-color01;
 $input-focus-color: $green-color03;
 $input-error-color: $red-color03;
 $input-caret-color: $dark-color06;
-$input-placeholder-color: #36393e;
+$input-placeholder-color: $dark-color03;
 $input-disabled-color: $light-color02;
 $input-focus-shadow: 0 4px 8px 0 rgba(85, 188, 138, 0.2);
 
@@ -187,10 +180,9 @@ $menu-item-selected-bg: $light-color02;
 $arrow-border-width: 16px;
 $arrow-margin: 12px;
 $popper-background: $white;
-$bg-popepr-color: $dark-color12;
 
 // tooltip
-$tooltip-background: #000000;
+$tooltip-background: $dark-color07;
 $tooltip-color: $white;
 $tooltip-box-shadow: 0 6px 12px 0 rgba(2, 5, 8, 0.08),
   0 1px 2px 0 rgba(2, 5, 8, 0.08);
@@ -199,21 +191,11 @@ $tooltip-max-width: 300px;
 // select
 $select-box-shadow: 0 6px 12px 0 rgba(2, 5, 8, 0.04),
   0 1px 2px 0 rgba(2, 5, 8, 0.08);
-$select-text-color: $dark-color10;
-
-//slider  select silder popper
-$click-input-border-color: $green-color06;
-$select-border-color: $box-shadow-first;
-$select-border-color-active: $box-shadow-first-active;
-$click-bg-color: $green-color06;
-$click-text-color: $white;
-$bg-dark-theme-second: $dark-color09;
-$input-text-color: $dark-color11;
 
 // notify
 $notify-width: 376px;
 $notify-shadow: 0 8px 16px 0 rgba(72, 91, 127, 0.2);
-$notify-default-text: $light-color04;
+$notify-default-text: $dark-color04;
 $notify-default-color: $white;
 $notify-error-text: $error;
 $notify-error-color: $error;

@@ -112,12 +112,6 @@ export default class Form extends React.Component {
     }))
   }
 
-  resetAllValidateResults = () => {
-    this.setState(() => ({
-      errors: [],
-    }))
-  }
-
   getData() {
     return this.state.formData
   }
