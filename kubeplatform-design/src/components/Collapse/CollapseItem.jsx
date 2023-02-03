@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import Icon from '../Icon'
-import Button from '../Button'
 
 import CollapseTransition from './CollapseTransition'
 
@@ -43,31 +42,6 @@ export default class CollapseItem extends Component {
     return (
       <li className={classNames(`${prefixCls}-item`, className)} style={style}>
         <div className={classLabel} onClick={this.handleVisible}>
-          {this.props?.hadRemove && (
-            <Button type="danger" onClick={this.props?.onClick}>
-              <Icon
-                style={{
-                  right: '6px',
-                  position: 'inherit',
-                  top: '8px',
-                  marginTop: '10px',
-                }}
-                name="trash"
-                size={18}
-              ></Icon>
-            </Button>
-          )}
-          {this.props?.prefix_icon && (
-            <Icon
-              style={{
-                right: '6px',
-                position: 'inherit',
-                top: '8px',
-              }}
-              name={this.props?.prefix_icon}
-              size={22}
-            />
-          )}
           {label}
           <Icon
             name={`caret-${visible ? 'up' : 'down'}`}

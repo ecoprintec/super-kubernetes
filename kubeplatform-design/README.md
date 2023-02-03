@@ -1,10 +1,8 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-
-<Meta title="Foundation/Introduction" />
-
 # Kube Design
 
 Kube Design is a set of React component libraries created for KubeSphere console.
+
+[![NPM](https://img.shields.io/npm/v/@kube-design/components.svg)](https://www.npmjs.com/package/@kube-design/components)
 
 ## Requirement
 
@@ -60,8 +58,8 @@ webpack.config.js
   {
     test: /\.s[ac]ss$/i,
     include: root("node_modules"),
-    use: ["style-loader", "css-loader", "sass-loader"]
-  }
+    use: ["style-loader", "css-loader", "sass-loader"],
+  },
 ];
 ```
 
@@ -102,11 +100,11 @@ Kube Design use `LocaleProvider` component to support localization.
 
 const locales = {
   "en-US": {
-    HELLO: "Hello!"
+    HELLO: "Hello!",
   },
   "zh-CN": {
-    HELLO: "你好!"
-  }
+    HELLO: "你好!",
+  },
 };
 
 export default locales;
@@ -142,3 +140,7 @@ import { Button } from "@kube-design/components";
 
 export default () => <Button>{locale.get("HELLO")}</Button>;
 ```
+
+## License
+
+MIT © [kubesphere](https://github.com/kubesphere)
