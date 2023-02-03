@@ -49,7 +49,7 @@ export default class Icon extends PureComponent {
   }
 
   static defaultProps = {
-    type: 'light',
+    type: 'dark',
     size: 'small',
     prefix: 'kubed-icon',
     style: {},

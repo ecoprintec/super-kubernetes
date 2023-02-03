@@ -28,9 +28,9 @@
     animation-name: browseOut;
   }
 
-  // &Main {
-  //   padding: 20px;
-  // }
+  &Main {
+    padding: 20px;
+  }
 
   &Foot {
     display: flex;
@@ -38,39 +38,19 @@
     align-items: center;
     padding: 8px 20px;
     border-radius: 0 0 $border-radius $border-radius;
-    background-color: $white;
-    // background-color: $light;
-    :global {
-      // .button-default {
-      //   border: none;
-      //   background: transparent;
-      // }
-      // .button-control {
-      //   background: $button-primary;
-      //   color: $white;
-      //   border: none;
-      //   padding: 3px 18px;
-      //   height: auto;
-      //   margin-left: inherit;
-      // }
-    }
+    background-color: $light;
   }
 }
 
 .title {
-  // display: flex;
-  display: block;
-  text-align: center;
-  padding: 13.5px 20px;
-  background: $background-title-color;
+  display: flex;
   align-items: center;
-  // height: 20px;
+  height: 20px;
   line-height: 20px;
   margin-bottom: 8px;
 
   strong {
     font-size: $size-normal;
-    color: #fff;
   }
 
   :global {
@@ -86,10 +66,6 @@
 
 .content {
   line-height: 1.67;
-  padding: 10px 20px;
-  span {
-    color: #fff;
-  }
 }
 
 @-webkit-keyframes browseIn {

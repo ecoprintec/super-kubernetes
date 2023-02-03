@@ -31,7 +31,7 @@
 .pipelineCard__content {
   padding: 22px 12px 12px;
   text-align: left;
-  background-color: $card-bg-color;
+  background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid transparent;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
@@ -90,7 +90,7 @@
     margin-bottom: 0 !important;
 
     .content__title__text {
-      color: white;
+      color: #000;
     }
 
     :global {
@@ -110,7 +110,7 @@
   }
 
   .content__detail {
-    color: white;
+    color: #242e42;
   }
 }
 
@@ -127,7 +127,7 @@
   border-radius: 8px;
   padding: 5px 5px 5px 10px;
   font-weight: bolder;
-  background-color: $card-bg-color;
+  background-color: #ffffff;
   border: 1px dashed #ccd3db;
   user-select: none;
   cursor: pointer;
@@ -152,7 +152,7 @@
   height: 32px;
   color: $dark-color06;
   font-weight: bolder;
-  background-color: $card-bg-color;
+  background-color: transparent;
   border-radius: 8px;
   border: 1px dashed #ccd3db;
   user-select: none;

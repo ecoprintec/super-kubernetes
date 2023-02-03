@@ -63,7 +63,7 @@ $category-width: 193px;
   align-items: center;
   position: relative;
   height: $toolbar-height;
-  //background: $light-color01;
+  background: $light-color01;
   top: -$header-height;
 
   .level {
@@ -75,7 +75,7 @@ $category-width: 193px;
       line-height: 1.67;
       font-size: $size-small;
       font-weight: bold;
-      margin-left: 0px;
+      margin-left: calc(#{$category-width} + 20px);
     }
 
     .search {

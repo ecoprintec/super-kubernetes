@@ -5,21 +5,17 @@ import classnames from 'classnames'
 import Icon from '../Icon'
 
 const ICON_COLORS = {
-  default: {
-    primary: '#fff',
-    secondary: '#000000',
-  },
   info: {
-    primary: '#fff',
-    secondary: '#000000',
+    primary: '#3385b0',
+    secondary: '#fff',
   },
   error: {
-    primary: '#fff',
-    secondary: '#000000',
+    primary: '#8c3231',
+    secondary: '#fff',
   },
   warning: {
-    primary: '#fff',
-    secondary: '#000000',
+    primary: '#8d663e',
+    secondary: '#ffc781',
   },
 }
 

@@ -11,34 +11,34 @@
   }
 
   &-info {
-    background-color: #329dce;
+    background-color: $alert-info-background;
 
     .alert-content {
-      color: #ffffff;
+      color: $alert-info-text-color;
     }
   }
 
   &-error {
-    background-color: #ca2621;
+    background-color: $alert-error-background;
 
     .alert-content {
-      color: #ffffff;
+      color: $alert-error-text-color;
     }
   }
 
   &-warning {
-    background-color: #f5a623;
+    background-color: $alert-warning-background;
 
     .alert-content {
-      color: #ffffff;
+      color: $alert-warning-text-color;
     }
   }
 
   &-default {
-    background-color: #fff;
+    background-color: $alert-default-background;
 
     .alert-content {
-      color: #ffffff;
+      color: $alert-default-text-color;
     }
   }
 }

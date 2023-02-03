@@ -5,19 +5,18 @@
 }
 
 .title {
-  display: flex;
   position: relative;
   margin-bottom: 20px;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.43;
   color: $dark-color07;
+}
 
-  > span {
-    position: absolute;
-    top: -8px;
-    right: 0;
-  }
+.switch {
+  position: absolute;
+  top: -8px;
+  right: 0;
 }
 
 .codeWrapper {

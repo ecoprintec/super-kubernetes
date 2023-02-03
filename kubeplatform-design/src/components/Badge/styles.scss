@@ -8,7 +8,7 @@
     display: inline-block;
     height: 20px;
     padding: 0 8px;
-    border-radius: 5px;
+    border-radius: 12px;
     color: $white;
     font-size: $body-size;
     line-height: 20px;
@@ -18,16 +18,16 @@
     }
 
     &.is-error {
-      background-color: #ca2621;
+      background-color: $error;
     }
     &.is-success {
-      background-color: #4caf50;
+      background-color: $success;
     }
     &.is-warning {
-      background-color: #f5a623;
+      background-color: $warning;
     }
     &.is-default {
-      background-color: #fff;
+      background-color: $dark-color01;
     }
   }
 }

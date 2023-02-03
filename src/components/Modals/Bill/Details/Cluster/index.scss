@@ -14,7 +14,7 @@
 
 .empty {
   height: 100%;
-  background: $lightest;
+  background: #fff;
 
   :global {
     .spin-container,
@@ -76,7 +76,7 @@
     width: calc(100% - 480px);
     height: 100%;
     padding: 66px 20px 33px 40px;
-    // background: white;
+    background: white;
 
     :global {
       .spin-nested-loading {
@@ -167,7 +167,7 @@
     .spin-container {
       width: 100%;
       height: 100%;
-      background: $lightest;
+      background: $light-color02;
       padding: 12px;
       position: relative;
     }

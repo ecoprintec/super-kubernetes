@@ -41,11 +41,7 @@
 .menu {
   min-width: 80px;
   max-height: 176px;
-  overflow-x: hidden;
-}
-
-.scrollY {
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .menuitem {
@@ -88,31 +84,13 @@
     background: $light-color03;
     margin: 0px 12px;
   }
-
-  span {
-    color: #ccd3db;
-  }
 }
 
 .pageSizeMenu {
   min-width: 96px;
   max-height: 144px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
+  overflow: auto;
 
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #36393e;
-    border-radius: 10px;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #fff;
-    border-radius: 10px;
-  }
   .pageSizeMenuitem {
     min-width: 80px;
     height: 32px;

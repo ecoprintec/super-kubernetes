@@ -41,7 +41,7 @@
       border: solid 1px $border-color;
 
       &:hover {
-        color: $primary;
+        color: $green;
       }
     }
   }
@@ -54,14 +54,14 @@
 
 .dashboardLable {
   line-height: 20px;
-  color: $text-color;
+  color: #79879c;
 }
 
 .dashboardValue {
   font-size: 14px;
   font-weight: 600;
   line-height: 1.43;
-  color: $text-color;
+  color: #242e42;
   vertical-align: middle;
   svg,
   span {

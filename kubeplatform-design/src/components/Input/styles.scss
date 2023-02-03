@@ -5,29 +5,28 @@ input.input {
   width: $input-default-width;
   height: 32px;
   padding: 6px 12px;
-  border-radius: 3px;
-  border: solid 1px #a0a0a0;
-  background-color: #1e2124;
-  color: #a0a0a0 !important;
+  border-radius: $border-radius;
+  border: solid 1px $input-border-color;
+  background-color: $input-bg-color;
   box-sizing: border-box;
   @include TypographySymbolText;
   transition: all $trans-speed ease-in-out;
-  caret-color: #808b95;
+  caret-color: $input-caret-color;
   outline: none;
 
   &::placeholder {
     font-weight: $font-normal;
-    color: #a0a0a0;
+    color: $input-placeholder-color;
   }
 
   &:not([readonly]):not([disabled]):hover {
     border-color: $input-hover-color;
   }
 
-  // &:not([readonly]):not([disabled]):focus {
-  //   border-color: $input-focus-color;
-  //   box-shadow: $input-focus-shadow;
-  // }
+  &:not([readonly]):not([disabled]):focus {
+    border-color: $input-focus-color;
+    box-shadow: $input-focus-shadow;
+  }
 
   &[readonly],
   &[disabled] {
@@ -36,12 +35,10 @@ input.input {
 
   &[readonly] {
     cursor: initial;
-    background-color: #1e2124;
   }
 
   &[disabled] {
     cursor: not-allowed;
-    background-color: #1e2124;
   }
 }
 
@@ -71,7 +68,7 @@ input.input {
 
   &.has-icons-left {
     .input {
-      padding-left: 10px;
+      padding-left: 40px;
     }
     .icon.is-left {
       left: 12px;
@@ -84,26 +81,21 @@ input.input {
     }
     .icon.is-right {
       right: 12px;
-      background-color: #1e2124;
     }
   }
 
   .icon {
     @include vertical-center;
     z-index: 4;
-    .kubed-icon {
-      color: #fff;
-    }
   }
 
   .input {
     width: 100%;
-    border-radius: 3px;
-    // border-color: transparent;
-    background-color: #1e2124;
-    color: #a0a0a0;
+    border-radius: 18px;
+    border-color: transparent;
+    background-color: $input-search-bg;
     padding: 5px 12px;
-    caret-color: #808b95;
+
     &:not([readonly]):not([disabled]):hover {
       border-color: $input-search-hover-border;
     }
@@ -111,8 +103,8 @@ input.input {
     &:not([readonly]):not([disabled]):focus,
     &:not([readonly]):not([disabled]):active,
     &:not([readonly]):not([disabled]):visited {
-      // background-color: $input-search-hover-bg;
-      border-bottom: solid 3px #3d90ce;
+      background-color: $input-search-hover-bg;
+      border-color: $input-search-hover-border;
       box-shadow: none;
     }
   }

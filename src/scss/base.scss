@@ -161,13 +161,14 @@ pre {
   svg {
     width: 16px;
     height: 16px;
-    color: rgba(255, 255, 255, 0.9);
-    fill: rgba(255, 255, 255, 0.4);
+    color: #324558;
+    fill: #b6c2cd;
   }
+
   &:hover {
     svg {
-      color: #329dce;
-      fill: #7eb8dc;
+      color: #00aa72;
+      fill: #90e0c5;
     }
   }
 }
@@ -188,7 +189,6 @@ pre {
   &-side {
     position: fixed;
     top: 88px;
-    left: $side-menu-width;
     width: $nav-width;
     padding: 0 20px 40px 20px;
     z-index: 201;
@@ -242,11 +242,11 @@ pre {
   &-main {
     overflow-y: auto;
     overflow-x: hidden;
-    margin-left: $nav-width - 20px + $side-menu-width;
+    margin-left: $nav-width - 20px;
     padding: 20px;
 
     @media (max-width: 1366px) {
-      margin-left: $narrow-nav-width - 20px + $side-menu-width;
+      margin-left: $narrow-nav-width - 20px;
     }
   }
 }

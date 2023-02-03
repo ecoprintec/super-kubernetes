@@ -1,23 +1,5 @@
 @import '../../styles/variables';
 
-@keyframes loading-color {
-  0% {
-    color: #4285f4;
-  }
-  25% {
-    color: #de3e35;
-  }
-  50% {
-    color: #f7c223;
-  }
-  75% {
-    color: #1b9a59;
-  }
-  100% {
-    color: #4285f4;
-  }
-}
-
 @keyframes loading {
   from {
     transform: rotate(0deg);
@@ -29,7 +11,7 @@
 }
 
 .svg-loading {
-  animation: loading 1s linear infinite, loading-color 4s linear infinite;
+  animation: loading 1.2s linear infinite;
 }
 
 .spin {
@@ -66,7 +48,7 @@
       right: 0;
       bottom: 0;
       left: 0;
-      background: #36393e;
+      background: #fff;
       opacity: 0.3;
       transition: all 0.3s;
       content: '';

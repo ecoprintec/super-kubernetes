@@ -27,7 +27,7 @@
   border-width: 1px 0 0 0;
   border-image-source: radial-gradient(
     circle at 50% 7%,
-    $dark-color09,
+    #d8dee5,
     rgba(216, 222, 229, 0.16)
   );
   border-image-slice: 1;
@@ -37,7 +37,7 @@
     top: 50%;
     left: 50%;
     padding: 0 8px;
-    background-color: $bg-color;
+    background-color: #ecf1f7;
     transform: translate(-50%, -50%);
     color: #79879c;
   }
@@ -45,7 +45,6 @@
 
 .items {
   margin-top: 12px;
-  background: $white;
 }
 
 .item {
@@ -53,6 +52,7 @@
   justify-content: space-between;
   padding: 20px;
   border-radius: 8px;
+  background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
   cursor: pointer;
   transition: all $trans-speed ease-in-out;

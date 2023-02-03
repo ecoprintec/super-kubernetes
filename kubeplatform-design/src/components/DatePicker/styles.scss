@@ -9,7 +9,7 @@
   position: relative;
   &.input {
     &[readonly='readonly'] {
-      color: #898d91;
+      background-color: $white;
     }
   }
 }
@@ -19,7 +19,7 @@ div.flatpickr-calendar {
   border: solid 1px $border-color;
   border-radius: $border-radius;
   margin-top: 4px;
-  background-color: #36393e;
+  background-color: $white;
   box-shadow: $box-shadow;
   &.open {
     z-index: 100;
@@ -46,7 +46,7 @@ div.flatpickr-calendar {
         height: 32px;
         padding: 0 8px;
         border-radius: 3px;
-        color: $white;
+        color: #324558;
         overflow: visible;
         line-height: 32px;
         cursor: pointer;
@@ -54,7 +54,7 @@ div.flatpickr-calendar {
           display: inline-flex;
           width: 0;
           height: 0;
-          border: 4px solid white;
+          border: 4px solid #2b4556;
           border-right-color: transparent;
           border-bottom-color: transparent;
           border-left-color: transparent;
@@ -65,8 +65,7 @@ div.flatpickr-calendar {
           content: '';
         }
         &:hover {
-          background-color: transparent;
-          color: #898d91;
+          background-color: $light-color01;
         }
         &.is-open {
           &:after {
@@ -129,16 +128,12 @@ div.flatpickr-calendar {
           }
         }
         .dropdown-year-menu {
-          background: #36393e;
-          color: #abb4be;
           border-right: 1px solid #d3dee5;
           &:hover {
             flex-basis: 80px;
           }
         }
         .dropdown-month-menu {
-          background: #36393e;
-          color: #abb4be;
           &:hover {
             flex-basis: 80px;
           }
@@ -240,8 +235,8 @@ div.flatpickr-calendar {
           border: solid 1px transparent;
           border-radius: 3px;
           margin: 4px;
-          color: white;
-          background-color: #36393e;
+          color: $dark-color07;
+          background-color: #fff;
           line-height: 32px;
           text-align: center;
           &.prevMonthDay,
@@ -326,7 +321,6 @@ div.flatpickr-calendar {
             }
           }
           &:hover {
-            color: #2b4556;
             border-color: $light-color01;
             background-color: $light-color01;
           }
@@ -370,25 +364,24 @@ div.flatpickr-calendar {
       width: auto;
       height: 32px;
       padding: 0;
-      border: solid 0px #d5dee7;
+      border: solid 1px #d5dee7;
       border-radius: 3px;
       margin-right: 7px;
-      background-color: #36393e;
+      background-color: #fff;
       &:last-child {
         margin-right: 0;
       }
       .numInput {
         height: 100%;
         padding-left: 12px;
-        color: $white;
+        color: $dark-color07;
         font-weight: normal;
         text-align: left;
         caret-color: #0fbb7f;
         &:hover,
         &:focus,
         &:hover:focus {
-          background-color: #c6d1dc;
-          color: $light-color01;
+          background-color: #fff;
         }
       }
       .arrowUp,
@@ -400,7 +393,6 @@ div.flatpickr-calendar {
         opacity: 1;
         visibility: visible;
         border-right: none;
-        background: #c6d1dc;
         &:after {
           top: 2px;
           left: 4px;
@@ -411,7 +403,7 @@ div.flatpickr-calendar {
           background-repeat: no-repeat;
         }
         &:hover {
-          background-color: #c6d1dc;
+          background-color: $light-color01;
         }
       }
       .arrowUp {

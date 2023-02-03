@@ -2,7 +2,7 @@
 @import '~scss/mixins';
 
 .overview {
-  background: $card-bg-color;
+  background: $light-color01;
   padding: 12px;
   margin-bottom: 12px;
 
@@ -86,10 +86,6 @@
         svg {
           width: 48px;
           height: 48px;
-
-          path {
-            fill: $text-color;
-          }
         }
       }
 
@@ -135,10 +131,6 @@
         margin-left: 19px;
         padding-top: 38px;
         line-height: 1;
-
-        & > div > div {
-          box-shadow: none;
-        }
 
         p {
           font-size: 12px;
