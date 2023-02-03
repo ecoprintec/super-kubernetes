@@ -19,7 +19,16 @@
 
   table {
     a {
-      color: #fff;
+      color: #242e42;
+    }
+
+    & > thead > tr > th {
+      a {
+        color: #79879c;
+        &:hover {
+          color: #79879c;
+        }
+      }
     }
   }
 }

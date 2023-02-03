@@ -111,15 +111,14 @@ $sub: $blue-color03;
 $warning: $yellow-color03;
 $danger: $red-color03;
 
-$title-color: #fff;
-$second-title-color: #fff;
-$content-color: $dark-color11;
-$text-color: #fff;
-$second-text-color: #fff;
-$third-text-color: #fff;
-$placeholder-color: #fff;
-$input-color: #fff;
-$head-color: #fff;
+$title-color: $dark-color06;
+$second-title-color: $dark-color03;
+$text-color: $dark-color07;
+$second-text-color: $dark-color01;
+$third-text-color: $dark-color04;
+$placeholder-color: $dark-color03;
+$input-color: $dark-color07;
+$head-color: $dark-color07;
 
 // border
 $border-color: #fff;
@@ -137,11 +136,10 @@ $input-error-color: $red-color03;
 $input-border-radius: 8px;
 
 // background
-$bg-color: #242729;
-$body-bg-color: #242729;
-$th-bg-color: #36393e;
-$card-bg-color: #212324;
-$second-bg-color: $dark-color12;
+$bg-color: $light-color02;
+$body-bg-color: $light-color02;
+$th-bg-color: $light-color01;
+$card-bg-color: $light-color01;
 
 $btn-default-bg: $light-color02;
 $btn-default-border: $light-color06;
