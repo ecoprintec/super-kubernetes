@@ -11,17 +11,12 @@
   width: 32px;
   height: 32px;
   margin-right: 12px;
-  border-radius: 10%;
+  border-radius: 50%;
   border: solid 2px $white;
-  background-color: white;
 }
 
 .icon {
   margin-right: 12px;
-
-  svg {
-    fill: $lightest;
-  }
 }
 
 .indicator {
@@ -29,7 +24,7 @@
   top: 20px;
   left: 20px;
   background-color: #fff;
-  border-radius: 10%;
+  border-radius: 50%;
 }
 
 .text {
@@ -44,7 +39,7 @@
 
   .description {
     @include ellipsis;
-    @include TypographyParagraph($dark-color07);
+    @include TypographyParagraph($dark-color01);
     max-width: 300px;
   }
 }

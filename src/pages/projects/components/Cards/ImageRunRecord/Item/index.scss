@@ -10,7 +10,7 @@
   min-height: 64px;
   border-radius: 8px;
   border: solid 1px $border-color;
-  background-color: #242728;
+  background-color: #ffffff;
   :hover {
     cursor: pointer;
   }
@@ -59,7 +59,7 @@
   .branchName {
     color: white;
   }
-  background-color: #242728;
+  background-color: $dark-color07;
 }
 
 .logContent {
@@ -73,7 +73,7 @@
   border-radius: 2px;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
   border: solid 1px $dark-color01;
-  background-color: #36393e;
+  background-color: #ffffff;
   :hover {
     cursor: initial;
   }

@@ -3,14 +3,14 @@
 
 .wrapper {
   border-radius: $border-radius;
-  background-color: $white;
+  background-color: #ffffff;
   box-shadow: $base-shadow;
 }
 
 .contentHeader {
   padding: 10px 24px;
   background-color: $card-bg-color;
-  box-shadow: 0 1px 0 0 $white;
+  box-shadow: 0 1px 0 0 #eff4f9;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
   color: #fff;

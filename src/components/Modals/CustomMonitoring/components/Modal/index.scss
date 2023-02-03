@@ -1,15 +1,5 @@
 @import '~scss/variables';
 
-.header {
-  & > div {
-    & > span {
-      & > svg {
-        fill: $lightest;
-      }
-    }
-  }
-}
-
 .wrapper {
   width: 100%;
   min-width: 1200px;
@@ -39,7 +29,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    color: inherit;
   }
 
   .body {

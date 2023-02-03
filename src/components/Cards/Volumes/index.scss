@@ -12,20 +12,16 @@
 
   ul > li {
     display: flex;
-    background-color: #373a3e;
+    background-color: $bg-color;
     padding: 8px;
     border-radius: 8px;
 
     & > div {
       display: flex;
-      color: #969696;
+      color: $text-color;
       font-weight: $font-bold;
       min-width: 200px;
       word-break: break-all;
-
-      & > span {
-        color: #969696;
-      }
     }
 
     & + li {

@@ -5,7 +5,7 @@
   margin-right: 4px;
   max-width: 150px;
   border-radius: 2px;
-  background-color: $card-bg-color;
+  background-color: $dark-color07;
   cursor: pointer;
   transition: all $trans-speed ease-in-out;
   color: white;
@@ -31,26 +31,9 @@
   max-height: 104px;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
-  background-color: black;
-  border-color: $text-color;
+  background-color: $dark-color07;
   z-index: 2;
   overflow-y: scroll;
-  scrollbar-color: dark;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: black;
-    border-radius: 10px;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: $text-color;
-    border-radius: 10px;
-  }
 }
 
 .control {
@@ -100,12 +83,12 @@
   @include ellipsis;
 
   &.selected {
-    background-color: $primary;
+    background-color: $dark-color06;
   }
 }
 
 .option {
   &:hover {
-    background-color: $primary;
+    background-color: $dark-color06;
   }
 }

@@ -42,11 +42,11 @@
     margin-left: 12px;
     line-height: 20px;
     border: none;
-    border-radius: 8px;
-    background-color: #c1c9d1;
+    border-radius: 4px;
+    background-color: $dark;
 
     &:hover {
-      // background-color: $light !important;
+      background-color: $dark !important;
     }
   }
 }

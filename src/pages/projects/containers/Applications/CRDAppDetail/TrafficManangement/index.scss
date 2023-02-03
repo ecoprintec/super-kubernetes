@@ -23,7 +23,7 @@
   line-height: 1.43;
   border-radius: 8px 8px 0 0;
   background-color: $lightest;
-  box-shadow: 0 1px 0 0 $dark-color09;
+  box-shadow: 0 1px 0 0 #d8dee5;
   @include clearfix;
 
   .operations {
@@ -38,13 +38,13 @@
 
   & > button {
     min-width: 188px;
-    //background: white;
-    //border: 1px solid #abb4be;
-    //color: $dark-color06;
+    background: white;
+    border: 1px solid #abb4be;
+    color: $dark-color06;
 
     &:hover {
-      //background: white !important;
-      //border-color: #79879c;
+      background: white !important;
+      border-color: #79879c;
     }
   }
 
@@ -76,5 +76,5 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
-  //background-color: #ffffff;
+  background-color: #ffffff;
 }

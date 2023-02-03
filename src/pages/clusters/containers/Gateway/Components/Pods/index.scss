@@ -107,10 +107,6 @@
     position: relative;
     margin-right: 12px;
 
-    :global(.kubed-icon-dark) {
-      color: $white;
-    }
-
     .indicator {
       position: absolute;
       right: 2px;
@@ -159,10 +155,6 @@
 
       :global(.icon) {
         transition: all $trans-speed;
-      }
-
-      :global(.kubed-icon-light) {
-        color: $white;
       }
     }
 

@@ -8,7 +8,7 @@
 
 .tabHeader {
   padding: 4px 12px;
-  background-color: $lightest;
+  background-color: $light-color01;
 
   &Item {
     display: inline-block;
@@ -18,7 +18,7 @@
 
     &:hover,
     &.active {
-      background-color: $lightest;
+      background-color: #fff;
     }
   }
 }

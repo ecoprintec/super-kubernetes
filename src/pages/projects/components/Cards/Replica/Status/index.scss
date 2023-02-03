@@ -18,7 +18,7 @@
 
   &.dark {
     background-color: $dark;
-    color: white;
+    color: $white;
   }
 }
 
@@ -62,12 +62,8 @@
   .add,
   .substract {
     padding: 2px;
-    background: $blue;
-    border-radius: 8px;
-
-    &:hover {
-      background: #212324 !important;
-    }
+    background: $dark-color06;
+    border-radius: 4px;
   }
   .substract {
     margin-top: 8px;

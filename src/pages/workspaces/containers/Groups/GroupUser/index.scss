@@ -24,7 +24,7 @@
 }
 
 .scrollWrapper {
-  // background-color: #fff;
+  background-color: #fff;
   border-radius: $border-radius;
   height: calc(100% - 46px);
   padding: 12px;
@@ -34,7 +34,7 @@
   }
 
   .item {
-    border: 1px solid $border-color-second;
+    border: 1px solid $border-color;
     padding: 12px 20px;
     display: flex;
     justify-content: space-between;

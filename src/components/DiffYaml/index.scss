@@ -3,7 +3,7 @@
 
 .header {
   padding: 12px;
-  background-color: $card-bg-color;
+  background-color: $light-color02;
   border: 1px solid $border-color;
   border-radius: $border-radius $border-radius 0 0;
 
@@ -31,18 +31,15 @@
   }
   .d2h-code-linenumber {
     background-color: rgba($light-color02, 0.8);
-    &.d2h-ins {
-      border-color: #fff;
-    }
   }
   .d2h-file-diff .d2h-del.d2h-change {
     background-color: rgba($red-color01, 0.7);
   }
   .d2h-file-diff .d2h-ins.d2h-change {
-    background-color: rgba($blue-color01, 0.7);
+    background-color: rgba($green-color01, 0.7);
   }
   .d2h-ins {
-    background-color: rgba($blue-color01, 0.7);
+    background-color: rgba($green-color02, 0.7);
   }
   .d2h-code-line del,
   .d2h-code-side-line del {
@@ -50,9 +47,6 @@
   }
   .d2h-code-line ins,
   .d2h-code-side-line ins {
-    background-color: rgba($blue-color01, 0.7);
-  }
-  .d2h-info {
-    background-color: rgba($blue-color01, 0.7);
+    background-color: rgba($green-color03, 0.7);
   }
 }

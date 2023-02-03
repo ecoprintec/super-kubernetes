@@ -1,12 +1,10 @@
-@import '~scss/variables';
-
 .status__container {
   margin-bottom: 12px;
   display: flex;
   .warper__container {
     flex: 1 1;
     padding: 12px;
-    background: $card-bg-color;
+    background: #fff;
     margin-right: 12px;
 
     &:last-child {

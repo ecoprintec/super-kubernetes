@@ -14,7 +14,7 @@
   line-height: 1.43;
   border-radius: 8px 8px 0 0;
   background-color: $lightest;
-  box-shadow: 0 1px 0 0 $dark-color09;
+  box-shadow: 0 1px 0 0 #d8dee5;
   @include clearfix;
 
   .operations {
@@ -161,7 +161,7 @@
   p {
     color: #79879c;
     strong {
-      color: #fff;
+      color: #242e42;
     }
   }
 }

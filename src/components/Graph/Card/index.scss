@@ -9,6 +9,9 @@
     .type {
       background-color: #ca2621;
     }
+    .wrapper {
+      border: solid 1px #ca2621;
+    }
   }
 }
 
@@ -16,6 +19,7 @@
   padding: 20px 12px 12px;
   border-radius: $border-radius;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+  background-color: #fff;
 }
 
 .detail {
@@ -66,15 +70,11 @@
       padding: 0 6px;
       margin-right: 6px;
       border-radius: 1px;
-      // background-color: #36435c;
+      background-color: #36435c;
       text-shadow: 0 2px 4px rgba(36, 46, 66, 0.1);
       font-weight: $font-bold;
       line-height: 16px;
       color: #fff;
-    }
-    &:last-child {
-      white-space: initial;
-      margin-left: 5px;
     }
   }
 }

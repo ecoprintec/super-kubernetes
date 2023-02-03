@@ -3,7 +3,7 @@
 
 .wrapper {
   padding: 4px 0;
-  color: white;
+  color: $white;
   background-color: $dark-color07;
   border-radius: 8px;
 
@@ -19,7 +19,7 @@
     line-height: 20px;
     cursor: pointer;
     &:hover {
-      background-color: $primary;
+      background-color: $dark-color06;
     }
   }
 

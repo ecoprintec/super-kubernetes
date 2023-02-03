@@ -2,20 +2,6 @@
 @import '~scss/mixins';
 
 :global {
-  .select-input {
-    & > input {
-      &::placeholder {
-        color: $text-color;
-      }
-    }
-  }
-
-  .radio-wrapper {
-    .label-value {
-      color: $text-color !important;
-    }
-  }
-
   .ReactModal {
     &__Body--open {
       overflow: hidden;
@@ -66,8 +52,8 @@
   top: 0;
   width: 744px;
   text-align: left;
-  border-radius: 8px;
-  background-color: #22262a;
+  border-radius: 4px;
+  background-color: $white;
   box-shadow: 0 4px 8px 0 rgba(72, 91, 127, 0.2);
   vertical-align: middle;
   outline: none;
@@ -76,9 +62,9 @@
 .header {
   position: relative;
   padding: 10px 40px 10px 20px;
-  color: #fff;
+  color: $title-color;
   border-radius: 4px 4px 0 0;
-  //border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
   background-color: $lightest;
   font-size: $size-normal;
   z-index: 1;
@@ -117,14 +103,12 @@
     right: 20px;
     transform: translateY(-50%);
     cursor: pointer;
-    border-radius: 50%;
-    border: 2px solid #fff8c;
+    border-radius: 4px;
     padding: 3px !important;
     :global {
       .icon {
         width: 24px;
         height: 24px;
-        opacity: 0.6;
       }
     }
   }
@@ -140,20 +124,6 @@
   border-radius: 8px;
   max-height: calc(100vh - 158px);
   overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: $card-bg-color;
-    border-radius: 10px;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: $text-color;
-    border-radius: 10px;
-  }
 }
 
 .footer,
@@ -186,25 +156,10 @@
   max-height: calc(100vh - 180px);
   padding: 20px;
   overflow: auto;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #36393e;
-    border-radius: 10px;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #fff;
-    border-radius: 10px;
-  }
 }
 
 .formFooter {
-  background-color: #22262a;
+  background-color: $bg-color;
 }
 
 .fullscreen {
@@ -252,10 +207,10 @@
   .header {
     position: relative;
     height: 144px;
-    color: #e4eaec;
+    color: $title-color;
     border-radius: 4px 4px 0 0;
     border-bottom: 1px solid $border-color;
-    background-color: #22262a;
+    background-color: $bg-color;
     font-size: $size-normal;
     z-index: 1;
 
@@ -328,6 +283,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #22262a;
+    background-color: $bg-color;
   }
 }

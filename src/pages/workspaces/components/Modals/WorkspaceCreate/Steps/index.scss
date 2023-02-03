@@ -5,7 +5,7 @@
   display: inline-flex;
   padding: 4px 8px;
   border-radius: 3px;
-  background-color: $card-bg-color;
+  background-color: $dark-color07;
 
   & > div {
     @include TypographySymbolText(#fff);
@@ -19,7 +19,7 @@
         left: 16px;
         height: 1px;
         width: 52px;
-        border-bottom: 1px dashed $text-color;
+        border-bottom: 1px dashed $light-color07;
       }
     }
 

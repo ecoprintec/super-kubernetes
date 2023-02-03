@@ -18,8 +18,8 @@
   width: 320px;
   margin: 140px auto 40px;
   padding: 20px;
-  background-color: #36393e;
-  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 4px;
   box-shadow: $base-shadow;
   box-sizing: border-box;
 
@@ -30,13 +30,6 @@
 
     input.input {
       height: 36px;
-      &:-webkit-autofill,
-      &:-webkit-autofill:hover,
-      &:-webkit-autofill:focus,
-      &:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #1e2124 inset !important;
-        -webkit-text-fill-color: #a0a0a0 !important;
-      }
     }
   }
 }

@@ -22,7 +22,6 @@
       &::before {
         width: 12px;
         height: 12px;
-        border: 2px solid white;
       }
 
       .checked::after {
@@ -92,7 +91,7 @@
 }
 
 .selected {
-  background: #36a9ff;
+  background: $dark-color07;
 
   .desc {
     div {
@@ -102,7 +101,7 @@
 
   &:hover {
     cursor: pointer;
-    background: $primary;
+    background: $dark-color07;
   }
 }
 

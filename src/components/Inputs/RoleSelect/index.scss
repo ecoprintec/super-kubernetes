@@ -5,7 +5,7 @@
   overflow: hidden;
 
   & > div {
-    @include TypographyTitleH6($text-color);
+    @include TypographyTitleH6($white);
   }
 
   & > p {

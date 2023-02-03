@@ -11,14 +11,17 @@ $trans-speed: 0.2s;
 
   & > ul {
     margin-bottom: 20px;
+
     & > li {
+      border-radius: 18px;
+      border: solid 1px transparent;
       transition: all $trans-speed ease-in-out;
 
       & > a,
       .title {
         display: block;
         padding: 7px 12px;
-        color: #4a5974;
+        color: white;
         font-weight: 500;
         cursor: pointer;
 
@@ -37,26 +40,20 @@ $trans-speed: 0.2s;
             transition: all $trans-speed ease-in-out;
           }
         }
-        &:hover {
-          background-color: $primary;
-          color: white;
-        }
       }
 
-      &.select {
-        border-left: 5px solid $primary;
+      &.select,
+      &.open {
         & > a {
-          color: $primary;
+          color: $light-color09;
 
           :global .kubed-icon {
-            color: #00aa72;
-            fill: #90e0c5;
+            color: $light-color09;
+            fill: $light-color09;
           }
         }
 
         .title {
-          color: white;
-          background-color: $primary;
           :global .kubed-icon-chevron-down {
             transform: rotate(-180deg);
           }
@@ -70,35 +67,14 @@ $trans-speed: 0.2s;
             margin-top $trans-speed ease-in-out,
             opacity $trans-speed ease-in-out 0.1s;
         }
-
-        :global .kubed-icon {
-          color: white;
-          fill: white;
-        }
-      }
-
-      &.open {
-        .innerNav > li {
-          height: 20px;
-          margin-top: 8px;
-          opacity: 1;
-          transition: height $trans-speed ease-in-out,
-            margin-top $trans-speed ease-in-out,
-            opacity $trans-speed ease-in-out 0.1s;
-        }
-        &.childSelect {
-          border-left: 5px solid $primary;
-        }
       }
 
       &.childSelect .title {
-        color: $primary;
+        color: #e8eaf6;
         :global .kubed-icon {
-          color: #00aa72;
-          fill: #90e0c5;
+          color: #e8eaf6;
+          //fill: #90e0c5;
         }
-        color: white;
-        background-color: $primary;
       }
 
       &.disabled {
@@ -106,7 +82,7 @@ $trans-speed: 0.2s;
 
         &.select {
           & > a {
-            color: #4a5974;
+            color: white;
             cursor: not-allowed;
           }
 
@@ -154,14 +130,14 @@ $trans-speed: 0.2s;
 
     & > a {
       display: block;
-      color: #4a5974;
+      color: white;
     }
 
     &.select,
     &:hover,
     &:active {
       & > a {
-        color: $primary;
+        color: #e8eaf6;
       }
     }
 

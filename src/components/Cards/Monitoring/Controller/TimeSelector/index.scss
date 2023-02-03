@@ -31,13 +31,13 @@
   min-width: 230px;
   padding: 6px !important;
   line-height: 20px;
-  color: white;
+  color: $white;
   border: none;
-  border-radius: 8px;
-  background-color: $primary;
+  border-radius: 4px;
+  background-color: $dark;
 
   &:hover {
-    background-color: $primary !important;
+    background-color: $dark !important;
   }
 
   & > div {
@@ -86,7 +86,6 @@
   border-radius: 8px;
   background-color: $white;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
-  border: 1px solid #c1c9d1;
 
   & > div {
     width: 50%;

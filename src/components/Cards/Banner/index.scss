@@ -3,9 +3,7 @@
 
 .wrapper {
   border-radius: $border-radius;
-  <<<<<<<headbackground-color: $white;
-  =======background-color: #ffffff;
-  >>>>>>>parentof d9e1896 (change background)
+  background-color: #292929;
   box-shadow: $base-shadow;
   margin-bottom: 12px;
 
@@ -26,7 +24,7 @@
     left: 20px;
     padding: 6px;
     border-radius: 100px 0 100px 100px;
-    background-color: #69727a;
+    background-color: $bg-color;
   }
 
   .title {
@@ -51,14 +49,14 @@
   }
 
   & > a {
-    @include TypographySymbolText($primary);
+    @include TypographySymbolText(#3385b0);
   }
 }
 
 .tip {
   position: relative;
   padding: 12px 60px 12px 52px;
-  background-color: #36393e;
+  background-color: #fff;
   border-top: 1px solid $light-color03;
   cursor: pointer;
 

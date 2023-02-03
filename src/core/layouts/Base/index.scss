@@ -1,12 +1,8 @@
 @import '~scss/variables';
 
-body {
-  overflow-x: hidden;
-}
 .main {
   padding-top: $header-height;
   min-width: $content-width;
-  background: $lightest;
 }
 
 .nav {
