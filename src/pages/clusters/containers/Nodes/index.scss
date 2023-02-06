@@ -46,3 +46,42 @@
   background-color: #3f51b5 !important;
   color: #ffffff !important;
 }
+
+.button_base_root {
+  margin: 8px;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  outline: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  vertical-align: middle;
+  justify-content: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button_root {
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: Maven Pro, sans-serif;
+  font-weight: 600;
+  line-height: 1.75;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.button_primary {
+  color: #fff;
+  background-color: #3f51b5;
+}
+
+.button_primary:hover {
+  background-color: #283593;
+}
