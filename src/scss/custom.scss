@@ -264,4 +264,32 @@ body {
       Arial, 'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
       'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
   }
+  button.button:not([class*='has-icon']) {
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-family: Maven Pro, sans-serif;
+    font-weight: 600;
+    line-height: 1.75;
+    border-radius: 8px;
+    text-transform: uppercase;
+    border: none;
+    &:not([class*='button-default']) {
+      color: #fff;
+      background-color: #3f51b5;
+      &:hover {
+        background-color: #283593;
+      }
+    }
+    .button-content {
+      height: auto;
+    }
+  }
+  .form-item-desc,
+  .form-item-label {
+    font-family: 'Maven Pro';
+  }
 }
