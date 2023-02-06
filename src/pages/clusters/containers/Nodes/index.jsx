@@ -30,6 +30,7 @@ import NodeMonitoringStore from 'stores/monitoring/node'
 import KubeCtlModal from 'components/Modals/KubeCtl'
 
 import { withClusterList, ListPage } from 'components/HOCs/withList'
+import { CircularProgress } from '@mui/material'
 
 import { Avatar, Status, Panel, Text, Modal } from 'components/Base'
 
@@ -56,7 +57,6 @@ const MetricTypes = {
   pod_used: 'node_pod_running_count',
   pod_total: 'node_pod_quota',
 }
-
 @withClusterList({
   store: new NodeStore(),
   name: 'CLUSTER_NODE',
@@ -335,7 +335,7 @@ export default class Nodes extends React.Component {
         label: 'Name',
         options: {
           filter: true,
-          sort: true,
+          sort: false,
           customBodyRenderLite: dataIndex => {
             const record = data[dataIndex]
             return (
@@ -599,19 +599,6 @@ export default class Nodes extends React.Component {
     ]
     const options = {
       filterType: 'dropdown',
-      serverSide: true,
-      page: this.state.page,
-      count: this.props.store.list.total,
-      rowsPerPage: this.state.rowsPerPage,
-      rowsPerPageOptions: [],
-      onTableChange: (action, tableState) => {
-        switch (action) {
-          case 'changePage':
-            this.setState({ page: tableState.page }, () => this.getData())
-            break
-          default:
-        }
-      },
       customToolbarSelect: selectedRows => (
         <div>
           <CustomButton
@@ -619,8 +606,16 @@ export default class Nodes extends React.Component {
           />
         </div>
       ),
+      textLabels: {
+        body: {
+          noMatch: this.props.store.list.isLoading ? (
+            <CircularProgress />
+          ) : (
+            'Sorry, there is no matching data to display'
+          ),
+        },
+      },
     }
-
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
