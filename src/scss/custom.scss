@@ -289,7 +289,15 @@ body {
     }
   }
   .form-item-desc,
-  .form-item-label {
+  .form-item-label,
+  .MuiTable-root [class*='MUIDataTableBodyCell'],
+  .MuiTable-root [class*='MUIDataTableHeadCell'],
+  [class*='MuiTablePagination'],
+  [class*='MuiTypography'],
+  [class*='MUIDataTable'],
+  [class*='MuiButtonBase'],
+  .MuiFormLabel-root,
+  .MuiInput-input {
     font-family: 'Maven Pro';
   }
 }

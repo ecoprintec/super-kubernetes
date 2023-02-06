@@ -3,10 +3,18 @@
 .header {
   position: relative;
   height: $header-height;
-  background-color: $body-bg-color;
-
+  background-color: transparent;
+  padding: 0px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-attachment: fixed;
+  &.header_shadow {
+    box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 1),
+      0px 1px 1px 0px rgba(42, 42, 42, 1), 0px 2px 1px -1px rgba(20, 20, 20, 1);
+  }
   &.inAppsPage {
-    background-color: rgba(24, 29, 40, 0.2);
+    background-color: $card-bg-color;
     :global {
       .header-bottom {
         border-style: none;
@@ -39,50 +47,68 @@
 }
 
 .logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150px;
-  height: 30px;
-  transform: translate(-50%, -50%);
-
+  //width: 150px;
+  height: 37px;
+  margin-top: 5px;
   .inAppsPage & {
-    color: white;
+    color: rgba(0, 0, 0, 0.87);
   }
 }
 
 .navs {
   display: inline-block;
   padding: 18px 20px;
-
   button {
     padding: 5px 11px !important;
-
+    color: rgba(0, 0, 0, 0.48);
     & + button {
       margin-left: 12px !important;
+      div {
+        color: rgba(255, 255, 255, 0.48);
+      }
     }
-
     .inAppsPage & {
-      color: white;
+      color: rgba(0, 0, 0, 0.48);
 
       &:hover {
         color: $text-color;
       }
     }
   }
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 }
 
 .right {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-
   button {
-    padding: 5px 19px !important;
+    color: rgba(0, 0, 0, 0.48);
+  }
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }
 
 .loginInfo {
-  margin-left: 33px;
+  margin-left: 18px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #3f51b5;
+  div {
+    color: white;
+  }
+  &:hover {
+    box-shadow: 0px 2px 4px -1px rgba(80, 80, 80, 0.2),
+      0px 4px 5px 0px rgba(80, 80, 80, 0.14),
+      0px 1px 10px 0px rgba(80, 80, 80, 0.12);
+    background-color: #283593;
+  }
+}
+.header_title {
+  color: #283593;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-left: 20px;
 }
