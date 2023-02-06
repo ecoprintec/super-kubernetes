@@ -26,7 +26,6 @@ import AboutModal from 'components/Modals/About'
 import { trigger } from 'utils/action'
 
 import UserStore from 'stores/user'
-
 import styles from './index.scss'
 
 @inject('rootStore')
@@ -136,9 +135,15 @@ export default class LoginInfo extends Component {
               [styles.isAppsPage]: isAppsPage,
             })}
           >
-            <Icon name="human" />
+            <Icon
+              name="human"
+              color={{
+                primary: '#ffffff',
+                secondary: '#ffffff',
+              }}
+            />
             {globals.user.username}
-            <Icon name="caret-down" type={isAppsPage ? 'white' : 'dark'} />
+            <Icon name="caret-down" type={'white'} />
           </div>
         </Dropdown>
         {this.renderModals()}

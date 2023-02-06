@@ -59,10 +59,12 @@ export default [
       {
         path: '/clusters',
         component: Clusters,
+        name: 'Clusters Management',
       },
       {
         path: '/access',
         component: AccessControl,
+        name: 'Access Control',
       },
       {
         path: '/:workspace/clusters/:cluster/projects/:namespace',
@@ -83,14 +85,17 @@ export default [
       {
         path: '/apps',
         component: App,
+        name: 'App Store Management',
       },
       {
         path: '/apps-manage',
         component: App,
+        name: 'App Store Management',
       },
       {
         path: '/settings',
         component: Settings,
+        name: 'Platform Settings',
       },
       {
         path: '*',
