@@ -207,6 +207,7 @@ export default class Login extends Component {
                             required
                             name="password"
                             type={this.state.showPassword ? 'text' : 'password'}
+                            className={'password-input-login'}
                             endAdornment={
                               <InputAdornment position="end">
                                 <IconButton
@@ -214,9 +215,9 @@ export default class Login extends Component {
                                   onClick={this.handleClickShowPassword}
                                 >
                                   {this.state.showPassword ? (
-                                    <VisibilityOff htmlColor={'white'} />
+                                    <VisibilityOff />
                                   ) : (
-                                    <Visibility htmlColor={'white'} />
+                                    <Visibility />
                                   )}
                                 </IconButton>
                               </InputAdornment>
