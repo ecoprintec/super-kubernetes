@@ -130,7 +130,7 @@ export default class BaseStore {
       params.page = 1
     }
 
-    params.limit = params.limit || 10
+    // params.limit = params.limit || 10
 
     const result = await request.get(
       this.getResourceUrl({ cluster, workspace, namespace, devops }),
@@ -146,7 +146,7 @@ export default class BaseStore {
       data: more ? [...this.list.data, ...data] : data,
       total: result.totalItems || result.total_count || data.length || 0,
       ...params,
-      limit: Number(params.limit) || 10,
+      // limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       isLoading: false,
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
