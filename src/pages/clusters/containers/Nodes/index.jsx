@@ -42,6 +42,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import StopCircle from '@mui/icons-material/StopCircle'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import customStyles from 'components/Tables/Base/index.scss'
+
 import SplitButton from './ItemDropdown'
 import CustomButton from './Button'
 
@@ -98,8 +100,8 @@ export default class Nodes extends React.Component {
     await this.store.fetchList({
       ...params,
       ...this.props.match.params,
-      page: this.state.page + 1,
-      limit: this.state.rowsPerPage,
+      // page: this.state.page + 1,
+      // limit: this.state.rowsPerPage,
     })
 
     await this.monitoringStore.fetchMetrics({
@@ -335,7 +337,7 @@ export default class Nodes extends React.Component {
         label: 'Name',
         options: {
           filter: true,
-          sort: false,
+          sort: true,
           customBodyRenderLite: dataIndex => {
             const record = data[dataIndex]
             return (
@@ -352,13 +354,14 @@ export default class Nodes extends React.Component {
               />
             )
           },
+          customFilterListOptions: { render: v => `Name: ${v}` },
         },
       },
       {
-        name: 'status',
+        name: 'newStatus',
         label: 'Status',
         options: {
-          filter: false,
+          filter: true,
           sort: false,
           customBodyRenderLite: dataIndex => {
             const record = data[dataIndex]
@@ -379,6 +382,10 @@ export default class Nodes extends React.Component {
               </div>
             )
           },
+          filterOptions: {
+            names: ['Unschedulable', 'Running', 'Warning'],
+          },
+          customFilterListOptions: { render: v => `Status: ${v}` },
         },
       },
       {
@@ -389,6 +396,7 @@ export default class Nodes extends React.Component {
           sort: false,
           customBodyRender: roles =>
             roles.indexOf('master') === -1 ? t('WORKER') : t('CONTROL_PLANE'),
+          customFilterListOptions: { render: v => `Role: ${v}` },
         },
       },
       {
@@ -503,10 +511,10 @@ export default class Nodes extends React.Component {
         },
       },
       {
-        name: 'role',
+        name: 'cpu',
         label: 'Allocated CPU',
         options: {
-          filter: true,
+          filter: false,
           sort: false,
           customBodyRenderLite: dataIndex => {
             const record = data[dataIndex]
@@ -518,7 +526,7 @@ export default class Nodes extends React.Component {
         name: 'role',
         label: 'Allocated Memory',
         options: {
-          filter: true,
+          filter: false,
           sort: false,
           customBodyRenderLite: dataIndex => {
             const record = data[dataIndex]
@@ -599,6 +607,8 @@ export default class Nodes extends React.Component {
     ]
     const options = {
       filterType: 'dropdown',
+      responsive: 'vertical',
+      selectableRowsOnClick: true,
       customToolbarSelect: selectedRows => (
         <div>
           <CustomButton
@@ -624,7 +634,13 @@ export default class Nodes extends React.Component {
           tips={this.tips}
         />
         {this.renderOverview()}
-        <MUIDataTable data={data} columns={columns} options={options} />
+        <MUIDataTable
+          title="Cluster Nodes Data"
+          data={this.store.list.data}
+          columns={columns}
+          options={options}
+          className={customStyles.muitable}
+        />
       </ListPage>
     )
   }

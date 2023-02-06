@@ -18,7 +18,7 @@
 
 import { action, observable } from 'mobx'
 
-import { getNodeRoles } from 'utils/node'
+import { getNodeRoles, getNodeStatus } from 'utils/node'
 
 import { get, omit } from 'lodash'
 
@@ -86,15 +86,21 @@ export default class NodeStore extends Base {
       ...this.mapper(item),
     }))
 
+    const newData = data.map(item => {
+      const newStatus = getNodeStatus(item)
+      item.newStatus = newStatus
+      return item
+    })
+
     this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total: result.totalItems || result.total_count || data.length || 0,
+      data: more ? [...this.list.data, ...newData] : newData,
+      total: result.totalItems || result.total_count || newData.length || 0,
       ...omit(params, 'labelSelector'),
       isLoading: false,
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
     this.list.isLoading = false
-    return data
+    return newData
   }
 
   @action
