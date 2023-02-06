@@ -36,13 +36,13 @@ import { Avatar, Status, Panel, Text, Modal } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 
 import MUIDataTable from 'mui-datatables'
-import Button from '@material-ui/core/Button'
 import TerminalIcon from '@mui/icons-material/Terminal'
 import DeleteIcon from '@mui/icons-material/Delete'
 import StopCircle from '@mui/icons-material/StopCircle'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import SplitButton from './ItemDropdown'
+import CustomButton from './Button'
 
 import styles from './index.scss'
 
@@ -614,14 +614,9 @@ export default class Nodes extends React.Component {
       },
       customToolbarSelect: selectedRows => (
         <div>
-          <Tooltip title={'Edit'} cursor="pointer" className="mr-6">
-            <Button
-              className={styles.button}
-              onClick={() => this.handleEditMultiTaints(selectedRows)}
-            >
-              {t('EDIT_TAINTS')}
-            </Button>
-          </Tooltip>
+          <CustomButton
+            onClick={() => this.handleEditMultiTaints(selectedRows)}
+          />
         </div>
       ),
     }
