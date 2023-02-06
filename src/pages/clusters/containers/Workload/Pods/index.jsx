@@ -23,7 +23,6 @@ import { withClusterList, ListPage } from 'components/HOCs/withList'
 import { CircularProgress, Typography } from '@mui/material'
 import PodStore from 'stores/pod'
 import MUIDataTable from 'mui-datatables'
-import { toJS } from 'mobx'
 import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -41,7 +40,7 @@ export default class Pods extends React.Component {
     page: 0,
     count: 1,
     rowsPerPage: 10,
-    isLoading: false,
+    isLoading: true,
     searchText: '',
     selectArr: [],
   }
@@ -189,7 +188,12 @@ export default class Pods extends React.Component {
   }
 
   render() {
+    let list = []
     const { isLoading, sortOrder } = this.state
+    if (this.props.store.list.data.length) {
+      this.state.isLoading = false
+      list = this.props.store.list.data
+    }
     const columns = [
       {
         name: 'name',
@@ -291,7 +295,6 @@ export default class Pods extends React.Component {
       },
     ]
 
-    const data = toJS(this.props.store.list.data)
     const options = {
       filter: true,
       filterType: 'dropdown',
@@ -304,44 +307,55 @@ export default class Pods extends React.Component {
       searchText: this.state.searchText,
       sortOrder,
       enableNestedDataAccess: '.',
-      // onTableChange: (action, tableState) => {
-      //   switch (action) {
-      //     case 'changePage':
-      //       this.getData(tableState.page, tableState.sortOrder)
-      //       break
-      //     case 'sort':
-      //       this.sort(tableState.sortOrder)
-      //       break
-      //     case 'search':
-      //       this.search(tableState.searchText)
-      //       break
-      //     // eslint-disable-next-line no-fallthrough
-      //     case 'filterChange':
-      //       this.filterChange(tableState.filterList)
-      //       break
-      //     // eslint-disable-next-line no-fallthrough
-      //     case 'changeRowsPerPage':
-      //       this.changeRowsPerPage(tableState.rowsPerPage)
-      //       break
-      //     // eslint-disable-next-line no-fallthrough
-      //     case 'rowSelectionChange':
-      //       // eslint-disable-next-line no-case-declarations
-      //       const listDataIndexs = tableState.selectedRows.data.map(
-      //         item => item.dataIndex
-      //       )
-      //       // eslint-disable-next-line no-case-declarations
-      //       const list = this.props.store.list.data.filter((item, index) => {
-      //         return listDataIndexs.includes(index)
-      //       })
-      //
-      //       this.state.selectArr = list
-      //       break
-      //     case 'rowDelete':
-      //       this.handleDeleteMulti()
-      //       break
-      //     default:
-      //   }
-      // },
+      onTableChange: (action, tableState) => {
+        switch (action) {
+          // case 'changePage':
+          //   this.getData(tableState.page, tableState.sortOrder)
+          //   break
+          // case 'sort':
+          //   this.sort(tableState.sortOrder)
+          //   break
+          // case 'search':
+          //   this.search(tableState.searchText)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'filterChange':
+          //   this.filterChange(tableState.filterList)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'changeRowsPerPage':
+          //   this.changeRowsPerPage(tableState.rowsPerPage)
+          //   break
+          // eslint-disable-next-line no-fallthrough
+          case 'rowSelectionChange':
+            // eslint-disable-next-line no-case-declarations
+            const listDataIndexs = tableState.selectedRows.data.map(
+              item => item.dataIndex
+            )
+            // eslint-disable-next-line no-case-declarations
+            const list_arr = this.props.store.list.data.filter(
+              (item, index) => {
+                return listDataIndexs.includes(index)
+              }
+            )
+
+            this.state.selectArr = list_arr
+            break
+          case 'rowDelete':
+            this.handleDeleteMulti()
+            break
+          default:
+        }
+      },
+      textLabels: {
+        body: {
+          noMatch: this.props.store.list.isLoading ? (
+            <CircularProgress />
+          ) : (
+            'Sorry, there is no matching data to display'
+          ),
+        },
+      },
     }
 
     const { bannerProps } = this.props
@@ -360,7 +374,7 @@ export default class Pods extends React.Component {
               )}
             </Typography>
           }
-          data={data}
+          data={list}
           columns={columns}
           options={options}
           className={styles.muitable}

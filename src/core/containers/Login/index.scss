@@ -153,15 +153,14 @@
   }
 }
 .right_login_container {
-  background-color: #424242;
+  background-color: white;
 }
 .login_right_opening {
   max-width: 480px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   width: 100%;
   .heading {
-    color: #329dce !important;
     font-size: 32px;
     font-weight: 700;
   }
@@ -212,9 +211,7 @@
       fill: white;
     }
     span {
-      color: white;
       font-size: 15px;
-      font-family: 'Maven Pro';
       font-weight: 500;
     }
   }

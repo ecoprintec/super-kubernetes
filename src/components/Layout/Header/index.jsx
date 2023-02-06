@@ -20,18 +20,35 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
-import { Button, Icon, Menu, Dropdown } from '@kube-design/components'
+import { Icon, Menu, Dropdown } from '@kube-design/components'
 import { isAppsPage, getWebsiteUrl } from 'utils'
+import Dashboard from '@material-ui/icons/Dashboard'
+import AppsIcon from '@material-ui/icons/Apps'
+import SettingsIcon from '@material-ui/icons/Settings'
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
+import IconButton from '@material-ui/core/IconButton'
 
-import LoginInfo from '../LoginInfo'
+import MuiButton from '@material-ui/core/Button'
+import { Box, Typography } from '@material-ui/core'
 
+import Collapse from '@material-ui/core/Collapse'
 import styles from './index.scss'
+import LoginInfo from '../LoginInfo'
 
 class Header extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     innerRef: PropTypes.object,
     jumpTo: PropTypes.func,
+    route: PropTypes.any,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      path: this.props.location.pathname,
+      getTitle: '',
+    }
   }
 
   get isLoggedIn() {
@@ -60,8 +77,34 @@ class Header extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.handleCheckTitle()
+  }
+
+  componentDidUpdate(prevLocation) {
+    if (prevLocation.location.pathname !== this.props.location.pathname) {
+      this.handleCheckTitle()
+    }
+  }
+
+  handleCheckTitle = () => {
+    this.props.route.map(routeItem => {
+      if (
+        this.props.location.pathname.startsWith(routeItem.path) &&
+        routeItem.name
+      ) {
+        this.setState({
+          ...this.state,
+          getTitle: routeItem.name ? routeItem.name : '',
+        })
+      }
+      return this.state.location
+    })
+  }
+
   render() {
     const { className, innerRef, location } = this.props
+    const { getTitle } = this.state
     const logo = globals.config.logo || '/assets/logo.svg'
 
     return (
@@ -72,60 +115,69 @@ class Header extends React.Component {
           {
             [styles.inAppsPage]: isAppsPage(),
           },
-          className
+          className,
+          this.state.checkWindowScroll === true ? styles.header_shadows : ''
         )}
       >
-        <Link to={isAppsPage() && !globals.user ? '/apps' : '/'}>
-          <img
-            className={styles.logo}
-            src={isAppsPage() ? `/assets/login-logo.svg` : logo}
-            alt=""
-          />
-        </Link>
-        <div className="header-bottom" />
-        {this.isLoggedIn && (
-          <div className={styles.navs}>
-            {globals.app.enableGlobalNav && (
-              <Button
-                type="flat"
-                icon="cogwheel"
-                onClick={this.props.onToggleNav}
-              >
-                {t('PLATFORM')}
-              </Button>
-            )}
-            {globals.app.enableAppStore && (
-              <Button
-                type="flat"
-                icon="appcenter"
-                onClick={this.handleLinkClick('/apps')}
+        <Box component={'div'} display={'flex'} alignItems={'center'}>
+          <Link to={isAppsPage() && !globals.user ? '/apps' : '/'}>
+            <img
+              className={styles.logo}
+              src={isAppsPage() ? `/assets/logo.svg` : logo}
+              alt=""
+            />
+          </Link>
+          <Collapse in={true}>
+            <Typography>
+              <span className={styles.header_title}>{getTitle}</span>
+            </Typography>
+          </Collapse>
+        </Box>
+        <Box component={'div'} display={'flex'} alignItems={'center'}>
+          {this.isLoggedIn && (
+            <div className={styles.navs}>
+              {globals.app.enableGlobalNav && (
+                <MuiButton onClick={this.props.onToggleNav}>
+                  <SettingsIcon />
+                  &nbsp;
+                  {t('PLATFORM')}
+                </MuiButton>
+              )}
+              {globals.app.enableAppStore && (
+                <MuiButton
+                  onClick={this.handleLinkClick('/apps')}
+                  className={classnames({
+                    [styles.active]: location.pathname === '/apps',
+                  })}
+                >
+                  <AppsIcon />
+                  &nbsp;
+                  {t('APP_STORE')}
+                </MuiButton>
+              )}
+              <MuiButton
+                onClick={this.handleLinkClick('/')}
                 className={classnames({
-                  [styles.active]: location.pathname === '/apps',
+                  [styles.active]: location.pathname === '/',
                 })}
               >
-                {t('APP_STORE')}
-              </Button>
-            )}
-            <Button
-              type="flat"
-              icon="dashboard"
-              onClick={this.handleLinkClick('/')}
-              className={classnames({
-                [styles.active]: location.pathname === '/',
-              })}
-            >
-              {t('WORKBENCH')}
-            </Button>
-          </div>
-        )}
-        <div className={styles.right}>
-          {this.isLoggedIn && (
-            <Dropdown content={this.renderDocumentList()}>
-              <Button type="flat" icon="documentation" />
-            </Dropdown>
+                <Dashboard />
+                &nbsp;
+                {t('WORKBENCH')}
+              </MuiButton>
+            </div>
           )}
-          <LoginInfo className={styles.loginInfo} isAppsPage={isAppsPage()} />
-        </div>
+          <div className={styles.right}>
+            {this.isLoggedIn && (
+              <Dropdown content={this.renderDocumentList()}>
+                <IconButton>
+                  <LibraryBooksIcon />
+                </IconButton>
+              </Dropdown>
+            )}
+            <LoginInfo className={styles.loginInfo} isAppsPage={isAppsPage()} />
+          </div>
+        </Box>
       </div>
     )
   }
