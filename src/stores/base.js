@@ -332,10 +332,4 @@ export default class BaseStore {
     this.ksVersion = version
     return version
   }
-
-  @action
-  async getDataYaml(detail) {
-    const url = `/api/v1/namespaces/${detail[5]}/pods/${detail[0]}`
-    return await this.submitting(request.get(url))
-  }
 }

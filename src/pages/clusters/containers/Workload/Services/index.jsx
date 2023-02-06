@@ -22,12 +22,19 @@ import { Tooltip } from '@kube-design/components'
 import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
+// import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
 
 import ServiceStore from 'stores/service'
+import moment from 'moment-mini'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { CircularProgress, Typography } from '@mui/material'
+import MUIDataTable from 'mui-datatables'
+import SplitButton from '../Pods/ItemDropdown'
+import styles from '../Pods/index.scss'
 
 @withClusterList({
   store: new ServiceStore(),
@@ -36,6 +43,15 @@ import ServiceStore from 'stores/service'
   rowKey: 'uid',
 })
 export default class Services extends React.Component {
+  state = {
+    page: 0,
+    count: 1,
+    rowsPerPage: 10,
+    isLoading: true,
+    searchText: '',
+    selectArr: [],
+  }
+
   showAction = record => !record.isFedManaged
 
   get itemActions() {
@@ -221,17 +237,213 @@ export default class Services extends React.Component {
   }
 
   render() {
-    const { match, bannerProps, tableProps } = this.props
+    const { cluster } = this.props.match.params
+    const { module } = this.props
+    const { bannerProps } = this.props
+
+    let list = []
+    const { sortOrder } = this.state
+    if (this.props.store.list.data.length) {
+      this.state.isLoading = false
+      list = this.props.store.list.data
+    }
+    const columns = [
+      {
+        name: 'name',
+        label: 'Name',
+        options: {
+          filter: true,
+          customBodyRender: (name, record) => (
+            <Avatar
+              icon={ICON_TYPES[module]}
+              iconSize={40}
+              title={name}
+              desc={record.description || '-'}
+              isMultiCluster={record.isFedManaged}
+              to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
+            />
+          ),
+          // customBodyRender: (name, namespace) => {
+          //   return (
+          //     <Link
+          //       to={`/clusters/default/projects/${namespace?.rowData[5]}/pods/${name}/resource-status`}
+          //     >
+          //       <div className={styles.NamePod}>
+          //         <div className={styles.IconName}></div>
+          //         <div className={styles.NameContent}>
+          //           <div>{name}</div>
+          //         </div>
+          //       </div>
+          //     </Link>
+          //   )
+          // },
+        },
+      },
+      {
+        name: 'namespace',
+        label: 'Project',
+        options: {
+          filter: true,
+          customBodyRender: namespace => {
+            return <Link to={``}>{namespace}</Link>
+          },
+        },
+      },
+      {
+        name: 'clusterIP',
+        label: 'Internal Access',
+        options: {
+          filter: true,
+          customBodyRender: clusterIP => {
+            return <Link to={``}>{clusterIP}</Link>
+          },
+        },
+      },
+      {
+        name: 'nodeIp',
+        label: 'Pod IP Address',
+        options: {
+          filter: true,
+          customBodyRender: nodeIp => {
+            return <Link to={``}>{nodeIp}</Link>
+          },
+        },
+      },
+      {
+        name: 'createTime',
+        label: 'Update Time',
+        options: {
+          filter: true,
+          customBodyRender: updateTime => {
+            return (
+              <Link to={``}>
+                {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
+              </Link>
+            )
+          },
+        },
+      },
+      {
+        name: 'namespace',
+        label: 'Actions',
+        options: {
+          filter: false,
+          sort: false,
+          download: false,
+          customBodyRender: (value, tableMeta) => {
+            return (
+              <SplitButton
+                options={[
+                  {
+                    icon: <VisibilityIcon fontSize="small" />,
+                    title: 'View YAML',
+                    action: () => {
+                      this.props.trigger('resource.yaml.edit', {
+                        detail: tableMeta.rowData,
+                        readOnly: true,
+                      })
+                    },
+                  },
+                  {
+                    icon: <DeleteIcon fontSize="small" />,
+                    title: 'Delete pods',
+                    action: () => {
+                      this.props.trigger('resource.delete', {
+                        type: tableMeta.rowData.name,
+                        detail: tableMeta.rowData,
+                        success: this.props.getData(),
+                      })
+                    },
+                  },
+                ]}
+              />
+            )
+          },
+        },
+      },
+    ]
+
+    const options = {
+      filter: true,
+      filterType: 'dropdown',
+      responsive: 'vertical',
+      serverSide: false,
+      page: this.state.page,
+      count: this.props.store.list.total,
+      rowsPerPage: this.state.rowsPerPage,
+      rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
+      searchText: this.state.searchText,
+      sortOrder,
+      enableNestedDataAccess: '.',
+      onTableChange: (action, tableState) => {
+        switch (action) {
+          // case 'changePage':
+          //   this.getData(tableState.page, tableState.sortOrder)
+          //   break
+          // case 'sort':
+          //   this.sort(tableState.sortOrder)
+          //   break
+          // case 'search':
+          //   this.search(tableState.searchText)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'filterChange':
+          //   this.filterChange(tableState.filterList)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'changeRowsPerPage':
+          //   this.changeRowsPerPage(tableState.rowsPerPage)
+          //   break
+          // eslint-disable-next-line no-fallthrough
+          case 'rowSelectionChange':
+            // eslint-disable-next-line no-case-declarations
+            const listDataIndexs = tableState.selectedRows.data.map(
+              item => item.dataIndex
+            )
+            // eslint-disable-next-line no-case-declarations
+            const list_arr = this.props.store.list.data.filter(
+              (item, index) => {
+                return listDataIndexs.includes(index)
+              }
+            )
+
+            this.state.selectArr = list_arr
+            break
+          case 'rowDelete':
+            this.handleDeleteMulti()
+            break
+          default:
+        }
+      },
+      textLabels: {
+        body: {
+          noMatch: this.props.store.list.isLoading ? (
+            <CircularProgress />
+          ) : (
+            'Sorry, there is no matching data to display'
+          ),
+        },
+      },
+    }
+
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
-        <ResourceTable
-          {...tableProps}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
-          cluster={match.params.cluster}
-          getCheckboxProps={this.getCheckboxProps}
+        {/* <ResourceTable */}
+        {/*   {...tableProps} */}
+        {/*   itemActions={this.itemActions} */}
+        {/*   columns={this.getColumns()} */}
+        {/*   onCreate={this.showCreate} */}
+        {/*   cluster={match.params.cluster} */}
+        {/*   getCheckboxProps={this.getCheckboxProps} */}
+        {/* /> */}
+
+        <MUIDataTable
+          title={<Typography variant="h6">List Service</Typography>}
+          data={list}
+          columns={columns}
+          options={options}
+          className={styles.muitable}
         />
       </ListPage>
     )
