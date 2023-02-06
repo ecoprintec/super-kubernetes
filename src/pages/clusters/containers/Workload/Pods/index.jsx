@@ -46,10 +46,6 @@ export default class Pods extends React.Component {
     selectArr: [],
   }
 
-  async componentWillMount() {
-    await this.props.store.fetchList({ page: 1, limit: this.state.rowsPerPage })
-  }
-
   componentDidMount() {
     localStorage.setItem('pod-detail-referrer', location.pathname)
   }
@@ -340,6 +336,7 @@ export default class Pods extends React.Component {
             this.handleDeleteMulti()
             break
           default:
+            break
         }
       },
     }
