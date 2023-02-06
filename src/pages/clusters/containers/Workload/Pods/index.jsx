@@ -23,7 +23,6 @@ import { withClusterList, ListPage } from 'components/HOCs/withList'
 import { CircularProgress, Typography } from '@mui/material'
 import PodStore from 'stores/pod'
 import MUIDataTable from 'mui-datatables'
-import { toJS } from 'mobx'
 import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -41,7 +40,7 @@ export default class Pods extends React.Component {
     page: 0,
     count: 1,
     rowsPerPage: 10,
-    isLoading: false,
+    isLoading: true,
     searchText: '',
     selectArr: [],
   }
@@ -189,7 +188,12 @@ export default class Pods extends React.Component {
   }
 
   render() {
+    let list = []
     const { isLoading, sortOrder } = this.state
+    if (this.props.store.list.data.length) {
+      this.state.isLoading = false
+      list = this.props.store.list.data
+    }
     const columns = [
       {
         name: 'name',
@@ -291,7 +295,6 @@ export default class Pods extends React.Component {
       },
     ]
 
-    const data = toJS(this.props.store.list.data)
     const options = {
       filter: true,
       filterType: 'dropdown',
@@ -360,7 +363,7 @@ export default class Pods extends React.Component {
               )}
             </Typography>
           }
-          data={data}
+          data={list}
           columns={columns}
           options={options}
           className={styles.muitable}
