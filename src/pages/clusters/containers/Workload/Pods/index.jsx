@@ -200,10 +200,10 @@ export default class Pods extends React.Component {
         label: 'Name',
         options: {
           filter: true,
-          customBodyRender: name => {
+          customBodyRender: (name, namespace) => {
             return (
               <Link
-                to={`/clusters/default/projects/kubesphere-devops-system/pods/${name}/resource-status`}
+                to={`/clusters/default/projects/${namespace?.rowData[5]}/pods/${name}/resource-status`}
               >
                 {name}
               </Link>
