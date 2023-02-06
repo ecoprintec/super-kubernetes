@@ -44,8 +44,10 @@ class BaseLayout extends Component {
 
     this.navRef = React.createRef()
     this.headerRef = React.createRef()
-
     this.routes = props.route.routes
+    this.state = {
+      getTitle: '',
+    }
   }
 
   get showKubeControl() {
@@ -82,9 +84,9 @@ class BaseLayout extends Component {
     const hasShadow = classes.contains('header-shadow')
     const isDark = classes.contains('apps-dark-header')
 
-    if (scrollTop >= 4 && !hasShadow) {
+    if (scrollTop >= 20 && !hasShadow) {
       classes.add('header-shadow')
-    } else if (scrollTop < 4 && hasShadow) {
+    } else if (scrollTop < 20 && hasShadow) {
       classes.remove('header-shadow')
     }
 
@@ -109,7 +111,8 @@ class BaseLayout extends Component {
   }
 
   render() {
-    const { location, rootStore } = this.props
+    const { location, rootStore, route } = this.props
+
     return (
       <div>
         <GlobalSVG />
@@ -119,6 +122,7 @@ class BaseLayout extends Component {
           location={location}
           onToggleNav={rootStore.toggleGlobalNav}
           jumpTo={this.handleJumpTo}
+          route={route.routes}
         />
         {globals.user && globals.app.enableGlobalNav && (
           <GlobalNav

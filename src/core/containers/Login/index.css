@@ -2,10 +2,10 @@
   background-color: transparent !important;
   border-radius: 8px !important;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(0, 0, 0, 0.32);
 }
 .MuiFilledInput-root input {
-  color: white !important;
+  color: black !important;
 }
 
 .css-10botns-MuiInputBase-input-MuiFilledInput-input {
@@ -13,11 +13,9 @@
   border-radius: 8px;
 }
 .MuiInputLabel-formControl {
-  padding-left: 14px;
-  font-family: 'Maven Pro';
   transform: translate(12px, 21px) scale(1) !important;
   z-index: 10;
-  color: white !important;
+  color: rgba(0, 0, 0, 0.54) !important;
 }
 .MuiInputLabel-shrink {
   transform: translate(7px, 9px) scale(0.65) !important;
@@ -52,6 +50,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  color: white !important;
 }
 .signin-button button:hover {
   background-color: #283593 !important;
@@ -60,10 +59,10 @@
     0px 1px 10px 0px rgba(80, 80, 80, 0.12) !important;
   border: none;
 }
-.MuiButton-label,
-.remember-checkbox span {
-  color: white !important;
-}
 .signin-button button svg {
   fill: white;
+}
+.password-input-login input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px;
 }
