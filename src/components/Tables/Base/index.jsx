@@ -18,13 +18,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import isEqual from 'react-fast-compare'
-import { toJS } from 'mobx'
 import { get, isEmpty } from 'lodash'
 import {
   Icon,
-  Table,
   Level,
   LevelItem,
   LevelLeft,
@@ -33,12 +30,16 @@ import {
   InputSearch,
 } from '@kube-design/components'
 import { safeParseJSON } from 'utils'
-import CustomColumns from './CustomColumns'
-import FilterInput from './FilterInput'
-import Empty from './Empty'
-import Pagination from './Pagination'
+
+import { Typography, CircularProgress } from '@mui/material'
+import MUIDataTable from 'mui-datatables'
 
 import styles from './index.scss'
+import Pagination from './Pagination'
+import Empty from './Empty'
+import FilterInput from './FilterInput'
+import CustomColumns from './CustomColumns'
+import SplitButton from '../../../pages/clusters/containers/Workload/Pods/ItemDropdown'
 
 const ORDER_MAP = {
   ascend: false,
@@ -46,6 +47,15 @@ const ORDER_MAP = {
 }
 
 export default class WorkloadTable extends React.Component {
+  state = {
+    page: 0,
+    count: 1,
+    rowsPerPage: 10,
+    isLoading: true,
+    searchText: '',
+    selectArr: [],
+  }
+
   static propTypes = {
     data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     columns: PropTypes.array.isRequired,
@@ -129,10 +139,72 @@ export default class WorkloadTable extends React.Component {
   }
 
   get filteredColumns() {
-    const { hideColumns } = this.state
-    return this.props.columns.filter(
-      clm => !hideColumns.includes(clm.key || clm.dataIndex)
-    )
+    const cl = []
+    // return this.props.columns.filter(
+    //   clm => !hideColumns.includes(clm.key || clm.dataIndex)
+    // )
+    // eslint-disable-next-line array-callback-return
+    this.props.columns.map((item, key) => {
+      if (key < this.props.columns.length - 1) {
+        cl.push({
+          name: item?.dataIndex,
+          label: item?.title,
+          options: {
+            // display: false,
+            filter: true,
+            // customBodyRender: updateTime => {
+            //   return (
+            //     <Link to={``}>
+            //       {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
+            //     </Link>
+            //   )
+            // },
+          },
+        })
+      } else {
+        cl.push({
+          name: 'namespace',
+          label: 'Actions',
+          options: {
+            filter: false,
+            sort: false,
+            download: false,
+            customBodyRender: () => {
+              return (
+                <SplitButton
+                  options={
+                    [
+                      // {
+                      //   icon: <VisibilityIcon fontSize="small" />,
+                      //   title: 'View YAML',
+                      //   action: () => {
+                      //     this.props.trigger('resource.yaml.edit', {
+                      //       detail: tableMeta.rowData,
+                      //       readOnly: true,
+                      //     })
+                      //   },
+                      // },
+                      // {
+                      //   icon: <DeleteIcon fontSize="small" />,
+                      //   title: 'Delete pods',
+                      //   action: () => {
+                      //     this.props.trigger('resource.delete', {
+                      //       type: tableMeta.rowData.name,
+                      //       detail: tableMeta.rowData,
+                      //       success: this.props.getData(),
+                      //     })
+                      //   },
+                      // },
+                    ]
+                  }
+                />
+              )
+            },
+          },
+        })
+      }
+    })
+    return cl
   }
 
   handleChange = (filters, sorter) => {
@@ -419,16 +491,12 @@ export default class WorkloadTable extends React.Component {
 
   render() {
     const {
-      className,
       data,
       isLoading,
-      silentLoading,
-      rowKey,
       selectedRowKeys,
       onSelectRowKeys,
       hideHeader,
       hideFooter,
-      extraProps,
       getCheckboxProps,
     } = this.props
 
@@ -459,17 +527,181 @@ export default class WorkloadTable extends React.Component {
       }
     }
 
+    let list = []
+    const { sortOrder } = this.state
+    if (data.length) {
+      this.state.isLoading = false
+      list = data
+    }
+    // const columns = [
+    //   {
+    //     name: 'name',
+    //     label: 'Name',
+    //     options: {
+    //       filter: true,
+    //       customBodyRender: this.renderAvatar,
+    //     },
+    //   },
+    //   {
+    //     name: 'status.phase',
+    //     label: 'Status',
+    //     options: {
+    //       filter: true,
+    //       customBodyRender: status => {
+    //         return <Link to={``}>{status}</Link>
+    //       },
+    //     },
+    //   },
+    //   {
+    //     name: 'node',
+    //     label: 'Node',
+    //     options: {
+    //       filter: true,
+    //       customBodyRender: node => {
+    //         return <Link to={``}>{node}</Link>
+    //       },
+    //     },
+    //   },
+    //   {
+    //     name: 'nodeIp',
+    //     label: 'Pod IP Address',
+    //     options: {
+    //       filter: true,
+    //       customBodyRender: nodeIp => {
+    //         return <Link to={``}>{nodeIp}</Link>
+    //       },
+    //     },
+    //   },
+    //   {
+    //     name: 'createTime',
+    //     label: 'Update Time',
+    //     options: {
+    //       filter: true,
+    //       customBodyRender: updateTime => {
+    //         return (
+    //           <Link to={``}>
+    //             {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
+    //           </Link>
+    //         )
+    //       },
+    //     },
+    //   },
+    //   {
+    //     name: 'namespace',
+    //     label: 'Actions',
+    //     options: {
+    //       filter: false,
+    //       sort: false,
+    //       download: false,
+    //       customBodyRender: (value, tableMeta) => {
+    //         return (
+    //           <SplitButton
+    //             options={[
+    //               {
+    //                 icon: <VisibilityIcon fontSize="small" />,
+    //                 title: 'View YAML',
+    //                 action: () => {
+    //                   this.props.trigger('resource.yaml.edit', {
+    //                     detail: tableMeta.rowData,
+    //                     readOnly: true,
+    //                   })
+    //                 },
+    //               },
+    //               {
+    //                 icon: <DeleteIcon fontSize="small" />,
+    //                 title: 'Delete pods',
+    //                 action: () => {
+    //                   this.props.trigger('resource.delete', {
+    //                     type: tableMeta.rowData.name,
+    //                     detail: tableMeta.rowData,
+    //                     success: this.props.getData(),
+    //                   })
+    //                 },
+    //               },
+    //             ]}
+    //           />
+    //         )
+    //       },
+    //     },
+    //   },
+    //   {
+    //     name: 'namespace',
+    //     label: 'Project',
+    //     options: {
+    //       display: false,
+    //       filter: true,
+    //       customBodyRender: updateTime => {
+    //         return (
+    //           <Link to={``}>
+    //             {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
+    //           </Link>
+    //         )
+    //       },
+    //     },
+    //   },
+    // ]
+
+    const options = {
+      filter: true,
+      filterType: 'dropdown',
+      responsive: 'vertical',
+      serverSide: false,
+      page: this.state.page,
+      count: this.props.data.total,
+      rowsPerPage: this.state.rowsPerPage,
+      rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
+      searchText: this.state.searchText,
+      sortOrder,
+      enableNestedDataAccess: '.',
+      onTableChange: (action, tableState) => {
+        switch (action) {
+          case 'rowSelectionChange':
+            // eslint-disable-next-line no-case-declarations
+            const listDataIndexs = tableState.selectedRows.data.map(
+              item => item.dataIndex
+            )
+            // eslint-disable-next-line no-case-declarations
+            const list_arr = this.props.data.filter((item, index) => {
+              return listDataIndexs.includes(index)
+            })
+
+            this.state.selectArr = list_arr
+            break
+          case 'rowDelete':
+            this.handleDeleteMulti()
+            break
+          default:
+        }
+      },
+      textLabels: {
+        body: {
+          noMatch: isLoading ? (
+            <CircularProgress />
+          ) : (
+            'Sorry, there is no matching data to display'
+          ),
+        },
+      },
+    }
     return (
-      <Table
-        className={classnames(styles.table, 'ks-table', className)}
-        rowKey={rowKey}
+      // <Table
+      //   className={classnames(styles.table, 'ks-table', className)}
+      //   rowKey={rowKey}
+      //   columns={this.filteredColumns}
+      //   dataSource={toJS(data)}
+      //   loading={silentLoading ? false : isLoading}
+      //   onChange={this.handleChange}
+      //   emptyText={this.renderEmptyText()}
+      //   {...props}
+      //   {...extraProps}
+      // />
+
+      <MUIDataTable
+        title={<Typography variant="h6">List pods</Typography>}
+        data={list}
         columns={this.filteredColumns}
-        dataSource={toJS(data)}
-        loading={silentLoading ? false : isLoading}
-        onChange={this.handleChange}
-        emptyText={this.renderEmptyText()}
-        {...props}
-        {...extraProps}
+        options={options}
+        className={styles.muitable}
       />
     )
   }
