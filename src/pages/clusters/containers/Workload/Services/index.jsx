@@ -22,17 +22,16 @@ import { Tooltip } from '@kube-design/components'
 import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
-// import ResourceTable from 'clusters/components/ResourceTable'
-
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
 
 import ServiceStore from 'stores/service'
 import moment from 'moment-mini'
-import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { CircularProgress, Typography } from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit'
 import MUIDataTable from 'mui-datatables'
+import AddIcon from '@mui/icons-material/Add'
 import SplitButton from '../Pods/ItemDropdown'
 import styles from '../Pods/index.scss'
 
@@ -122,7 +121,8 @@ export default class Services extends React.Component {
     name: record.name,
   })
 
-  renderExternalService = data => {
+  renderExternalService = (a, record) => {
+    const data = this.props.store.list.data[record.rowIndex]
     const text = {
       des: '-',
       title: '-',
@@ -236,10 +236,32 @@ export default class Services extends React.Component {
     })
   }
 
+  handleDeleteMulti = async () => {
+    this.props.trigger('resource.batch.deleteMulti', {
+      store: this.props.store,
+      success: this.props.getData(),
+      selectValues: this.state.selectArr,
+    })
+  }
+
   render() {
     const { cluster } = this.props.match.params
     const { module } = this.props
     const { bannerProps } = this.props
+    bannerProps.arrBtn = [
+      {
+        title: 'Create',
+        background: '#283593',
+        icon: (
+          <AddIcon
+            style={{
+              fontSize: '18px',
+            }}
+          />
+        ),
+        action: this.showCreate,
+      },
+    ]
 
     let list = []
     const { sortOrder } = this.state
@@ -263,20 +285,6 @@ export default class Services extends React.Component {
               to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
             />
           ),
-          // customBodyRender: (name, namespace) => {
-          //   return (
-          //     <Link
-          //       to={`/clusters/default/projects/${namespace?.rowData[5]}/pods/${name}/resource-status`}
-          //     >
-          //       <div className={styles.NamePod}>
-          //         <div className={styles.IconName}></div>
-          //         <div className={styles.NameContent}>
-          //           <div>{name}</div>
-          //         </div>
-          //       </div>
-          //     </Link>
-          //   )
-          // },
         },
       },
       {
@@ -301,12 +309,11 @@ export default class Services extends React.Component {
       },
       {
         name: 'nodeIp',
-        label: 'Pod IP Address',
+        label: 'External Access',
         options: {
           filter: true,
-          customBodyRender: nodeIp => {
-            return <Link to={``}>{nodeIp}</Link>
-          },
+          customBodyRender: (nodeIp, record) =>
+            this.renderExternalService(nodeIp, record),
         },
       },
       {
@@ -331,27 +338,60 @@ export default class Services extends React.Component {
           sort: false,
           download: false,
           customBodyRender: (value, tableMeta) => {
+            const rowIndex = tableMeta.rowIndex
+            const detail = this.props.store.list.data[rowIndex]
             return (
               <SplitButton
                 options={[
                   {
-                    icon: <VisibilityIcon fontSize="small" />,
-                    title: 'View YAML',
+                    icon: <EditIcon fontSize="small" />,
+                    title: 'Edit Information',
                     action: () => {
-                      this.props.trigger('resource.yaml.edit', {
-                        detail: tableMeta.rowData,
+                      this.props.trigger('resource.baseinfo.edit', {
+                        detail,
                         readOnly: true,
                       })
                     },
                   },
                   {
+                    icon: <EditIcon fontSize="small" />,
+                    title: 'Edit YAML',
+                    action: () => {
+                      this.props.trigger('resource.yaml.edit', {
+                        detail,
+                        readOnly: false,
+                      })
+                    },
+                  },
+                  {
+                    icon: <EditIcon fontSize="small" />,
+                    title: 'Edit Service',
+                    action: () => {
+                      this.props.trigger('service.edit', {
+                        detail,
+                        readOnly: true,
+                      })
+                    },
+                  },
+                  {
+                    icon: <EditIcon fontSize="small" />,
+                    title: 'Edit External Access',
+                    action: () => {
+                      this.props.trigger('service.gateway.edit', {
+                        detail,
+                        readOnly: true,
+                      })
+                    },
+                  },
+
+                  {
                     icon: <DeleteIcon fontSize="small" />,
-                    title: 'Delete pods',
+                    title: 'Delete',
                     action: () => {
                       this.props.trigger('resource.delete', {
                         type: tableMeta.rowData.name,
                         detail: tableMeta.rowData,
-                        success: this.props.getData(),
+                        success: this.props.getData,
                       })
                     },
                   },
@@ -377,23 +417,6 @@ export default class Services extends React.Component {
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
         switch (action) {
-          // case 'changePage':
-          //   this.getData(tableState.page, tableState.sortOrder)
-          //   break
-          // case 'sort':
-          //   this.sort(tableState.sortOrder)
-          //   break
-          // case 'search':
-          //   this.search(tableState.searchText)
-          //   break
-          // // eslint-disable-next-line no-fallthrough
-          // case 'filterChange':
-          //   this.filterChange(tableState.filterList)
-          //   break
-          // // eslint-disable-next-line no-fallthrough
-          // case 'changeRowsPerPage':
-          //   this.changeRowsPerPage(tableState.rowsPerPage)
-          //   break
           // eslint-disable-next-line no-fallthrough
           case 'rowSelectionChange':
             // eslint-disable-next-line no-case-declarations
@@ -429,15 +452,6 @@ export default class Services extends React.Component {
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
-        {/* <ResourceTable */}
-        {/*   {...tableProps} */}
-        {/*   itemActions={this.itemActions} */}
-        {/*   columns={this.getColumns()} */}
-        {/*   onCreate={this.showCreate} */}
-        {/*   cluster={match.params.cluster} */}
-        {/*   getCheckboxProps={this.getCheckboxProps} */}
-        {/* /> */}
-
         <MUIDataTable
           title={<Typography variant="h6">List Service</Typography>}
           data={list}
