@@ -346,6 +346,7 @@ export default class Pods extends React.Component {
       sortOrder,
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
+        // console.log('action', action)
         switch (action) {
           // case 'changePage':
           //   this.getData(tableState.page, tableState.sortOrder)
@@ -409,12 +410,12 @@ export default class Pods extends React.Component {
           />
         ),
         action: () => {
-          alert('This is create action')
+          // alert('This is create action')
         },
       },
       {
         title: 'Delete',
-        background: 'red',
+        background: '#BB0000',
         icon: (
           <DeleteIcon
             style={{
@@ -423,7 +424,7 @@ export default class Pods extends React.Component {
           />
         ),
         action: () => {
-          alert('This is delete action')
+          // alert('This is delete action')
         },
       },
     ]
