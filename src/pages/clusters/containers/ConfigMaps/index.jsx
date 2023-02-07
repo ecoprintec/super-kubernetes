@@ -291,7 +291,7 @@ export default class ConfigMaps extends React.Component {
       filter: true,
       filterType: 'dropdown',
       responsive: 'vertical',
-      serverSide: true,
+      serverSide: false,
       page: this.state.page,
       count: this.props.store.list.total,
       rowsPerPage: this.state.rowsPerPage,
