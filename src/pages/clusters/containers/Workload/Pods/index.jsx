@@ -25,11 +25,13 @@ import PodStore from 'stores/pod'
 import MUIDataTable from 'mui-datatables'
 import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Icon } from '@kube-design/components'
 import { ICON_TYPES } from 'utils/constants'
 import { Indicator } from 'components/Base'
 import SplitButton from './ItemDropdown'
+
 import styles from './index.scss'
 
 @withClusterList({
@@ -395,6 +397,36 @@ export default class Pods extends React.Component {
     }
 
     const { bannerProps } = this.props
+    bannerProps.arrBtn = [
+      {
+        title: 'Create',
+        background: '#283593',
+        icon: (
+          <AddIcon
+            style={{
+              fontSize: '18px',
+            }}
+          />
+        ),
+        action: () => {
+          alert('This is create action')
+        },
+      },
+      {
+        title: 'Delete',
+        background: 'red',
+        icon: (
+          <DeleteIcon
+            style={{
+              fontSize: '18px',
+            }}
+          />
+        ),
+        action: () => {
+          alert('This is delete action')
+        },
+      },
+    ]
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
