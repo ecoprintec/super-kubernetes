@@ -26,8 +26,11 @@ import MUIDataTable from 'mui-datatables'
 import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { Icon } from '@kube-design/components'
+import { ICON_TYPES } from 'utils/constants'
+import { Indicator } from 'components/Base'
 import SplitButton from './ItemDropdown'
-import styles from '../../../../../components/Tables/Base/index.scss'
+import styles from './index.scss'
 
 @withClusterList({
   store: new PodStore(),
@@ -187,9 +190,36 @@ export default class Pods extends React.Component {
     })
   }
 
+  renderAvatar = (name, record) => {
+    const { module } = this.props
+    const { cluster } = this.props.match.params
+    // const podStatus = record[1]
+    return (
+      <div className={styles.avatar}>
+        <div className={styles.icon}>
+          <Icon name={ICON_TYPES[module]} size={40} />
+          <Indicator
+            className={styles.indicator}
+            // type={podStatus.type}
+            flicker
+          />
+        </div>
+        <div>
+          <Link
+            className={styles.title}
+            to={`/clusters/${cluster}/projects/${record?.rowData[5]}/${module}/${name}`}
+          >
+            {name}
+          </Link>
+          <div className={styles.desc}>{record?.rowData[1]}</div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     let list = []
-    const { isLoading, sortOrder } = this.state
+    const { sortOrder } = this.state
     if (this.props.store.list.data.length) {
       this.state.isLoading = false
       list = this.props.store.list.data
@@ -200,15 +230,21 @@ export default class Pods extends React.Component {
         label: 'Name',
         options: {
           filter: true,
-          customBodyRender: (name, namespace) => {
-            return (
-              <Link
-                to={`/clusters/default/projects/${namespace?.rowData[5]}/pods/${name}/resource-status`}
-              >
-                {name}
-              </Link>
-            )
-          },
+          customBodyRender: this.renderAvatar,
+          // customBodyRender: (name, namespace) => {
+          //   return (
+          //     <Link
+          //       to={`/clusters/default/projects/${namespace?.rowData[5]}/pods/${name}/resource-status`}
+          //     >
+          //       <div className={styles.NamePod}>
+          //         <div className={styles.IconName}></div>
+          //         <div className={styles.NameContent}>
+          //           <div>{name}</div>
+          //         </div>
+          //       </div>
+          //     </Link>
+          //   )
+          // },
         },
       },
       {
@@ -363,17 +399,7 @@ export default class Pods extends React.Component {
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <MUIDataTable
-          title={
-            <Typography variant="h6">
-              List pods
-              {isLoading && (
-                <CircularProgress
-                  size={24}
-                  style={{ marginLeft: 15, position: 'relative', top: 4 }}
-                />
-              )}
-            </Typography>
-          }
+          title={<Typography variant="h6">List pods</Typography>}
           data={list}
           columns={columns}
           options={options}
