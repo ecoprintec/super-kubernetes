@@ -67,7 +67,8 @@ export default class BaseStore {
       params.dryRun ? '?dryRun=All' : ''
     }`
 
-  getDetailUrl = (params = {}) => `${this.getListUrl(params)}/${params.name}`
+  getDetailUrl = (params = {}) =>
+    `${this.getListUrl(params)}/${params.name || params[0]}`
 
   getWatchListUrl = (params = {}) =>
     `${this.apiVersion}/watch${this.getPath(params)}/${this.module}`

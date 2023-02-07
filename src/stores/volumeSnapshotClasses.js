@@ -17,6 +17,7 @@
  */
 
 import { action } from 'mobx'
+import { get, set } from 'lodash'
 import Base from './base'
 
 export default class VolumeSnapshotClassStore extends Base {
@@ -69,5 +70,22 @@ export default class VolumeSnapshotClassStore extends Base {
         request.delete(this.getDetailUrl({ name }), {}, {}, () => {})
       )
     )
+  }
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/apis/snapshot.storage.k8s.io/v1beta1/volumesnapshotclasses/${detail[0]}`
+    return await this.submitting(request.get(url))
+  }
+
+  @action
+  async update(params, newObject) {
+    const url = `/apis/${newObject.apiVersion}/volumesnapshotclasses/${newObject.metadata.name}`
+    const result = await request.get(url)
+    const resourceVersion = get(result, 'metadata.resourceVersion')
+    if (resourceVersion) {
+      set(newObject, 'metadata.resourceVersion', resourceVersion)
+    }
+    return this.submitting(request.put(url, newObject))
   }
 }
