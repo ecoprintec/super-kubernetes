@@ -30,6 +30,7 @@ import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
 import styles from 'components/Tables/Base/index.scss'
+import KeyIcon from '@mui/icons-material/Key'
 import SplitButton from './ItemDropdown'
 
 @withClusterList({
@@ -202,11 +203,22 @@ export default class Secrets extends React.Component {
           filter: true,
           customBodyRender: (name, record) => {
             return (
-              <Link
-                to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
-              >
-                {name}
-              </Link>
+              <>
+                <KeyIcon />
+                <div
+                  style={{
+                    display: 'inline-block',
+                    marginLeft: '15px',
+                  }}
+                >
+                  <Link
+                    to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
+                  >
+                    <b>{name}</b>
+                    <br /> -
+                  </Link>
+                </div>
+              </>
             )
           },
         },
@@ -253,7 +265,7 @@ export default class Secrets extends React.Component {
           customBodyRender: createTime => {
             return (
               <Link to={``}>
-                {moment(createTime).format('YYYY-MM-DD h:mm:ss')}
+                {moment(createTime).format('YYYY-MM-DD HH:mm:ss')}
               </Link>
             )
           },
