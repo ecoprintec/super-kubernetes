@@ -251,7 +251,7 @@ export default {
         },
         store,
         modal: EditYamlModal,
-        yaml: detail,
+        detail,
         ...props,
       })
     },
