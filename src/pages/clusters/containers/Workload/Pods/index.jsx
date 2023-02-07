@@ -25,7 +25,6 @@ import PodStore from 'stores/pod'
 import MUIDataTable from 'mui-datatables'
 import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Icon } from '@kube-design/components'
 import { ICON_TYPES } from 'utils/constants'
@@ -50,17 +49,9 @@ export default class Pods extends React.Component {
     selectArr: [],
   }
 
-  async componentWillMount() {
-    await this.props.store.fetchList({ page: 1, limit: this.state.rowsPerPage })
-  }
-
   componentDidMount() {
     localStorage.setItem('pod-detail-referrer', location.pathname)
   }
-
-  renderStatus = podStatus => (
-    <Status type={podStatus.type} name={t(podStatus.type)} flicker />
-  )
 
   getData = async page => {
     this.setState({
@@ -233,20 +224,6 @@ export default class Pods extends React.Component {
         options: {
           filter: true,
           customBodyRender: this.renderAvatar,
-          // customBodyRender: (name, namespace) => {
-          //   return (
-          //     <Link
-          //       to={`/clusters/default/projects/${namespace?.rowData[5]}/pods/${name}/resource-status`}
-          //     >
-          //       <div className={styles.NamePod}>
-          //         <div className={styles.IconName}></div>
-          //         <div className={styles.NameContent}>
-          //           <div>{name}</div>
-          //         </div>
-          //       </div>
-          //     </Link>
-          //   )
-          // },
         },
       },
       {
@@ -331,6 +308,21 @@ export default class Pods extends React.Component {
           },
         },
       },
+      {
+        name: 'namespace',
+        label: 'Project',
+        options: {
+          display: false,
+          filter: true,
+          customBodyRender: updateTime => {
+            return (
+              <Link to={``}>
+                {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
+              </Link>
+            )
+          },
+        },
+      },
     ]
 
     const options = {
@@ -346,26 +338,7 @@ export default class Pods extends React.Component {
       sortOrder,
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
-        // console.log('action', action)
         switch (action) {
-          // case 'changePage':
-          //   this.getData(tableState.page, tableState.sortOrder)
-          //   break
-          // case 'sort':
-          //   this.sort(tableState.sortOrder)
-          //   break
-          // case 'search':
-          //   this.search(tableState.searchText)
-          //   break
-          // // eslint-disable-next-line no-fallthrough
-          // case 'filterChange':
-          //   this.filterChange(tableState.filterList)
-          //   break
-          // // eslint-disable-next-line no-fallthrough
-          // case 'changeRowsPerPage':
-          //   this.changeRowsPerPage(tableState.rowsPerPage)
-          //   break
-          // eslint-disable-next-line no-fallthrough
           case 'rowSelectionChange':
             // eslint-disable-next-line no-case-declarations
             const listDataIndexs = tableState.selectedRows.data.map(
@@ -398,36 +371,6 @@ export default class Pods extends React.Component {
     }
 
     const { bannerProps } = this.props
-    bannerProps.arrBtn = [
-      {
-        title: 'Create',
-        background: '#283593',
-        icon: (
-          <AddIcon
-            style={{
-              fontSize: '18px',
-            }}
-          />
-        ),
-        action: () => {
-          // alert('This is create action')
-        },
-      },
-      {
-        title: 'Delete',
-        background: '#BB0000',
-        icon: (
-          <DeleteIcon
-            style={{
-              fontSize: '18px',
-            }}
-          />
-        ),
-        action: () => {
-          // alert('This is delete action')
-        },
-      },
-    ]
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
