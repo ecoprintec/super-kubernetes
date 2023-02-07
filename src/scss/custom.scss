@@ -256,7 +256,8 @@ body {
   }
   .table table a,
   .table table > thead > tr > th,
-  .table table > thead > tr > th a {
+  .table table > thead > tr > th a,
+  .src-components-Modals-Delete-index__body .h5 {
     color: $black;
   }
   .table table > tbody > tr > td {
@@ -299,5 +300,14 @@ body {
   .MuiFormLabel-root,
   .MuiInput-input {
     font-family: 'Maven Pro';
+  }
+  .src-components-Layout-Nav-index__subNav {
+    font-size: 14px;
+  }
+  .MuiPaper-root {
+    padding: 16px 24px 16px 24px;
+  }
+  .MuiTableCell-footer {
+    border-bottom: none;
   }
 }
