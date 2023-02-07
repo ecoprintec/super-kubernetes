@@ -344,7 +344,7 @@ export default class ConfigMaps extends React.Component {
         <MUIDataTable
           title={
             <Typography variant="h6">
-              List pods
+              List configmaps
               {isLoading && (
                 <CircularProgress
                   size={24}
