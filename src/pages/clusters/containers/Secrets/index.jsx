@@ -53,7 +53,7 @@ export default class Secrets extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('pod-detail-referrer', location.pathname)
+    localStorage.setItem('secrets-detail-referrer', location.pathname)
   }
 
   renderStatus = podStatus => (
@@ -197,7 +197,7 @@ export default class Secrets extends React.Component {
     const columns = [
       {
         name: 'name',
-        label: 'Name',
+        label: t('NAME'),
         options: {
           filter: true,
           customBodyRender: (name, record) => {
@@ -213,7 +213,7 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'namespace',
-        label: 'Project',
+        label: t('PROJECT'),
         options: {
           filter: true,
           customBodyRender: namespace => {
@@ -227,7 +227,7 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'type',
-        label: 'Type',
+        label: t('TYPE'),
         options: {
           filter: true,
           customBodyRender: type => {
@@ -237,7 +237,7 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'data',
-        label: 'Fields',
+        label: t('FIELDS'),
         options: {
           filter: true,
           customBodyRender: data => {
@@ -247,7 +247,7 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'createTime',
-        label: 'Creation Time',
+        label: t('CREATION_TIME_TCAP'),
         options: {
           filter: true,
           customBodyRender: createTime => {
@@ -357,7 +357,7 @@ export default class Secrets extends React.Component {
         <MUIDataTable
           title={
             <Typography variant="h6">
-              List pods
+              List secrets
               {isLoading && (
                 <CircularProgress
                   size={24}
