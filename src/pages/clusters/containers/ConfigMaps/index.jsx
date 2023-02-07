@@ -51,7 +51,7 @@ export default class ConfigMaps extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('pod-detail-referrer', location.pathname)
+    localStorage.setItem('configmaps-detail-referrer', location.pathname)
   }
 
   renderStatus = podStatus => (
@@ -195,7 +195,7 @@ export default class ConfigMaps extends React.Component {
     const columns = [
       {
         name: 'name',
-        label: 'Name',
+        label: t('NAME'),
         options: {
           filter: true,
           customBodyRender: (name, record) => {
@@ -211,7 +211,7 @@ export default class ConfigMaps extends React.Component {
       },
       {
         name: 'namespace',
-        label: 'Project',
+        label: t('PROJECT'),
         options: {
           filter: true,
           customBodyRender: namespace => {
@@ -225,7 +225,7 @@ export default class ConfigMaps extends React.Component {
       },
       {
         name: 'data',
-        label: 'Fields',
+        label: t('FIELDS'),
         options: {
           filter: true,
           customBodyRender: data => {
@@ -235,7 +235,7 @@ export default class ConfigMaps extends React.Component {
       },
       {
         name: 'createTime',
-        label: 'Creation Time',
+        label: t('CREATION_TIME_TCAP'),
         options: {
           filter: true,
           customBodyRender: createTime => {
