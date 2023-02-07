@@ -2,10 +2,6 @@
 @import '~scss/mixins';
 
 .wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 20px;
   border-radius: $border-radius;
   background-color: $white;
   box-shadow: $base-shadow;
@@ -19,6 +15,10 @@
 }
 
 .titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
   position: relative;
   padding: 24px 20px 28px 20px;
   overflow: hidden;
