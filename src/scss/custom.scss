@@ -227,9 +227,6 @@ body .button,
     'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
 }
 body {
-  .MuiPaper-root {
-    border-radius: 8px;
-  }
   .MuiTab-wrapper {
     font-weight: 700;
     text-transform: capitalize;
@@ -256,7 +253,8 @@ body {
   }
   .table table a,
   .table table > thead > tr > th,
-  .table table > thead > tr > th a {
+  .table table > thead > tr > th a,
+  .src-components-Modals-Delete-index__body .h5 {
     color: $black;
   }
   .table table > tbody > tr > td {
@@ -297,7 +295,36 @@ body {
   [class*='MUIDataTable'],
   [class*='MuiButtonBase'],
   .MuiFormLabel-root,
-  .MuiInput-input {
+  .MuiInput-input,
+  .alert-content,
+  input.input,
+  .select-value-wrapper .select-value,
+  .select-value-wrapper .select-placeholder,
+  .select-options .select-option {
     font-family: 'Maven Pro';
+  }
+  .src-components-Layout-Nav-index__subNav {
+    font-size: 14px;
+  }
+  .MuiPaper-root {
+    border-radius: 8px;
+    padding: 16px 24px 16px 24px;
+    .MuiTableHead-root .MuiTableCell-head,
+    div[class*='MUIDataTableHeadCell'] {
+      font-weight: 600;
+      text-transform: none;
+    }
+    .MuiTableHead-root .MuiButton-Primary {
+      margin-left: -16px;
+    }
+  }
+  .MuiTableCell-footer {
+    border-bottom: none;
+  }
+  .MuiTabs-root {
+    margin-bottom: 12px;
+    .MuiTab-textColorPrimary {
+      color: $black;
+    }
   }
 }

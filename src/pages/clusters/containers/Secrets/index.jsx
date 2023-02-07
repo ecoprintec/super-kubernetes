@@ -303,7 +303,7 @@ export default class Secrets extends React.Component {
       filter: true,
       filterType: 'dropdown',
       responsive: 'vertical',
-      serverSide: true,
+      serverSide: false,
       page: this.state.page,
       count: this.props.store.list.total,
       rowsPerPage: this.state.rowsPerPage,
@@ -313,23 +313,23 @@ export default class Secrets extends React.Component {
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
         switch (action) {
-          case 'changePage':
-            this.getData(tableState.page, tableState.sortOrder)
-            break
-          case 'sort':
-            this.sort(tableState.sortOrder)
-            break
-          case 'search':
-            this.search(tableState.searchText)
-            break
-          // eslint-disable-next-line no-fallthrough
-          case 'filterChange':
-            this.filterChange(tableState.filterList)
-            break
-          // eslint-disable-next-line no-fallthrough
-          case 'changeRowsPerPage':
-            this.changeRowsPerPage(tableState.rowsPerPage)
-            break
+          // case 'changePage':
+          //   this.getData(tableState.page, tableState.sortOrder)
+          //   break
+          // case 'sort':
+          //   this.sort(tableState.sortOrder)
+          //   break
+          // case 'search':
+          //   this.search(tableState.searchText)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'filterChange':
+          //   this.filterChange(tableState.filterList)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'changeRowsPerPage':
+          //   this.changeRowsPerPage(tableState.rowsPerPage)
+          //   break
           // eslint-disable-next-line no-fallthrough
           case 'rowSelectionChange':
             // eslint-disable-next-line no-case-declarations
