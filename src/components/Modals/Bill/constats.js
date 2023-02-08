@@ -187,7 +187,7 @@ export const AREA_COLORS = [
 export const PIE_COLORS = [
   '#3b747a',
   '#479e88',
-  '#55bc8a',
+  '#3f51b5',
   '#a2d8bb',
   '#326e93',
   '#3385b0',

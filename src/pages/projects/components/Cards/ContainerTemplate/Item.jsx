@@ -173,7 +173,7 @@ export default class ContainerItem extends React.Component {
             )}
             {hasLife && (
               <Tooltip content={this.renderLife()}>
-                <Tag color="#55BC8A" className="margin-l8">
+                <Tag color="#3f51b5" className="margin-l8">
                   {t('HOOK_PL')}
                 </Tag>
               </Tooltip>

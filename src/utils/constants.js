@@ -678,7 +678,7 @@ export const COLORS_MAP = {
   lightest: '#f9fbfd',
   dark: '#242e42',
   grey: '#e3e9ef',
-  green: '#55bc8a',
+  green: '#3f51b5',
   blue: '#329dce',
   red: '#ca2621',
   yellow: '#f5a623',

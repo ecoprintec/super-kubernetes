@@ -92,7 +92,7 @@ export default class GroupUser extends Component {
 
   getColor = value => {
     const { type } = this.state
-    return value === type ? '#55bc8a' : '#c1c9d1'
+    return value === type ? '#3f51b5' : '#c1c9d1'
   }
 
   fetchNotingroupData = (params = {}) => {
