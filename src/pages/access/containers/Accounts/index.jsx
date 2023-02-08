@@ -88,13 +88,14 @@ export default class Accounts extends React.Component {
         text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
-        onClick: item =>
+        onClick: item => {
           trigger('resource.delete', {
             type: name,
             resource: item.username,
             detail: item,
             success: routing.query,
-          }),
+          })
+        },
       },
     ]
   }

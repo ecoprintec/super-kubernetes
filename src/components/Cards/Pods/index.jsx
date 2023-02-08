@@ -248,8 +248,8 @@ export default class PodsCard extends React.Component {
   }
 
   getPagination = () => {
-    const { page, limit, total } = this.store.list
-    const pagination = { page, limit, total }
+    const { page, total } = this.store.list
+    const pagination = { page, limit: 10, total }
     return pagination
   }
 
