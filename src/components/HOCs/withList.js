@@ -319,6 +319,14 @@ export class ListPage extends React.Component {
   }
 
   render() {
-    return this.props.children
+    const childrenWithProps = React.Children.map(this.props.children, child => {
+      // Checking isValidElement is the safe way and avoids a
+      // typescript error too.
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, { ...this.props })
+      }
+      return child
+    })
+    return childrenWithProps
   }
 }

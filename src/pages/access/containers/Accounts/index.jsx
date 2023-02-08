@@ -119,6 +119,7 @@ export default class Accounts extends React.Component {
   get tableActions() {
     const { tableProps } = this.props
     const { activeStatus, disabledStatus } = this.handledisabled()
+
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,

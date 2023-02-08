@@ -40,10 +40,10 @@ export default {
         },
 
         store,
-        modal: DeleteCustom,
-        confirmDel: `Are you sure delete ? If you agree then type : ${
-          isArray(detail) ? detail[0] : detail?.name
-        } in form and click OK.`,
+        modal: DeleteModal,
+        // confirmDel: `Are you sure delete ? If you agree then type : ${
+        //   isArray(detail) ? detail[0] : detail?.name
+        // } in form and click OK.`,
         resource: isArray(detail) ? detail[0] : detail?.name,
         ...props,
       })
@@ -86,7 +86,7 @@ export default {
         title: 'Multi delete pods',
         resource: selectNames.join(', '),
         modal: DeleteCustom,
-        confirmDel: `AAre you sure delete ? If you agree then type : ${selectNames.join(
+        confirmDel: `Are you sure delete ? If you agree then type : ${selectNames.join(
           ', '
         )} in form and click OK.`,
         store,
@@ -95,14 +95,14 @@ export default {
     },
   },
   'resource.batch.delete': {
-    on({ store, success, rowKey, ...props }) {
+    on({ store, success, selectValues, ...props }) {
       const serviceStore = new ServiceStore()
-      const { data, selectedRowKeys } = store.list
-      const selectValues = data
-        .filter(item => selectedRowKeys.includes(item[rowKey]))
-        .map(item => {
-          return { name: item.name, namespace: item.namespace }
-        })
+      const { data } = store.list
+      // const selectValues = data
+      //   .filter(item => selectedRowKeys.includes(item[rowKey]))
+      //   .map(item => {
+      //     return { name: item.name, namespace: item.namespace }
+      //   })
 
       const selectNames = selectValues.map(item => item.name)
 
