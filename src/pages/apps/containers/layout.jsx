@@ -18,12 +18,8 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Icon } from '@kube-design/components'
-
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
-
-import styles from './layout.scss'
 
 @inject('rootStore')
 @observer
@@ -34,14 +30,6 @@ export default class AppsLayout extends Component {
     return (
       <div className="ks-page-body">
         <div className="ks-page-side">
-          <div className={styles.titleWrapper}>
-            <div className={styles.icon}>
-              <Icon name="openpitrix" size={40} type="light" />
-            </div>
-            <div className={styles.text}>
-              <div className="h6">{t('APP_STORE_MANAGEMENT')}</div>
-            </div>
-          </div>
           <Nav
             className="ks-page-nav"
             navs={globals.app.getManageAppNavs()}

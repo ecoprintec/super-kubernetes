@@ -24,7 +24,7 @@ import { get } from 'lodash'
 import { renderRoutes, getIndexRoute } from 'utils/router.config'
 import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
-
+import { Slide } from '@material-ui/core'
 import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
@@ -56,7 +56,7 @@ class DevOpsListLayout extends Component {
   handleChange = url => this.routing.push(url)
 
   render() {
-    const { match, route, location } = this.props
+    const { match, route, location, rootStore } = this.props
     const { initializing, detail } = this.props.devopsStore
 
     const navs = globals.app.getDevOpsNavs({
@@ -85,19 +85,35 @@ class DevOpsListLayout extends Component {
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Selector
-            type="devops"
-            title={t('DEVOPS_PROJECT_LOW')}
-            detail={detail}
-            onChange={this.handleChange}
-            workspace={this.workspace}
-            cluster={this.cluster}
-          />
+          <Slide
+            timeout={{ enter: 300, exit: 400 }}
+            in={rootStore.openMenu}
+            direction={'right'}
+          >
+            <div
+              style={{
+                padding: '0px 0px 0px 15px',
+                position: 'fixed',
+                width: '300px',
+              }}
+              className={rootStore.openMenu === true ? 'title-in-delay' : ''}
+            >
+              <Selector
+                type="devops"
+                title={t('DEVOPS_PROJECT_LOW')}
+                detail={detail}
+                onChange={this.handleChange}
+                workspace={this.workspace}
+                cluster={this.cluster}
+              />
+            </div>
+          </Slide>
           <Nav
             className="ks-page-nav"
             navs={_navs}
             location={location}
             match={match}
+            haveNavTitle
           />
         </div>
 

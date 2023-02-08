@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
-
+import { Slide } from '@material-ui/core'
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
@@ -49,7 +49,7 @@ class ProjectLayout extends Component {
   handleChange = url => this.props.rootStore.routing.push(url)
 
   render() {
-    const { match, location } = this.props
+    const { match, location, rootStore } = this.props
     const { workspace, cluster, namespace } = match.params
     const { detail } = this.props.projectStore
 
@@ -62,16 +62,32 @@ class ProjectLayout extends Component {
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Selector
-            title={t('PROJECT')}
-            detail={detail}
-            onChange={this.handleChange}
-          />
+          <Slide
+            timeout={{ enter: 300, exit: 400 }}
+            in={rootStore.openMenu}
+            direction={'right'}
+          >
+            <div
+              style={{
+                padding: '0px 0px 0px 15px',
+                position: 'fixed',
+                width: '300px',
+              }}
+              className={rootStore.openMenu === true ? 'title-in-delay' : ''}
+            >
+              <Selector
+                title={t('PROJECT')}
+                detail={detail}
+                onChange={this.handleChange}
+              />
+            </div>
+          </Slide>
           <Nav
             className="ks-page-nav"
             navs={navs}
             location={location}
             match={match}
+            haveNavTitle
           />
         </div>
         <div className="ks-page-main">{renderRoutes(this.getRoutes(navs))}</div>
