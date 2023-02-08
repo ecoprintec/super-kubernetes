@@ -95,7 +95,6 @@ export default class WorkloadTable extends React.Component {
 
   constructor(props) {
     super(props)
-
     const hideColumns = get(
       safeParseJSON(localStorage.getItem('hide-columns'), {}),
       props.tableId,
@@ -288,9 +287,9 @@ export default class WorkloadTable extends React.Component {
   }
 
   handleDeleteMulti = () => {
-    this.props.trigger('resource.batch.deleteMulti', {
+    this.props.trigger('resource.batch.delete', {
       store: this.props.store,
-      success: this.props.onFetch(),
+      success: this.props.getData(),
       selectValues: this.state.selectArr,
     })
   }
