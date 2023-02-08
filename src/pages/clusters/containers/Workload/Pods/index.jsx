@@ -18,18 +18,18 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Icon } from '@kube-design/components'
+
+import { Indicator } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
-import { CircularProgress, Typography } from '@mui/material'
+import StatusReason from 'projects/components/StatusReason'
+import ResourceTable from 'clusters/components/ResourceTable'
+
+import { getLocalTime } from 'utils'
+import { ICON_TYPES, PODS_STATUS } from 'utils/constants'
+
 import PodStore from 'stores/pod'
-import MUIDataTable from 'mui-datatables'
-import moment from 'moment-mini'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { Icon } from '@kube-design/components'
-import { ICON_TYPES } from 'utils/constants'
-import { Indicator } from 'components/Base'
-import SplitButton from './ItemDropdown'
 
 import styles from './index.scss'
 
@@ -40,346 +40,169 @@ import styles from './index.scss'
   rowKey: 'uid',
 })
 export default class Pods extends React.Component {
-  state = {
-    page: 0,
-    count: 1,
-    rowsPerPage: 10,
-    isLoading: true,
-    searchText: '',
-    selectArr: [],
-  }
-
   componentDidMount() {
     localStorage.setItem('pod-detail-referrer', location.pathname)
   }
 
-  getData = async page => {
-    this.setState({
-      isLoading: true,
-    })
-    await this.props.store
-      .fetchList({ page: page + 1, limit: this.state.rowsPerPage })
-      .then(() => {
-        this.setState({
-          isLoading: false,
-          page,
-        })
-      })
-      .catch(() => {
-        this.setState({
-          isLoading: false,
-          page,
-        })
-      })
+  get itemActions() {
+    const { getData, name, trigger } = this.props
+    return [
+      {
+        key: 'viewYaml',
+        icon: 'eye',
+        text: t('VIEW_YAML'),
+        action: 'view',
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            readOnly: true,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: name,
+            detail: item,
+            success: getData,
+          }),
+      },
+    ]
   }
 
-  search = async keyword => {
-    this.setState({
-      isLoading: true,
-    })
-    await this.props.store
-      .fetchList({ name: keyword })
-      .then(() => {
-        this.setState({
-          isLoading: false,
-          searchText: keyword,
-        })
-      })
-      .catch(() => {
-        this.setState({
-          isLoading: false,
-        })
-      })
+  getItemDesc = record => {
+    const { status, type } = record.podStatus
+    const desc =
+      type !== 'running' && type !== 'completed' ? (
+        <StatusReason
+          status={type}
+          reason={t(status)}
+          data={record}
+          type="pod"
+        />
+      ) : (
+        t(type.toUpperCase())
+      )
+
+    return desc
   }
 
-  filterChange = async filterList => {
-    this.setState({
-      isLoading: true,
-    })
-    const params = {}
-    if (filterList[0].length) {
-      params.name = filterList[0][0]
-    }
-
-    if (filterList[1].length) {
-      params.status = filterList[1][0]
-    }
-
-    if (filterList[2].length) {
-      params.node = filterList[2][0]
-    }
-
-    if (filterList[3].length) {
-      params.nodeIp = filterList[3][0]
-    }
-
-    if (filterList[4].length) {
-      params.createTime = filterList[4][0]
-    }
-
-    await this.props.store
-      .fetchList(params)
-      .then(() => {
-        this.setState({
-          isLoading: false,
-        })
-      })
-      .catch(() => {
-        this.setState({
-          isLoading: false,
-        })
-      })
+  getPodsStatus() {
+    return PODS_STATUS.map(status => ({
+      text: t(status.text),
+      value: status.value,
+    }))
   }
 
-  changeRowsPerPage = async limit => {
-    this.setState({
-      isLoading: true,
-    })
-    await this.props.store
-      .fetchList({ page: this.state.page, limit })
-      .then(() => {
-        this.setState({
-          isLoading: false,
-          rowsPerPage: limit,
-        })
-      })
-      .catch(() => {
-        this.setState({
-          isLoading: false,
-        })
-      })
-  }
-
-  sort = async sortOrder => {
-    this.setState({
-      isLoading: true,
-    })
-    const params = {}
-    params.sortBy = sortOrder.name
-    params.page = this.state.page
-    params.limit = this.state.rowsPerPage
-    if (sortOrder?.direction === 'asc') {
-      params.ascending = true
-    }
-    await this.props.store
-      .fetchList(params)
-      .then(() => {
-        this.setState({
-          isLoading: false,
-        })
-      })
-      .catch(() => {
-        this.setState({
-          isLoading: false,
-        })
-      })
-  }
-
-  handleDeleteMulti = async () => {
-    this.props.trigger('resource.batch.deleteMulti', {
-      store: this.props.store,
-      success: this.props.getData(),
-      selectValues: this.state.selectArr,
-    })
+  getColumns = () => {
+    const { getSortOrder } = this.props
+    return [
+      {
+        title: t('NAME'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: this.renderAvatar,
+      },
+      {
+        title: t('STATUS'),
+        dataIndex: 'status',
+        filters: this.getPodsStatus(),
+        isHideable: true,
+        search: true,
+        with: '5%',
+        render: (_, { podStatus }) => (
+          <span>{t(podStatus.type.toUpperCase())}</span>
+        ),
+      },
+      {
+        title: t('NODE_SI'),
+        dataIndex: 'node',
+        isHideable: true,
+        width: '18%',
+        render: this.renderNode,
+      },
+      {
+        title: t('POD_IP_ADDRESS'),
+        dataIndex: 'podIp',
+        isHideable: true,
+        width: '15%',
+      },
+      {
+        title: t('UPDATE_TIME_TCAP'),
+        dataIndex: 'startTime',
+        sorter: true,
+        sortOrder: getSortOrder('startTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: 'Project',
+        dataIndex: 'namespace',
+        isHideable: true,
+      },
+    ]
   }
 
   renderAvatar = (name, record) => {
     const { module } = this.props
     const { cluster } = this.props.match.params
-    // const podStatus = record[1]
+    const { podStatus } = record
     return (
       <div className={styles.avatar}>
         <div className={styles.icon}>
           <Icon name={ICON_TYPES[module]} size={40} />
           <Indicator
             className={styles.indicator}
-            // type={podStatus.type}
+            type={podStatus.type}
             flicker
           />
         </div>
         <div>
           <Link
             className={styles.title}
-            to={`/clusters/${cluster}/projects/${record?.rowData[5]}/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           >
             {name}
           </Link>
-          <div className={styles.desc}>{record?.rowData[1]}</div>
+          <div className={styles.desc}>{this.getItemDesc(record)}</div>
         </div>
       </div>
     )
   }
 
+  renderNode = (_, record) => {
+    const { cluster } = this.props.match.params
+    const { node, nodeIp } = record
+
+    if (!node) return '-'
+
+    const text = t('NODE_IP', { node, ip: nodeIp })
+
+    return <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
+  }
+
+  renderStatus = podStatus => (
+    <Status type={podStatus.type} name={t(podStatus.type)} flicker />
+  )
+
   render() {
-    let list = []
-    const { sortOrder } = this.state
-    if (this.props.store.list.data.length) {
-      this.state.isLoading = false
-      list = this.props.store.list.data
-    }
-    const columns = [
-      {
-        name: 'name',
-        label: 'Name',
-        options: {
-          filter: true,
-          customBodyRender: this.renderAvatar,
-        },
-      },
-      {
-        name: 'status.phase',
-        label: 'Status',
-        options: {
-          filter: true,
-          customBodyRender: status => {
-            return <Link to={``}>{status}</Link>
-          },
-        },
-      },
-      {
-        name: 'node',
-        label: 'Node',
-        options: {
-          filter: true,
-          customBodyRender: node => {
-            return <Link to={``}>{node}</Link>
-          },
-        },
-      },
-      {
-        name: 'nodeIp',
-        label: 'Pod IP Address',
-        options: {
-          filter: true,
-          customBodyRender: nodeIp => {
-            return <Link to={``}>{nodeIp}</Link>
-          },
-        },
-      },
-      {
-        name: 'createTime',
-        label: 'Update Time',
-        options: {
-          filter: true,
-          customBodyRender: updateTime => {
-            return (
-              <Link to={``}>
-                {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
-              </Link>
-            )
-          },
-        },
-      },
-      {
-        name: 'namespace',
-        label: 'Actions',
-        options: {
-          filter: false,
-          sort: false,
-          download: false,
-          customBodyRender: (value, tableMeta) => {
-            return (
-              <SplitButton
-                options={[
-                  {
-                    icon: <VisibilityIcon fontSize="small" />,
-                    title: 'View YAML',
-                    action: () => {
-                      this.props.trigger('resource.yaml.edit', {
-                        detail: tableMeta.rowData,
-                        readOnly: true,
-                      })
-                    },
-                  },
-                  {
-                    icon: <DeleteIcon fontSize="small" />,
-                    title: 'Delete pods',
-                    action: () => {
-                      this.props.trigger('resource.delete', {
-                        type: tableMeta.rowData.name,
-                        detail: tableMeta.rowData,
-                        success: this.props.getData(),
-                      })
-                    },
-                  },
-                ]}
-              />
-            )
-          },
-        },
-      },
-      {
-        name: 'namespace',
-        label: 'Project',
-        options: {
-          display: false,
-          filter: true,
-          customBodyRender: updateTime => {
-            return (
-              <Link to={``}>
-                {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
-              </Link>
-            )
-          },
-        },
-      },
-    ]
-
-    const options = {
-      filter: true,
-      filterType: 'dropdown',
-      responsive: 'vertical',
-      serverSide: false,
-      page: this.state.page,
-      count: this.props.store.list.total,
-      rowsPerPage: this.state.rowsPerPage,
-      rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
-      searchText: this.state.searchText,
-      sortOrder,
-      enableNestedDataAccess: '.',
-      onTableChange: (action, tableState) => {
-        switch (action) {
-          case 'rowSelectionChange':
-            // eslint-disable-next-line no-case-declarations
-            const listDataIndexs = tableState.selectedRows.data.map(
-              item => item.dataIndex
-            )
-            // eslint-disable-next-line no-case-declarations
-            const list_arr = this.props.store.list.data.filter(
-              (item, index) => {
-                return listDataIndexs.includes(index)
-              }
-            )
-
-            this.state.selectArr = list_arr
-            break
-          case 'rowDelete':
-            this.handleDeleteMulti()
-            break
-          default:
-        }
-      },
-      textLabels: {
-        body: {
-          noMatch: this.props.store.list.isLoading ? (
-            <CircularProgress />
-          ) : (
-            'Sorry, there is no matching data to display'
-          ),
-        },
-      },
-    }
-
-    const { bannerProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
-        <MUIDataTable
-          title={<Typography variant="h6">List pods</Typography>}
-          data={list}
-          columns={columns}
-          options={options}
-          className={styles.muitable}
+        <ResourceTable
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          hideColumn={['status']}
+          onCreate={null}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )
