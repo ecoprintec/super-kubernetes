@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, isFunction } from 'lodash'
 import {
   Icon,
   Level,
@@ -138,15 +138,28 @@ export default class WorkloadTable extends React.Component {
     return !isLoading && isEmpty(filters) && pagination.total === 0
   }
 
+  getParamNames(func) {
+    const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm
+    const ARGUMENT_NAMES = /([^\s,]+)/g
+    const fnStr = func.toString().replace(STRIP_COMMENTS, '')
+    let result = fnStr
+      .slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')'))
+      .match(ARGUMENT_NAMES)
+    if (result === null) result = []
+    return result
+  }
+
   get filteredColumns() {
     const cl = []
     const arrAction = []
     // eslint-disable-next-line array-callback-return
     this.props.itemActions.map(item => {
       arrAction.push({
-        icon: item?.icon,
-        title: item?.text,
-        action: item?.onClick,
+        icon: detail => (isFunction(item.icon) ? item.icon(detail) : item.icon),
+        title: detail =>
+          isFunction(item.text) ? item.text(detail) : item.text,
+        action: detail => item?.onClick(detail),
+        show: detail => (isFunction(item.icon) ? item?.show(detail) : true),
       })
     })
 
@@ -157,18 +170,58 @@ export default class WorkloadTable extends React.Component {
     this.props.columns.map((item, key) => {
       if (key < this.props.columns.length - 1) {
         cl.push({
-          name: item?.dataIndex,
+          name: item.dataIndex ? item.dataIndex : 'Columns',
           label: item?.title,
           options: {
             // display: false,
             filter: true,
-            // customBodyRender: updateTime => {
-            //   return (
-            //     <Link to={``}>
-            //       {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
-            //     </Link>
-            //   )
-            // },
+            customBodyRenderLite: dataIndex => {
+              const detail = this.props.data[dataIndex]
+              let text = ''
+              // const arrNameParams = this.getParamNames(item.render)
+              // const argument = {
+              //   1:
+              //     arrNameParams[0] === 'record'
+              //       ? detail
+              //       : detail[item.dataIndex],
+              //   2: { value: detail[item.dataIndex], detail },
+              // }
+              // const text = isFunction(item.render)
+              //   ? item.render(...argument[arrNameParams.length])
+              //   : detail[item.dataIndex]
+              if (isFunction(item.render)) {
+                const arrNameParams = this.getParamNames(item.render)
+                const argument = {
+                  1:
+                    arrNameParams[0] === 'record'
+                      ? [detail]
+                      : [detail[item.dataIndex]],
+                  2: [detail[item.dataIndex], detail],
+                }
+                text = item.render(...argument[arrNameParams.length])
+              } else {
+                text = detail[item.dataIndex]
+              }
+              // if (isFunction(item.render)) {
+              //   const arrNameParams = this.getParamNames(item.render)
+              //   console.log('content', arrNameParams)
+              //   if (arrNameParams.length > 1) {
+              //     const value = detail[item.dataIndex]
+              //     text = item.render(value, detail)
+              //   }
+              //   if (arrNameParams.length === 1) {
+              //     if (arrNameParams[0] === 'record') {
+              //       text = item.render(detail)
+              //     } else {
+              //       const value = detail[item.dataIndex]
+              //       text = item.render(value)
+              //     }
+              //   }
+              // } else {
+              //   text = detail[item.dataIndex]
+              // }
+              return text
+            },
           },
         })
       } else {
@@ -179,11 +232,14 @@ export default class WorkloadTable extends React.Component {
             filter: false,
             sort: false,
             download: false,
-            customBodyRender: () => {
+            customBodyRenderLite: dataIndex => {
               // console.log('namespace', namespace)
-              // console.log('record', record)
-              // const detail = this.props.data[record.rowIndex]
-              return <SplitButton options={arrAction} />
+
+              const detail = this.props.data[dataIndex]
+              // const secrets = detail.secrets
+
+              // const content = item.render(secrets, detail)
+              return <SplitButton options={arrAction} detail={detail} />
             },
           },
         })
@@ -229,6 +285,14 @@ export default class WorkloadTable extends React.Component {
         }
       }
     )
+  }
+
+  handleDeleteMulti = () => {
+    this.props.trigger('resource.batch.deleteMulti', {
+      store: this.props.store,
+      success: this.props.onFetch(),
+      selectValues: this.state.selectArr,
+    })
   }
 
   handleCancelSelect = () => {
@@ -343,7 +407,6 @@ export default class WorkloadTable extends React.Component {
 
   renderActions() {
     const { onCreate, createText, actions } = this.props
-
     if (actions) {
       return actions.map(action => (
         <Button
@@ -636,6 +699,8 @@ export default class WorkloadTable extends React.Component {
       rowsPerPage: this.state.rowsPerPage,
       rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
       searchText: this.state.searchText,
+      searchAlwaysOpen: true,
+      download: false,
       sortOrder,
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
@@ -680,14 +745,33 @@ export default class WorkloadTable extends React.Component {
       //   {...props}
       //   {...extraProps}
       // />
+      <div className={styles.wraperTable} {...props}>
+        <div className={styles.groupBtn}>
+          {/* {this.props?.actions?.length && */}
+          {/*   this.props.actions.map(item => ( */}
+          {/*     <div */}
+          {/*       className={styles.groupBtnDiv} */}
+          {/*       style={{ */}
+          {/*         background: item?.background, */}
+          {/*       }} */}
+          {/*       onClick={() => item.onClick} */}
+          {/*     > */}
+          {/*       {item.icon && ( */}
+          {/*         <div className={styles.BtnIcon}>{item?.icon}</div> */}
+          {/*       )} */}
 
-      <MUIDataTable
-        title={<Typography variant="h6">List pods</Typography>}
-        data={list}
-        columns={this.filteredColumns}
-        options={options}
-        className={styles.muitable}
-      />
+          {/*       <div className={styles.BtnTitle}>{item?.text}</div> */}
+          {/*     </div> */}
+          {/*   ))} */}
+        </div>
+        <MUIDataTable
+          title={<Typography variant="h6">{this.renderActions()}</Typography>}
+          data={list}
+          columns={this.filteredColumns}
+          options={options}
+          className={styles.muitable}
+        />
+      </div>
     )
   }
 }

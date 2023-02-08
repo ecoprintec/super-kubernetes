@@ -17,6 +17,7 @@
  */
 
 import { Notify } from '@kube-design/components'
+import { isArray } from 'lodash'
 import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import DeleteCustom from 'components/Modals/Delete/DeleteCustom'
@@ -40,8 +41,10 @@ export default {
 
         store,
         modal: DeleteCustom,
-        confirmDel: `Are you sure delete ? If you agree then type : ${detail[0]} in form and click OK.`,
-        resource: detail[0],
+        confirmDel: `Are you sure delete ? If you agree then type : ${
+          isArray(detail) ? detail[0] : detail?.name
+        } in form and click OK.`,
+        resource: isArray(detail) ? detail[0] : detail?.name,
         ...props,
       })
     },

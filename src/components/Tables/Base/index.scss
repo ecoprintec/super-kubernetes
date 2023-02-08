@@ -107,3 +107,37 @@
     border-bottom: 0px !important;
   }
 }
+
+.groupBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.groupBtnDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  padding: 5px 10px;
+  margin: 0px 10px;
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    background: #242e42;
+    opacity: 0.8;
+    color: #fff;
+  }
+}
+.BtnIcon {
+  padding-right: 5px;
+  line-height: 0.8;
+}
+
+.wrapperTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

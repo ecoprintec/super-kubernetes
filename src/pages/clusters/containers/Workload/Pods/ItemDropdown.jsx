@@ -8,6 +8,8 @@ import Popper from '@mui/material/Popper'
 import MenuItem from '@mui/material/MenuItem'
 import MenuList from '@mui/material/MenuList'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { isFunction } from 'lodash'
+import { Icon } from '@kube-design/components'
 import styles from './index.scss'
 
 export default function SplitButton(props) {
@@ -25,6 +27,7 @@ export default function SplitButton(props) {
     setOpen(false)
   }
   const options = props.options
+  const detail = props.detail
   return (
     <React.Fragment>
       <ButtonGroup ref={anchorRef}>
@@ -44,7 +47,7 @@ export default function SplitButton(props) {
       </ButtonGroup>
       <Popper
         sx={{
-          zIndex: 1,
+          zIndex: 99999,
         }}
         open={open}
         anchorEl={anchorRef.current}
@@ -63,19 +66,31 @@ export default function SplitButton(props) {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map(option => (
-                    <MenuItem
-                      key={option?.title}
-                      // disabled={index === 2}
-                      // selected={index === selectedIndex}
-                      onClick={option?.action}
-                      className={styles.MenuItem}
-                    >
-                      <div className={styles.MenuItemDiv}>{option?.icon}</div>
-                      &emsp;
-                      {option?.title}
-                    </MenuItem>
-                  ))}
+                  {options
+                    .filter(item =>
+                      isFunction(item.icon) ? item.show(detail) : true
+                    )
+                    .map(option => (
+                      <MenuItem
+                        key={option?.title}
+                        // disabled={index === 2}
+                        // selected={index === selectedIndex}
+                        onClick={() => option.action(detail)}
+                        className={styles.MenuItem}
+                      >
+                        <div className={styles.MenuItemDiv}>
+                          {isFunction(option.icon) ? (
+                            <Icon name={option.icon(detail)} />
+                          ) : (
+                            option?.icon
+                          )}
+                        </div>
+                        &emsp;
+                        {isFunction(option.title)
+                          ? option.title(detail)
+                          : option?.title}
+                      </MenuItem>
+                    ))}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
