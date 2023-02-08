@@ -25,6 +25,8 @@ import Base from './base'
 export default class PodStore extends Base {
   module = 'pods'
 
+  listPods = []
+
   @action
   async fetchDetail({ cluster, namespace, name, silent }) {
     if (!silent) {
@@ -107,6 +109,9 @@ export default class PodStore extends Base {
       isLoading: false,
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
+    if (!this.listPods.length) {
+      this.listPods = data
+    }
 
     return data
   }

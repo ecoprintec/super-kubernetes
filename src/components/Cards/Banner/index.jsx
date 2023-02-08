@@ -129,6 +129,24 @@ export default class Banner extends React.Component {
               )}
             </p>
           </div>
+          <div className={styles.groupBtn}>
+            {this.props?.arrBtn?.length &&
+              this.props.arrBtn.map(item => (
+                <div
+                  className={styles.groupBtnDiv}
+                  style={{
+                    background: item?.background,
+                  }}
+                  onClick={item?.action}
+                >
+                  {item.icon && (
+                    <div className={styles.BtnIcon}>{item?.icon}</div>
+                  )}
+
+                  <div className={styles.BtnTitle}>{item?.title}</div>
+                </div>
+              ))}
+          </div>
         </div>
         {!isEmpty(routes) && <Navs routes={routes} />}
         {!isEmpty(tabs) && <Tabs tabs={tabs} />}

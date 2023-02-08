@@ -30,6 +30,7 @@ import moment from 'moment-mini'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
 import styles from 'components/Tables/Base/index.scss'
+import KeyIcon from '@mui/icons-material/Key'
 import SplitButton from './ItemDropdown'
 
 @withClusterList({
@@ -53,7 +54,7 @@ export default class Secrets extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('pod-detail-referrer', location.pathname)
+    localStorage.setItem('secrets-detail-referrer', location.pathname)
   }
 
   renderStatus = podStatus => (
@@ -197,23 +198,34 @@ export default class Secrets extends React.Component {
     const columns = [
       {
         name: 'name',
-        label: 'Name',
+        label: t('NAME'),
         options: {
           filter: true,
           customBodyRender: (name, record) => {
             return (
-              <Link
-                to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
-              >
-                {name}
-              </Link>
+              <>
+                <KeyIcon />
+                <div
+                  style={{
+                    display: 'inline-block',
+                    marginLeft: '15px',
+                  }}
+                >
+                  <Link
+                    to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
+                  >
+                    <b>{name}</b>
+                    <br /> -
+                  </Link>
+                </div>
+              </>
             )
           },
         },
       },
       {
         name: 'namespace',
-        label: 'Project',
+        label: t('PROJECT'),
         options: {
           filter: true,
           customBodyRender: namespace => {
@@ -227,7 +239,7 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'type',
-        label: 'Type',
+        label: t('TYPE'),
         options: {
           filter: true,
           customBodyRender: type => {
@@ -237,7 +249,7 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'data',
-        label: 'Fields',
+        label: t('FIELDS'),
         options: {
           filter: true,
           customBodyRender: data => {
@@ -247,13 +259,13 @@ export default class Secrets extends React.Component {
       },
       {
         name: 'createTime',
-        label: 'Creation Time',
+        label: t('CREATION_TIME_TCAP'),
         options: {
           filter: true,
           customBodyRender: createTime => {
             return (
               <Link to={``}>
-                {moment(createTime).format('YYYY-MM-DD h:mm:ss')}
+                {moment(createTime).format('YYYY-MM-DD HH:mm:ss')}
               </Link>
             )
           },
@@ -303,7 +315,7 @@ export default class Secrets extends React.Component {
       filter: true,
       filterType: 'dropdown',
       responsive: 'vertical',
-      serverSide: true,
+      serverSide: false,
       page: this.state.page,
       count: this.props.store.list.total,
       rowsPerPage: this.state.rowsPerPage,
@@ -313,23 +325,23 @@ export default class Secrets extends React.Component {
       enableNestedDataAccess: '.',
       onTableChange: (action, tableState) => {
         switch (action) {
-          case 'changePage':
-            this.getData(tableState.page, tableState.sortOrder)
-            break
-          case 'sort':
-            this.sort(tableState.sortOrder)
-            break
-          case 'search':
-            this.search(tableState.searchText)
-            break
-          // eslint-disable-next-line no-fallthrough
-          case 'filterChange':
-            this.filterChange(tableState.filterList)
-            break
-          // eslint-disable-next-line no-fallthrough
-          case 'changeRowsPerPage':
-            this.changeRowsPerPage(tableState.rowsPerPage)
-            break
+          // case 'changePage':
+          //   this.getData(tableState.page, tableState.sortOrder)
+          //   break
+          // case 'sort':
+          //   this.sort(tableState.sortOrder)
+          //   break
+          // case 'search':
+          //   this.search(tableState.searchText)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'filterChange':
+          //   this.filterChange(tableState.filterList)
+          //   break
+          // // eslint-disable-next-line no-fallthrough
+          // case 'changeRowsPerPage':
+          //   this.changeRowsPerPage(tableState.rowsPerPage)
+          //   break
           // eslint-disable-next-line no-fallthrough
           case 'rowSelectionChange':
             // eslint-disable-next-line no-case-declarations
@@ -357,7 +369,7 @@ export default class Secrets extends React.Component {
         <MUIDataTable
           title={
             <Typography variant="h6">
-              List pods
+              List secrets
               {isLoading && (
                 <CircularProgress
                   size={24}
