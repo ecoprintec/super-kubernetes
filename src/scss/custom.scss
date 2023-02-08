@@ -300,7 +300,8 @@ body {
   input.input,
   .select-value-wrapper .select-value,
   .select-value-wrapper .select-placeholder,
-  .select-options .select-option {
+  .select-options .select-option,
+  .form-item-error {
     font-family: 'Maven Pro';
   }
   .src-components-Layout-Nav-index__subNav {
@@ -324,6 +325,61 @@ body {
   .MuiTabs-root {
     margin-bottom: 12px;
     .MuiTab-textColorPrimary {
+      color: $black;
+    }
+  }
+  input.input {
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: 400;
+  }
+  .select-value-wrapper .select-value,
+  .select-options .select-option-label {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  form [class*='form-item'] {
+    font-size: 14px;
+  }
+  .select-options {
+    background-color: $white;
+    .select-option {
+      color: $black;
+      &:hover {
+        background-color: $blue-color03;
+      }
+    }
+    .select-option-active {
+      background-color: $blue-color03;
+    }
+  }
+  .src-components-KubeTools-index__toolsContent {
+    background-color: #fafafa;
+  }
+  .src-components-Base-List-index__item {
+    border: none;
+    box-shadow: 0px 1px 3px 0px rgba(142, 142, 142, 0.2),
+      0px 1px 1px 0px rgba(243, 243, 243, 0.14),
+      0px 2px 1px -1px rgba(204, 204, 204, 0.12);
+  }
+  .select-control,
+  .src-pages-clusters-containers-BaseInfo-ManageButton-index__manage
+    .src-pages-clusters-containers-BaseInfo-ManageButton-index__button,
+  .src-pages-clusters-containers-BaseInfo-ManageButton-index__manage,
+  .src-components-Modals-UserSetting-index__tabs li {
+    border-radius: 8px;
+  }
+  .src-components-Modals-UserSetting-index__tabs
+    li.src-components-Modals-UserSetting-index__active {
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    .kubed-icon {
+      color: rgba(0, 0, 0, 0.9);
+      fill: rgba(0, 0, 0, 0.4);
+    }
+    p {
       color: $black;
     }
   }
