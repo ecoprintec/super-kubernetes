@@ -45,7 +45,7 @@ const Status = ({ status, tip }) => {
       name={status === 'success' ? 'success' : 'error'}
       color={{
         primary: '#fff',
-        secondary: status === 'success' ? '#55bc8a' : '#ca2621',
+        secondary: status === 'success' ? '#3f51b5' : '#ca2621',
       }}
     />
   )

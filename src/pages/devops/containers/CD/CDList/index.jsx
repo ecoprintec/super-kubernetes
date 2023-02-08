@@ -494,7 +494,7 @@ export default class CDList extends React.Component {
     const WEATHER_CONFIG = [
       {
         title: 'HEALTHY',
-        color: '#55BC8A',
+        color: '#3f51b5',
         used: healthStatus.Healthy || 0,
         total,
         icon: '/assets/cd/health.svg',
@@ -540,7 +540,7 @@ export default class CDList extends React.Component {
     const WEATHER_CONFIG = [
       {
         title: 'SYNCED',
-        color: '#55BC8A',
+        color: '#3f51b5',
         used: syncStatus.Synced || 0,
         total,
         icon: '/assets/cd/synced.svg',
