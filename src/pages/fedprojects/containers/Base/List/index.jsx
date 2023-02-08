@@ -37,25 +37,41 @@ export default class FederatedProjectLayout extends Component {
   handleChange = url => this.routing.push(url)
 
   render() {
-    const { match, route, location } = this.props
+    const { match, route, location, rootStore } = this.props
     const { detail } = this.props.projectStore
 
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Selector
-            title={t('MULTI_CLUSTER_PROJECT_SCAP')}
-            type="federatedprojects"
-            detail={detail}
-            workspace={match.params.workspace}
-            onChange={this.handleChange}
-            isFederated
-          />
+          <Slide
+            timeout={{ enter: 300, exit: 400 }}
+            in={rootStore.openMenu}
+            direction={'right'}
+          >
+            <div
+              style={{
+                padding: '0px 0px 0px 15px',
+                position: 'fixed',
+                width: '300px',
+              }}
+              className={rootStore.openMenu === true ? 'title-in-delay' : ''}
+            >
+              <Selector
+                title={t('MULTI_CLUSTER_PROJECT_SCAP')}
+                type="federatedprojects"
+                detail={detail}
+                workspace={match.params.workspace}
+                onChange={this.handleChange}
+                isFederated
+              />
+            </div>
+          </Slide>
           <Nav
             className="ks-page-nav"
             navs={globals.app.getFederatedProjectNavs()}
             location={location}
             match={match}
+            haveNavTitle
           />
         </div>
         <div className="ks-page-main">{renderRoutes(route.routes)}</div>

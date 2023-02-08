@@ -110,6 +110,14 @@ class BaseLayout extends Component {
     this.props.rootStore.routing.push(link)
   }
 
+  handleToggleOpenMenu = () => {
+    if (this.props.rootStore.isGlobalMenu === true) {
+      this.props.rootStore.closeGlobalMenu()
+    } else if (this.props.rootStore.isGlobalMenu === false) {
+      this.props.rootStore.toggleOpenMenu()
+    }
+  }
+
   render() {
     const { location, rootStore, route } = this.props
 
@@ -123,6 +131,7 @@ class BaseLayout extends Component {
           onToggleNav={rootStore.toggleGlobalNav}
           jumpTo={this.handleJumpTo}
           route={route.routes}
+          onToggleOpenMenu={this.handleToggleOpenMenu}
         />
         {globals.user && globals.app.enableGlobalNav && (
           <GlobalNav

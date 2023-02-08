@@ -13,13 +13,12 @@ $trans-speed: 0.2s;
     margin-bottom: 20px;
     & > li {
       transition: all $trans-speed ease-in-out;
-
       & > a,
       .title {
         display: block;
-        padding: 7px 12px;
-        color: #4a5974;
-        font-weight: 500;
+        padding: 7px;
+        color: inherit;
+        font-weight: 400;
         cursor: pointer;
 
         @media (max-width: 1366px) {
@@ -28,7 +27,7 @@ $trans-speed: 0.2s;
 
         :global {
           .icon {
-            margin-right: 8px;
+            margin-right: 2px;
             vertical-align: text-bottom;
           }
 
@@ -38,25 +37,27 @@ $trans-speed: 0.2s;
           }
         }
         &:hover {
-          background-color: $primary;
-          color: white;
+          background-color: rgba(80, 80, 80, 0.05);
+          color: rgba(0, 0, 0, 0.54) !important;
+          border-radius: 8px;
         }
       }
 
       &.select {
-        border-left: 5px solid $primary;
+        border-left: 5px solid $darkblue-color02;
+        margin-bottom: 10px;
         & > a {
-          color: $primary;
+          color: $darkblue-color01;
 
           :global .kubed-icon {
-            color: #00aa72;
-            fill: #90e0c5;
+            color: $darkblue-color01;
+            fill: $darkblue-color01;
           }
         }
 
         .title {
-          color: white;
-          background-color: $primary;
+          color: $darkblue-color01;
+          background-color: transparent;
           :global .kubed-icon-chevron-down {
             transform: rotate(-180deg);
           }
@@ -79,7 +80,7 @@ $trans-speed: 0.2s;
 
       &.open {
         .innerNav > li {
-          height: 20px;
+          height: 40px;
           margin-top: 8px;
           opacity: 1;
           transition: height $trans-speed ease-in-out,
@@ -88,17 +89,19 @@ $trans-speed: 0.2s;
         }
         &.childSelect {
           border-left: 5px solid $primary;
+          color: $darkblue-color03;
         }
       }
 
       &.childSelect .title {
-        color: $primary;
         :global .kubed-icon {
-          color: #00aa72;
-          fill: #90e0c5;
+          color: $darkblue-color01;
+          fill: $darkblue-color01;
         }
-        color: white;
-        background-color: $primary;
+        color: $darkblue-color01;
+        border-left: 5px solid rgba(63, 81, 181, 0.5);
+        background-color: transparent;
+        border-radius: 0px;
       }
 
       &.disabled {
@@ -139,8 +142,7 @@ $trans-speed: 0.2s;
 
 .innerNav {
   margin-bottom: 4px;
-  padding-left: 38px;
-
+  padding-left: 12px;
   @media (max-width: 1366px) {
     padding-left: 26px;
   }
@@ -151,17 +153,18 @@ $trans-speed: 0.2s;
     overflow: hidden;
     transition: height $trans-speed ease-in-out 0.1s,
       margin-top $trans-speed ease-in-out 0.1s, opacity $trans-speed ease-in-out;
-
     & > a {
       display: block;
-      color: #4a5974;
+      padding: 7px 5px 10px 24px;
+      border-radius: 8px;
     }
 
     &.select,
     &:hover,
     &:active {
       & > a {
-        color: $primary;
+        background-color: #e8eaf6;
+        color: $darkblue-color03;
       }
     }
 
@@ -199,4 +202,94 @@ $trans-speed: 0.2s;
 .tip {
   margin-top: -2px;
   margin-left: 4px;
+}
+
+//Dylan edition
+.navparent {
+  min-width: 95px;
+  width: 105px;
+  .parent_nav_tabs {
+    color: rgba(0, 0, 0, 0.74);
+    min-width: unset;
+    width: 100%;
+    padding: 0px 10px;
+    font-size: 12px;
+    span {
+      border-radius: 4px;
+      padding: 8px 0px 3px 0px;
+      &:hover {
+        background-color: rgba(80, 80, 80, 0.05);
+      }
+      div {
+        margin-bottom: -5px !important;
+        svg {
+          fill: rgba(0, 0, 0, 0.24);
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+    &.avatar {
+      margin-bottom: 8px;
+      span {
+        &:hover {
+          background-color: transparent;
+        }
+        height: 48px;
+        padding: 15px 0px;
+        div {
+          margin-bottom: 0px !important;
+          svg {
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+    }
+  }
+}
+.accordionGlobal {
+  padding: 0 !important;
+  background-color: transparent !important;
+  width: 100%;
+  margin-bottom: 15px;
+  .accordionSummaryGlobal {
+    padding: 0 !important;
+    min-height: unset !important;
+    height: 38px;
+    border-radius: 4px !important;
+    &:hover {
+      color: #283593 !important;
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+    .navsglobal {
+      margin-bottom: 0px !important;
+      &:hover {
+        background-color: transparent !important;
+      }
+    }
+  }
+  .accordionDetailsGlobal {
+    flex-direction: column;
+    padding: 0px 0px 0px 22px;
+    white-space: nowrap;
+    text-align: start;
+    font-size: 12px;
+    text-overflow: ellipsis;
+  }
+}
+.navsglobal {
+  width: 100%;
+  justify-content: flex-start !important;
+  margin-bottom: 15px !important;
+  &:hover {
+    color: #283593 !important;
+  }
+  &.arcordionItem {
+    text-transform: capitalize;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+    font-size: 12px;
+    font-weight: 400;
+  }
 }

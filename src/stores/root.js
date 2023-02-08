@@ -38,6 +38,12 @@ export default class RootStore {
   @observable
   oauthServers = []
 
+  @observable
+  openMenu = false
+
+  @observable
+  isGlobalMenu = false
+
   constructor() {
     this.websocket = new WebSocketStore()
 
@@ -64,6 +70,26 @@ export default class RootStore {
   @action
   toggleGlobalNav = () => {
     this.showGlobalNav = !this.showGlobalNav
+  }
+
+  @action
+  toggleOpenMenu = () => {
+    this.openMenu = !this.openMenu
+  }
+
+  @action
+  onOpenMenu = () => {
+    this.openMenu = true
+  }
+
+  @action
+  openGlobalMenu = () => {
+    this.isGlobalMenu = true
+  }
+
+  @action
+  closeGlobalMenu = () => {
+    this.isGlobalMenu = false
   }
 
   @action

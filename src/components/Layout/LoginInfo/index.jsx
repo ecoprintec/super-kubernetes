@@ -21,11 +21,11 @@ import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
 import { Dropdown, Menu, Icon } from '@kube-design/components'
-
 import AboutModal from 'components/Modals/About'
 import { trigger } from 'utils/action'
-
+import Avatar from '@material-ui/core/Avatar'
 import UserStore from 'stores/user'
+import avataImg from '../../../assets/pp_boy4.jpg'
 import styles from './index.scss'
 
 @inject('rootStore')
@@ -103,7 +103,7 @@ export default class LoginInfo extends Component {
   }
 
   render() {
-    const { className, isAppsPage } = this.props
+    const { className } = this.props
 
     if (!globals.user) {
       return (
@@ -130,21 +130,7 @@ export default class LoginInfo extends Component {
     return (
       <div className={classnames(styles.logined, className)}>
         <Dropdown content={this.renderDropDown()} placement="bottomRight">
-          <div
-            className={classnames(styles.name, {
-              [styles.isAppsPage]: isAppsPage,
-            })}
-          >
-            <Icon
-              name="human"
-              color={{
-                primary: '#ffffff',
-                secondary: '#ffffff',
-              }}
-            />
-            {globals.user.username}
-            <Icon name="caret-down" type={'white'} />
-          </div>
+          <Avatar src={avataImg}></Avatar>
         </Dropdown>
         {this.renderModals()}
       </div>

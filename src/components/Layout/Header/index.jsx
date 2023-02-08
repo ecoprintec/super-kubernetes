@@ -27,7 +27,7 @@ import AppsIcon from '@material-ui/icons/Apps'
 import SettingsIcon from '@material-ui/icons/Settings'
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import IconButton from '@material-ui/core/IconButton'
-
+import MenuIcon from '@material-ui/icons/Menu'
 import MuiButton from '@material-ui/core/Button'
 import { Box, Typography } from '@material-ui/core'
 
@@ -88,11 +88,13 @@ class Header extends React.Component {
   }
 
   handleCheckTitle = () => {
+    const checkTitleMatch = []
     this.props.route.map(routeItem => {
       if (
         this.props.location.pathname.startsWith(routeItem.path) &&
         routeItem.name
       ) {
+        checkTitleMatch.push(routeItem.name)
         this.setState({
           ...this.state,
           getTitle: routeItem.name ? routeItem.name : '',
@@ -100,7 +102,15 @@ class Header extends React.Component {
       }
       return this.state.location
     })
+    if (checkTitleMatch.length === 0) {
+      this.setState({
+        ...this.state,
+        getTitle: '',
+      })
+    }
   }
+
+  toogleMenu = () => {}
 
   render() {
     const { className, innerRef, location } = this.props
@@ -120,6 +130,9 @@ class Header extends React.Component {
         )}
       >
         <Box component={'div'} display={'flex'} alignItems={'center'}>
+          <IconButton onClick={this.props.onToggleOpenMenu}>
+            <MenuIcon htmlColor="#283593" />
+          </IconButton>
           <Link to={isAppsPage() && !globals.user ? '/apps' : '/'}>
             <img
               className={styles.logo}
