@@ -140,6 +140,16 @@ export default class WorkloadTable extends React.Component {
 
   get filteredColumns() {
     const cl = []
+    const arrAction = []
+    // eslint-disable-next-line array-callback-return
+    this.props.itemActions.map(item => {
+      arrAction.push({
+        icon: item?.icon,
+        title: item?.text,
+        action: item?.onClick,
+      })
+    })
+
     // return this.props.columns.filter(
     //   clm => !hideColumns.includes(clm.key || clm.dataIndex)
     // )
@@ -170,35 +180,10 @@ export default class WorkloadTable extends React.Component {
             sort: false,
             download: false,
             customBodyRender: () => {
-              return (
-                <SplitButton
-                  options={
-                    [
-                      // {
-                      //   icon: <VisibilityIcon fontSize="small" />,
-                      //   title: 'View YAML',
-                      //   action: () => {
-                      //     this.props.trigger('resource.yaml.edit', {
-                      //       detail: tableMeta.rowData,
-                      //       readOnly: true,
-                      //     })
-                      //   },
-                      // },
-                      // {
-                      //   icon: <DeleteIcon fontSize="small" />,
-                      //   title: 'Delete pods',
-                      //   action: () => {
-                      //     this.props.trigger('resource.delete', {
-                      //       type: tableMeta.rowData.name,
-                      //       detail: tableMeta.rowData,
-                      //       success: this.props.getData(),
-                      //     })
-                      //   },
-                      // },
-                    ]
-                  }
-                />
-              )
+              // console.log('namespace', namespace)
+              // console.log('record', record)
+              // const detail = this.props.data[record.rowIndex]
+              return <SplitButton options={arrAction} />
             },
           },
         })
