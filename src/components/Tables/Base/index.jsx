@@ -151,20 +151,23 @@ export default class WorkloadTable extends React.Component {
   get filteredColumns() {
     const cl = []
     const arrAction = []
-    // eslint-disable-next-line array-callback-return
-    this.props.itemActions.map(item => {
-      arrAction.push({
-        icon: detail => (isFunction(item.icon) ? item.icon(detail) : item.icon),
-        title: detail =>
-          isFunction(item.text) ? item.text(detail) : item.text,
-        action: detail => item?.onClick(detail),
-        show: detail => (isFunction(item.show) ? item?.show(detail) : true),
+    if (this.props.itemActions && this.props.itemActions.length) {
+      // eslint-disable-next-line array-callback-return
+      this.props.itemActions.map(item => {
+        arrAction.push({
+          icon: detail =>
+            isFunction(item.icon) ? item.icon(detail) : item.icon,
+          title: detail =>
+            isFunction(item.text) ? item.text(detail) : item.text,
+          action: detail => item?.onClick(detail),
+          show: detail => (isFunction(item.icon) ? item?.show(detail) : true),
+        })
       })
-    })
+    }
 
     // eslint-disable-next-line array-callback-return
-    this.props.columns.map((item, key) => {
-      if (key < this.props.columns.length - 1) {
+    this.props.columns.map(item => {
+      if (item.dataIndex) {
         cl.push({
           name: item.dataIndex ? item.dataIndex : 'Columns',
           label: item?.title,
@@ -181,16 +184,16 @@ export default class WorkloadTable extends React.Component {
 
               if (isFunction(item.render)) {
                 const arrNameParams = this.getParamNames(item.render)
-                const argument = {
-                  1:
-                    arrNameParams[0] === 'record'
-                      ? [detail]
-                      : [detail[item.dataIndex]],
-                  2: [detail[item.dataIndex], detail],
+
+                if (arrNameParams.length === 1) {
+                  if (arrNameParams[0] === 'record') {
+                    text = item.render(detail)
+                  } else {
+                    text = item.render(detail[item.dataIndex])
+                  }
+                } else {
+                  text = item.render(detail[item.dataIndex], detail)
                 }
-                text = item.render(...argument[arrNameParams.length])
-              } else {
-                text = detail[item.dataIndex]
               }
               return text
             },
@@ -199,22 +202,23 @@ export default class WorkloadTable extends React.Component {
             },
           },
         })
-      } else {
-        cl.push({
-          name: 'namespace',
-          label: 'Actions',
-          options: {
-            filter: false,
-            sort: false,
-            download: false,
-            customBodyRenderLite: dataIndex => {
-              const detail = this.props.data[dataIndex]
-              return <SplitButton options={arrAction} detail={detail} />
-            },
-          },
-        })
       }
     })
+    if (arrAction.length) {
+      cl.push({
+        name: 'namespace',
+        label: 'Actions',
+        options: {
+          filter: false,
+          sort: false,
+          download: false,
+          customBodyRenderLite: dataIndex => {
+            const detail = this.props.data[dataIndex]
+            return <SplitButton options={arrAction} detail={detail} />
+          },
+        },
+      })
+    }
     return cl
   }
 
@@ -626,13 +630,16 @@ export default class WorkloadTable extends React.Component {
       })
     })
     return (
-      <MUIDataTable
-        title={<Typography variant="h6">{this.renderActions()}</Typography>}
-        data={new_list}
-        columns={this.filteredColumns}
-        options={options}
-        className={styles.muitable}
-      />
+      <div>
+        {this.renderActions()}
+        <MUIDataTable
+          title={<Typography variant="h6"></Typography>}
+          data={new_list}
+          columns={this.filteredColumns}
+          options={options}
+          className={styles.muitable}
+        />
+      </div>
     )
   }
 }
