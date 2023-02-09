@@ -29,7 +29,7 @@ import {
   Button,
   InputSearch,
 } from '@kube-design/components'
-import { safeParseJSON } from 'utils'
+import { safeParseJSON, getLocalTime } from 'utils'
 
 import { Typography, CircularProgress } from '@mui/material'
 import MUIDataTable from 'mui-datatables'
@@ -162,9 +162,6 @@ export default class WorkloadTable extends React.Component {
       })
     })
 
-    // return this.props.columns.filter(
-    //   clm => !hideColumns.includes(clm.key || clm.dataIndex)
-    // )
     // eslint-disable-next-line array-callback-return
     this.props.columns.map((item, key) => {
       if (key < this.props.columns.length - 1) {
@@ -172,22 +169,15 @@ export default class WorkloadTable extends React.Component {
           name: item.dataIndex ? item.dataIndex : 'Columns',
           label: item?.title,
           options: {
-            // display: false,
+            display:
+              item.display !== undefined && item.display === false
+                ? item?.display
+                : true,
             filter: true,
             customBodyRenderLite: dataIndex => {
               const detail = this.props.data[dataIndex]
               let text = ''
-              // const arrNameParams = this.getParamNames(item.render)
-              // const argument = {
-              //   1:
-              //     arrNameParams[0] === 'record'
-              //       ? detail
-              //       : detail[item.dataIndex],
-              //   2: { value: detail[item.dataIndex], detail },
-              // }
-              // const text = isFunction(item.render)
-              //   ? item.render(...argument[arrNameParams.length])
-              //   : detail[item.dataIndex]
+
               if (isFunction(item.render)) {
                 const arrNameParams = this.getParamNames(item.render)
                 const argument = {
@@ -201,24 +191,7 @@ export default class WorkloadTable extends React.Component {
               } else {
                 text = detail[item.dataIndex]
               }
-              // if (isFunction(item.render)) {
-              //   const arrNameParams = this.getParamNames(item.render)
-              //   console.log('content', arrNameParams)
-              //   if (arrNameParams.length > 1) {
-              //     const value = detail[item.dataIndex]
-              //     text = item.render(value, detail)
-              //   }
-              //   if (arrNameParams.length === 1) {
-              //     if (arrNameParams[0] === 'record') {
-              //       text = item.render(detail)
-              //     } else {
-              //       const value = detail[item.dataIndex]
-              //       text = item.render(value)
-              //     }
-              //   }
-              // } else {
-              //   text = detail[item.dataIndex]
-              // }
+
               return text
             },
           },
@@ -232,12 +205,7 @@ export default class WorkloadTable extends React.Component {
             sort: false,
             download: false,
             customBodyRenderLite: dataIndex => {
-              // console.log('namespace', namespace)
-
               const detail = this.props.data[dataIndex]
-              // const secrets = detail.secrets
-
-              // const content = item.render(secrets, detail)
               return <SplitButton options={arrAction} detail={detail} />
             },
           },
@@ -580,113 +548,6 @@ export default class WorkloadTable extends React.Component {
       this.state.isLoading = false
       list = data
     }
-    // const columns = [
-    //   {
-    //     name: 'name',
-    //     label: 'Name',
-    //     options: {
-    //       filter: true,
-    //       customBodyRender: this.renderAvatar,
-    //     },
-    //   },
-    //   {
-    //     name: 'status.phase',
-    //     label: 'Status',
-    //     options: {
-    //       filter: true,
-    //       customBodyRender: status => {
-    //         return <Link to={``}>{status}</Link>
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'node',
-    //     label: 'Node',
-    //     options: {
-    //       filter: true,
-    //       customBodyRender: node => {
-    //         return <Link to={``}>{node}</Link>
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'nodeIp',
-    //     label: 'Pod IP Address',
-    //     options: {
-    //       filter: true,
-    //       customBodyRender: nodeIp => {
-    //         return <Link to={``}>{nodeIp}</Link>
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'createTime',
-    //     label: 'Update Time',
-    //     options: {
-    //       filter: true,
-    //       customBodyRender: updateTime => {
-    //         return (
-    //           <Link to={``}>
-    //             {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
-    //           </Link>
-    //         )
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'namespace',
-    //     label: 'Actions',
-    //     options: {
-    //       filter: false,
-    //       sort: false,
-    //       download: false,
-    //       customBodyRender: (value, tableMeta) => {
-    //         return (
-    //           <SplitButton
-    //             options={[
-    //               {
-    //                 icon: <VisibilityIcon fontSize="small" />,
-    //                 title: 'View YAML',
-    //                 action: () => {
-    //                   this.props.trigger('resource.yaml.edit', {
-    //                     detail: tableMeta.rowData,
-    //                     readOnly: true,
-    //                   })
-    //                 },
-    //               },
-    //               {
-    //                 icon: <DeleteIcon fontSize="small" />,
-    //                 title: 'Delete pods',
-    //                 action: () => {
-    //                   this.props.trigger('resource.delete', {
-    //                     type: tableMeta.rowData.name,
-    //                     detail: tableMeta.rowData,
-    //                     success: this.props.getData(),
-    //                   })
-    //                 },
-    //               },
-    //             ]}
-    //           />
-    //         )
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'namespace',
-    //     label: 'Project',
-    //     options: {
-    //       display: false,
-    //       filter: true,
-    //       customBodyRender: updateTime => {
-    //         return (
-    //           <Link to={``}>
-    //             {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
-    //           </Link>
-    //         )
-    //       },
-    //     },
-    //   },
-    // ]
 
     const options = {
       filter: true,
@@ -732,45 +593,27 @@ export default class WorkloadTable extends React.Component {
         },
       },
     }
+    // eslint-disable-next-line array-callback-return
+    const new_list = []
+    // eslint-disable-next-line array-callback-return
+    list.map(item => {
+      new_list.push({
+        ...item,
+        ...{
+          startTime: item?.startTime
+            ? getLocalTime(item?.startTime).format('YYYY-MM-DD HH:mm:ss')
+            : '',
+        },
+      })
+    })
     return (
-      // <Table
-      //   className={classnames(styles.table, 'ks-table', className)}
-      //   rowKey={rowKey}
-      //   columns={this.filteredColumns}
-      //   dataSource={toJS(data)}
-      //   loading={silentLoading ? false : isLoading}
-      //   onChange={this.handleChange}
-      //   emptyText={this.renderEmptyText()}
-      //   {...props}
-      //   {...extraProps}
-      // />
-      <div className={styles.wraperTable} {...props}>
-        <div className={styles.groupBtn}>
-          {/* {this.props?.actions?.length && */}
-          {/*   this.props.actions.map(item => ( */}
-          {/*     <div */}
-          {/*       className={styles.groupBtnDiv} */}
-          {/*       style={{ */}
-          {/*         background: item?.background, */}
-          {/*       }} */}
-          {/*       onClick={() => item.onClick} */}
-          {/*     > */}
-          {/*       {item.icon && ( */}
-          {/*         <div className={styles.BtnIcon}>{item?.icon}</div> */}
-          {/*       )} */}
-
-          {/*       <div className={styles.BtnTitle}>{item?.text}</div> */}
-          {/*     </div> */}
-          {/*   ))} */}
-        </div>
-        <MUIDataTable
-          title={<Typography variant="h6">{this.renderActions()}</Typography>}
-          data={list}
-          columns={this.filteredColumns}
-          options={options}
-          className={styles.muitable}
-        />
-      </div>
+      <MUIDataTable
+        title={<Typography variant="h6">{this.renderActions()}</Typography>}
+        data={new_list}
+        columns={this.filteredColumns}
+        options={options}
+        className={styles.muitable}
+      />
     )
   }
 }
