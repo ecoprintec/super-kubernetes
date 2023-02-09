@@ -1,6 +1,7 @@
 import React from 'react'
-import Fade from '@material-ui/core/Fade'
 import PropTypes from 'prop-types'
+import { Grow } from '@material-ui/core'
+import '../index.css'
 
 export default class TabPanel extends React.Component {
   // { children, value, index, menuAction, ...other } = tabprops;
@@ -30,15 +31,15 @@ export default class TabPanel extends React.Component {
         {...other}
       >
         {value === index && nodeChild && (
-          <Fade
+          <Grow
             timeout={400}
             in={openMenuTabpanel}
             mountOnEnter
             exit
             unmountOnExit
           >
-            <ul className={`ul-wrapper`}>{children || nodeChild}</ul>
-          </Fade>
+            <ul className="ul-wrapper">{children || nodeChild}</ul>
+          </Grow>
         )}
       </div>
     )
