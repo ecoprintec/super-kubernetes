@@ -12,14 +12,14 @@
     height: 96px;
     border: solid 8px $light-color02;
     border-radius: 8px;
-    background-color: $dark-color07;
-    color: $white;
+    background-color: $white;
+    color: $text-color;
     text-align: center;
     background-position: 50% 35px;
     padding: 10px;
 
     h3 {
-      @include TypographySymbolText($white);
+      @include TypographySymbolText($text-color);
     }
     picture {
       display: inline-block;

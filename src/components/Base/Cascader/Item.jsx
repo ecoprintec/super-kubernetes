@@ -78,7 +78,7 @@ export default class Item extends Component {
           onClick={this.handleClick}
         >
           {data.label}
-          <Icon name="chevron-right" type="light" />
+          <Icon name="chevron-right" type="dark" />
         </div>
         {isOpen && (
           <Options

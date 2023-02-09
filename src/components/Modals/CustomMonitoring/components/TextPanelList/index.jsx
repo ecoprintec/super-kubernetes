@@ -34,6 +34,7 @@ export default function TextPanelList({
   onEdit,
   onSort,
   monitors,
+  currentTheme,
 }) {
   return (
     <div>
@@ -89,7 +90,11 @@ export default function TextPanelList({
       {isEditing && (
         <div className={styles.wrapper}>
           <div onClick={onAdd} className={styles.addButton}>
-            <Icon name={'add'} size={20} type="light" />
+            <Icon
+              name={'add'}
+              size={20}
+              type={currentTheme === 'light' ? 'dark' : 'light'}
+            />
           </div>
         </div>
       )}

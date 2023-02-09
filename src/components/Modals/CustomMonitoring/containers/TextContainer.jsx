@@ -98,6 +98,7 @@ export default class TextContainer extends React.Component {
 
   render() {
     const { isEditing } = this.props.monitoringStore
+    const { theme } = this.props.modalStore
     const textMonitorData = this.textMonitorData
     const textPanels = textMonitorData
     const monitors = this.monitors.map(monitor => ({ monitor }))
@@ -111,6 +112,7 @@ export default class TextContainer extends React.Component {
         onDelete={this.handleDelete}
         onEdit={this.handleEdit}
         onAdd={this.handleAdd}
+        currentTheme={theme}
       />
     )
   }
