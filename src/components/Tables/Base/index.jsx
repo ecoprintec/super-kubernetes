@@ -177,8 +177,12 @@ export default class WorkloadTable extends React.Component {
                 ? item?.display
                 : true,
             filter: true,
-            customBodyRenderLite: dataIndex => {
-              const detail = this.props.data[dataIndex]
+            filterType: 'dropdown',
+            setCellProps: () => ({
+              style: { maxWidth: '600px' },
+            }),
+            customBodyRender: (value, tableMeta) => {
+              const detail = this.props.data[tableMeta.rowIndex]
               let text = ''
 
               if (isFunction(item.render)) {
@@ -188,13 +192,12 @@ export default class WorkloadTable extends React.Component {
                   if (arrNameParams[0] === 'record') {
                     text = item.render(detail)
                   } else {
-                    text = item.render(detail[item.dataIndex])
+                    text = item.render(value)
                   }
                 } else {
-                  text = item.render(detail[item.dataIndex], detail)
+                  text = item.render(value, detail)
                 }
               }
-
               return text
             },
           },

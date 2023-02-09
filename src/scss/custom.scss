@@ -299,6 +299,9 @@ body {
   .form-item-error {
     font-family: 'Maven Pro';
   }
+  .MuiTable-root [class*='MUIDataTableBodyCell'] {
+    word-wrap: break-word;
+  }
   .src-components-Layout-Nav-index__subNav {
     font-size: 14px;
   }
