@@ -120,35 +120,11 @@ export default {
       })
     },
   },
-  // 'node.taint.batch': {
-  //   on({ store, success }) {
-  //     const { data, selectedRowKeys } = toJS(store.list)
-  //     const selectedNodes = data.filter(node =>
-  //       selectedRowKeys.includes(node.name)
-  //     )
-  //     const modal = Modal.open({
-  //       onOk: nodes => {
-  //         store.batchPatchTaints(nodes).then(() => {
-  //           Modal.close(modal)
-  //           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
-  //           success && success()
-  //         })
-  //       },
-  //       nodes: selectedNodes,
-  //       modal: TaintManagementModal,
-  //       store,
-  //     })
-  //   },
-  // },
   'node.taint.batch': {
     on({ store, success, selectedRows }) {
       const { data } = toJS(store.list)
-      const rowDataIndexs =
-        selectedRows.data.map(item => {
-          return item.dataIndex
-        }) || []
-      const selectedNodes = data.filter((node, index) =>
-        rowDataIndexs.includes(index)
+      const selectedNodes = data.filter(node =>
+        selectedRows.includes(node.name)
       )
       const modal = Modal.open({
         onOk: nodes => {
@@ -164,6 +140,30 @@ export default {
       })
     },
   },
+  // 'node.taint.batch': {
+  //   on({ store, success, selectedRows }) {
+  //     const { data } = toJS(store.list)
+  //     const rowDataIndexs =
+  //       selectedRows.data.map(item => {
+  //         return item.dataIndex
+  //       }) || []
+  //     const selectedNodes = data.filter((node, index) =>
+  //       rowDataIndexs.includes(index)
+  //     )
+  //     const modal = Modal.open({
+  //       onOk: nodes => {
+  //         store.batchPatchTaints(nodes).then(() => {
+  //           Modal.close(modal)
+  //           Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+  //           success && success()
+  //         })
+  //       },
+  //       nodes: selectedNodes,
+  //       modal: TaintManagementModal,
+  //       store,
+  //     })
+  //   },
+  // },
   'node.edge.add': {
     on({ cluster, store, ...props }) {
       const modal = Modal.open({

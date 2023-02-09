@@ -159,13 +159,10 @@ export default class WorkloadTable extends React.Component {
         title: detail =>
           isFunction(item.text) ? item.text(detail) : item.text,
         action: detail => item?.onClick(detail),
-        show: detail => (isFunction(item.icon) ? item?.show(detail) : true),
+        show: detail => (isFunction(item.show) ? item?.show(detail) : true),
       })
     })
 
-    // return this.props.columns.filter(
-    //   clm => !hideColumns.includes(clm.key || clm.dataIndex)
-    // )
     // eslint-disable-next-line array-callback-return
     this.props.columns.map((item, key) => {
       if (key < this.props.columns.length - 1) {
@@ -173,22 +170,11 @@ export default class WorkloadTable extends React.Component {
           name: item.dataIndex ? item.dataIndex : 'Columns',
           label: item?.title,
           options: {
-            // display: false,
-            filter: true,
+            filter: item.search ? item.search : false,
+            sort: item.sorter ? item.sorter : false,
             customBodyRenderLite: dataIndex => {
               const detail = this.props.data[dataIndex]
               let text = ''
-              // const arrNameParams = this.getParamNames(item.render)
-              // const argument = {
-              //   1:
-              //     arrNameParams[0] === 'record'
-              //       ? detail
-              //       : detail[item.dataIndex],
-              //   2: { value: detail[item.dataIndex], detail },
-              // }
-              // const text = isFunction(item.render)
-              //   ? item.render(...argument[arrNameParams.length])
-              //   : detail[item.dataIndex]
               if (isFunction(item.render)) {
                 const arrNameParams = this.getParamNames(item.render)
                 const argument = {
@@ -202,25 +188,10 @@ export default class WorkloadTable extends React.Component {
               } else {
                 text = detail[item.dataIndex]
               }
-              // if (isFunction(item.render)) {
-              //   const arrNameParams = this.getParamNames(item.render)
-              //   console.log('content', arrNameParams)
-              //   if (arrNameParams.length > 1) {
-              //     const value = detail[item.dataIndex]
-              //     text = item.render(value, detail)
-              //   }
-              //   if (arrNameParams.length === 1) {
-              //     if (arrNameParams[0] === 'record') {
-              //       text = item.render(detail)
-              //     } else {
-              //       const value = detail[item.dataIndex]
-              //       text = item.render(value)
-              //     }
-              //   }
-              // } else {
-              //   text = detail[item.dataIndex]
-              // }
               return text
+            },
+            filterOptions: {
+              names: item.filterOptions || [],
             },
           },
         })
@@ -233,12 +204,7 @@ export default class WorkloadTable extends React.Component {
             sort: false,
             download: false,
             customBodyRenderLite: dataIndex => {
-              // console.log('namespace', namespace)
-
               const detail = this.props.data[dataIndex]
-              // const secrets = detail.secrets
-
-              // const content = item.render(secrets, detail)
               return <SplitButton options={arrAction} detail={detail} />
             },
           },
@@ -321,7 +287,7 @@ export default class WorkloadTable extends React.Component {
     this.handleFilterInput([])
   }
 
-  renderSelectActions() {
+  renderSelectActions(selectedRowsData) {
     const { onDelete, selectActions } = this.props
 
     if (selectActions) {
@@ -331,9 +297,13 @@ export default class WorkloadTable extends React.Component {
             <Button
               key={action.key}
               type={action.type}
-              disabled={action.disabled}
+              disabled={
+                isFunction(action.disabled)
+                  ? action.disabled(selectedRowsData)
+                  : false
+              }
               className={styles.button}
-              onClick={action.onClick}
+              onClick={() => action.onClick(selectedRowsData)}
               data-test={`table-${action.key}`}
             >
               {action.text}
@@ -731,6 +701,18 @@ export default class WorkloadTable extends React.Component {
             'Sorry, there is no matching data to display'
           ),
         },
+      },
+      customToolbarSelect: selectedRows => {
+        const listDataIndexs = selectedRows.data.map(item => item.dataIndex)
+        const selectedRowsData = this.props.data
+          .filter((item, index) => {
+            return listDataIndexs.includes(index)
+          })
+          .map(item => {
+            return item?.name
+          })
+
+        return <div>{this.renderSelectActions(selectedRowsData)}</div>
       },
     }
     return (
