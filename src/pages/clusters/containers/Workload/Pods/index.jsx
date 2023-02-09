@@ -110,7 +110,7 @@ export default class Pods extends React.Component {
       },
       {
         title: t('STATUS'),
-        dataIndex: 'status',
+        dataIndex: 'status.phase',
         filters: this.getPodsStatus(),
         isHideable: true,
         search: true,
@@ -137,7 +137,7 @@ export default class Pods extends React.Component {
         dataIndex: 'startTime',
         sorter: true,
         sortOrder: getSortOrder('startTime'),
-        isHideable: true,
+        isHideable: false,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -145,6 +145,7 @@ export default class Pods extends React.Component {
         title: 'Project',
         dataIndex: 'namespace',
         isHideable: true,
+        display: false,
       },
     ]
   }
