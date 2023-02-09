@@ -69,7 +69,7 @@ export default class Selector extends React.Component {
           onClick={this.showSelect}
         >
           <div className={styles.icon}>
-            <Icon name="enterprise" size={40} type="light" />
+            <Icon name="enterprise" size={40} />
           </div>
           <div className={styles.text}>
             <Tooltip content={detail.name}>

@@ -17,28 +17,15 @@
  */
 
 import React, { Component } from 'react'
-
 import { renderRoutes } from 'utils/router.config'
-
 import { Nav } from 'components/Layout'
-import { Icon } from '@kube-design/components'
-
-import styles from './layout.scss'
 
 class AccessLayout extends Component {
   render() {
     const { match, route, location } = this.props
     return (
-      <>
+      <div className="ks-page">
         <div className="ks-page-side">
-          <div className={styles.titleWrapper}>
-            <div className={styles.icon}>
-              <Icon name="cogwheel" size={40} type="light" />
-            </div>
-            <div className={styles.text}>
-              <div className="h6">{t('PLATFORM_SETTINGS')}</div>
-            </div>
-          </div>
           <Nav
             className="ks-page-nav"
             navs={globals.app.getPlatformSettingsNavs()}
@@ -47,7 +34,7 @@ class AccessLayout extends Component {
           />
         </div>
         <div className="ks-page-main">{renderRoutes(route.routes)}</div>
-      </>
+      </div>
     )
   }
 }

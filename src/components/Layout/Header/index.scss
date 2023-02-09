@@ -4,7 +4,7 @@
   position: relative;
   height: $header-height;
   background-color: transparent;
-  padding: 0px 35px;
+  padding: 0px 35px 0px 27px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,6 +50,7 @@
   //width: 150px;
   height: 37px;
   margin-top: 5px;
+  margin-left: 45px;
   .inAppsPage & {
     color: rgba(0, 0, 0, 0.87);
   }
@@ -81,6 +82,7 @@
 }
 
 .right {
+  display: flex;
   button {
     color: rgba(0, 0, 0, 0.48);
   }
@@ -91,18 +93,19 @@
 
 .loginInfo {
   margin-left: 18px;
+  padding: 5px 5px 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: transparent;
+}
+.header_title {
+  color: #283593;
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 14px;
-  background-color: #3f51b5;
+  background-color: transparent;
   div {
     color: white;
-  }
-  &:hover {
-    box-shadow: 0px 2px 4px -1px rgba(80, 80, 80, 0.2),
-      0px 4px 5px 0px rgba(80, 80, 80, 0.14),
-      0px 1px 10px 0px rgba(80, 80, 80, 0.12);
-    background-color: #3f51b5;
   }
 }
 .header_title {

@@ -24,6 +24,7 @@ import { renderRoutes, getIndexRoute } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
 import Selector from 'workspaces/components/Selector'
+import { Slide } from '@material-ui/core'
 
 @inject('rootStore', 'workspaceStore')
 @observer
@@ -44,6 +45,7 @@ class WorkspaceLayout extends Component {
       match,
       location,
       route: { routes = [], path },
+      rootStore,
     } = this.props
     const { detail } = this.props.workspaceStore
     const navs = globals.app.getWorkspaceNavs(this.workspace)
@@ -52,16 +54,32 @@ class WorkspaceLayout extends Component {
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Selector
-            icon={detail.logo}
-            detail={detail}
-            onChange={this.enterWorkspace}
-          />
+          <Slide
+            timeout={{ enter: 300, exit: 400 }}
+            in={rootStore.openMenu}
+            direction={'right'}
+          >
+            <div
+              style={{
+                padding: '0px 0px 0px 15px',
+                position: 'fixed',
+                width: '300px',
+              }}
+              className={rootStore.openMenu === true ? 'title-in-delay' : ''}
+            >
+              <Selector
+                icon={detail.logo}
+                detail={detail}
+                onChange={this.enterWorkspace}
+              />
+            </div>
+          </Slide>
           <Nav
             className="ks-page-nav"
             navs={navs}
             location={location}
             match={match}
+            haveNavTitle
           />
         </div>
         <div className="ks-page-main">

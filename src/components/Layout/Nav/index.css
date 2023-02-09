@@ -1,0 +1,36 @@
+.avatar-menu-icon .MuiSvgIcon-root {
+  font-size: 32px !important;
+}
+
+.avatar-dot-status {
+  background-color: #8bc34a;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  right: 33px;
+  bottom: 3px;
+  border: 1px white solid;
+}
+
+.avatar-menu-icon {
+  opacity: 1 !important;
+}
+
+.MuiTab-textColorInherit.Mui-selected {
+  color: #3f51b5;
+}
+.MuiTab-textColorInherit.Mui-selected
+  .MuiTab-wrapper
+  .left-menu-parent-icon
+  svg {
+  fill: #3f51b5;
+}
+
+.nav-underfixed {
+  height: 100%;
+}
+
+.ul-wrapper {
+  min-width: 197px;
+}

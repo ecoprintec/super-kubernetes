@@ -241,7 +241,11 @@ export default class ConfigMaps extends React.Component {
         options: {
           filter: true,
           customBodyRender: data => {
-            return Object.keys(data).join(',')
+            return (
+              <div style={{ maxWidth: '200px', wordBreak: 'break-all' }}>
+                {Object.keys(data).join(',')}
+              </div>
+            )
           },
         },
       },
