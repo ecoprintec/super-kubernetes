@@ -98,18 +98,10 @@ export default {
     on({ store, success, selectValues, ...props }) {
       const serviceStore = new ServiceStore()
       const { data } = store.list
-      // const selectValues = data
-      //   .filter(item => selectedRowKeys.includes(item[rowKey]))
-      //   .map(item => {
-      //     return { name: item.name, namespace: item.namespace }
-      //   })
-
       const selectNames = selectValues.map(item => item.name)
-
       const modal = Modal.open({
         onOk: async () => {
           const reqs = []
-
           data.forEach(item => {
             const selectValue = selectValues.find(
               value =>
@@ -125,16 +117,18 @@ export default {
               }
             }
           })
-
           await Promise.all(reqs)
 
           Modal.close(modal)
           Notify.success({ content: t('DELETED_SUCCESSFULLY') })
-          store.setSelectRowKeys([])
+          // store.setSelectRowKeys([])
           success && success()
         },
         resource: selectNames.join(', '),
-        modal: DeleteModal,
+        confirmDel: `Are you sure delete ? If you agree then type : ${selectNames.join(
+          ', '
+        )} in form and click OK.`,
+        modal: DeleteCustom,
         store,
         ...props,
       })
