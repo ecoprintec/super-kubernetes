@@ -31,9 +31,10 @@ import {
 } from '@kube-design/components'
 import { safeParseJSON, getLocalTime } from 'utils'
 
-import { Typography, CircularProgress } from '@mui/material'
+import { CircularProgress } from '@mui/material'
 import MUIDataTable from 'mui-datatables'
 
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import styles from './index.scss'
 import Pagination from './Pagination'
 import Empty from './Empty'
@@ -112,7 +113,6 @@ export default class WorkloadTable extends React.Component {
     if (
       nextProps.data !== this.props.data ||
       nextProps.columns.length !== this.props.columns.length ||
-      nextProps.selectedRowKeys.length !== this.props.selectedRowKeys.length ||
       !isEqual(nextProps.filters, this.props.filters) ||
       nextProps.isLoading !== this.props.isLoading ||
       !isEqual(nextProps.pagination, this.props.pagination)
@@ -178,15 +178,15 @@ export default class WorkloadTable extends React.Component {
             customBodyRenderLite: dataIndex => {
               const detail = this.props.data[dataIndex]
               let text = ''
-
+              if (!detail) return text
               if (isFunction(item.render)) {
                 const arrNameParams = this.getParamNames(item.render)
                 const argument = {
                   1:
                     arrNameParams[0] === 'record'
                       ? [detail]
-                      : [detail[item.dataIndex]],
-                  2: [detail[item.dataIndex], detail],
+                      : [detail[item.dataIndex]] || '',
+                  2: [detail[item.dataIndex] || '', detail],
                 }
                 text = item.render(...argument[arrNameParams.length])
               } else {
@@ -194,9 +194,9 @@ export default class WorkloadTable extends React.Component {
               }
               return text
             },
-            filterOptions: {
-              names: item.filterOptions || [],
-            },
+            // filterOptions: {
+            //   names: item.filterOptions || [],
+            // },
           },
         })
       } else {
@@ -304,7 +304,7 @@ export default class WorkloadTable extends React.Component {
               disabled={
                 isFunction(action.disabled)
                   ? action.disabled(selectedRowsData)
-                  : false
+                  : action.disabled || false
               }
               className={styles.button}
               onClick={() => action.onClick(selectedRowsData)}
@@ -382,15 +382,15 @@ export default class WorkloadTable extends React.Component {
   renderActions() {
     const { onCreate, createText, actions } = this.props
     if (actions) {
-      return actions.map(action => (
+      return actions.map(item => (
         <Button
-          key={action.key}
-          type={action.type}
+          key={item.key}
+          type={item.type}
           className={styles.create}
-          onClick={action.onClick}
-          data-test={`table-${action.key}`}
+          onClick={item.onClick}
+          data-test={`table-${item.key}`}
         >
-          {action.text}
+          {item.text}
         </Button>
       ))
     }
@@ -511,6 +511,24 @@ export default class WorkloadTable extends React.Component {
     )
   }
 
+  getMuiTheme = () =>
+    createTheme({
+      components: {
+        MUIDataTableToolbar: {
+          styleOverrides: {
+            root: {
+              paddingRight: 0,
+            },
+            actions: {
+              alignItems: 'center',
+              display: 'flex',
+              justifyContent: 'end',
+            },
+          },
+        },
+      },
+    })
+
   render() {
     const {
       data,
@@ -521,7 +539,6 @@ export default class WorkloadTable extends React.Component {
       hideFooter,
       getCheckboxProps,
     } = this.props
-
     if (this.showEmpty) {
       return this.renderEmpty()
     }
@@ -570,26 +587,26 @@ export default class WorkloadTable extends React.Component {
       download: false,
       sortOrder,
       enableNestedDataAccess: '.',
-      onTableChange: (action, tableState) => {
-        switch (action) {
-          case 'rowSelectionChange':
-            // eslint-disable-next-line no-case-declarations
-            const listDataIndexs = tableState.selectedRows.data.map(
-              item => item.dataIndex
-            )
-            // eslint-disable-next-line no-case-declarations
-            const list_arr = this.props.data.filter((item, index) => {
-              return listDataIndexs.includes(index)
-            })
-
-            this.state.selectArr = list_arr
-            break
-          case 'rowDelete':
-            this.handleDeleteMulti()
-            break
-          default:
-        }
-      },
+      // onTableChange: (action, tableState) => {
+      //   switch (action) {
+      //     case 'rowSelectionChange':
+      //       // eslint-disable-next-line no-case-declarations
+      //       const listDataIndexs = tableState.selectedRows.data.map(
+      //         item => item.dataIndex
+      //       )
+      //       // eslint-disable-next-line no-case-declarations
+      //       const list_arr = this.props.data.filter((item, index) => {
+      //         return listDataIndexs.includes(index)
+      //       })
+      //       // onSelectRowKeys(list_arr.map(item => item?.name))
+      //       this.setState({ selectArr: list_arr })
+      //       break
+      //     // case 'rowDelete':
+      //     //   this.handleDeleteMulti()
+      //     //   break
+      //     default:
+      //   }
+      // },
       textLabels: {
         body: {
           noMatch: isLoading ? (
@@ -600,6 +617,7 @@ export default class WorkloadTable extends React.Component {
         },
       },
       customToolbarSelect: selectedRows => {
+        const { tableProps } = this.props
         const listDataIndexs = selectedRows.data.map(item => item.dataIndex)
         const selectedRowsData = this.props.data
           .filter((item, index) => {
@@ -608,9 +626,11 @@ export default class WorkloadTable extends React.Component {
           .map(item => {
             return item?.name
           })
-
+        tableProps.selectedRowKeys = selectedRowsData
+        onSelectRowKeys(selectedRowsData)
         return <div>{this.renderSelectActions(selectedRowsData)}</div>
       },
+      customToolbar: () => this.renderActions(),
     }
     // eslint-disable-next-line array-callback-return
     const new_list = []
@@ -626,13 +646,15 @@ export default class WorkloadTable extends React.Component {
       })
     })
     return (
-      <MUIDataTable
-        title={<Typography variant="h6">{this.renderActions()}</Typography>}
-        data={new_list}
-        columns={this.filteredColumns}
-        options={options}
-        className={styles.muitable}
-      />
+      <ThemeProvider theme={this.getMuiTheme()}>
+        <MUIDataTable
+          // title={<Typography variant="h6">{this.renderActions()}</Typography>}
+          data={new_list}
+          columns={this.filteredColumns}
+          options={options}
+          className={styles.muitable}
+        />
+      </ThemeProvider>
     )
   }
 }

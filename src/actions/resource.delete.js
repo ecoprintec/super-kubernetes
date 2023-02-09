@@ -28,8 +28,6 @@ import ServiceStore from 'stores/service'
 export default {
   'resource.delete': {
     on({ store, detail, success, ...props }) {
-      // console.log('detail', detail)
-      // console.log('store', store)
       const modal = Modal.open({
         onOk: () => {
           store.delete(detail).then(() => {
@@ -95,14 +93,14 @@ export default {
     },
   },
   'resource.batch.delete': {
-    on({ store, success, selectValues, ...props }) {
+    on({ store, success, rowKey, ...props }) {
       const serviceStore = new ServiceStore()
-      const { data } = store.list
-      // const selectValues = data
-      //   .filter(item => selectedRowKeys.includes(item[rowKey]))
-      //   .map(item => {
-      //     return { name: item.name, namespace: item.namespace }
-      //   })
+      const { data, selectedRowKeys } = store.list
+      const selectValues = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => {
+          return { name: item.name, namespace: item.namespace }
+        })
 
       const selectNames = selectValues.map(item => item.name)
 
