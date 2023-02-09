@@ -351,7 +351,7 @@ class Nav extends React.Component {
           className="nav-underfixed"
           style={{
             width: rootStore.openMenu === true ? 400 : 95,
-            transition: '0.3s',
+            transition: '0.45s',
           }}
         ></div>
       </div>

@@ -33,7 +33,7 @@ import Alert from '@material-ui/lab/Alert'
 import { Form } from '@kube-design/components'
 import { get } from 'lodash'
 import { Base64 } from 'js-base64'
-import Logo from '../../../assets/login-logo.svg'
+import Logo from '../../../assets/sqk-logo-login.svg'
 import HexaDeco from '../../../assets/background/hexaDecorationWhite.svg'
 import styles from './index.scss'
 import './index.css'
@@ -132,7 +132,7 @@ export default class Login extends Component {
             </Box>
             <Typography>
               <h3 className={`${styles.left_login_text} ${styles.opening}`}>
-                Welcome to Kubesphere
+                Welcome to SQK Cloud
               </h3>
               <span
                 className={`${styles.left_login_text} ${styles.openingnotice}`}

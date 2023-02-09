@@ -30,7 +30,6 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import MuiButton from '@material-ui/core/Button'
 import { Box, Typography } from '@material-ui/core'
-
 import Collapse from '@material-ui/core/Collapse'
 import styles from './index.scss'
 import LoginInfo from '../LoginInfo'
@@ -115,7 +114,7 @@ class Header extends React.Component {
   render() {
     const { className, innerRef, location } = this.props
     const { getTitle } = this.state
-    const logo = globals.config.logo || '/assets/logo.svg'
+    const logo = globals.config.logo || '/assets/sqk-logo-light.svg'
 
     return (
       <div
@@ -136,7 +135,7 @@ class Header extends React.Component {
           <Link to={isAppsPage() && !globals.user ? '/apps' : '/'}>
             <img
               className={styles.logo}
-              src={isAppsPage() ? `/assets/logo.svg` : logo}
+              src={isAppsPage() ? `/assets/sqk-logo-light.svg` : logo}
               alt=""
             />
           </Link>

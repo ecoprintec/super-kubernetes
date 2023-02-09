@@ -2,12 +2,12 @@
 
 .wrapper {
   border-radius: 8px;
-  border: solid 1px $dark-color06;
+  border: none;
   box-shadow: none;
   padding: 5px 11px;
 
   &:hover {
-    background-color: $dark-color06;
+    background-color: $darkblue-color03;
   }
 }
 

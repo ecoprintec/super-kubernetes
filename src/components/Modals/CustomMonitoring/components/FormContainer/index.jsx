@@ -37,12 +37,14 @@ export default function FormContainer({
           icon="close"
           iconType="light"
           onClick={onCancel}
+          className={`${styles.actionButton} ${styles.actionButtonClose}`}
         />
         <Button
           type="control"
           icon="check"
           iconType="light"
           htmlType="submit"
+          className={styles.actionButton}
         />
       </div>
     </Form>
