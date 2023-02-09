@@ -165,7 +165,7 @@ class Nav extends React.Component {
           style={{
             marginTop: haveNavTitle && rootStore.openMenu === true ? 90 : 0,
             transitionDelay:
-              haveNavTitle && rootStore.openMenu === false ? '0.35s' : 'unset',
+              haveNavTitle && rootStore.openMenu === false ? '0.25s' : 'unset',
           }}
         >
           <div className={styles.navparent}>
@@ -351,7 +351,7 @@ class Nav extends React.Component {
           className="nav-underfixed"
           style={{
             width: rootStore.openMenu === true ? 400 : 95,
-            transition: '0.45s',
+            transition: '0.3s',
           }}
         ></div>
       </div>

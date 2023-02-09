@@ -30,3 +30,7 @@
 .nav-underfixed {
   height: 100%;
 }
+
+.ul-wrapper {
+  min-width: 197px;
+}
