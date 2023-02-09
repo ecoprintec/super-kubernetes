@@ -47,7 +47,7 @@ export default function GraphType({ type }) {
     <div className={styles.wrapper}>
       <header>{t('CHART_TYPES')}</header>
       <div>
-        <Icon name={icon} type="light" size={40} />
+        <Icon name={icon} type="dark" size={40} />
         <h3>{title}</h3>
       </div>
     </div>

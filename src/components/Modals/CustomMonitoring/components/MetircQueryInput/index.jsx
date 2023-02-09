@@ -79,7 +79,7 @@ export default class MetircQueryInput extends Component {
         >
           <span className={styles.trigger}>
             {t('MONITOR_METRIC')}
-            <Icon type="light" name={'caret-down'} />
+            <Icon type="dark" name={'caret-down'} />
           </span>
         </Cascader>
         <div className={styles.input}>
