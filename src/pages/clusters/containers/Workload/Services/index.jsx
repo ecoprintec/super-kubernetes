@@ -22,18 +22,12 @@ import { Tooltip } from '@kube-design/components'
 import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
+import ResourceTable from 'clusters/components/ResourceTable'
+
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
 
 import ServiceStore from 'stores/service'
-import moment from 'moment-mini'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { CircularProgress, Typography } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit'
-import MUIDataTable from 'mui-datatables'
-import AddIcon from '@mui/icons-material/Add'
-import SplitButton from '../Pods/ItemDropdown'
-import styles from '../Pods/index.scss'
 
 @withClusterList({
   store: new ServiceStore(),
@@ -42,15 +36,6 @@ import styles from '../Pods/index.scss'
   rowKey: 'uid',
 })
 export default class Services extends React.Component {
-  state = {
-    page: 0,
-    count: 1,
-    rowsPerPage: 10,
-    isLoading: true,
-    searchText: '',
-    selectArr: [],
-  }
-
   showAction = record => !record.isFedManaged
 
   get itemActions() {
@@ -121,8 +106,7 @@ export default class Services extends React.Component {
     name: record.name,
   })
 
-  renderExternalService = (a, record) => {
-    const data = this.props.store.list.data[record.rowIndex]
+  renderExternalService = data => {
     const text = {
       des: '-',
       title: '-',
@@ -236,228 +220,18 @@ export default class Services extends React.Component {
     })
   }
 
-  handleDeleteMulti = async () => {
-    this.props.trigger('resource.batch.deleteMulti', {
-      store: this.props.store,
-      success: this.props.getData(),
-      selectValues: this.state.selectArr,
-    })
-  }
-
   render() {
-    const { cluster } = this.props.match.params
-    const { module } = this.props
-    const { bannerProps } = this.props
-    bannerProps.arrBtn = [
-      {
-        title: 'Create',
-        background: '#3f51b5',
-        icon: (
-          <AddIcon
-            style={{
-              fontSize: '18px',
-            }}
-          />
-        ),
-        action: this.showCreate,
-      },
-    ]
-
-    let list = []
-    const { sortOrder } = this.state
-    if (this.props.store.list.data.length) {
-      this.state.isLoading = false
-      list = this.props.store.list.data
-    }
-    const columns = [
-      {
-        name: 'name',
-        label: 'Name',
-        options: {
-          filter: true,
-          customBodyRender: (name, record) => (
-            <Avatar
-              icon={ICON_TYPES[module]}
-              iconSize={40}
-              title={name}
-              desc={record.description || '-'}
-              isMultiCluster={record.isFedManaged}
-              to={`/clusters/${cluster}/projects/${record?.rowData[1]}/${module}/${name}`}
-            />
-          ),
-        },
-      },
-      {
-        name: 'namespace',
-        label: 'Project',
-        options: {
-          filter: true,
-          customBodyRender: namespace => {
-            return <Link to={``}>{namespace}</Link>
-          },
-        },
-      },
-      {
-        name: 'clusterIP',
-        label: 'Internal Access',
-        options: {
-          filter: true,
-          customBodyRender: clusterIP => {
-            return <Link to={``}>{clusterIP}</Link>
-          },
-        },
-      },
-      {
-        name: 'nodeIp',
-        label: 'External Access',
-        options: {
-          filter: true,
-          customBodyRender: (nodeIp, record) =>
-            this.renderExternalService(nodeIp, record),
-        },
-      },
-      {
-        name: 'createTime',
-        label: 'Update Time',
-        options: {
-          filter: true,
-          customBodyRender: updateTime => {
-            return (
-              <Link to={``}>
-                {moment(updateTime).format('YYYY-MM-DD h:mm:ss')}
-              </Link>
-            )
-          },
-        },
-      },
-      {
-        name: 'namespace',
-        label: 'Actions',
-        options: {
-          filter: false,
-          sort: false,
-          download: false,
-          customBodyRender: (value, tableMeta) => {
-            const rowIndex = tableMeta.rowIndex
-            const detail = this.props.store.list.data[rowIndex]
-            return (
-              <SplitButton
-                options={[
-                  {
-                    icon: <EditIcon fontSize="small" />,
-                    title: 'Edit Information',
-                    action: () => {
-                      this.props.trigger('resource.baseinfo.edit', {
-                        detail,
-                        readOnly: true,
-                      })
-                    },
-                  },
-                  {
-                    icon: <EditIcon fontSize="small" />,
-                    title: 'Edit YAML',
-                    action: () => {
-                      this.props.trigger('resource.yaml.edit', {
-                        detail,
-                        readOnly: false,
-                      })
-                    },
-                  },
-                  {
-                    icon: <EditIcon fontSize="small" />,
-                    title: 'Edit Service',
-                    action: () => {
-                      this.props.trigger('service.edit', {
-                        detail,
-                        readOnly: true,
-                      })
-                    },
-                  },
-                  {
-                    icon: <EditIcon fontSize="small" />,
-                    title: 'Edit External Access',
-                    action: () => {
-                      this.props.trigger('service.gateway.edit', {
-                        detail,
-                        readOnly: true,
-                      })
-                    },
-                  },
-
-                  {
-                    icon: <DeleteIcon fontSize="small" />,
-                    title: 'Delete',
-                    action: () => {
-                      this.props.trigger('resource.delete', {
-                        type: tableMeta.rowData.name,
-                        detail: tableMeta.rowData,
-                        success: this.props.getData,
-                      })
-                    },
-                  },
-                ]}
-              />
-            )
-          },
-        },
-      },
-    ]
-
-    const options = {
-      filter: true,
-      filterType: 'dropdown',
-      responsive: 'vertical',
-      serverSide: false,
-      page: this.state.page,
-      count: this.props.store.list.total,
-      rowsPerPage: this.state.rowsPerPage,
-      rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
-      searchText: this.state.searchText,
-      sortOrder,
-      enableNestedDataAccess: '.',
-      onTableChange: (action, tableState) => {
-        switch (action) {
-          // eslint-disable-next-line no-fallthrough
-          case 'rowSelectionChange':
-            // eslint-disable-next-line no-case-declarations
-            const listDataIndexs = tableState.selectedRows.data.map(
-              item => item.dataIndex
-            )
-            // eslint-disable-next-line no-case-declarations
-            const list_arr = this.props.store.list.data.filter(
-              (item, index) => {
-                return listDataIndexs.includes(index)
-              }
-            )
-
-            this.state.selectArr = list_arr
-            break
-          case 'rowDelete':
-            this.handleDeleteMulti()
-            break
-          default:
-        }
-      },
-      textLabels: {
-        body: {
-          noMatch: this.props.store.list.isLoading ? (
-            <CircularProgress />
-          ) : (
-            'Sorry, there is no matching data to display'
-          ),
-        },
-      },
-    }
-
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
-        <MUIDataTable
-          title={<Typography variant="h6">List Service</Typography>}
-          data={list}
-          columns={columns}
-          options={options}
-          className={styles.muitable}
+        <ResourceTable
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+          cluster={match.params.cluster}
+          getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>
     )
