@@ -106,6 +106,12 @@
   tfoot td {
     border-bottom: 0px !important;
   }
+  th span button div div {
+    text-transform: capitalize;
+  }
+  > div:first-child[class$='MuiPaper-root'] {
+    background: #8c9eff !important;
+  }
 }
 
 .groupBtn {

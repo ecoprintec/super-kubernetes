@@ -1,18 +1,12 @@
 import React from 'react'
 
 import withList, { ListPage } from 'components/HOCs/withList'
-import Banner from 'components/Cards/Banner'
-import { getDisplayName, getLocalTime } from 'utils'
-import MUIDataTable from 'mui-datatables'
-import { Link } from 'react-router-dom'
-import VolumeSnapshotClassesStore from 'stores/volumeSnapshotClasses'
-import { toJS } from 'mobx'
 import { Avatar } from 'components/Base'
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { CircularProgress } from '@mui/material'
-import styles from '../../../../../components/Tables/Base/index.scss'
-import SplitButton from '../../Workload/Pods/ItemDropdown'
+import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
+import { getDisplayName, getLocalTime } from 'utils'
+
+import VolumeSnapshotClassesStore from 'stores/volumeSnapshotClasses'
 
 @withList({
   store: new VolumeSnapshotClassesStore(),
@@ -22,15 +16,6 @@ import SplitButton from '../../Workload/Pods/ItemDropdown'
   rowKey: 'uid',
 })
 export default class VolumeSnapshotClasses extends React.Component {
-  state = {
-    page: 0,
-    count: 1,
-    rowsPerPage: 10,
-    isLoading: true,
-    searchText: '',
-    selectArr: [],
-  }
-
   get itemActions() {
     const { trigger, store, match, name } = this.props
     const { cluster } = match.params
@@ -84,6 +69,52 @@ export default class VolumeSnapshotClasses extends React.Component {
     ]
   }
 
+  getColumns = () => {
+    const { getSortOrder, prefix } = this.props
+    return [
+      {
+        title: t('NAME'),
+        dataIndex: 'name',
+        search: true,
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        render: (name, record) => (
+          <Avatar
+            to={`${prefix}/${name}`}
+            title={getDisplayName(record)}
+            desc={record.description}
+          />
+        ),
+      },
+      {
+        title: t('VOLUME_SNAPSHOT_PL'),
+        dataIndex: 'count',
+        isHideable: true,
+        width: '17.6%',
+      },
+      {
+        title: t('PROVISIONER'),
+        dataIndex: 'driver',
+        isHideable: true,
+        width: '17.6%',
+      },
+      {
+        title: t('DELETION_POLICY'),
+        dataIndex: 'deletionPolicy',
+        isHideable: true,
+        width: '17.6%',
+      },
+      {
+        title: t('CREATION_TIME_TCAP'),
+        dataIndex: 'createTime',
+        sorter: true,
+        isHideable: true,
+        width: '12.3%',
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
+      },
+    ]
+  }
+
   showCreate = () => {
     this.props.trigger('snapshotClasses.create', {
       name: 'VOLUME_SNAPSHOT_CLASS',
@@ -94,155 +125,15 @@ export default class VolumeSnapshotClasses extends React.Component {
   }
 
   render() {
-    const { sortOrder } = this.state
-    const { prefix, bannerProps } = this.props
-    const data = toJS(this.props.store.list.data)
-
-    const options = {
-      filter: true,
-      filterType: 'dropdown',
-      responsive: 'vertical',
-      serverSide: false,
-      page: this.state.page,
-      count: this.props.store.list.total,
-      rowsPerPage: this.state.rowsPerPage,
-      rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
-      searchText: this.state.searchText,
-      sortOrder,
-      enableNestedDataAccess: '.',
-    }
-
-    const columns = [
-      {
-        name: 'name',
-        label: 'Name',
-        options: {
-          sort: false,
-          filter: true,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            return (
-              <Avatar
-                to={`${prefix}/${record.name}`}
-                title={getDisplayName(record)}
-                desc={record.description}
-              />
-            )
-          },
-        },
-      },
-      {
-        name: 'count',
-        label: 'Volume Snapshots',
-      },
-      {
-        name: 'driver',
-        label: 'Provisioner',
-        options: {
-          filter: true,
-          customBodyRender: driver => {
-            return <Link to={``}>{driver}</Link>
-          },
-        },
-      },
-      {
-        name: 'deletionPolicy',
-        label: 'Deletion Policy',
-        options: {
-          filter: true,
-          customBodyRender: deletionPolicy => {
-            return <Link to={``}>{deletionPolicy}</Link>
-          },
-        },
-      },
-      {
-        name: 'createTime',
-        label: 'Creation Time',
-        options: {
-          filter: true,
-          customBodyRender: time => {
-            return getLocalTime(time).format('YYYY-MM-DD HH:mm')
-          },
-        },
-        textLabels: {
-          body: {
-            noMatch: this.props.store.list.isLoading ? (
-              <CircularProgress />
-            ) : (
-              'Sorry, there is no matching data to display'
-            ),
-          },
-        },
-      },
-      {
-        name: 'namespace',
-        label: 'Actions',
-        options: {
-          filter: false,
-          sort: false,
-          download: false,
-          customBodyRender: (value, tableMeta) => {
-            return (
-              <SplitButton
-                options={[
-                  {
-                    icon: <EditIcon fontSize="small" />,
-                    title: 'Edit Information',
-                    action: async () => {
-                      const store = this.props.store
-                      const cluster = this.props.match.params
-                      const dataDetail = await this.props.store.fetchDetail(
-                        tableMeta.rowData
-                      )
-                      this.props.trigger('resource.baseinfo.edit', {
-                        store,
-                        detail: dataDetail,
-                        cluster,
-                        success: this.props.getData,
-                      })
-                    },
-                  },
-                  {
-                    icon: <EditIcon fontSize="small" />,
-                    title: 'Edit YAML',
-                    action: () => {
-                      const store = this.props.store
-                      const detail = tableMeta.rowData
-                      this.props.trigger('volume.snapshot.yaml.edit', {
-                        store,
-                        detail,
-                        yaml: tableMeta.rowData._originData,
-                        success: this.props.getData,
-                      })
-                    },
-                  },
-                  {
-                    icon: <DeleteIcon fontSize="small" />,
-                    title: 'Delete',
-                    action: () => {
-                      this.props.trigger('resource.delete', {
-                        type: tableMeta.rowData.name,
-                        detail: tableMeta.rowData,
-                        success: this.props.getData,
-                      })
-                    },
-                  },
-                ]}
-              />
-            )
-          },
-        },
-      },
-    ]
-
+    const { tableProps, bannerProps } = this.props
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps}></Banner>
-        <MUIDataTable
-          data={data}
-          columns={columns}
-          options={options}
-          className={styles.muitable}
+        <Table
+          {...tableProps}
+          columns={this.getColumns()}
+          itemActions={this.itemActions}
+          onCreate={this.showCreate}
         />
       </ListPage>
     )
