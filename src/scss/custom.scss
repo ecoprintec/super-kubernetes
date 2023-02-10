@@ -405,7 +405,8 @@ body {
   .tabs-container .tabs > ul > li.is-active {
     color: #3f51b5;
   }
-  .src-components-Inputs-PropertiesInput-index__item {
+  .src-components-Inputs-PropertiesInput-index__item,
+  .input-search .input {
     border-radius: 8px;
   }
   .src-pages-workspaces-containers-Overview-ResourceUsage-index__clusterSelector
@@ -420,8 +421,21 @@ body {
     color: rgba(0, 0, 0, 0.54);
   }
   div[class*='Title-'],
-  div[class*='__title'] .h3 {
+  div[class*='__title'] .h3,
+  div[class*='__title'] strong {
     color: #3f51b5 !important;
+  }
+  div[class*='index__title'],
+  div[class*='__text'] div,
+  div[class*='index__indicator'] span,
+  a[class*='__breadcrum'],
+  [class*='index__status'] span,
+  [class*='index__table'] h3 {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+  div[class*='index__title'] .text-second {
+    font-weight: 400;
   }
   div[class*='-Cards-'],
   div[class*='-Cards-']:hover {
