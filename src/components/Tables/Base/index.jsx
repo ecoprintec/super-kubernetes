@@ -155,18 +155,18 @@ export default class WorkloadTable extends React.Component {
   get filteredColumns() {
     if (this.props.store.list.data.length) {
       const cl = []
-      const arrAction = []
+      let arrAction = []
       if (this.props.itemActions && this.props.itemActions.length) {
-        // eslint-disable-next-line array-callback-return
-        this.props.itemActions.map(item => {
-          arrAction.push({
+        arrAction = this.props.itemActions.map(item => {
+          return {
             icon: detail =>
               isFunction(item.icon) ? item.icon(detail) : item.icon,
             title: detail =>
               isFunction(item.text) ? item.text(detail) : item.text,
             action: detail => item?.onClick(detail),
-            show: detail => (isFunction(item.icon) ? item?.show(detail) : true),
-          })
+            show: detail => (isFunction(item.show) ? item?.show(detail) : true),
+            key: item?.key,
+          }
         })
       }
       if (this.props.columns.length) {
@@ -181,7 +181,8 @@ export default class WorkloadTable extends React.Component {
                   item.display !== undefined && item.display === false
                     ? item?.display
                     : true,
-                filter: item.search ? item.search : false,
+                // filter: item.search ? item.search : false,
+                filter: true,
                 sort: item.sorter ? item.sorter : false,
                 filterType: 'dropdown',
                 setCellProps: () => ({
