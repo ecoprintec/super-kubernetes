@@ -122,7 +122,10 @@ export default class WorkloadTable extends React.Component {
       return true
     }
 
-    if (nextState.selectArr.length !== this.state.selectArr.length) {
+    if (
+      nextProps.store.list.selectedRowKeys !==
+      this.props.store.list.selectedRowKeys.length
+    ) {
       return true
     }
 
@@ -293,7 +296,7 @@ export default class WorkloadTable extends React.Component {
               className={styles.button}
               onClick={() => {
                 action.onClick()
-                this.setState({ selectArr: [] })
+                // this.setState({ selectArr: [] })
               }}
               data-test={`table-${action.key}`}
             >
@@ -513,6 +516,15 @@ export default class WorkloadTable extends React.Component {
     this.setState({ selectArr: listDataIndexs })
   }
 
+  getSelectedRowIndexs = () => {
+    const { selectedRowKeys, data } = this.props.store.list
+    const selectedRowIndexs = []
+    data.forEach((element, index) => {
+      if (selectedRowKeys.includes(element.name)) selectedRowIndexs.push(index)
+    })
+    return selectedRowIndexs
+  }
+
   getMuiTheme = () =>
     createTheme({
       components: {
@@ -589,7 +601,7 @@ export default class WorkloadTable extends React.Component {
       download: false,
       sortOrder,
       enableNestedDataAccess: '.',
-      rowsSelected: this.state.selectArr,
+      rowsSelected: this.getSelectedRowIndexs(),
       onTableChange: (action, tableState) => {
         switch (action) {
           case 'rowSelectionChange':
