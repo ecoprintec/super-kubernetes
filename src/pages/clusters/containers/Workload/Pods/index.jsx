@@ -30,7 +30,6 @@ import { getLocalTime } from 'utils'
 import { ICON_TYPES, PODS_STATUS } from 'utils/constants'
 
 import PodStore from 'stores/pod'
-
 import styles from './index.scss'
 
 @withClusterList({
@@ -139,7 +138,8 @@ export default class Pods extends React.Component {
         sortOrder: getSortOrder('startTime'),
         isHideable: false,
         width: 150,
-        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+        render: time =>
+          time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '',
       },
       {
         title: 'Project',

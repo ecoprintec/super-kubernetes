@@ -155,22 +155,24 @@ export default class Volumes extends React.Component {
 
     const pvColumn = {
       title: t('PERSISTENT_VOLUME'),
-      dataIndex: '_originData',
+      dataIndex: '_originData.spec.volumeName',
       isHideable: true,
       search: false,
       width: '28.5%',
-      render: _ => (
+      render: record => (
         <div id="pvColumn" className={styles.pv_content}>
-          <Link to={`/clusters/${cluster}/pv/${_.spec.volumeName}`}>
-            {_.spec.volumeName}
+          <Link
+            to={`/clusters/${cluster}/pv/${record._originData.spec.volumeName}`}
+          >
+            {record._originData.spec.volumeName}
           </Link>
-          {_.spec.volumeName && (
+          {record._originData.spec.volumeName && (
             <Tooltip content={t('VIEW_YAML')}>
               <Icon
                 className={styles.yaml}
                 name="log"
                 size={20}
-                onClick={() => this.pvYamlView(_)}
+                onClick={() => this.pvYamlView(record._originData)}
               />
             </Tooltip>
           )}
@@ -202,16 +204,16 @@ export default class Volumes extends React.Component {
       },
       {
         title: t('STATUS'),
-        dataIndex: 'status',
+        dataIndex: 'status.phase',
         isHideable: true,
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
         width: '8.8%',
-        render: (_, { phase }) => (
+        render: record => (
           <Status
-            type={phase}
-            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
+            type={record.phase}
+            name={t(`VOLUME_STATUS_${record.phase.toUpperCase()}`)}
             flicker
           />
         ),
