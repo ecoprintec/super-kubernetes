@@ -107,10 +107,10 @@ class DetailPage extends React.Component {
       >
         {routes
           .filter(option => option.title)
-          .map(option => {
+          .map((option, optionKey) => {
             return (
               <Tab
-                key={option?.path}
+                key={optionKey}
                 label={t(option?.title)}
                 value={pathToRegexp.compile(option?.path)(params)}
               />
