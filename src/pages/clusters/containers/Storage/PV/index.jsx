@@ -164,16 +164,16 @@ export default class PV extends React.Component {
       },
       {
         title: t('STATUS'),
-        dataIndex: 'status',
+        dataIndex: 'status.phase',
         isHideable: true,
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
         width: '10.56%',
-        render: ({ phase }) => (
+        render: record => (
           <Status
-            type={phase}
-            name={t(`PV_STATUS_${phase.toUpperCase()}`)}
+            type={record?.phase}
+            name={t(`PV_STATUS_${record?.phase.toUpperCase()}`)}
             flicker
           />
         ),
@@ -198,10 +198,10 @@ export default class PV extends React.Component {
       },
       {
         title: t('RECLAIM_POLICY'),
-        dataIndex: '_originData',
+        dataIndex: '_originData.spec.persistentVolumeReclaimPolicy',
         isHideable: true,
         width: '7.74%',
-        render: _ => _.spec.persistentVolumeReclaimPolicy,
+        render: record => record._originData.spec.persistentVolumeReclaimPolicy,
       },
       {
         title: t('CREATION_TIME_TCAP'),

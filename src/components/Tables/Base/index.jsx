@@ -151,78 +151,84 @@ export default class WorkloadTable extends React.Component {
     return result
   }
 
+  // eslint-disable-next-line getter-return
   get filteredColumns() {
-    const cl = []
-    const arrAction = []
-    if (this.props.itemActions && this.props.itemActions.length) {
-      // eslint-disable-next-line array-callback-return
-      this.props.itemActions.map(item => {
-        arrAction.push({
-          icon: detail =>
-            isFunction(item.icon) ? item.icon(detail) : item.icon,
-          title: detail =>
-            isFunction(item.text) ? item.text(detail) : item.text,
-          action: detail => item?.onClick(detail),
-          show: detail => (isFunction(item.icon) ? item?.show(detail) : true),
+    if (this.props.store.list.data.length) {
+      const cl = []
+      const arrAction = []
+      if (this.props.itemActions && this.props.itemActions.length) {
+        // eslint-disable-next-line array-callback-return
+        this.props.itemActions.map(item => {
+          arrAction.push({
+            icon: detail =>
+              isFunction(item.icon) ? item.icon(detail) : item.icon,
+            title: detail =>
+              isFunction(item.text) ? item.text(detail) : item.text,
+            action: detail => item?.onClick(detail),
+            show: detail => (isFunction(item.icon) ? item?.show(detail) : true),
+          })
         })
-      })
-    }
+      }
+      if (this.props.columns.length) {
+        // eslint-disable-next-line array-callback-return
+        this.props.columns.map(item => {
+          if (item.dataIndex) {
+            cl.push({
+              name: item.dataIndex ? item.dataIndex : 'Columns',
+              label: item?.title,
+              options: {
+                display:
+                  item.display !== undefined && item.display === false
+                    ? item?.display
+                    : true,
+                filter: item.search ? item.search : false,
+                sort: item.sorter ? item.sorter : false,
+                filterType: 'dropdown',
+                setCellProps: () => ({
+                  style: { maxWidth: '600px' },
+                }),
+                customBodyRenderLite: dataIndex => {
+                  const detail = this.props.data[dataIndex]
+                  let text = ''
+                  if (!detail) return text
+                  if (isFunction(item.render)) {
+                    const arrNameParams = this.getParamNames(item.render)
+                    const argument = {
+                      1:
+                        arrNameParams[0] === 'record'
+                          ? [detail]
+                          : [detail[item.dataIndex]],
+                      2: [detail[item.dataIndex], detail],
+                    }
+                    text = item.render(...argument[arrNameParams.length])
+                  } else {
+                    text = detail[item.dataIndex]
+                  }
+                  return text
+                },
+              },
+            })
+          }
+        })
+      }
 
-    // eslint-disable-next-line array-callback-return
-    this.props.columns.map(item => {
-      if (item.dataIndex) {
+      if (arrAction.length) {
         cl.push({
-          name: item.dataIndex ? item.dataIndex : 'Columns',
-          label: item?.title,
+          name: 'namespace',
+          label: 'Actions',
           options: {
-            display:
-              item.display !== undefined && item.display === false
-                ? item?.display
-                : true,
-            filter: item.search ? item.search : false,
-            sort: item.sorter ? item.sorter : false,
+            filter: false,
+            sort: false,
+            download: false,
             customBodyRenderLite: dataIndex => {
               const detail = this.props.data[dataIndex]
-              let text = ''
-              if (!detail) return text
-              if (isFunction(item.render)) {
-                const arrNameParams = this.getParamNames(item.render)
-                const argument = {
-                  1:
-                    arrNameParams[0] === 'record'
-                      ? [detail]
-                      : [detail[item.dataIndex]],
-                  2: [detail[item.dataIndex], detail],
-                }
-                text = item.render(...argument[arrNameParams.length])
-              } else {
-                text = detail[item.dataIndex]
-              }
-              return text
+              return <SplitButton options={arrAction} detail={detail} />
             },
-            // filterOptions: {
-            //   names: item.filterOptions || [],
-            // },
           },
         })
       }
-    })
-    if (arrAction.length) {
-      cl.push({
-        name: 'namespace',
-        label: 'Actions',
-        options: {
-          filter: false,
-          sort: false,
-          download: false,
-          customBodyRenderLite: dataIndex => {
-            const detail = this.props.data[dataIndex]
-            return <SplitButton options={arrAction} detail={detail} />
-          },
-        },
-      })
+      return cl
     }
-    return cl
   }
 
   handleChange = (filters, sorter) => {
@@ -267,7 +273,7 @@ export default class WorkloadTable extends React.Component {
   handleDeleteMulti = () => {
     this.props.trigger('resource.batch.delete', {
       store: this.props.store,
-      success: this.props.getData(),
+      success: this.props.getData,
       selectValues: this.state.selectArr,
     })
   }
@@ -645,12 +651,19 @@ export default class WorkloadTable extends React.Component {
       new_list.push({
         ...item,
         ...{
+          lastLoginTime: item?.lastLoginTime
+            ? getLocalTime(item?.lastLoginTime).format('YYYY-MM-DD HH:mm:ss')
+            : '',
+          createTime: item?.createTime
+            ? getLocalTime(item?.startTime).format('YYYY-MM-DD HH:mm:ss')
+            : '',
           startTime: item?.startTime
             ? getLocalTime(item?.startTime).format('YYYY-MM-DD HH:mm:ss')
             : '',
         },
       })
     })
+
     return (
       <ThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable

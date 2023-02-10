@@ -17,13 +17,12 @@
 }
 
 .trigger {
-  border-radius: 2px;
-  color: $white;
+  color: inherit;
   padding: 0 10px;
   display: inline-block;
   cursor: pointer;
   height: 24px;
-  background: $dark-color07;
+  background: $light-color02;
 }
 
 .input {

@@ -165,7 +165,7 @@ class Nav extends React.Component {
           style={{
             marginTop: haveNavTitle && rootStore.openMenu === true ? 90 : 0,
             transitionDelay:
-              haveNavTitle && rootStore.openMenu === false ? '0.25s' : 'unset',
+              haveNavTitle && rootStore.openMenu === false ? '0.3s' : 'unset',
           }}
         >
           <div className={styles.navparent}>

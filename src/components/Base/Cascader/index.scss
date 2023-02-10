@@ -6,12 +6,12 @@
 
   .options {
     position: fixed;
-    padding: 4px 0;
+    padding: 5px;
     min-width: 200px;
     max-width: 400px;
     max-height: 252px;
     border-radius: $border-radius;
-    background-color: $text-color;
+    background-color: $light-color02;
     box-shadow: 0 4px 16px 0 rgba(39, 50, 71, 0.28);
     overflow-y: auto;
     z-index: 200;
@@ -22,11 +22,12 @@
   position: relative;
   padding: 6px 8px;
   @include TypographySymbolText($white);
+  color: $text-color;
   cursor: pointer;
 
   &.isOpen,
   &:hover {
-    background-color: $dark-color06;
+    background-color: $light-color03;
   }
 
   &.hasChildren {

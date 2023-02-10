@@ -88,4 +88,10 @@ export default class VolumeSnapshotClassStore extends Base {
     }
     return this.submitting(request.put(url, newObject))
   }
+
+  @action
+  deleteMulti(params) {
+    const url = this.getDetailUrl(params)
+    return this.submitting(request.delete(url))
+  }
 }
