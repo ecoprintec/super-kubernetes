@@ -25,8 +25,8 @@ import { inject } from 'mobx-react'
 
 import EmptyList from 'components/Cards/EmptyList'
 import AdminDashboard from './Admin'
-
 import styles from './index.scss'
+import ConsoleNav from '../../components/Nav/index'
 
 @inject('rootStore')
 class Dashboard extends React.Component {
@@ -109,6 +109,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className={styles.dashboard}>
+        <ConsoleNav />
         <div className={styles.wrapper}>
           {this.renderHeader()}
           {this.renderContent()}

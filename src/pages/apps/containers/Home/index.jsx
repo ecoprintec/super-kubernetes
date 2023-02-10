@@ -36,7 +36,7 @@ import { STORE_APP_LIMIT } from 'configs/openpitrix/app'
 
 import Banner from '../../components/Banner'
 import AppList from '../../components/AppList'
-
+import ConsoleNav from '../../../console/components/Nav'
 import styles from './index.scss'
 
 const noCategories = ['new', 'all']
@@ -238,21 +238,33 @@ export default class Home extends React.Component {
     const { list, allApps } = this.appStore
     const { isLoading, total } = list
     const { workspace, namespace, cluster } = this.queryParams
-    const { tabName } = this.state
 
     return (
-      <div className={styles.wrapper}>
-        <Banner className={styles.banner}>
-          <h2 className={styles.title}>{t('APP_STORE')}</h2>
-          <p className={styles.desc}>{t('HOME_APP_STORE_DESC')}</p>
-        </Banner>
-        {this.renderToolbar()}
-        <div className={styles.body}>
+      <div className={styles.wrapper} style={{ display: 'flex' }}>
+        <div style={{ marginTop: 200 }}>
+          <ConsoleNav />
+        </div>
+        <div
+          style={{
+            position: 'fixed',
+            width: '100%',
+            top: 70,
+            zIndex: 200,
+            height: 100,
+          }}
+        >
+          <Banner className={styles.banner}>
+            <h2 className={styles.title}>{t('APP_STORE')}</h2>
+            <p className={styles.desc}>{t('HOME_APP_STORE_DESC')}</p>
+          </Banner>
+          {this.renderToolbar()}
+        </div>
+        <div style={{ marginTop: 235, width: '100%' }} className={styles.body}>
           {this.renderCategories()}
           <AppList
             className={styles.apps}
             appRef={this.appRef}
-            title={tabName}
+            title={''}
             apps={allApps.slice()}
             isLoading={isLoading}
             total={total}
