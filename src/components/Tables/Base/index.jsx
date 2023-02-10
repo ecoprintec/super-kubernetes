@@ -40,7 +40,6 @@ import Pagination from './Pagination'
 import Empty from './Empty'
 import FilterInput from './FilterInput'
 import CustomColumns from './CustomColumns'
-import SplitButton from '../../../pages/clusters/containers/Workload/Pods/ItemDropdown'
 
 const ORDER_MAP = {
   ascend: false,
@@ -155,79 +154,54 @@ export default class WorkloadTable extends React.Component {
   get filteredColumns() {
     if (this.props.store.list.data.length) {
       const cl = []
-      let arrAction = []
-      if (this.props.itemActions && this.props.itemActions.length) {
-        arrAction = this.props.itemActions.map(item => {
-          return {
-            icon: detail =>
-              isFunction(item.icon) ? item.icon(detail) : item.icon,
-            title: detail =>
-              isFunction(item.text) ? item.text(detail) : item.text,
-            action: detail => item?.onClick(detail),
-            show: detail => (isFunction(item.show) ? item?.show(detail) : true),
-            key: item?.key,
-          }
-        })
-      }
+
       if (this.props.columns.length) {
         // eslint-disable-next-line array-callback-return
         this.props.columns.map(item => {
-          if (item.dataIndex) {
-            cl.push({
-              name: item.dataIndex ? item.dataIndex : 'Columns',
-              label: item?.title,
-              options: {
-                display:
-                  item.display !== undefined && item.display === false
-                    ? item?.display
-                    : true,
-                // filter: item.search ? item.search : false,
-                filter: true,
-                sort: item.sorter ? item.sorter : false,
-                filterType: 'dropdown',
-                setCellProps: () => ({
-                  style: { maxWidth: '600px' },
-                }),
-                customBodyRenderLite: dataIndex => {
-                  const detail = this.props.data[dataIndex]
-                  let text = ''
-                  if (!detail) return text
-                  if (isFunction(item.render)) {
-                    const arrNameParams = this.getParamNames(item.render)
-                    const argument = {
-                      1:
-                        arrNameParams[0] === 'record'
-                          ? [detail]
-                          : [detail[item.dataIndex]],
-                      2: [detail[item.dataIndex], detail],
+          // if (item.dataIndex) {
+          cl.push({
+            name: item.dataIndex ? item.dataIndex : 'Actions',
+            label: item?.title,
+            options: {
+              display:
+                item.display !== undefined && item.display === false
+                  ? item?.display
+                  : true,
+              filter: true,
+              sort: item.sorter ? item.sorter : false,
+              filterType: 'dropdown',
+              filterArrayFullMatch: false,
+
+              setCellProps: () => ({
+                style: { maxWidth: '600px' },
+              }),
+              customBodyRender: (value, tableMeta) => {
+                const detail = this.props.data[tableMeta.rowIndex]
+                let text = ''
+                if (!detail) return text
+                if (isFunction(item.render)) {
+                  const arrNameParams = this.getParamNames(item.render)
+
+                  if (arrNameParams.length === 1) {
+                    if (arrNameParams[0] === 'record') {
+                      text = item.render(detail)
+                    } else {
+                      text = item.render(value)
                     }
-                    text = item.render(...argument[arrNameParams.length])
                   } else {
-                    text = detail[item.dataIndex]
+                    text = item.render(value, detail)
                   }
-                  return text
-                },
+                } else {
+                  text = value
+                }
+                return text
               },
-            })
-          }
+            },
+          })
+          // }
         })
       }
 
-      if (arrAction.length) {
-        cl.push({
-          name: 'namespace',
-          label: 'Actions',
-          options: {
-            filter: false,
-            sort: false,
-            download: false,
-            customBodyRenderLite: dataIndex => {
-              const detail = this.props.data[dataIndex]
-              return <SplitButton options={arrAction} detail={detail} />
-            },
-          },
-        })
-      }
       return cl
     }
   }
