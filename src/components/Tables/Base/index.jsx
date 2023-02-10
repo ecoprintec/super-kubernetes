@@ -576,7 +576,8 @@ export default class WorkloadTable extends React.Component {
     }
 
     const options = {
-      filter: true,
+      filter: false,
+      print: false,
       filterType: 'dropdown',
       responsive: 'vertical',
       serverSide: false,
