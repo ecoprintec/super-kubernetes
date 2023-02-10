@@ -49,9 +49,9 @@
   grid-template-columns: 12px 1fr 12px;
   grid-gap: 12px;
   padding: 5px 11px;
-  border: solid 1px $dark-color06;
+  border: none;
   border-radius: $border-radius;
-  background-color: $text-color;
+  background-color: $darkblue-color01;
   line-height: 20px;
   font-weight: $font-bold;
   cursor: pointer;
@@ -60,7 +60,7 @@
   transition: all $trans-speed ease-in-out;
 
   &:hover {
-    background-color: $dark-color06;
+    background-color: $darkblue-color03;
   }
 }
 

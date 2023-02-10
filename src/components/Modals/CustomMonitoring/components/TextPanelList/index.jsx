@@ -57,14 +57,14 @@ export default function TextPanelList({
                     <div className={styles.tools}>
                       <Icon
                         name={'pen'}
-                        size={20}
+                        size={30}
                         type="light"
                         clickable
                         onClick={() => onEdit(index)}
                       />
                       <Icon
                         name={'trash'}
-                        size={20}
+                        size={30}
                         type="light"
                         clickable
                         onClick={() => onDelete(index)}

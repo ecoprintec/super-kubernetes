@@ -159,10 +159,9 @@ export default class Nodes extends React.Component {
           type: 'default',
           text: t('EDIT_TAINTS'),
           action: 'edit',
-          onClick: selectedRows =>
+          onClick: () =>
             trigger('node.taint.batch', {
               success: routing.query,
-              selectedRows,
             }),
         },
       ],

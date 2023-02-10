@@ -424,4 +424,7 @@ body {
   div[class*='-Cards-']:hover {
     border: none;
   }
+  .button {
+    box-shadow: unset;
+  }
 }

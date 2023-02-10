@@ -15,17 +15,15 @@
   .formFooter {
     height: 32px;
     border-radius: 3px;
-    background: $dark-color07;
+    background: transparent;
     text-align: right;
     line-height: 32px;
     padding: 0 12px;
-
-    button {
-      border-radius: 0;
-
-      &:hover {
-        background-color: $dark-color08;
-        border-color: $dark-color08;
+    .actionButton {
+      border: #3f51b5 1px solid;
+      border-radius: 8px;
+      &.actionButtonClose {
+        margin-right: 10px;
       }
     }
   }
