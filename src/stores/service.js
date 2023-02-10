@@ -242,21 +242,21 @@ export default class ServiceStore extends Base {
     return data
   }
 
-  @action
-  deleteMulti(params) {
-    const url = `/api/v1/namespaces/${params.namespace}/services/${params.name}`
-    return this.submitting(request.delete(url))
-  }
-
+  // @action
+  // deleteMulti(params) {
+  //   const url = `/api/v1/namespaces/${params.namespace}/services/${params.name}`
+  //   return this.submitting(request.delete(url))
+  // }
+  //
   @action
   async getDataPodsYaml(detail) {
     const url = `/api/v1/namespaces/${detail[5]}/services/${detail[0]}`
     return await this.submitting(request.get(url))
   }
 
-  @action
-  delete(params) {
-    const url = `/api/v1/namespaces/${params[5]}/services/${params[0]}`
-    return this.submitting(request.delete(url))
-  }
+  // @action
+  // delete(params) {
+  //   const url = `/api/v1/namespaces/${params[5]}/services/${params[0]}`
+  //   return this.submitting(request.delete(url))
+  // }
 }
