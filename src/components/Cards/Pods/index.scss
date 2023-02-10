@@ -129,8 +129,8 @@
     line-height: 20px;
 
     strong {
-      font-size: $size-normal;
-      font-weight: 600;
+      font-size: $size-large;
+      font-weight: 400;
       color: $text-color;
       @include break-all;
     }
