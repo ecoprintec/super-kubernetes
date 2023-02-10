@@ -121,10 +121,10 @@ export default {
     },
   },
   'node.taint.batch': {
-    on({ store, success, selectedRows }) {
-      const { data } = toJS(store.list)
+    on({ store, success }) {
+      const { data, selectedRowKeys } = toJS(store.list)
       const selectedNodes = data.filter(node =>
-        selectedRows.includes(node.name)
+        selectedRowKeys.includes(node.name)
       )
       const modal = Modal.open({
         onOk: nodes => {

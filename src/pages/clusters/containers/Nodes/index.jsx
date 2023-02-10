@@ -159,10 +159,9 @@ export default class Nodes extends React.Component {
           type: 'default',
           text: t('EDIT_TAINTS'),
           action: 'edit',
-          onClick: selectedRows =>
+          onClick: () =>
             trigger('node.taint.batch', {
               success: routing.query,
-              selectedRows,
             }),
         },
       ],
@@ -553,21 +552,23 @@ export default class Nodes extends React.Component {
     const { bannerProps, tableProps } = this.props
     const isLoadingMonitor = this.monitoringStore.isLoading
     return (
-      <ListPage {...this.props} getData={this.getData} noWatch>
+      <>
         <Banner
           {...bannerProps}
           title={t('CLUSTER_NODE_PL')}
           tips={this.tips}
         />
         {this.renderOverview()}
-        <Table
-          {...tableProps}
-          itemActions={this.itemActions}
-          tableActions={this.tableActions}
-          columns={this.getColumns()}
-          isLoading={tableProps.isLoading || isLoadingMonitor}
-        />
-      </ListPage>
+        <ListPage {...this.props} getData={this.getData} noWatch>
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            tableActions={this.tableActions}
+            columns={this.getColumns()}
+            isLoading={tableProps.isLoading || isLoadingMonitor}
+          />
+        </ListPage>
+      </>
     )
   }
 }

@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import UserStore from 'stores/user'
 import { Notify } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
@@ -100,23 +99,25 @@ export default class Accounts extends React.Component {
     ]
   }
 
-  handledisabled = (selectedRowsData, type) => {
-    const { data } = toJS(this.props.store.list)
-    const list = data.filter(item => selectedRowsData.includes(item.name))
+  handledisabled = () => {
+    const { tableProps } = this.props
+    const { selectedRowKeys, data } = tableProps
+    const list = data.filter(item => selectedRowKeys.includes(item.name))
+
     if (list.every(item => item.status === 'Active')) {
-      return type === 'active'
+      return { activeStatus: true, disabledStatus: false }
     }
 
     if (list.every(item => item.status === 'Disabled')) {
-      return type === 'disabled'
+      return { activeStatus: false, disabledStatus: true }
     }
 
-    return false
+    return { activeStatus: false, disabledStatus: false }
   }
 
   get tableActions() {
     const { tableProps } = this.props
-    // const { activeStatus, disabledStatus } = this.handledisabled()
+    const { activeStatus, disabledStatus } = this.handledisabled()
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
@@ -127,8 +128,7 @@ export default class Accounts extends React.Component {
           type: 'default',
           text: t('ENABLE'),
           action: 'edit',
-          disabled: selectedRowsData =>
-            this.handledisabled(selectedRowsData, 'active'),
+          disabled: activeStatus,
           onClick: () => {
             this.handleBatchOperation('active')
           },
@@ -138,8 +138,7 @@ export default class Accounts extends React.Component {
           type: 'default',
           text: t('DISABLE'),
           action: 'edit',
-          disabled: selectedRowsData =>
-            this.handledisabled(selectedRowsData, 'disabled'),
+          disabled: disabledStatus,
           onClick: () => {
             this.handleBatchOperation('disabled')
           },
