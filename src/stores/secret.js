@@ -53,4 +53,22 @@ export default class SecretStore extends Base {
 
     return result
   }
+
+  @action
+  deleteMulti(params) {
+    const url = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`
+    return this.submitting(request.delete(url))
+  }
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/api/v1/namespaces/${detail[5]}/configmaps/${detail[0]}`
+    return await this.submitting(request.get(url))
+  }
+
+  @action
+  delete(params) {
+    const url = `/api/v1/namespaces/${params[5]}/configmaps/${params[0]}`
+    return this.submitting(request.delete(url))
+  }
 }
