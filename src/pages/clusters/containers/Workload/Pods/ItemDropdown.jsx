@@ -68,7 +68,7 @@ export default function SplitButton(props) {
                 <MenuList id="split-button-menu" autoFocusItem>
                   {options
                     .filter(item =>
-                      isFunction(item.icon) ? item.show(detail) : true
+                      isFunction(item.show) ? item.show(detail) : true
                     )
                     .map(option => (
                       <MenuItem

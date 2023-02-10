@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { isEmpty, get } from 'lodash'
-import { toJS } from 'mobx'
 import { Tooltip, Icon } from '@kube-design/components'
 
 import { cpuFormat, memoryFormat } from 'utils'
@@ -30,23 +29,13 @@ import NodeMonitoringStore from 'stores/monitoring/node'
 import KubeCtlModal from 'components/Modals/KubeCtl'
 
 import { withClusterList, ListPage } from 'components/HOCs/withList'
-import { CircularProgress } from '@mui/material'
 
 import { Avatar, Status, Panel, Text, Modal } from 'components/Base'
 
 import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
 
-import MUIDataTable from 'mui-datatables'
-import TerminalIcon from '@mui/icons-material/Terminal'
-import DeleteIcon from '@mui/icons-material/Delete'
-import StopCircle from '@mui/icons-material/StopCircle'
-import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import customStyles from 'components/Tables/Base/index.scss'
-
-import SplitButton from './ItemDropdown'
-import CustomButton from './Button'
-
+import { toJS } from 'mobx'
 import styles from './index.scss'
 
 const MetricTypes = {
@@ -59,18 +48,13 @@ const MetricTypes = {
   pod_used: 'node_pod_running_count',
   pod_total: 'node_pod_quota',
 }
+
 @withClusterList({
   store: new NodeStore(),
   name: 'CLUSTER_NODE',
   module: 'nodes',
 })
 export default class Nodes extends React.Component {
-  state = {
-    page: 0,
-    count: 1,
-    rowsPerPage: 10,
-  }
-
   store = this.props.store
 
   monitoringStore = new NodeMonitoringStore({ cluster: this.cluster })
@@ -96,12 +80,98 @@ export default class Nodes extends React.Component {
     ]
   }
 
+  get itemActions() {
+    const { store, clusterStore, routing, trigger, name } = this.props
+    return [
+      {
+        key: 'uncordon',
+        icon: 'start',
+        text: t('UNCORDON'),
+        action: 'edit',
+        show: item =>
+          item.importStatus === 'success' && this.getUnschedulable(item),
+        onClick: item => store.uncordon(item).then(routing.query),
+      },
+      {
+        key: 'cordon',
+        icon: 'stop',
+        text: t('CORDON'),
+        action: 'edit',
+        show: item =>
+          item.importStatus === 'success' && !this.getUnschedulable(item),
+        onClick: item => store.cordon(item).then(routing.query),
+      },
+      {
+        key: 'terminal',
+        icon: 'terminal',
+        text: t('OPEN_TERMINAL'),
+        action: 'edit',
+        show: item => item.importStatus === 'success' && this.getReady(item),
+        onClick: item => this.handleOpenTerminal(item),
+      },
+      {
+        key: 'logs',
+        icon: 'eye',
+        text: t('VIEW_LOG'),
+        action: 'edit',
+        show: item => item.importStatus !== 'success',
+        onClick: () =>
+          trigger('node.add.log', { detail: toJS(clusterStore.detail) }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        show: item => item.importStatus === 'failed',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: name,
+            detail: item,
+            success: routing.query,
+          }),
+      },
+    ]
+  }
+
+  get tableActions() {
+    const { trigger, routing, clusterStore, tableProps } = this.props
+    const actions = []
+    if (clusterStore.detail.kkName) {
+      actions.push({
+        key: 'add',
+        type: 'control',
+        text: t('ADD'),
+        action: 'create',
+        onClick: () =>
+          trigger('node.add', {
+            kkName: clusterStore.detail.kkName || 'ddd',
+          }),
+      })
+    }
+
+    return {
+      ...tableProps.tableActions,
+      actions,
+      selectActions: [
+        {
+          key: 'taint',
+          type: 'default',
+          text: t('EDIT_TAINTS'),
+          action: 'edit',
+          onClick: () =>
+            trigger('node.taint.batch', {
+              success: routing.query,
+            }),
+        },
+      ],
+    }
+  }
+
   getData = async params => {
     await this.store.fetchList({
       ...params,
       ...this.props.match.params,
-      // page: this.state.page + 1,
-      // limit: this.state.rowsPerPage,
     })
 
     await this.monitoringStore.fetchMetrics({
@@ -186,6 +256,174 @@ export default class Nodes extends React.Component {
       {
         text: t('WORKER'),
         value: 'worker',
+      },
+    ]
+  }
+
+  getColumns = () => {
+    const { module, prefix, getSortOrder, getFilteredValue } = this.props
+    return [
+      {
+        title: t('NAME'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            to={record.importStatus !== 'success' ? null : `${prefix}/${name}`}
+            title={name}
+            desc={record.ip}
+          />
+        ),
+      },
+      {
+        title: t('STATUS'),
+        dataIndex: 'newStatus',
+        filters: this.getStatus(),
+        filteredValue: getFilteredValue('status'),
+        isHideable: true,
+        search: true,
+        render: (_, record) => {
+          const status = getNodeStatus(record)
+          const taints = record.taints
+
+          return (
+            <div className={styles.status}>
+              <Status
+                type={status}
+                name={t(`NODE_STATUS_${status.toUpperCase()}`)}
+              />
+              {!isEmpty(taints) && record.importStatus === 'success' && (
+                <Tooltip content={this.renderTaintsTip(taints)}>
+                  <span className={styles.taints}>{taints.length}</span>
+                </Tooltip>
+              )}
+            </div>
+          )
+        },
+        filterOptions: ['Unschedulable', 'Running', 'Warning'],
+      },
+      {
+        title: t('ROLE'),
+        dataIndex: 'role',
+        filters: this.getRoles(),
+        filteredValue: getFilteredValue('role'),
+        isHideable: true,
+        search: true,
+        render: roles =>
+          roles.indexOf('master') === -1 ? t('WORKER') : t('CONTROL_PLANE'),
+      },
+      {
+        title: t('CPU_USAGE'),
+        key: 'cpu',
+        isHideable: true,
+        render: record => {
+          const metrics = this.getRecordMetrics(record, [
+            {
+              type: 'cpu_used',
+              unit: 'Core',
+            },
+            {
+              type: 'cpu_total',
+              unit: 'Core',
+            },
+            {
+              type: 'cpu_utilisation',
+            },
+          ])
+
+          return (
+            <Text
+              title={
+                <div className={styles.resource}>
+                  <span>{`${Math.round(metrics.cpu_utilisation * 100)}%`}</span>
+                  {metrics.cpu_utilisation >= 0.9 && (
+                    <Icon name="exclamation" />
+                  )}
+                </div>
+              }
+              description={`${metrics.cpu_used}/${metrics.cpu_total} ${t(
+                'CORE_PL'
+              )}`}
+            />
+          )
+        },
+      },
+      {
+        title: t('MEMORY_USAGE'),
+        key: 'memory',
+        isHideable: true,
+        render: record => {
+          const metrics = this.getRecordMetrics(record, [
+            {
+              type: 'memory_used',
+              unit: 'Gi',
+            },
+            {
+              type: 'memory_total',
+              unit: 'Gi',
+            },
+            {
+              type: 'memory_utilisation',
+            },
+          ])
+
+          return (
+            <Text
+              title={
+                <div className={styles.resource}>
+                  <span>{`${Math.round(
+                    metrics.memory_utilisation * 100
+                  )}%`}</span>
+                  {metrics.memory_utilisation >= 0.9 && (
+                    <Icon name="exclamation" />
+                  )}
+                </div>
+              }
+              description={`${metrics.memory_used}/${metrics.memory_total} GiB`}
+            />
+          )
+        },
+      },
+      {
+        title: t('POD_PL'),
+        key: 'pods',
+        isHideable: true,
+        render: record => {
+          const metrics = this.getRecordMetrics(record, [
+            {
+              type: 'pod_used',
+            },
+            {
+              type: 'pod_total',
+            },
+          ])
+          const uitilisation = metrics.pod_total
+            ? parseFloat(metrics.pod_used / metrics.pod_total)
+            : 0
+
+          return (
+            <Text
+              title={`${Math.round(uitilisation * 100)}%`}
+              description={`${metrics.pod_used}/${metrics.pod_total}`}
+            />
+          )
+        },
+      },
+      {
+        title: t('ALLOCATED_CPU'),
+        key: 'allocated_resources_cpu',
+        isHideable: true,
+        render: this.renderCPUTooltip,
+      },
+      {
+        title: t('ALLOCATED_MEMORY'),
+        key: 'allocated_resources_memory',
+        isHideable: true,
+        render: this.renderMemoryTooltip,
       },
     ]
   }
@@ -310,338 +548,27 @@ export default class Nodes extends React.Component {
     )
   }
 
-  handleEditMultiTaints = selectedRows => {
-    const { routing, trigger } = this.props
-    trigger('node.taint.batch', {
-      success: routing.query,
-      selectedRows,
-    })
-  }
-
   render() {
-    const {
-      bannerProps,
-      module,
-      prefix,
-      store,
-      clusterStore,
-      routing,
-      trigger,
-      name,
-    } = this.props
-    const { list } = this.store
-    const data = toJS(list.data)
-    const columns = [
-      {
-        name: 'name',
-        label: 'Name',
-        options: {
-          filter: true,
-          sort: true,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            return (
-              <Avatar
-                icon={ICON_TYPES[module]}
-                iconSize={40}
-                to={
-                  record.importStatus !== 'success'
-                    ? null
-                    : `${prefix}/${record.name}`
-                }
-                title={record.name}
-                desc={record.ip}
-              />
-            )
-          },
-          customFilterListOptions: { render: v => `Name: ${v}` },
-        },
-      },
-      {
-        name: 'newStatus',
-        label: 'Status',
-        options: {
-          filter: true,
-          sort: false,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            const status = getNodeStatus(record)
-            const taints = record.taints
-
-            return (
-              <div className={styles.status}>
-                <Status
-                  type={status}
-                  name={t(`NODE_STATUS_${status.toUpperCase()}`)}
-                />
-                {!isEmpty(taints) && record.importStatus === 'success' && (
-                  <Tooltip content={this.renderTaintsTip(taints)}>
-                    <span className={styles.taints}>{taints.length}</span>
-                  </Tooltip>
-                )}
-              </div>
-            )
-          },
-          filterOptions: {
-            names: ['Unschedulable', 'Running', 'Warning'],
-          },
-          customFilterListOptions: { render: v => `Status: ${v}` },
-        },
-      },
-      {
-        name: 'role',
-        label: 'Role',
-        options: {
-          filter: true,
-          sort: false,
-          customBodyRender: roles =>
-            roles.indexOf('master') === -1 ? t('WORKER') : t('CONTROL_PLANE'),
-          customFilterListOptions: { render: v => `Role: ${v}` },
-        },
-      },
-      {
-        name: 'cpu_usage',
-        label: 'CPU Usage',
-        options: {
-          filter: false,
-          sort: false,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            const metrics = this.getRecordMetrics(record, [
-              {
-                type: 'cpu_used',
-                unit: 'Core',
-              },
-              {
-                type: 'cpu_total',
-                unit: 'Core',
-              },
-              {
-                type: 'cpu_utilisation',
-              },
-            ])
-
-            return (
-              <Text
-                title={
-                  <div className={styles.resource}>
-                    <span>{`${Math.round(
-                      metrics.cpu_utilisation * 100
-                    )}%`}</span>
-                    {metrics.cpu_utilisation >= 0.9 && (
-                      <Icon name="exclamation" />
-                    )}
-                  </div>
-                }
-                description={`${metrics.cpu_used}/${metrics.cpu_total} ${t(
-                  'CORE_PL'
-                )}`}
-              />
-            )
-          },
-        },
-      },
-      {
-        name: 'memory_usage',
-        label: 'Memory Usage',
-        options: {
-          filter: false,
-          sort: false,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            const metrics = this.getRecordMetrics(record, [
-              {
-                type: 'memory_used',
-                unit: 'Gi',
-              },
-              {
-                type: 'memory_total',
-                unit: 'Gi',
-              },
-              {
-                type: 'memory_utilisation',
-              },
-            ])
-
-            return (
-              <Text
-                title={
-                  <div className={styles.resource}>
-                    <span>{`${Math.round(
-                      metrics.memory_utilisation * 100
-                    )}%`}</span>
-                    {metrics.memory_utilisation >= 0.9 && (
-                      <Icon name="exclamation" />
-                    )}
-                  </div>
-                }
-                description={`${metrics.memory_used}/${metrics.memory_total} GiB`}
-              />
-            )
-          },
-        },
-      },
-      {
-        name: 'pods',
-        label: 'Pods',
-        options: {
-          filter: false,
-          sort: false,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            const metrics = this.getRecordMetrics(record, [
-              {
-                type: 'pod_used',
-              },
-              {
-                type: 'pod_total',
-              },
-            ])
-            const uitilisation = metrics.pod_total
-              ? parseFloat(metrics.pod_used / metrics.pod_total)
-              : 0
-
-            return (
-              <Text
-                title={`${Math.round(uitilisation * 100)}%`}
-                description={`${metrics.pod_used}/${metrics.pod_total}`}
-              />
-            )
-          },
-        },
-      },
-      {
-        name: 'cpu',
-        label: 'Allocated CPU',
-        options: {
-          filter: false,
-          sort: false,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            return this.renderCPUTooltip(record)
-          },
-        },
-      },
-      {
-        name: 'role',
-        label: 'Allocated Memory',
-        options: {
-          filter: false,
-          sort: false,
-          customBodyRenderLite: dataIndex => {
-            const record = data[dataIndex]
-            return this.renderMemoryTooltip(record)
-          },
-        },
-      },
-      {
-        name: 'namespace',
-        label: 'Actions',
-        options: {
-          filter: false,
-          sort: false,
-          download: false,
-          customBodyRenderLite: dataIndex => {
-            const tableMeta = data[dataIndex]
-            return (
-              <SplitButton
-                options={[
-                  {
-                    icon: <PlayCircleFilledWhiteIcon fontSize="small" />,
-                    title: t('UNCORDON'),
-                    action: () => {
-                      store.uncordon(tableMeta).then(routing.query)
-                    },
-                    show: () =>
-                      tableMeta.importStatus === 'success' &&
-                      this.getUnschedulable(tableMeta),
-                  },
-                  {
-                    icon: <StopCircle fontSize="small" />,
-                    title: t('CORDON'),
-                    action: () => {
-                      store.cordon(tableMeta).then(routing.query)
-                    },
-                    show: () =>
-                      tableMeta.importStatus === 'success' &&
-                      !this.getUnschedulable(tableMeta),
-                  },
-                  {
-                    icon: <TerminalIcon fontSize="small" />,
-                    title: t('OPEN_TERMINAL'),
-                    action: () => {
-                      this.handleOpenTerminal(tableMeta)
-                    },
-                    show: () =>
-                      tableMeta.importStatus === 'success' &&
-                      this.getReady(tableMeta),
-                  },
-                  {
-                    icon: <VisibilityIcon fontSize="small" />,
-                    title: t('VIEW_LOG'),
-                    action: () => {
-                      trigger('node.add.log', {
-                        detail: toJS(clusterStore.detail),
-                      })
-                    },
-                    show: () => tableMeta.importStatus !== 'success',
-                  },
-                  {
-                    icon: <DeleteIcon fontSize="small" />,
-                    title: t('DELETE'),
-                    action: () => {
-                      trigger('resource.delete', {
-                        type: name,
-                        detail: tableMeta,
-                        success: routing.query,
-                      })
-                    },
-                    show: () => tableMeta.importStatus === 'failed',
-                  },
-                ]}
-              />
-            )
-          },
-        },
-      },
-    ]
-    const options = {
-      filterType: 'dropdown',
-      responsive: 'vertical',
-      selectableRowsOnClick: true,
-      customToolbarSelect: selectedRows => (
-        <div>
-          <CustomButton
-            onClick={() => this.handleEditMultiTaints(selectedRows)}
-          />
-        </div>
-      ),
-      textLabels: {
-        body: {
-          noMatch: this.props.store.list.isLoading ? (
-            <CircularProgress />
-          ) : (
-            'Sorry, there is no matching data to display'
-          ),
-        },
-      },
-    }
+    const { bannerProps, tableProps } = this.props
+    const isLoadingMonitor = this.monitoringStore.isLoading
     return (
-      <ListPage {...this.props} getData={this.getData} noWatch>
+      <>
         <Banner
           {...bannerProps}
           title={t('CLUSTER_NODE_PL')}
           tips={this.tips}
         />
         {this.renderOverview()}
-        <MUIDataTable
-          title="Cluster Nodes Data"
-          data={this.store.list.data}
-          columns={columns}
-          options={options}
-          className={customStyles.muitable}
-        />
-      </ListPage>
+        <ListPage {...this.props} getData={this.getData} noWatch>
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            tableActions={this.tableActions}
+            columns={this.getColumns()}
+            isLoading={tableProps.isLoading || isLoadingMonitor}
+          />
+        </ListPage>
+      </>
     )
   }
 }

@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-
 import UserStore from 'stores/user'
 import { Notify } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
@@ -119,7 +118,6 @@ export default class Accounts extends React.Component {
   get tableActions() {
     const { tableProps } = this.props
     const { activeStatus, disabledStatus } = this.handledisabled()
-
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
