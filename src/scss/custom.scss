@@ -406,7 +406,9 @@ body {
     color: #3f51b5;
   }
   .src-components-Inputs-PropertiesInput-index__item,
-  .input-search .input {
+  .input-search .input,
+  [class*='--Base-Panel-index__panel'] li,
+  div[class*='index__card'] {
     border-radius: 8px;
   }
   .src-pages-workspaces-containers-Overview-ResourceUsage-index__clusterSelector
@@ -430,15 +432,17 @@ body {
   div[class*='index__indicator'] span,
   a[class*='__breadcrum'],
   [class*='index__status'] span,
-  [class*='index__table'] h3 {
+  [class*='index__table'] h3,
+  div[class*='-BaseInfo-'] > div,
+  div[class*='Cards-Banner'] > div {
     font-size: 14px !important;
     font-weight: 500 !important;
   }
   div[class*='index__title'] .text-second {
     font-weight: 400;
   }
-  div[class*='-Cards-'],
-  div[class*='-Cards-']:hover {
+  div[class*='-Cards-']:not([class*='-Cards-Replica-']),
+  div[class*='-Cards-']:not([class*='-Cards-Replica-']):hover {
     border: none;
     background-color: $white;
     border-radius: 8px !important;
