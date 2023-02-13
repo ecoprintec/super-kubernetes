@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
-import { get, isEmpty, isFunction } from 'lodash'
+import { get, isEmpty, isFunction, isUndefined } from 'lodash'
 import {
   Icon,
   Level,
@@ -123,8 +123,8 @@ export default class WorkloadTable extends React.Component {
     }
 
     if (
-      nextProps.store.list.selectedRowKeys !==
-      this.props.store.list.selectedRowKeys.length
+      nextProps?.store?.list?.selectedRowKeys !==
+      this.props?.store?.list?.selectedRowKeys.length
     ) {
       return true
     }
@@ -155,9 +155,8 @@ export default class WorkloadTable extends React.Component {
 
   // eslint-disable-next-line getter-return
   get filteredColumns() {
-    if (this.props.store.list.data.length) {
-      const cl = []
-
+    const cl = []
+    if (this.props?.store?.list?.data.length) {
       if (this.props.columns.length) {
         // eslint-disable-next-line array-callback-return
         this.props.columns.map(item => {
@@ -207,6 +206,7 @@ export default class WorkloadTable extends React.Component {
 
       return cl
     }
+    return cl
   }
 
   handleChange = (filters, sorter) => {
@@ -517,11 +517,15 @@ export default class WorkloadTable extends React.Component {
   }
 
   getSelectedRowIndexs = () => {
-    const { selectedRowKeys, data } = this.props.store.list
     const selectedRowIndexs = []
-    data.forEach((element, index) => {
-      if (selectedRowKeys.includes(element.name)) selectedRowIndexs.push(index)
-    })
+    if (this.props?.store?.list) {
+      const { selectedRowKeys, data } = this.props.store.list
+      data.forEach((element, index) => {
+        if (selectedRowKeys.includes(element.name))
+          selectedRowIndexs.push(index)
+      })
+      return selectedRowIndexs
+    }
     return selectedRowIndexs
   }
 
@@ -552,11 +556,11 @@ export default class WorkloadTable extends React.Component {
       hideHeader,
       hideFooter,
       getCheckboxProps,
+      selectedableRows,
     } = this.props
     if (this.showEmpty) {
       return this.renderEmpty()
     }
-
     const props = {}
 
     if (!hideHeader) {
@@ -631,6 +635,15 @@ export default class WorkloadTable extends React.Component {
         return <div>{this.renderSelectActions()}</div>
       },
       customToolbar: () => this.renderActions(),
+      customSort: (listData, colIndex, order) => {
+        return listData.sort((a, b) => {
+          return (
+            (a.data[colIndex] < b.data[colIndex] ? -1 : 1) *
+            (order === 'desc' ? 1 : -1)
+          )
+        })
+      },
+      selectableRows: isUndefined(selectedableRows) ? true : selectedableRows,
     }
     // eslint-disable-next-line array-callback-return
     const new_list = []

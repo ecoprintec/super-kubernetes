@@ -219,7 +219,8 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: this.renderAccessTitle(),
+        title: t('ACCESS_MODE_TCAP'),
+        // hint: this.renderAccessTitle(),
         dataIndex: 'accessModes',
         isHideable: false,
         width: '12.32%',
@@ -265,7 +266,6 @@ export default class Volumes extends React.Component {
     )
     return (
       <div className={styles.mode_title}>
-        {t('ACCESS_MODE_TCAP')}
         <Tooltip content={renderModeTip}>
           <Icon name="question" size={16} className={styles.question}></Icon>
         </Tooltip>
