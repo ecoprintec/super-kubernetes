@@ -27,13 +27,9 @@ import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import OverviewStore from 'stores/overview'
 import ProjectMonitorStore from 'stores/monitoring/project'
 
-import {
-  Select,
-  Loading,
-  RadioGroup,
-  RadioButton,
-} from '@kube-design/components'
+import { Loading } from '@kube-design/components'
 import { Panel } from 'components/Base'
+import Tabs from 'components/Cards/Banner/Tabs'
 
 import AppResourceItem from './AppResourceItem'
 import PhysicalResourceItem from './PhysicalResourceItem'
@@ -118,6 +114,23 @@ class ResourceUsage extends React.Component {
       { label: t('LAST_TIME_D', { num: 3 }), value: 259200 },
       { label: t('LAST_TIME_D', { num: 7 }), value: 604800 },
     ]
+  }
+
+  get tabs() {
+    return {
+      value: this.state.resourceType,
+      onChange: this.handleResouceTypeChange,
+      options: [
+        {
+          value: 'application',
+          label: t('APPLICATION_RESOURCE_PL'),
+        },
+        {
+          value: 'physical',
+          label: t('PHYSICAL_RESOURCE_PL'),
+        },
+      ],
+    }
   }
 
   fetchData = params => {
@@ -303,37 +316,11 @@ class ResourceUsage extends React.Component {
     )
   }
 
-  renderHeader() {
-    return (
-      <div className={styles.header}>
-        <RadioGroup
-          mode="button"
-          value={this.state.resourceType}
-          onChange={this.handleResouceTypeChange}
-          size="small"
-        >
-          <RadioButton value="application">
-            {t('APPLICATION_RESOURCE_PL')}
-          </RadioButton>
-          <RadioButton value="physical">
-            {t('PHYSICAL_RESOURCE_PL')}
-          </RadioButton>
-        </RadioGroup>
-        <Select
-          className={styles.timeSelect}
-          defaultValue={this.state.range}
-          options={this.timeOptions}
-          onChange={this.handleRangeChange}
-        />
-      </div>
-    )
-  }
-
   render() {
     const { resourceType } = this.state
     return (
       <Panel className={styles.wrapper} title={t('RESOURCE_STATUS')}>
-        {this.renderHeader()}
+        <Tabs tabs={this.tabs} />
         {resourceType === 'application'
           ? this.renderApplicationResource()
           : this.renderPhysicalResource()}

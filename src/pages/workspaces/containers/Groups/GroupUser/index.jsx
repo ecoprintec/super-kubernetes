@@ -22,13 +22,9 @@ import { observer, inject } from 'mobx-react'
 import classnames from 'classnames'
 import { toJS } from 'mobx'
 
-import {
-  RadioGroup,
-  RadioButton,
-  InputSearch,
-  Tag,
-} from '@kube-design/components'
+import { InputSearch } from '@kube-design/components'
 
+import Tabs from 'components/Cards/Banner/Tabs'
 import { ScrollLoad } from 'components/Base'
 import { trigger } from 'utils/action'
 
@@ -58,7 +54,8 @@ export default class GroupUser extends Component {
       group: props.group,
       search: '',
     }
-    this.configs = this.getConfigs()
+    // this.configs = this.getConfigs()
+    this.configs = this.tabs.options
   }
 
   componentDidUpdate(prevProps) {
@@ -73,26 +70,29 @@ export default class GroupUser extends Component {
     }
   }
 
-  getConfigs = () => [
-    {
-      type: 'notingroup',
-      title: t('NOT_ASSIGNED_TCAP'),
-      onFetch: 'fetchNotingroupData',
-    },
-    {
-      type: 'ingroup',
-      title: t('ASSIGNED'),
-      onFetch: 'fetchIngroupData',
-    },
-  ]
+  get tabs() {
+    return {
+      value: this.state.type,
+      onChange: this.handleTypeChange,
+      options: [
+        {
+          value: 'notingroup',
+          label: t('NOT_ASSIGNED_TCAP'),
+          count: this.getCount('notingroup'),
+          onFetch: 'fetchNotingroupData',
+        },
+        {
+          value: 'ingroup',
+          label: t('ASSIGNED'),
+          count: this.getCount('ingroup'),
+          onFetch: 'fetchIngroupData',
+        },
+      ],
+    }
+  }
 
   getCount = type => {
     return this.userStore[type].total || 0
-  }
-
-  getColor = value => {
-    const { type } = this.state
-    return value === type ? '#3f51b5' : '#c1c9d1'
   }
 
   fetchNotingroupData = (params = {}) => {
@@ -148,18 +148,7 @@ export default class GroupUser extends Component {
     return (
       <div className="level">
         <div className="level-left">
-          <RadioGroup
-            mode="button"
-            value={this.state.type}
-            onChange={this.handleTypeChange}
-          >
-            {this.configs.map(({ type, title }) => (
-              <RadioButton key={type} value={type}>
-                {title}
-                <Tag color={this.getColor(type)}>{this.getCount(type)}</Tag>
-              </RadioButton>
-            ))}
-          </RadioGroup>
+          <Tabs tabs={this.tabs} />
           {this.state.group && (
             <InputSearch
               className={styles.search}
@@ -173,12 +162,12 @@ export default class GroupUser extends Component {
   }
 
   renderUserItem(tab) {
-    const { type, onFetch } = tab
-    const { data = [], total, page, isLoading } = toJS(this.userStore[type])
+    const { value, onFetch } = tab
+    const { data = [], total, page, isLoading } = toJS(this.userStore[value])
     const { selectedKeys, enabledActions } = this.props
     const { group } = this.state
 
-    if (!group && type === 'ingroup') {
+    if (!group && value === 'ingroup') {
       return this.renderPlaceHolder()
     }
 
@@ -192,8 +181,8 @@ export default class GroupUser extends Component {
       >
         {data.map(item => (
           <User
-            key={`${type}-${item.name}`}
-            type={type}
+            key={`${value}-${item.name}`}
+            type={value}
             user={item}
             group={group}
             groupStore={this.groupStore}
@@ -222,9 +211,9 @@ export default class GroupUser extends Component {
             <div
               className={classnames(
                 styles.tabPanel,
-                type === tab.type && styles.active
+                type === tab.value && styles.active
               )}
-              key={tab.type}
+              key={tab.value}
             >
               {this.renderUserItem(tab)}
             </div>
