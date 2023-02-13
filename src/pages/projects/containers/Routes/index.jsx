@@ -236,18 +236,20 @@ export default class Routers extends React.Component {
     const { bannerProps, tableProps } = this.props
     const { clusterGateway, projectGateway } = this.state
     return (
-      <ListPage {...this.props}>
+      <>
         <Banner {...bannerProps} tips={this.tips} />
         {isEmpty(clusterGateway) &&
           isEmpty(projectGateway) &&
           this.renderCreateGateway()}
-        <Table
-          {...tableProps}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
-        />
-      </ListPage>
+        <ListPage {...this.props}>
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            columns={this.getColumns()}
+            onCreate={this.showCreate}
+          />
+        </ListPage>
+      </>
     )
   }
 }
