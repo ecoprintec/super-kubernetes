@@ -94,8 +94,8 @@ $category-width: 193px;
 }
 
 .cates {
-  position: absolute;
-  top: -40px;
+  position: fixed;
+  top: 300px;
   width: $category-width;
 
   .group {
@@ -134,12 +134,5 @@ $category-width: 193px;
         }
       }
     }
-  }
-}
-
-:global {
-  .fixed-cates {
-    position: fixed;
-    top: 90px;
   }
 }

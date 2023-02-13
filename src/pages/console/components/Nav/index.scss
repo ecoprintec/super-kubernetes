@@ -1,0 +1,95 @@
+@import '~scss/mixins';
+
+//Dylan edition
+.dashboard_leftsidebar {
+  padding-top: 30px;
+  position: fixed;
+  .navparent {
+    min-width: 95px;
+    width: 105px;
+    .parent_nav_tabs {
+      color: rgba(0, 0, 0, 0.74);
+      min-width: unset;
+      width: 100%;
+      padding: 0px 10px;
+      font-size: 12px;
+      span {
+        border-radius: 4px;
+        padding: 8px 0px 3px 0px;
+        &:hover {
+          background-color: rgba(80, 80, 80, 0.05);
+        }
+        div {
+          margin-bottom: -5px !important;
+          svg {
+            fill: rgba(0, 0, 0, 0.24);
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+      &.avatar {
+        margin-bottom: 8px;
+        span {
+          &:hover {
+            background-color: transparent;
+          }
+          height: 48px;
+          padding: 15px 0px;
+          div {
+            margin-bottom: 0px !important;
+            svg {
+              width: 32px;
+              height: 32px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.accordionGlobal {
+  padding: 0 !important;
+  background-color: transparent !important;
+  width: 100%;
+  margin-bottom: 15px;
+  .accordionSummaryGlobal {
+    padding: 0 !important;
+    min-height: unset !important;
+    height: 38px;
+    border-radius: 4px !important;
+    &:hover {
+      color: #283593 !important;
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+    .navsglobal {
+      margin-bottom: 0px !important;
+      &:hover {
+        background-color: transparent !important;
+      }
+    }
+  }
+  .accordionDetailsGlobal {
+    flex-direction: column;
+    padding: 0px 0px 0px 22px;
+    white-space: nowrap;
+    text-align: start;
+    font-size: 12px;
+    text-overflow: ellipsis;
+  }
+}
+.navsglobal {
+  width: 100%;
+  justify-content: flex-start !important;
+  margin-bottom: 15px !important;
+  &:hover {
+    color: #283593 !important;
+  }
+  &.arcordionItem {
+    text-transform: capitalize;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
