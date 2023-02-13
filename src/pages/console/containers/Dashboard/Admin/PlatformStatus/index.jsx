@@ -21,9 +21,8 @@ import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
-
+import Grid from '@material-ui/core/Grid'
 import Resource from './Resource'
-
 import styles from './index.scss'
 
 @inject('rootStore')
@@ -61,26 +60,36 @@ export default class PlatformStatus extends Component {
     const { metrics } = this.props
     return (
       <div className={styles.wrapper}>
-        <div className={styles.title}>
-          <Text
-            icon="blockchain"
-            title={getLocalTime(Date.now()).format('YYYY-MM-DD HH:mm:ss')}
-            description={t('LAST_UPDATE_TIME')}
-          />
-        </div>
-        {this.resources.map(resource => {
-          if (resource.hide) {
-            return null
-          }
-          return (
-            <Resource
-              key={resource.name}
-              data={resource}
-              count={get(metrics, `${resource.metric}.data.result[0].value[1]`)}
-              onClick={this.handleClick}
-            />
-          )
-        })}
+        <Grid container>
+          <Grid item xs={12} lg={3} md={6} sm={6}>
+            <div className={styles.title}>
+              <Text
+                icon="blockchain"
+                title={getLocalTime(Date.now()).format('YYYY-MM-DD HH:mm:ss')}
+                description={t('LAST_UPDATE_TIME')}
+              />
+            </div>
+          </Grid>
+
+          {this.resources.map(resource => {
+            if (resource.hide) {
+              return null
+            }
+            return (
+              <Grid item xs={12} lg={3} md={6} sm={6}>
+                <Resource
+                  key={resource.name}
+                  data={resource}
+                  count={get(
+                    metrics,
+                    `${resource.metric}.data.result[0].value[1]`
+                  )}
+                  onClick={this.handleClick}
+                />
+              </Grid>
+            )
+          })}
+        </Grid>
       </div>
     )
   }

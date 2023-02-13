@@ -27,7 +27,7 @@ import './index.css'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import HomeIcon from '@material-ui/icons/Home'
-import { Box, Fade } from '@material-ui/core'
+import { Box, Grow } from '@material-ui/core'
 import MuiButton from '@material-ui/core/Button'
 import SettingsIcon from '@material-ui/icons/Settings'
 import AppsIcon from '@material-ui/icons/Apps'
@@ -252,7 +252,7 @@ class Nav extends React.Component {
             ))}
           >
             {rootStore.isGlobalMenu && (
-              <Fade timeout={300} in={rootStore.isGlobalMenu}>
+              <Grow timeout={300} in={rootStore.isGlobalMenu}>
                 <Box component={'div'}>
                   {this.isLoggedIn && (
                     <Box
@@ -343,7 +343,7 @@ class Nav extends React.Component {
                     </Box>
                   )}
                 </Box>
-              </Fade>
+              </Grow>
             )}
           </TabPanel>
         </div>

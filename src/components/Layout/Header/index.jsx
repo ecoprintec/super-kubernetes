@@ -22,13 +22,9 @@ import classnames from 'classnames'
 import { Link } from 'react-router-dom'
 import { Icon, Menu, Dropdown } from '@kube-design/components'
 import { isAppsPage, getWebsiteUrl } from 'utils'
-import Dashboard from '@material-ui/icons/Dashboard'
-import AppsIcon from '@material-ui/icons/Apps'
-import SettingsIcon from '@material-ui/icons/Settings'
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import MuiButton from '@material-ui/core/Button'
 import { Box, Typography } from '@material-ui/core'
 import Collapse from '@material-ui/core/Collapse'
 import styles from './index.scss'
@@ -112,7 +108,7 @@ class Header extends React.Component {
   toogleMenu = () => {}
 
   render() {
-    const { className, innerRef, location } = this.props
+    const { className, innerRef } = this.props
     const { getTitle } = this.state
     const logo = globals.config.logo || '/assets/sqk-logo-light.svg'
 
@@ -146,7 +142,7 @@ class Header extends React.Component {
           </Collapse>
         </Box>
         <Box component={'div'} display={'flex'} alignItems={'center'}>
-          {this.isLoggedIn && (
+          {/* {this.isLoggedIn && (
             <div className={styles.navs}>
               {globals.app.enableGlobalNav && (
                 <MuiButton onClick={this.props.onToggleNav}>
@@ -178,7 +174,7 @@ class Header extends React.Component {
                 {t('WORKBENCH')}
               </MuiButton>
             </div>
-          )}
+          )} */}
           <div className={styles.right}>
             {this.isLoggedIn && (
               <Dropdown content={this.renderDocumentList()}>
