@@ -19,7 +19,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
-import { RadioGroup, RadioButton, Tag, Loading } from '@kube-design/components'
+import { Loading } from '@kube-design/components'
 import Banner from 'components/Cards/Banner'
 import { parse } from 'qs'
 
@@ -40,8 +40,7 @@ export default class ServiceComponents extends React.Component {
     this.state = {
       type: type || 'kubesphere',
     }
-
-    this.configs = this.getConfigs()
+    this.configs = this.tabs
     this.store = new ComponentStore()
     this.store.fetchList({ cluster: this.cluster })
   }
@@ -54,51 +53,68 @@ export default class ServiceComponents extends React.Component {
     return this.props.match.params.cluster
   }
 
-  getColor = healthy => (healthy ? '#f5a623' : '#3f51b5')
+  // getColor = healthy => (healthy ? '#f5a623' : '#3f51b5')
 
-  getCount = type => {
-    const exceptionCount = this.store.exceptionCount
-    const healthyCount = this.store.healthyCount
-
-    return exceptionCount[type] || healthyCount[type] || 0
+  get tabs() {
+    return {
+      value: this.state.type,
+      onChange: this.handleTypeChange,
+      options: [
+        {
+          value: 'kubesphere',
+          label: 'KubeSphere',
+          icon: '/assets/kubesphere.svg',
+          count: this.getCount('kubesphere'),
+        },
+        {
+          value: 'kubernetes',
+          label: 'Kubernetes',
+          icon: '/assets/kubernetes.svg',
+          count: this.getCount('kubernetes'),
+        },
+        {
+          value: 'istio',
+          label: t('APPLICATION_GOVERNANCE'),
+          icon: '/assets/istio.svg',
+          count: this.getCount('istio'),
+          disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),
+        },
+        {
+          value: 'monitoring',
+          label: t('MONITORING'),
+          icon: '/assets/monitoring.svg',
+          count: this.getCount('monitoring'),
+          disabled: !globals.app.hasClusterModule(this.cluster, 'monitoring'),
+        },
+        {
+          value: 'logging',
+          label: t('LOGGING'),
+          icon: '/assets/logging.svg',
+          count: this.getCount('logging'),
+          disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
+        },
+        {
+          value: 'devops',
+          label: 'DevOps',
+          icon: '/assets/dev-ops.svg',
+          count: this.getCount('devops'),
+          disabled: !globals.app.hasClusterModule(this.cluster, 'devops'),
+        },
+      ],
+    }
   }
 
-  getConfigs = () => [
-    {
-      type: 'kubesphere',
-      title: 'KubeSphere',
-      icon: '/assets/kubesphere.svg',
-    },
-    {
-      type: 'kubernetes',
-      title: 'Kubernetes',
-      icon: '/assets/kubernetes.svg',
-    },
-    {
-      type: 'istio',
-      title: t('APPLICATION_GOVERNANCE'),
-      icon: '/assets/istio.svg',
-      disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),
-    },
-    {
-      type: 'monitoring',
-      title: t('MONITORING'),
-      icon: '/assets/monitoring.svg',
-      disabled: !globals.app.hasClusterModule(this.cluster, 'monitoring'),
-    },
-    {
-      type: 'logging',
-      title: t('LOGGING'),
-      icon: '/assets/logging.svg',
-      disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
-    },
-    {
-      type: 'devops',
-      title: 'DevOps',
-      icon: '/assets/dev-ops.svg',
-      disabled: !globals.app.hasClusterModule(this.cluster, 'devops'),
-    },
-  ]
+  getCount = type => {
+    if (typeof this.store === 'undefined') {
+      return
+    }
+    if (type !== 'istio') {
+      const healthyCount = this.store.healthyCount
+      return healthyCount[type] || 0
+    }
+    const exceptionCount = this.store.exceptionCount
+    return exceptionCount[type] || 0
+  }
 
   handleTypeChange = type => {
     this.setState({ type })
@@ -106,37 +122,14 @@ export default class ServiceComponents extends React.Component {
 
   renderHeader() {
     return (
-      <Banner
-        icon="components"
-        title={t('SYSTEM_COMPONENT_PL')}
-        description={t('SERVICE_COMPONENTS_DESC')}
-        extra={<div className={styles.toolbar}>{this.renderBar()}</div>}
-      />
-    )
-  }
-
-  renderBar() {
-    const exceptionCount = this.store.exceptionCount
-
-    return (
-      <div className="inline-block">
-        <RadioGroup
-          mode="button"
-          value={this.state.type}
-          onChange={this.handleTypeChange}
-        >
-          {this.configs
-            .filter(item => !item.disabled)
-            .map(({ type, title }) => (
-              <RadioButton key={type} value={type}>
-                {title}
-                <Tag color={this.getColor(exceptionCount[type])}>
-                  {this.getCount(type)}
-                </Tag>
-              </RadioButton>
-            ))}
-        </RadioGroup>
-      </div>
+      <>
+        <Banner
+          icon="components"
+          title={t('SYSTEM_COMPONENT_PL')}
+          description={t('SERVICE_COMPONENTS_DESC')}
+          tabs={this.tabs}
+        />{' '}
+      </>
     )
   }
 
@@ -152,7 +145,7 @@ export default class ServiceComponents extends React.Component {
 
   renderComponents(type) {
     const { data } = this.store.list
-    const config = this.configs.find(item => item.type === type) || {}
+    const config = this.configs.options.find(item => item.value === type) || {}
     const components = data[type]
 
     if (isEmpty(components)) {

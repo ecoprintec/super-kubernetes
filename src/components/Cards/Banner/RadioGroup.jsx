@@ -52,11 +52,33 @@ export default class RadioGroupWithOptions extends React.Component {
       >
         {options
           .filter(option => !option.hidden)
-          .map((option, optionKey) => {
-            return (
-              <Tab key={optionKey} label={option.label} value={option.value} />
-            )
-          })}
+          .map(option => (
+            <Tab
+              label={
+                typeof option.count !== 'undefined' ? (
+                  <span>
+                    {option.label}{' '}
+                    <span
+                      style={{
+                        backgroundColor: 'rgb(85, 188, 138)',
+                        boxShadow: '0 2px 4px 0 rgb(85 188 138 / 36%)',
+                        padding: '0 4px',
+                        borderRadius: '10px',
+                        color: 'white',
+                        fontSize: '12px',
+                      }}
+                      className=""
+                    >
+                      {option.count}
+                    </span>
+                  </span>
+                ) : (
+                  <span className={option.count}> {option.label}</span>
+                )
+              }
+              value={option.value}
+            />
+          ))}
       </Tabs>
     )
   }
