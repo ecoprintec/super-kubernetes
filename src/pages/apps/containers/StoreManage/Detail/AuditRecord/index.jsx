@@ -86,16 +86,19 @@ export default class AuditRecord extends React.Component {
   render() {
     const { tableProps } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData} noWatch>
+      <>
         <div className={styles.title}>{t('APP_REVIEW')}</div>
-        <Table
-          {...tableProps}
-          tableActions={this.tableActions}
-          itemActions={[]}
-          columns={this.getColumns()}
-          hideSearch
-        />
-      </ListPage>
+        <ListPage {...this.props} getData={this.getData} noWatch>
+          <Table
+            {...tableProps}
+            tableActions={this.tableActions}
+            itemActions={[]}
+            columns={this.getColumns()}
+            hideSearch
+            selectedableRows={false}
+          />
+        </ListPage>
+      </>
     )
   }
 }
