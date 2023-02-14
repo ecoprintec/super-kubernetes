@@ -556,7 +556,8 @@ export default class WorkloadTable extends React.Component {
       hideHeader,
       hideFooter,
       getCheckboxProps,
-      selectedableRows,
+      selectActions,
+      hideSearch,
     } = this.props
     if (this.showEmpty) {
       return this.renderEmpty()
@@ -602,7 +603,8 @@ export default class WorkloadTable extends React.Component {
       rowsPerPage: this.state.rowsPerPage,
       rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
       searchText: this.state.searchText,
-      searchAlwaysOpen: true,
+      searchAlwaysOpen: !hideSearch,
+      search: !hideSearch,
       download: false,
       sortOrder,
       enableNestedDataAccess: '.',
@@ -643,7 +645,10 @@ export default class WorkloadTable extends React.Component {
           )
         })
       },
-      selectableRows: isUndefined(selectedableRows) ? true : selectedableRows,
+      selectableRows:
+        isUndefined(selectActions) || selectActions.length === 0
+          ? 'none'
+          : 'multiple',
     }
     // eslint-disable-next-line array-callback-return
     const new_list = []
