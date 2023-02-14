@@ -22,6 +22,7 @@ import BaseLayout from 'core/layouts/Base'
 import Login from 'core/containers/Login'
 import LoginConfirm from 'core/containers/LoginConfirm'
 import PasswordConfirm from 'core/containers/PasswordConfirm'
+import LandingPage from '../pages/landingpage'
 
 const Console = lazy(() =>
   import(/* webpackChunkName: "console" */ 'console/App.jsx')
@@ -50,6 +51,7 @@ const DevOps = lazy(() =>
 const App = lazy(() => import(/* webpackChunkName: "apps" */ 'apps/App.jsx'))
 
 export default [
+  { path: `/`, component: LandingPage, exact: true },
   { path: `/login`, component: Login, exact: true },
   { path: `/login/confirm`, component: LoginConfirm, exact: true },
   { path: `/password/confirm`, component: PasswordConfirm, exact: true },

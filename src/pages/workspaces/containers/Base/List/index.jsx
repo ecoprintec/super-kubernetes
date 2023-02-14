@@ -63,7 +63,7 @@ class WorkspaceLayout extends Component {
               style={{
                 padding: '0px 0px 0px 15px',
                 position: 'fixed',
-                width: '300px',
+                width: '315px',
               }}
               className={rootStore.openMenu === true ? 'title-in-delay' : ''}
             >

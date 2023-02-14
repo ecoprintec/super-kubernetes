@@ -36,6 +36,7 @@ class Header extends React.Component {
     innerRef: PropTypes.object,
     jumpTo: PropTypes.func,
     route: PropTypes.any,
+    isNavMounted: PropTypes.bool,
   }
 
   constructor(props) {
@@ -108,10 +109,9 @@ class Header extends React.Component {
   toogleMenu = () => {}
 
   render() {
-    const { className, innerRef } = this.props
+    const { className, innerRef, isNavMounted } = this.props
     const { getTitle } = this.state
     const logo = globals.config.logo || '/assets/sqk-logo-light.svg'
-
     return (
       <div
         ref={innerRef}
@@ -125,9 +125,14 @@ class Header extends React.Component {
         )}
       >
         <Box component={'div'} display={'flex'} alignItems={'center'}>
-          <IconButton onClick={this.props.onToggleOpenMenu}>
-            <MenuIcon htmlColor="#283593" />
-          </IconButton>
+          {isNavMounted === true && (
+            <IconButton
+              onClick={this.props.onToggleOpenMenu}
+              style={{ marginRight: 45 }}
+            >
+              <MenuIcon htmlColor="#283593" />
+            </IconButton>
+          )}
           <Link to={isAppsPage() && !globals.user ? '/apps' : '/'}>
             <img
               className={styles.logo}

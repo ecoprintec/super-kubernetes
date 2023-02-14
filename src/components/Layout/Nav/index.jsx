@@ -76,6 +76,16 @@ class Nav extends React.Component {
     return Boolean(globals.user)
   }
 
+  componentDidMount() {
+    this._ismounted = true
+    this.props.rootStore.checkIsNavMounted(this._ismounted)
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false
+    this.props.rootStore.checkIsNavMounted(this._ismounted)
+  }
+
   handleLinkClick = link => () => {
     this.props.rootStore.routing.push(link)
     this.props.rootStore.closeGlobalMenu()
@@ -139,7 +149,6 @@ class Nav extends React.Component {
       rootStore,
       haveNavTitle,
     } = this.props
-
     const { openedNav, value } = this.state
     const current = this.currentPath
     const prefix = trimEnd(match.url, '/')
@@ -328,10 +337,10 @@ class Nav extends React.Component {
                         </MuiButton>
                       )}
                       <MuiButton
-                        onClick={this.handleLinkClick('/')}
+                        onClick={this.handleLinkClick('/dashboard')}
                         className={classnames(
                           {
-                            [styles.active]: location.pathname === '/',
+                            [styles.active]: location.pathname === '/dashboard',
                           },
                           styles.navsglobal
                         )}
