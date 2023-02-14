@@ -95,7 +95,6 @@ export default class AuditRecord extends React.Component {
             itemActions={[]}
             columns={this.getColumns()}
             hideSearch
-            selectedableRows={false}
           />
         </ListPage>
       </>
