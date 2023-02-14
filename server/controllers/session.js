@@ -140,11 +140,11 @@ const handleLogin = async ctx => {
   if (lastToken) {
     const { username } = jwtDecode(lastToken)
     if (username && username !== user.username) {
-      return ctx.redirect('/')
+      return ctx.redirect('/dashboard')
     }
   }
 
-  ctx.redirect(isValidReferer(referer) ? referer : '/')
+  ctx.redirect(isValidReferer(referer) ? referer : '/dashboard')
 }
 
 const handleLogout = async ctx => {
@@ -245,7 +245,8 @@ const handleOAuthLogin = async ctx => {
       ctx.redirect(redirect_url)
     }
   } else {
-    ctx.redirect(isValidReferer(referer) ? referer : '/')  }
+    ctx.redirect(isValidReferer(referer) ? referer : '/')
+  }
 }
 
 const handleLoginConfirm = async ctx => {
@@ -262,7 +263,7 @@ const handleLoginConfirm = async ctx => {
 
     ctx.cookies.set('defaultUser', null)
     ctx.cookies.set('defaultEmail', null)
-    ctx.redirect('/')
+    ctx.redirect('/dashboard')
   }
 }
 

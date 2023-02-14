@@ -33,10 +33,6 @@ export default [
   { path: '/bill', exact: true, component: Bill },
   { path: '/support', exact: true, component: Support },
   {
-    path: '/',
-    redirect: { from: '/', to: '/dashboard', exact: true },
-  },
-  {
     path: '*',
     redirect: { from: '*', to: '/404', exact: true },
   },
