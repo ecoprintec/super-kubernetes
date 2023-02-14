@@ -1,5 +1,4 @@
-# Super Kubenetes
-
+# sqk-super-kubenetes
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/kubesphere/console)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
@@ -31,7 +30,7 @@ This is optional too, we use `make` to reduce hand work, but it's totally ok wit
 
 ## How to build
 
-Clone the repository, and run `yarn install && yarn upgrade @kube-design/components && yarn rebuild-kube-design && yarn build`
+Clone the repository, and run `yarn install && yarn build`
 ```sh
 git clone http://52.79.210.247:9000/sqk/sqk-super-kubenetes.git
 cd sqk-super-kubenetes/
