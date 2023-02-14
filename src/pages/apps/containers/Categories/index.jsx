@@ -139,7 +139,7 @@ export default class AppCategories extends React.Component {
     const { bannerProps, tableProps } = this.props
     const { selectCategoryId } = this.state
     return (
-      <ListPage {...this.props} getData={this.getData} noWatch>
+      <>
         <Banner
           {...bannerProps}
           icon="tag"
@@ -155,17 +155,19 @@ export default class AppCategories extends React.Component {
             />
           </Column>
           <Column>
-            <Table
-              {...tableProps}
-              tableActions={this.tableActions}
-              itemActions={this.itemActions}
-              columns={this.getColumns()}
-              emptyProps={this.emptyProps}
-              searchType="keyword"
-            />
+            <ListPage {...this.props} getData={this.getData} noWatch>
+              <Table
+                {...tableProps}
+                tableActions={this.tableActions}
+                itemActions={this.itemActions}
+                columns={this.getColumns()}
+                emptyProps={this.emptyProps}
+                searchType="keyword"
+              />
+            </ListPage>
           </Column>
         </Columns>
-      </ListPage>
+      </>
     )
   }
 }
