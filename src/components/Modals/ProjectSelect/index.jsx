@@ -21,19 +21,14 @@ import React from 'react'
 import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import {
-  Button,
-  RadioGroup,
-  InputSearch,
-  Columns,
-  Column,
-} from '@kube-design/components'
+import { Button, InputSearch, Columns, Column } from '@kube-design/components'
 import { Modal, ScrollLoad } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
 import FederatedStore from 'stores/project.federated'
 import DevOpsStore from 'stores/devops'
+import RadioGroupWithOptions from '../../Cards/Banner/RadioGroup'
 
 import Card from './Card'
 import ClusterSelect from './ClusterSelect'
@@ -119,6 +114,14 @@ export default class ProjectSelectModal extends React.Component {
     }
 
     return types
+  }
+
+  get tabs() {
+    return {
+      value: this.state.type,
+      onChange: this.handleTypeChange,
+      options: [...this.types],
+    }
   }
 
   get canCreate() {
@@ -230,12 +233,7 @@ export default class ProjectSelectModal extends React.Component {
         <div className={styles.bar}>
           <Columns className="is-variable is-1">
             <Column className="is-narrow">
-              <RadioGroup
-                mode="button"
-                value={type}
-                options={this.types}
-                onChange={this.handleTypeChange}
-              />
+              <RadioGroupWithOptions {...this.tabs} />
             </Column>
             <Column>
               <div className={styles.searchWrapper}>
