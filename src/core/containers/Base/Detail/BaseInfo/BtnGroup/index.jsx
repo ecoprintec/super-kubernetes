@@ -89,11 +89,7 @@ export default class BtnGroup extends Component {
       return (
         <Menu.MenuItem {...rest}>
           {icon &&
-            (isFunction(icon) ? (
-              icon()
-            ) : (
-              <Icon name={icon} type="light" />
-            ))}{' '}
+            (isFunction(icon) ? icon() : <Icon name={icon} type="dark" />)}{' '}
           <span data-test={`detail-${rest.key}`}>{text}</span>
         </Menu.MenuItem>
       )
