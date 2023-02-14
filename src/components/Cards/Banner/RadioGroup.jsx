@@ -67,13 +67,12 @@ export default class RadioGroupWithOptions extends React.Component {
                         color: 'white',
                         fontSize: '12px',
                       }}
-                      className=""
                     >
                       {option.count}
                     </span>
                   </span>
                 ) : (
-                  <span className={option.count}> {option.label}</span>
+                  <span> {option.label}</span>
                 )
               }
               value={option.value}
