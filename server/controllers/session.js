@@ -180,7 +180,7 @@ const handleLogout = async ctx => {
     if (isAppsRoute(refererPath)) {
       ctx.redirect(refererPath)
     } else {
-      ctx.redirect('/login')
+      ctx.redirect('/')
     }
   }
 }

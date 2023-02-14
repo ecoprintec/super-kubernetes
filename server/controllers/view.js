@@ -60,6 +60,21 @@ const renderView = async ctx => {
   }
 }
 
+const renderLandingPage = async ctx => {
+  const manifest = ctx.JSON
+  await ctx.render('index', {
+    manifest,
+    isDev: global.MODE_DEV,
+    title: clientConfig.title,
+    hostname: ctx.hostname,
+    globals: JSON.stringify({
+      config: clientConfig,
+    }),
+  })
+  renderLogin(ctx)
+  ctx.redirect('/')
+}
+
 const renderLogin = async ctx => {
   const referer = ctx.querystring.split('referer=')[1]
 
@@ -170,4 +185,5 @@ module.exports = {
   renderLogin,
   renderMarkdown,
   renderLoginConfirm,
+  renderLandingPage,
 }
