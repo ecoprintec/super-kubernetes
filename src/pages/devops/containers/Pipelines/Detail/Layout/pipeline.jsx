@@ -276,6 +276,8 @@ export default class PipelineDetailLayout extends React.Component {
         detailStore={this.store}
         route={this.props.route}
         match={this.props.match}
+        history={this.props.history}
+        location={this.props.location}
       />
     )
   }
