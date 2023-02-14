@@ -187,7 +187,7 @@ export default class WorkloadTable extends React.Component {
               customBodyRender: (value, tableMeta) => {
                 const detail = this.props.data[tableMeta.rowIndex]
                 let text = ''
-                if (!detail) return text
+                if (!detail || !value) return text
                 if (isFunction(item.render)) {
                   const arrNameParams = this.getParamNames(item.render)
 
