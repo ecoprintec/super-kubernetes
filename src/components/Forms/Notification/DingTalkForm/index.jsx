@@ -19,14 +19,11 @@
 import React, { Component } from 'react'
 import { get } from 'lodash'
 
-import {
-  Form,
-  Input,
-  Notify,
-  Tooltip,
-  Icon,
-  Tabs,
-} from '@kube-design/components'
+import { Form, Input, Notify, Tooltip, Icon } from '@kube-design/components'
+
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 
 import BaseForm from '../BaseForm'
 import Item from './Item'
@@ -34,9 +31,27 @@ import KeyWords from './KeyWords'
 
 import styles from './index.scss'
 
-const { TabPanel } = Tabs
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Typography>{children}</Typography>}
+    </div>
+  )
+}
 
 export default class DingTalkForm extends Component {
+  state = {
+    type: 0,
+  }
+
   validateCid = value => {
     const data = get(
       this.props.data,
@@ -178,6 +193,10 @@ export default class DingTalkForm extends Component {
     )
   }
 
+  handleTypeChange = newValue => {
+    this.setState({ type: newValue })
+  }
+
   render() {
     const { user, data, onChange, hideFooter, ...rest } = this.props
     return (
@@ -191,17 +210,27 @@ export default class DingTalkForm extends Component {
         user={user}
         {...rest}
       >
-        <Tabs type="button">
-          <TabPanel label={t('CHAT_SETTINGS')} name="conversation">
-            <>
-              {!user && this.renderServiceSetting()}
-              {this.renderReceiverSetting()}
-            </>
-          </TabPanel>
-          <TabPanel label={t('CHATBOT_SETTINGS')} name="chatbot">
-            {this.renderChatSetting()}
-          </TabPanel>
+        <Tabs
+          value={this.state.type || 0}
+          onChange={(event, newValue) => this.handleTypeChange(newValue)}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+        >
+          <Tab label={t('CHAT_SETTINGS')} value={0} />
+          <Tab label={t('CHATBOT_SETTINGS')} value={1} />
         </Tabs>
+        <TabPanel value={this.state.type} index={0}>
+          <>
+            {!user && this.renderServiceSetting()}
+            {this.renderReceiverSetting()}
+          </>
+        </TabPanel>
+        <TabPanel value={this.state.type} index={1}>
+          {this.renderChatSetting()}
+        </TabPanel>
       </BaseForm>
     )
   }

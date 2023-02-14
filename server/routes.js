@@ -75,7 +75,7 @@ router
 
   // session
   .post('/login', parseBody, handleLogin)
-  .get('/login', renderLogin)
+  .get(['/login', '/'], renderLogin)
   .post('/login/confirm', parseBody, handleLoginConfirm)
   .get('/login/confirm', renderLoginConfirm)
   .post('/logout', handleLogout)

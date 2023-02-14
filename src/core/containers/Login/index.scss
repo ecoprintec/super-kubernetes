@@ -136,20 +136,6 @@
   }
   .left_login_action {
     margin-top: 96px;
-    .back {
-      color: rgba(255, 255, 255, 0.64);
-      padding-left: 0px !important;
-      display: flex;
-      align-items: flex-start;
-      &:hover {
-        background-color: transparent;
-      }
-      div {
-        margin-left: 5px;
-        margin-top: 2px;
-        font-size: 14px;
-      }
-    }
   }
 }
 .right_login_container {
@@ -270,6 +256,24 @@
       }
     }
   }
+}
+
+.back {
+  margin-top: 96px !important;
+  color: rgba(255, 255, 255, 0.64) !important;
+  padding-left: 0px !important;
+  &:hover {
+    background-color: transparent !important;
+  }
+  div {
+    margin-left: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+}
+.progessing {
+  margin-left: 10px;
+  color: white !important;
 }
 @media screen and (max-width: 1330px) {
   .full {

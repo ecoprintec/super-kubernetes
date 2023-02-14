@@ -36,8 +36,19 @@ export default class RadioGroupWithOptions extends React.Component {
 
   render() {
     const { value, options } = this.props
+    let optionTabs = options
+    let childrenProps = []
+    if (this.props?.children) {
+      childrenProps = this.props?.children.map(item => {
+        return {
+          value: item?.props?.value,
+          label: item?.props?.value,
+        }
+      })
+    }
+    if (childrenProps.length > 0) optionTabs = childrenProps
 
-    if (isEmpty(options)) {
+    if (isEmpty(optionTabs)) {
       return null
     }
 
@@ -50,7 +61,7 @@ export default class RadioGroupWithOptions extends React.Component {
         variant="scrollable"
         scrollButtons="auto"
       >
-        {options
+        {optionTabs
           .filter(option => !option.hidden)
           .map(option => (
             <Tab
