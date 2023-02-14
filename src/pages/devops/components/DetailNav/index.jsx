@@ -80,7 +80,7 @@ class Nav extends Component {
     )
   }
 
-  renderNav(item) {
+  renderNav(item, index) {
     const { params } = this.props.match
     const { name, title } = item
     const { detailStore, sonarqubeStore } = this.props
@@ -105,7 +105,11 @@ class Nav extends Component {
       }
     }
     return (
-      <Tab label={t(title)} value={pathToRegexp.compile(item?.path)(params)} />
+      <Tab
+        key={index}
+        label={t(title)}
+        value={pathToRegexp.compile(item?.path)(params)}
+      />
     )
   }
 
@@ -131,7 +135,7 @@ class Nav extends Component {
           >
             {route.routes
               .filter(option => option.title)
-              .map(item => this.renderNav(item))}
+              .map((item, index) => this.renderNav(item, index))}
           </Tabs>
         </div>
       </React.Fragment>

@@ -390,6 +390,7 @@ export default class Activity extends React.Component {
         actions={this.getActions()}
         hideSearch
         enabledActions={this.enabledActions}
+        store={this.store}
       />
     )
   }

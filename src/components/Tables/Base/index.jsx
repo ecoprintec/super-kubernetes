@@ -156,10 +156,17 @@ export default class WorkloadTable extends React.Component {
   // eslint-disable-next-line getter-return
   get filteredColumns() {
     const cl = []
-    if (this.props?.store?.list?.data.length) {
-      if (this.props.columns.length) {
+    const { data, columns, itemActions } = this.props
+    const columnsHeader =
+      itemActions.length > 0
+        ? columns
+        : columns.filter(item => {
+            return item?.key !== 'more'
+          })
+    if (data.length) {
+      if (columnsHeader.length) {
         // eslint-disable-next-line array-callback-return
-        this.props.columns.map(item => {
+        columnsHeader.map(item => {
           // if (item.dataIndex) {
           cl.push({
             name: item.dataIndex ? item.dataIndex : 'Actions',
@@ -669,7 +676,6 @@ export default class WorkloadTable extends React.Component {
         },
       })
     })
-
     return (
       <ThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable
