@@ -44,6 +44,9 @@ export default class RootStore {
   @observable
   isGlobalMenu = false
 
+  @observable
+  isNavMounted = false
+
   constructor() {
     this.websocket = new WebSocketStore()
 
@@ -65,6 +68,11 @@ export default class RootStore {
     const newParams = refresh ? params : { ...currentParams, ...params }
 
     this.routing.push(`${pathname}?${getQueryString(newParams)}`)
+  }
+
+  @action
+  checkIsNavMounted = checkedValue => {
+    this.isNavMounted = checkedValue
   }
 
   @action

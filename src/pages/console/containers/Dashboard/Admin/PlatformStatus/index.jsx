@@ -71,12 +71,12 @@ export default class PlatformStatus extends Component {
             </div>
           </Grid>
 
-          {this.resources.map(resource => {
+          {this.resources.map((resource, resourseKey) => {
             if (resource.hide) {
               return null
             }
             return (
-              <Grid item xs={12} lg={3} md={6} sm={6}>
+              <Grid key={resourseKey} item xs={12} lg={3} md={6} sm={6}>
                 <Resource
                   key={resource.name}
                   data={resource}

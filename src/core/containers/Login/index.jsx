@@ -18,8 +18,10 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import { Link } from 'react-router-dom'
 import { Grid, Box, Typography, Container, TextField } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -30,6 +32,7 @@ import FilledInput from '@material-ui/core/FilledInput'
 import Button from '@material-ui/core/Button'
 import cookie from 'utils/cookie'
 import Alert from '@material-ui/lab/Alert'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import { Form } from '@kube-design/components'
 import { get } from 'lodash'
 import { Base64 } from 'js-base64'
@@ -62,7 +65,10 @@ function mix(salt, str) {
 @observer
 export default class Login extends Component {
   state = {
-    formData: {},
+    formData: {
+      username: '',
+      password: '',
+    },
     isSubmmiting: false,
     errorCount: 0,
     showPassword: false,
@@ -80,7 +86,7 @@ export default class Login extends Component {
 
   handleSubmit = data => {
     const { username, password, ...rest } = data
-    this.setState({ isSubmmiting: true })
+    this.setState({ ...this.state, isSubmmiting: true })
 
     cookie('oAuthLoginInfo', '')
 
@@ -93,7 +99,7 @@ export default class Login extends Component {
         ...rest,
       })
       .then(resp => {
-        this.setState({ isSubmmiting: false })
+        this.setState({ ...this.state, isSubmmiting: false })
         if (resp.status !== 200) {
           this.setState({
             errorMessage: resp.message,
@@ -109,6 +115,7 @@ export default class Login extends Component {
 
   render() {
     const { formData, isSubmmiting, errorMessage } = this.state
+
     return (
       <Grid container>
         <Grid item lg={4} md={5} xs={1}>
@@ -130,7 +137,7 @@ export default class Login extends Component {
             >
               <img className="logo-login" src={Logo} alt="" />
             </Box>
-            <Typography>
+            <Typography component={'div'}>
               <h3 className={`${styles.left_login_text} ${styles.opening}`}>
                 Welcome to SQK Cloud
               </h3>
@@ -140,6 +147,12 @@ export default class Login extends Component {
                 Please sign in to continue
               </span>
             </Typography>
+            <Link to={'/'}>
+              <IconButton className={styles.back}>
+                <ArrowBackIcon />
+                <div>back to site</div>
+              </IconButton>
+            </Link>
           </Container>
         </Grid>
         <Grid item lg={8} md={7} xs={12}>
@@ -147,8 +160,12 @@ export default class Login extends Component {
             <Box component={'div'} className={styles.full}>
               <Box component={'div'} className={styles.login_wrapper}>
                 <Box component={'div'} className={styles.login_card_wrapper}>
-                  <Typography className={styles.login_right_opening}>
+                  <Typography
+                    component={'div'}
+                    className={styles.login_right_opening}
+                  >
                     <Box
+                      component={'div'}
                       display={'flex'}
                       justifyContent={'center'}
                       alignItems={'flex-end'}
@@ -227,13 +244,25 @@ export default class Login extends Component {
                       </FormControl>
                       <div className="signin-button">
                         <Button
-                          loading={isSubmmiting}
-                          htmlType="submit"
+                          loading={
+                            isSubmmiting === true
+                              ? true.toString()
+                              : false.toString()
+                          }
+                          htmltype="submit"
                           type="control"
                           className={'signin-button'}
                         >
                           {t('CONTINUE')}
-                          <ArrowForwardIcon />
+                          {isSubmmiting === true ? (
+                            <CircularProgress
+                              className={styles.progessing}
+                              size={20}
+                              color={'secondary'}
+                            />
+                          ) : (
+                            <ArrowForwardIcon />
+                          )}
                         </Button>
                       </div>
                     </Form>

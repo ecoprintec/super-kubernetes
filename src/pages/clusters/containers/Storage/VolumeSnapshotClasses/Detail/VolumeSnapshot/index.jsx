@@ -136,6 +136,7 @@ export default class VolumeSnapshot extends React.Component {
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.handleFetch}
+          selectedableRows={false}
         />
       </Panel>
     )

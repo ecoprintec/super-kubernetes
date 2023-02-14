@@ -66,7 +66,7 @@ class BaseLayout extends Component {
     }
 
     if (!globals.user && !isAppsPage(this.props.location.path)) {
-      location.href = '/login'
+      location.href = '/'
     }
   }
 
@@ -132,6 +132,7 @@ class BaseLayout extends Component {
           jumpTo={this.handleJumpTo}
           route={route.routes}
           onToggleOpenMenu={this.handleToggleOpenMenu}
+          isNavMounted={rootStore.isNavMounted}
         />
         {globals.user && globals.app.enableGlobalNav && (
           <GlobalNav
