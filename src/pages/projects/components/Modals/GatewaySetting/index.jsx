@@ -23,7 +23,6 @@ import {
   Form,
   Button,
   RadioButton,
-  RadioGroup,
   Select,
   Icon,
   Toggle,
@@ -36,6 +35,7 @@ import { CLUSTER_PROVIDERS } from 'utils/constants'
 import { observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { CLUSTER_PROVIDERS_ANNOTATIONS } from './contants'
+import RadioGroupWithOptions from '../../../../../components/Cards/Banner/RadioGroup'
 
 import styles from './index.scss'
 
@@ -130,7 +130,6 @@ export default class GatewaySettingModal extends React.Component {
 
   handleTypeChange = type => {
     const annotations = get(this.template, 'spec.service.annotations', {})
-
     if (type === 'LoadBalancer') {
       set(
         this.template,
@@ -154,7 +153,7 @@ export default class GatewaySettingModal extends React.Component {
         ''
       )
     }
-
+    set(this.template, 'spec.service.type', type)
     this.setState({ type })
   }
 
@@ -224,10 +223,26 @@ export default class GatewaySettingModal extends React.Component {
     this.setState({ configError: err })
   }
 
+  get tabs() {
+    return {
+      value: this.state.type || 'NodePort',
+      onChange: this.handleTypeChange,
+      options: [
+        {
+          value: 'NodePort',
+          label: t('NodePort'),
+        },
+        {
+          value: 'LoadBalancer',
+          label: t('LoadBalancer'),
+        },
+      ],
+    }
+  }
+
   render() {
     const { visible, onCancel, cluster, isSubmitting } = this.props
     const { isChecked, configError } = this.state
-
     return (
       <Modal
         width={960}
@@ -242,17 +257,18 @@ export default class GatewaySettingModal extends React.Component {
         <div className={styles.body}>
           <div className={styles.wrapper}>
             <Form ref={this.form} data={this.template}>
-              <Form.Item label={t('ACCESS_MODE')} className={styles.types}>
-                <RadioGroup
+              <Form.Item label={t('ACCESS_MODE')}>
+                <RadioGroupWithOptions
                   name="spec.service.type"
                   mode="button"
                   buttonWidth={155}
                   onChange={this.handleTypeChange}
                   size="small"
+                  value={this.state.type || 'NodePort'}
                 >
                   <RadioButton value="NodePort">NodePort</RadioButton>
                   <RadioButton value="LoadBalancer">LoadBalancer</RadioButton>
-                </RadioGroup>
+                </RadioGroupWithOptions>
               </Form.Item>
 
               <div className={styles.content}>
