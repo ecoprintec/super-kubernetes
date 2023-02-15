@@ -29,7 +29,7 @@ import {
   Button,
   InputSearch,
 } from '@kube-design/components'
-import { safeParseJSON, getLocalTime } from 'utils'
+import { safeParseJSON } from 'utils'
 
 import { CircularProgress } from '@mui/material'
 import MUIDataTable from 'mui-datatables'
@@ -123,7 +123,7 @@ export default class WorkloadTable extends React.Component {
     }
 
     if (
-      nextProps?.store?.list?.selectedRowKeys !==
+      nextProps?.store?.list?.selectedRowKeys.length !==
       this.props?.store?.list?.selectedRowKeys.length
     ) {
       return true
@@ -657,30 +657,11 @@ export default class WorkloadTable extends React.Component {
           ? 'none'
           : 'multiple',
     }
-    // eslint-disable-next-line array-callback-return
-    const new_list = []
-    // eslint-disable-next-line array-callback-return
-    list.map(item => {
-      new_list.push({
-        ...item,
-        ...{
-          lastLoginTime: item?.lastLoginTime
-            ? getLocalTime(item?.lastLoginTime).format('YYYY-MM-DD HH:mm:ss')
-            : '',
-          createTime: item?.createTime
-            ? getLocalTime(item?.startTime).format('YYYY-MM-DD HH:mm:ss')
-            : '',
-          startTime: item?.startTime
-            ? getLocalTime(item?.startTime).format('YYYY-MM-DD HH:mm:ss')
-            : '',
-        },
-      })
-    })
     return (
       <ThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable
           // title={<Typography variant="h6">{this.renderActions()}</Typography>}
-          data={new_list}
+          data={list}
           columns={this.filteredColumns}
           options={options}
           className={styles.muitable}
