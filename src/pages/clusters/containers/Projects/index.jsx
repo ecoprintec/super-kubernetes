@@ -151,7 +151,7 @@ export default class Projects extends React.Component {
     const metricsData = this.monitoringStore.data
     const result = get(metricsData, `${type}.data.result`) || []
     const metrics = result.find(
-      item => get(item, 'metric.namespace') === record.name
+      item => get(item, 'metric.namespace') === record?.name
     )
     return getValueByUnit(get(metrics, 'value[1]', 0), unit)
   }
