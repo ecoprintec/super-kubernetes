@@ -158,7 +158,7 @@ export default class WorkloadTable extends React.Component {
     const cl = []
     const { data, columns, itemActions } = this.props
     const columnsHeader =
-      itemActions.length > 0
+      !isUndefined(itemActions) && itemActions.length > 0
         ? columns
         : columns.filter(item => {
             return item?.key !== 'more'
