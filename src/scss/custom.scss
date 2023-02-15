@@ -436,18 +436,26 @@ body {
   div[class*='-BaseInfo-'] > div,
   div[class*='Cards-Banner'] > div,
   [class*='index__wrapper'] h3,
-  [class*='index__content'] h6 {
+  [class*='index__content'] h6,
+  [class*='index__item'] div,
+  [class*='index__status'] .font-bold {
     font-size: 14px !important;
     font-weight: 500 !important;
   }
   div[class*='index__title'] .text-second {
     font-weight: 400;
   }
-  div[class*='-Cards-']:not([class*='-Cards-Replica-']),
-  div[class*='-Cards-']:not([class*='-Cards-Replica-']):hover {
-    border: none;
-    background-color: $white;
-    border-radius: 8px !important;
+  div[class*='-Cards-'] {
+    &:not([class*='Cards-Monitoring']):not([class*='-Cards-Replica-']) {
+      border: none;
+      // background-color: $white;
+      border-radius: 8px !important;
+      &:hover {
+        border: none;
+        // background-color: $white;
+        border-radius: 8px !important;
+      }
+    }
   }
   .button {
     box-shadow: unset;
@@ -485,9 +493,16 @@ body {
       }
     }
   }
-  .tooltip-content {
-    .src-components-Cards-Containers-index__probeItem {
-      background: #242e42 !important;
+  .kubed-icon-coloured,
+  .select-options-empty,
+  [class*='index__option'] > div,
+  [class*='index__option'] > p {
+    color: #36435c;
+  }
+  .tooltip {
+    border-radius: 8px;
+    .tooltip-content {
+      border-radius: 8px;
     }
   }
 }
