@@ -19,11 +19,13 @@
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { NavLink } from 'react-router-dom'
 import { Columns, Column } from '@kube-design/components'
 
 import Health from 'devops/components/Health'
 import { ReactComponent as ForkIcon } from 'assets/fork.svg'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import pathToRegexp from 'path-to-regexp'
 
 import styles from './index.scss'
 
@@ -78,7 +80,8 @@ class Nav extends Component {
     )
   }
 
-  renderNavLink(item) {
+  renderNav(item, index) {
+    const { params } = this.props.match
     const { name, title } = item
     const { detailStore, sonarqubeStore } = this.props
     const showPipelineConfig = this.enabledActions.includes('edit')
@@ -101,26 +104,39 @@ class Nav extends Component {
         return null
       }
     }
-
     return (
-      <NavLink
-        key={name}
-        className={styles.navItem}
-        activeClassName={styles.active}
-        to={`${this.props.match.url}/${name}`}
-      >
-        {t(title)}
-      </NavLink>
+      <Tab
+        key={index}
+        label={t(title)}
+        value={pathToRegexp.compile(item?.path)(params)}
+      />
     )
+  }
+
+  handleChange = newPath => {
+    this.props.history.push(newPath)
   }
 
   render() {
     const { route } = this.props
+    const { pathname } = this.props.location
+
     return (
       <React.Fragment>
         {this.renderBaseInfo()}
         <div className={styles.nav}>
-          {route.routes.map(item => this.renderNavLink(item))}
+          <Tabs
+            value={pathname}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={(event, newPath) => this.handleChange(newPath)}
+            variant="scrollable"
+            scrollButtons="auto"
+          >
+            {route.routes
+              .filter(option => option.title)
+              .map((item, index) => this.renderNav(item, index))}
+          </Tabs>
         </div>
       </React.Fragment>
     )

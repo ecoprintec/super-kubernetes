@@ -156,10 +156,17 @@ export default class WorkloadTable extends React.Component {
   // eslint-disable-next-line getter-return
   get filteredColumns() {
     const cl = []
-    if (this.props?.store?.list?.data.length) {
-      if (this.props.columns.length) {
+    const { data, columns, itemActions } = this.props
+    const columnsHeader =
+      itemActions.length > 0
+        ? columns
+        : columns.filter(item => {
+            return item?.key !== 'more'
+          })
+    if (data.length) {
+      if (columnsHeader.length) {
         // eslint-disable-next-line array-callback-return
-        this.props.columns.map(item => {
+        columnsHeader.map(item => {
           // if (item.dataIndex) {
           cl.push({
             name: item.dataIndex ? item.dataIndex : 'Actions',
@@ -180,7 +187,7 @@ export default class WorkloadTable extends React.Component {
               customBodyRender: (value, tableMeta) => {
                 const detail = this.props.data[tableMeta.rowIndex]
                 let text = ''
-                if (!detail) return text
+                if (!detail || !value) return text
                 if (isFunction(item.render)) {
                   const arrNameParams = this.getParamNames(item.render)
 
@@ -556,7 +563,8 @@ export default class WorkloadTable extends React.Component {
       hideHeader,
       hideFooter,
       getCheckboxProps,
-      selectedableRows,
+      selectActions,
+      hideSearch,
     } = this.props
     if (this.showEmpty) {
       return this.renderEmpty()
@@ -602,7 +610,8 @@ export default class WorkloadTable extends React.Component {
       rowsPerPage: this.state.rowsPerPage,
       rowsPerPageOptions: [5, 10, 15, 20, 25, 30],
       searchText: this.state.searchText,
-      searchAlwaysOpen: true,
+      searchAlwaysOpen: !hideSearch,
+      search: !hideSearch,
       download: false,
       sortOrder,
       enableNestedDataAccess: '.',
@@ -643,7 +652,10 @@ export default class WorkloadTable extends React.Component {
           )
         })
       },
-      selectableRows: isUndefined(selectedableRows) ? true : selectedableRows,
+      selectableRows:
+        isUndefined(selectActions) || selectActions.length === 0
+          ? 'none'
+          : 'multiple',
     }
     // eslint-disable-next-line array-callback-return
     const new_list = []
@@ -664,7 +676,6 @@ export default class WorkloadTable extends React.Component {
         },
       })
     })
-
     return (
       <ThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable

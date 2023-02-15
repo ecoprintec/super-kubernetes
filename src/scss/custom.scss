@@ -427,14 +427,16 @@ body {
   div[class*='__title'] strong {
     color: #3f51b5 !important;
   }
-  div[class*='index__title'],
+  [class*='index__title'],
   div[class*='__text'] div,
   div[class*='index__indicator'] span,
   a[class*='__breadcrum'],
-  [class*='index__status'] span,
+  [class*='index__status'],
   [class*='index__table'] h3,
   div[class*='-BaseInfo-'] > div,
-  div[class*='Cards-Banner'] > div {
+  div[class*='Cards-Banner'] > div,
+  [class*='index__wrapper'] h3,
+  [class*='index__content'] h6 {
     font-size: 14px !important;
     font-weight: 500 !important;
   }
@@ -461,5 +463,26 @@ body {
   }
   .button {
     box-shadow: unset;
+  }
+  .dropdown-dark {
+    border-radius: 8px;
+    .dropdown-content {
+      border-radius: 8px;
+      background-color: #fff;
+      .menu {
+        border-radius: 8px;
+        background-color: $white;
+        box-shadow: none;
+        .menu-item {
+          color: #4a5974;
+          font-size: 16px;
+          font-weight: 400;
+          &:hover {
+            background-color: #329dce;
+            color: #fff;
+          }
+        }
+      }
+    }
   }
 }
