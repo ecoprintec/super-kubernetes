@@ -139,4 +139,10 @@ export default class CRDResourceStore {
   delete(params) {
     return this.submitting(request.delete(this.getDetailUrl(params)))
   }
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/apis/acme.cert-manager.io/v1/namespaces/${detail.namespace}/orders/${detail.name}`
+    return await this.submitting(request.get(url))
+  }
 }

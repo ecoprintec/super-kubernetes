@@ -192,4 +192,14 @@ export default class WorkloadStore extends Base {
 
     return detail
   }
+
+  @action
+  async getDataPodsYaml(detail) {
+    let url
+    if (this.module === 'cronjobs')
+      url = `/apis/batch/v1beta1/namespaces/${detail.namespace}/cronjobs/${detail.name}`
+    else
+      url = `/apis/apps/v1/namespaces/${detail.namespace}/deployments/${detail.name}`
+    return await this.submitting(request.get(url))
+  }
 }

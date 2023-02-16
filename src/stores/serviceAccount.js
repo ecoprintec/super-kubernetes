@@ -16,8 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { action } from 'mobx'
 import Base from './base'
 
 export default class ServiceAccountStore extends Base {
   module = 'serviceaccounts'
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/api/v1/namespaces/${detail.namespace}/serviceaccounts/${detail.name}`
+    return await this.submitting(request.get(url))
+  }
 }
