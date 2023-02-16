@@ -212,7 +212,7 @@ export default class Volumes extends React.Component {
           <Status
             type={phase}
             className={styles.status}
-            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
+            name={t(`VOLUME_STATUS_${phase?.toUpperCase()}`)}
             flicker
           />
         ),

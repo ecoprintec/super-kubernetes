@@ -78,7 +78,10 @@ export default class Volumes extends React.Component {
       dataIndex: 'phase',
       width: '13%',
       render: phase => (
-        <Status type={phase} name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)} />
+        <Status
+          type={phase}
+          name={t(`VOLUME_STATUS_${phase?.toUpperCase()}`)}
+        />
       ),
     },
     {

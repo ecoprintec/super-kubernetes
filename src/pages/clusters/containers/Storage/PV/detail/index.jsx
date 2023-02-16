@@ -127,7 +127,10 @@ export default class VolumeDetail extends React.Component {
         name: t('STATUS'),
         value: (
           <div>
-            <Status type={phase} name={t(`PV_STATUS_${phase.toUpperCase()}`)} />
+            <Status
+              type={phase}
+              name={t(`PV_STATUS_${phase?.toUpperCase()}`)}
+            />
           </div>
         ),
       },

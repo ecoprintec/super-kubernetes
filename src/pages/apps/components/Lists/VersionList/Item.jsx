@@ -21,7 +21,10 @@ import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { inject } from 'mobx-react'
-import { Button, Notify, Icon, Tabs } from '@kube-design/components'
+import { Button, Notify, Icon } from '@kube-design/components'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 
 import DeleteModal from 'components/Modals/Delete'
 import Confirm from 'apps/components/Modals/Confirm'
@@ -46,7 +49,21 @@ import { STORE_QUERY_STATUS } from 'configs/openpitrix/app'
 
 import styles from './index.scss'
 
-const { TabPanel } = Tabs
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Typography>{children}</Typography>}
+    </div>
+  )
+}
 
 @inject('rootStore')
 @trigger
@@ -78,7 +95,7 @@ export default class VersionItem extends React.PureComponent {
     super(props)
     this.store = this.props.store
     this.state = {
-      tab: 'configFile',
+      tab: 0,
       handleType: '',
     }
   }
@@ -244,32 +261,37 @@ export default class VersionItem extends React.PureComponent {
 
   renderExtraContent() {
     const { detail, appDetail, clusters } = this.props
-    const { tab } = this.state
 
     return (
       <div className={styles.itemExtra}>
-        <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
-          <TabPanel label={t('CHART_FILES')} name="configFile">
-            <ConfigFile
-              appId={detail.app_id}
-              versionId={detail.version_id}
-              appName={appDetail.name}
-            />
-          </TabPanel>
-          <TabPanel label={t('APP_REVIEW')} name="auditRecord">
-            <AuditRecord appId={detail.app_id} versionId={detail.version_id} />
-          </TabPanel>
-          <TabPanel label={t('APP_INSTANCES')} name="deployInstances">
-            <InstanceList
-              title={t('APP_INSTANCES')}
-              className={styles.instances}
-              appId={appDetail.app_id}
-              versionId={detail.version_id}
-              workspace={appDetail.workspace}
-              clusters={clusters}
-            />
-          </TabPanel>
+        <Tabs
+          value={this.state.tab || 0}
+          onChange={(event, newValue) => this.handleTabChange(newValue)}
+        >
+          <Tab label={t('CHART_FILES')} value={0} />
+          <Tab label={t('APP_REVIEW')} value={1} />
+          <Tab label={t('APP_INSTANCES')} value={2} />
         </Tabs>
+        <TabPanel value={this.state.tab} index={0}>
+          <ConfigFile
+            appId={detail.app_id}
+            versionId={detail.version_id}
+            appName={appDetail.name}
+          />
+        </TabPanel>
+        <TabPanel value={this.state.tab} index={1}>
+          <AuditRecord appId={detail.app_id} versionId={detail.version_id} />
+        </TabPanel>
+        <TabPanel value={this.state.tab} index={2}>
+          <InstanceList
+            title={t('APP_INSTANCES')}
+            className={styles.instances}
+            appId={appDetail.app_id}
+            versionId={detail.version_id}
+            workspace={appDetail.workspace}
+            clusters={clusters}
+          />
+        </TabPanel>
         {this.renderVersionActions()}
       </div>
     )

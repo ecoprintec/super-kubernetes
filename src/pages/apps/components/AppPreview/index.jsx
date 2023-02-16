@@ -20,7 +20,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { Tabs, Loading } from '@kube-design/components'
+import { Loading } from '@kube-design/components'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 import { isEmpty } from 'lodash'
 
 import AppFileStore from 'stores/openpitrix/file'
@@ -30,7 +33,21 @@ import TextPreview from 'components/TextPreview'
 
 import styles from './index.scss'
 
-const { TabPanel } = Tabs
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Typography>{children}</Typography>}
+    </div>
+  )
+}
 
 @observer
 export default class AppPreview extends React.Component {
@@ -51,7 +68,7 @@ export default class AppPreview extends React.Component {
 
     this.fileStore = new AppFileStore()
     this.state = {
-      tab: 'versionInfo',
+      tab: 0,
     }
   }
 
@@ -105,7 +122,6 @@ export default class AppPreview extends React.Component {
 
   render() {
     const { versionId, currentTab } = this.props
-    const { tab } = this.state
     if (!versionId) {
       return null
     }
@@ -123,14 +139,21 @@ export default class AppPreview extends React.Component {
     }
 
     return (
-      <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
-        <TabPanel label={t('APP_INTRODUCTION')} name="versionInfo">
+      <>
+        <Tabs
+          value={this.state.tab || 0}
+          onChange={(event, newValue) => this.handleTabChange(newValue)}
+        >
+          <Tab label={t('APP_INTRODUCTION')} value={0} />
+          <Tab label={t('CHART_FILES')} value={1} />
+        </Tabs>
+        <TabPanel value={this.state.tab} index={0}>
           <div className={styles.wrapper}>{this.renderReadMe()}</div>
         </TabPanel>
-        <TabPanel label={t('CHART_FILES')} name="chartFiles">
+        <TabPanel value={this.state.tab} index={1}>
           <div className={styles.wrapper}>{this.renderChartFiles()}</div>
         </TabPanel>
-      </Tabs>
+      </>
     )
   }
 }
