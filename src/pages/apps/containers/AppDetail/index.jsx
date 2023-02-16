@@ -22,14 +22,10 @@ import { parse } from 'qs'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import moment from 'moment-mini'
-import {
-  Button,
-  Tabs,
-  Tag,
-  Columns,
-  Column,
-  Loading,
-} from '@kube-design/components'
+import { Button, Tag, Columns, Column, Loading } from '@kube-design/components'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 import { TypeSelect } from 'components/Base'
 
 import VersionStore from 'stores/openpitrix/version'
@@ -44,7 +40,21 @@ import { trigger } from 'utils/action'
 
 import styles from './index.scss'
 
-const { TabPanel } = Tabs
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Typography>{children}</Typography>}
+    </div>
+  )
+}
 
 @inject('rootStore')
 @observer
@@ -57,7 +67,7 @@ export default class App extends React.Component {
     this.htmlOrigBgColor = ''
 
     this.state = {
-      tab: 'appInfo',
+      tab: 0,
       selectAppVersion: '',
       showDeploy: false,
     }
@@ -199,7 +209,6 @@ export default class App extends React.Component {
   }
 
   renderContent() {
-    const { tab } = this.state
     const { detail, isLoading } = this.appStore
     const { data } = this.versionStore.list
 
@@ -208,38 +217,49 @@ export default class App extends React.Component {
     }
 
     return (
-      <Tabs
-        className="tabs-new"
-        activeName={tab}
-        onChange={this.handleTabChange}
-      >
-        <TabPanel label={t('APP_INFORMATION')} name="appInfo">
-          {this.renderDeployButton()}
-          <Columns>
-            <Column className="is-8">
-              <AppInfo app={detail} versions={toJS(data)} />
-            </Column>
-            <Column>
-              <AppBase app={detail} />
-            </Column>
-          </Columns>
-        </TabPanel>
-        <TabPanel label={t('APP_DETAILS')} name="appDetails">
-          {this.renderDeployButton()}
-          <Columns>
-            <Column className="is-8">{this.renderAppFilePreview()}</Column>
-            <Column>
-              <div className="h6 margin-b12">{t('VERSIONS')}</div>
-              <TypeSelect
-                value={this.state.selectAppVersion}
-                options={this.versionOptions}
-                onChange={this.handleChangeAppVersion}
-              />
-              {this.renderKeywords()}
-            </Column>
-          </Columns>
-        </TabPanel>
-      </Tabs>
+      <>
+        <Tabs
+          className={styles.tabs_new}
+          // activeName={tab}
+          value={this.state.tab || 0}
+          onChange={(event, newValue) => this.handleTabChange(newValue)}
+        >
+          <Tab label={t('APP_INFORMATION')} value={0} />
+          <Tab label={t('APP_DETAILS')} value={1} />
+        </Tabs>
+        <div className={styles.tab_content}>
+          <TabPanel value={this.state.tab} index={0}>
+            <>
+              {this.renderDeployButton()}
+              <Columns>
+                <Column className="is-8">
+                  <AppInfo app={detail} versions={toJS(data)} />
+                </Column>
+                <Column>
+                  <AppBase app={detail} />
+                </Column>
+              </Columns>
+            </>
+          </TabPanel>
+          <TabPanel value={this.state.tab} index={1}>
+            <>
+              {this.renderDeployButton()}
+              <Columns>
+                <Column className="is-8">{this.renderAppFilePreview()}</Column>
+                <Column>
+                  <div className="h6 margin-b12">{t('VERSIONS')}</div>
+                  <TypeSelect
+                    value={this.state.selectAppVersion}
+                    options={this.versionOptions}
+                    onChange={this.handleChangeAppVersion}
+                  />
+                  {this.renderKeywords()}
+                </Column>
+              </Columns>
+            </>
+          </TabPanel>
+        </div>
+      </>
     )
   }
 

@@ -173,7 +173,7 @@ export default class PV extends React.Component {
         render: record => (
           <Status
             type={record?.phase}
-            name={t(`PV_STATUS_${record?.phase.toUpperCase()}`)}
+            name={t(`PV_STATUS_${record?.phase?.toUpperCase()}`)}
             flicker
           />
         ),

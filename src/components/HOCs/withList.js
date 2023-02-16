@@ -156,7 +156,7 @@ export default function withList(options) {
           isEmpty(keyword)
 
         return {
-          data,
+          data: toJS(data),
           filters,
           keyword,
           pagination,

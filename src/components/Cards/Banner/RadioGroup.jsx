@@ -62,13 +62,13 @@ export default class RadioGroupWithOptions extends React.Component {
         scrollButtons="auto"
       >
         {optionTabs
-          .filter(option => !option.hidden)
+          .filter(option => !option?.hidden)
           .map(option => (
             <Tab
               label={
-                typeof option.count !== 'undefined' ? (
+                typeof option?.count !== 'undefined' ? (
                   <span>
-                    {option.label}{' '}
+                    {option?.label}{' '}
                     <span
                       style={{
                         backgroundColor: 'rgb(85, 188, 138)',
@@ -79,14 +79,15 @@ export default class RadioGroupWithOptions extends React.Component {
                         fontSize: '12px',
                       }}
                     >
-                      {option.count}
+                      {option?.count}
                     </span>
                   </span>
                 ) : (
-                  <span> {option.label}</span>
+                  <span> {option?.label}</span>
                 )
               }
-              value={option.value}
+              value={option?.value}
+              key={option?.value}
             />
           ))}
       </Tabs>
