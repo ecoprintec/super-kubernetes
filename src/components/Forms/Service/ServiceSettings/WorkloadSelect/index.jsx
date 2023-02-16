@@ -20,11 +20,12 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Button, Alert, RadioButton, RadioGroup } from '@kube-design/components'
+import { Button, Alert, RadioButton } from '@kube-design/components'
 import { ScrollLoad } from 'components/Base'
 
 import WorkloadStore from 'stores/workload'
 import WorkloadItem from './Item'
+import RadioGroupWithOptions from '../../../../Cards/Banner/RadioGroup'
 
 import styles from './index.scss'
 
@@ -82,7 +83,7 @@ export default class WorkloadSelect extends React.Component {
             message={t('SELECT_WORKLOAD_DESC')}
             hideIcon
           />
-          <RadioGroup
+          <RadioGroupWithOptions
             mode="button"
             buttonWidth={120}
             value={type}
@@ -94,7 +95,7 @@ export default class WorkloadSelect extends React.Component {
               {t('STATEFULSET_PL')}
             </RadioButton>
             <RadioButton value="daemonsets">{t('DAEMONSET_PL')}</RadioButton>
-          </RadioGroup>
+          </RadioGroupWithOptions>
           <div className={styles.workloads}>
             <ScrollLoad
               data={data}

@@ -19,13 +19,7 @@
 import { get, set, keyBy, isEmpty, isUndefined, uniq } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Form,
-  Input,
-  RadioButton,
-  RadioGroup,
-  Select,
-} from '@kube-design/components'
+import { Form, Input, RadioButton, Select } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
 import { ArrayInput, ObjectInput, MountInput } from 'components/Inputs'
 import { ReactComponent as BackIcon } from 'assets/back.svg'
@@ -34,6 +28,7 @@ import { generateId, getDisplayName } from 'utils'
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 import FederatedStore from 'stores/federated'
+import RadioGroupWithOptions from '../../../../Cards/Banner/RadioGroup'
 
 import styles from './index.scss'
 
@@ -405,7 +400,7 @@ export default class MountConfig extends React.Component {
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.title}>{t('MOUNT_CONFIGMAP_OR_SECRET')}</div>
-          <RadioGroup
+          <RadioGroupWithOptions
             mode="button"
             value={type}
             onChange={this.handleTypeChange}
@@ -413,7 +408,7 @@ export default class MountConfig extends React.Component {
           >
             <RadioButton value="configmap">{t('CONFIGMAP')}</RadioButton>
             <RadioButton value="secret">{t('SECRET')}</RadioButton>
-          </RadioGroup>
+          </RadioGroupWithOptions>
           {this.renderContent()}
         </div>
       </div>
