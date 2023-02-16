@@ -24,7 +24,7 @@ import { getScrollTop } from 'utils/dom'
 import { renderRoutes } from 'utils/router.config'
 
 import { Header, GlobalNav } from 'components/Layout'
-import Tools from 'components/KubeTools'
+// import Tools from 'components/KubeTools'
 import GlobalSVG from 'components/SVG'
 
 import styles from './index.scss'
@@ -142,7 +142,7 @@ class BaseLayout extends Component {
           />
         )}
         <div className={styles.main}>{renderRoutes(this.routes)}</div>
-        {globals.user && <Tools />}
+        {/* {globals.user && <Tools />} */}
       </div>
     )
   }
