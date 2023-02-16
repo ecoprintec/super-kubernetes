@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observable } from 'mobx'
+import { action, observable } from 'mobx'
 import { to } from 'utils'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
 
@@ -120,5 +120,11 @@ export default class VolumeStore extends Base {
     }
 
     await this.submitting(request.post(path, params))
+  }
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/api/v1/namespaces/${detail.namespace}/persistentvolumeclaims/${detail.name}`
+    return await this.submitting(request.get(url))
   }
 }

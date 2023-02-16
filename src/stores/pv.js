@@ -59,4 +59,10 @@ export default class PvcStore extends Base {
   delete(params) {
     return this.submitting(request.delete(this.getKs8Url(params)))
   }
+
+  @action
+  async getDataPodsYaml(detail) {
+    const url = `/api/v1/persistentvolumes/${detail.name}`
+    return await this.submitting(request.get(url))
+  }
 }
