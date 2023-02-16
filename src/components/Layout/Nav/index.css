@@ -34,3 +34,10 @@
 .ul-wrapper {
   min-width: 197px;
 }
+
+.MuiAccordion-root:before {
+  all: unset !important;
+}
+.MuiAccordion-root.Mui-expanded {
+  margin: 0px !important;
+}

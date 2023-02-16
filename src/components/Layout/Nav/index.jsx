@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import { trimEnd } from 'lodash'
 import classnames from 'classnames'
+import { getWebsiteUrl } from 'utils'
 import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 import './index.css'
@@ -37,11 +38,14 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Icon } from '@kube-design/components'
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
+import BuildIcon from '@material-ui/icons/Build'
 import TabPanel from './TabPanel'
 import { getParentMenu } from './menuParent'
 import styles from './index.scss'
 import avataImg from '../../../assets/pp_boy4.jpg'
 import NavItem from './NavItem'
+import KubeTools from '../../KubeTools'
 
 @inject('rootStore')
 @observer
@@ -59,6 +63,7 @@ class Nav extends React.Component {
   static defaultProps = {
     className: '',
     prefix: '',
+    expanded: false,
     checkSelect() {},
     onItemClick() {},
   }
@@ -89,10 +94,6 @@ class Nav extends React.Component {
   handleLinkClick = link => () => {
     this.props.rootStore.routing.push(link)
     this.props.rootStore.closeGlobalMenu()
-  }
-
-  handleDocumentLinkClick = (e, key) => {
-    window.open(key)
   }
 
   get currentPath() {
@@ -138,6 +139,10 @@ class Nav extends React.Component {
     }))
   }
 
+  handleChangeArcodion = panel => (event, isExpanded) => {
+    this.setState({ ...this.state, expanded: isExpanded ? panel : false })
+  }
+
   render() {
     const {
       className,
@@ -149,9 +154,10 @@ class Nav extends React.Component {
       rootStore,
       haveNavTitle,
     } = this.props
-    const { openedNav, value } = this.state
+    const { openedNav, value, expanded } = this.state
     const current = this.currentPath
     const prefix = trimEnd(match.url, '/')
+    const { url, api } = getWebsiteUrl()
 
     const handleChange = (event, newValue) => {
       this.setState({ ...this.state, value: newValue })
@@ -273,6 +279,8 @@ class Nav extends React.Component {
                     >
                       {globals.app.enableGlobalNav && (
                         <Accordion
+                          expanded={expanded === 'panelPlatform'}
+                          onChange={this.handleChangeArcodion('panelPlatform')}
                           className={styles.accordionGlobal}
                           elevation={0}
                         >
@@ -314,7 +322,9 @@ class Nav extends React.Component {
                                         size={20}
                                       />
                                       &nbsp;
-                                      {t(platformItem.title)}
+                                      <div className={styles.arcordionItemName}>
+                                        {t(platformItem.title)}
+                                      </div>
                                     </MuiButton>
                                   )
                                 })}
@@ -349,6 +359,77 @@ class Nav extends React.Component {
                         &nbsp;
                         {t('WORKBENCH')}
                       </MuiButton>
+                      {this.isLoggedIn && (
+                        <Accordion
+                          expanded={expanded === 'panelGuide'}
+                          onChange={this.handleChangeArcodion('panelGuide')}
+                          className={styles.accordionGlobal}
+                          elevation={0}
+                        >
+                          <AccordionSummary
+                            className={styles.accordionSummaryGlobal}
+                            expandIcon={<ExpandMoreIcon />}
+                          >
+                            <MuiButton className={styles.navsglobal}>
+                              <LibraryBooksIcon />
+                              &nbsp;
+                              {t('GUIDE')}
+                            </MuiButton>
+                          </AccordionSummary>
+                          <AccordionDetails
+                            className={styles.accordionDetailsGlobal}
+                          >
+                            <MuiButton
+                              onClick={() => {
+                                window.open(url)
+                              }}
+                              className={classnames(
+                                styles.navsglobal,
+                                styles.arcordionItem
+                              )}
+                            >
+                              <Icon name="hammer" />
+                              &nbsp;{t('USER_GUIDE')}
+                            </MuiButton>
+                            <MuiButton
+                              onClick={() => {
+                                window.open(api)
+                              }}
+                              className={classnames(
+                                styles.navsglobal,
+                                styles.arcordionItem
+                              )}
+                            >
+                              <Icon name="api" />
+                              &nbsp;{t('API_DOCUMENT')}
+                            </MuiButton>
+                          </AccordionDetails>
+                        </Accordion>
+                      )}
+                      {globals.user && (
+                        <Accordion
+                          expanded={expanded === 'panelTool'}
+                          onChange={this.handleChangeArcodion('panelTool')}
+                          className={styles.accordionGlobal}
+                          elevation={0}
+                        >
+                          <AccordionSummary
+                            className={styles.accordionSummaryGlobal}
+                            expandIcon={<ExpandMoreIcon />}
+                          >
+                            <MuiButton className={styles.navsglobal}>
+                              <BuildIcon />
+                              &nbsp;
+                              {t('TOOLBOX')}
+                            </MuiButton>
+                          </AccordionSummary>
+                          <AccordionDetails
+                            className={styles.accordionDetailsGlobal}
+                          >
+                            <KubeTools />
+                          </AccordionDetails>
+                        </Accordion>
+                      )}
                     </Box>
                   )}
                 </Box>

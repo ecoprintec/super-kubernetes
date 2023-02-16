@@ -17,18 +17,16 @@
  */
 
 import React from 'react'
-import classNames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
-
-import Draggable from 'react-draggable'
-import { Button } from '@kube-design/components'
-import { Text, List } from 'components/Base'
+import classnames from 'classnames'
+import MuiButton from '@material-ui/core/Button'
 import { safeParseJSON } from 'utils'
 import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
-
-import styles from './index.scss'
+import { Icon } from '@kube-design/components'
+import styles from '../Layout/Nav/index.scss'
+import '../Layout/Nav/index.css'
 
 const KS_TOOLBOX_POS_KEY = 'ks-toolbox-pos'
 
@@ -173,78 +171,67 @@ export default class KubeTools extends React.Component {
     )
   }
 
-  onMouseEnter = () => {
-    this.setState({ showTools: 1 })
-  }
-
-  onMouseLeave = () => {
-    this.setState({ showTools: -1 })
-  }
-
   renderTools() {
     return (
-      <div
-        className={classNames(styles.tools, {
-          [styles.showTools]: this.state.showTools === 1,
-        })}
-      >
-        <div className={styles.toolsWrapper}>
-          <div className={styles.toolsHeader}>
-            <Text
-              className={styles.toolsTitle}
-              icon="hammer"
-              title={t('TOOLBOX')}
-              description={t('TOOLBOX_DESC')}
-            />
-          </div>
-          <div className={styles.toolsContent}>
-            {this.enabledTools.map(group => (
-              <div key={group.group} className={styles.toolsGroup}>
-                <div className={styles.groupTitle}>{t(group.group)}</div>
-                <div className={styles.groupContent}>
-                  {group.data.map(item => (
-                    <List.Item
-                      className={styles.toolItem}
-                      key={item.key || item.link}
-                      icon={item.icon}
-                      title={item.title}
-                      data-title={item.title}
-                      data-link={item.link}
-                      data-action={item.action}
-                      description={item.description}
-                      onClick={item.onClick || this.handleToolItemClick}
-                    />
-                  ))}
+      <div>
+        {this.enabledTools.map(group => (
+          <div key={group.group} className={styles.toolsGroup}>
+            <div className={styles.groupTitle}>{t(group.group)}</div>
+            <div className={styles.groupContent}>
+              {group.data.map(item => (
+                <div
+                  key={item.key || item.link}
+                  data-title={item.title}
+                  data-link={item.link}
+                  data-action={item.action}
+                  onClick={item.onClick || this.handleToolItemClick}
+                >
+                  <MuiButton
+                    className={classnames(
+                      styles.navsglobal,
+                      styles.arcordionItem
+                    )}
+                  >
+                    <Icon name={item.icon} />
+                    &nbsp;
+                    <div className={styles.arcordionItemName}>
+                      {t(item.title)}
+                    </div>
+                  </MuiButton>
                 </div>
-              </div>
-            ))}
-            {!isEmpty(this.thirdPartyToolList) && (
-              <div className={styles.toolsGroup}>
-                <div className={styles.groupTitle}>
-                  {t('THIRD_PARTY_TOOLS')}
-                </div>
-                <div className={styles.groupContent}>
-                  {this.thirdPartyToolList.map(item => (
-                    <List.Item
-                      className={styles.toolItem}
-                      key={item.key || item.link}
-                      icon={item.icon}
-                      title={item.title}
-                      data-title={item.title}
-                      data-link={item.link}
-                      data-action={item.action}
-                      description={item.description}
-                      onClick={this.handleThirdPartyToolItemClick}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
-          <div className={styles.toolsFooter}>
-            <p>{t('TOOLBOX_SHIFT_TIPS')}</p>
+        ))}
+        {!isEmpty(this.thirdPartyToolList) && (
+          <div className={styles.toolsGroup}>
+            <div className={styles.groupTitle}>{t('THIRD_PARTY_TOOLS')}</div>
+            <div className={styles.groupContent}>
+              {this.thirdPartyToolList.map(item => (
+                <div
+                  key={item.key || item.link}
+                  data-title={item.title}
+                  data-link={item.link}
+                  data-action={item.action}
+                  onClick={this.handleThirdPartyToolItemClick}
+                >
+                  <MuiButton
+                    className={classnames(
+                      styles.navsglobal,
+                      styles.arcordionItem
+                    )}
+                  >
+                    <Icon name={item.icon} />
+                    &nbsp;
+                    <div className={styles.arcordionItemName}>
+                      {t(item.title)}
+                    </div>
+                  </MuiButton>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     )
   }
@@ -254,23 +241,6 @@ export default class KubeTools extends React.Component {
       return null
     }
 
-    return (
-      <Draggable
-        axis="y"
-        defaultPosition={this.state.defaultPosition}
-        onStop={this.handleStop}
-      >
-        <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>
-          <Button
-            className={styles.button}
-            onMouseEnter={this.onMouseEnter}
-            type="control"
-            icon="hammer"
-            iconType="light"
-          />
-          {this.renderTools()}
-        </div>
-      </Draggable>
-    )
+    return <div>{this.renderTools()}</div>
   }
 }

@@ -20,9 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
-import { Icon, Menu, Dropdown } from '@kube-design/components'
+import { Icon, Menu } from '@kube-design/components'
 import { isAppsPage, getWebsiteUrl } from 'utils'
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Box, Typography } from '@material-ui/core'
@@ -181,13 +180,13 @@ class Header extends React.Component {
             </div>
           )} */}
           <div className={styles.right}>
-            {this.isLoggedIn && (
+            {/* {this.isLoggedIn && (
               <Dropdown content={this.renderDocumentList()}>
                 <IconButton>
                   <LibraryBooksIcon />
                 </IconButton>
               </Dropdown>
-            )}
+            )} */}
             <LoginInfo className={styles.loginInfo} isAppsPage={isAppsPage()} />
           </div>
         </Box>

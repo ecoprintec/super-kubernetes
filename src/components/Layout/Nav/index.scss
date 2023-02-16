@@ -291,5 +291,16 @@ $trans-speed: 0.2s;
     margin-top: 5px !important;
     font-size: 12px;
     font-weight: 400;
+    .arcordionItemName {
+      width: 80%;
+      text-align: start;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
+}
+.groupTitle {
+  color: #283593;
+  font-weight: 500;
+  margin-top: 10px;
 }
