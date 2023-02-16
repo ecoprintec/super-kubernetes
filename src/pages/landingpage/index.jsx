@@ -89,7 +89,7 @@ const LandingPage = inject('rootStore')(
             flexDirection={'column'}
           >
             <Typography component={'div'} align="center" display="inline">
-              <div className="main-content title">AI Mesh</div>
+              <div className="main-content title">Science Cloud suite</div>
             </Typography>
             <Box
               style={{ marginBottom: '48px' }}
