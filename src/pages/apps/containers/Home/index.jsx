@@ -36,7 +36,7 @@ import { STORE_APP_LIMIT } from 'configs/openpitrix/app'
 
 import Radio from '@material-ui/core/Radio'
 
-import Banner from '../../components/Banner'
+// import Banner from '../../components/Banner'
 import AppList from '../../components/AppList'
 import ConsoleNav from '../../../console/components/Nav'
 import styles from './index.scss'
@@ -258,7 +258,7 @@ export default class Home extends React.Component {
 
     return (
       <div className={styles.wrapper} style={{ display: 'flex' }}>
-        <div style={{ marginTop: 200 }}>
+        <div style={{ marginTop: 30 }}>
           <ConsoleNav />
         </div>
         <div
@@ -270,13 +270,13 @@ export default class Home extends React.Component {
             height: 100,
           }}
         >
-          <Banner className={styles.banner}>
+          {/* <Banner className={styles.banner}>
             <h2 className={styles.title}>{t('APP_STORE')}</h2>
             <p className={styles.desc}>{t('HOME_APP_STORE_DESC')}</p>
-          </Banner>
+          </Banner> */}
           {this.renderToolbar()}
         </div>
-        <div style={{ marginTop: 235, width: '100%' }} className={styles.body}>
+        <div style={{ marginTop: 70, width: '100%' }} className={styles.body}>
           {this.renderCategories()}
           <AppList
             className={styles.apps}
