@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -21,7 +21,7 @@ module.exports = {
   PREREQUESTS_FOR_USE_ROUTE_Q: '使用应用路由的前提条件？',
   PREREQUESTS_FOR_USE_ROUTE_A: '如需使用应用路由，您需要联系项目管理员启用项目网关。',
   ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持哪些的访问模式？',
-  ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere 应用路由支持 NodePort 访问模式以及 LoadBalancer 访问模式。',
+  ACCESS_TYPES_OF_ROUTE_A: 'Super Kubenetes 应用路由支持 NodePort 访问模式以及 LoadBalancer 访问模式。',
   ROUTE_PL: '应用路由',
   // List
   GATEWAY_ADDRESS_TCAP: '网关地址',

@@ -1,15 +1,15 @@
-# Copyright 2022 The KubeSphere Authors. All rights reserved.
+# Copyright 2022 The Super Kubenetes Authors. All rights reserved.
 # Use of this source code is governed by an Apache license
 # that can be found in the LICENSE file.
 
 FROM node:12-alpine3.14
 
 RUN adduser -D -g kubesphere -u 1002 kubesphere && \
-    mkdir -p /opt/kubesphere/console && \
-    chown -R kubesphere:kubesphere /opt/kubesphere/console
+    mkdir -p /opt/super-kubenetes/console && \
+    chown -R kubesphere:kubesphere /opt/super-kubenetes/console
 
-WORKDIR /opt/kubesphere/console
-COPY ./out/ /opt/kubesphere/console/
+WORKDIR /opt/super-kubenetes/console
+COPY ./out/ /opt/super-kubenetes/console/
 
 RUN mv dist/server.js server/server.js
 USER kubesphere

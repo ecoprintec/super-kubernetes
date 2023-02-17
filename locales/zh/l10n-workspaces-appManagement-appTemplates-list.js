@@ -1,27 +1,27 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   APP_TEMPLATE_PL: '应用模板',
   APPS_MANAGEMENT: '应用管理',
   UPLOAD_TEMPLATE: '上传模板',
-  APP_TEMPLATE_DESC: 'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
-  DEVELOP_APP_DESC: '您可以上传 Helm chart 或者使用 KubeSphere 提供的资源编排工具进行应用模板的开发。',
+  APP_TEMPLATE_DESC: 'Super Kubenetes 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+  DEVELOP_APP_DESC: '您可以上传 Helm chart 或者使用 Super Kubenetes 提供的资源编排工具进行应用模板的开发。',
   DEVELOP_APP_TITLE: '如何开发应用模板？',
   HOW_PUBLISH_APP_TITLE: '如何发布应用到应用商店？',
   HOW_PUBLISH_APP_DESC: '您可以将 Helm chart 上传为企业空间的应用模板，审核通过后，应用将会发布在应用商店中。',

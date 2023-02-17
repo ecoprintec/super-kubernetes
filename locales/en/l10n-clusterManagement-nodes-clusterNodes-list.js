@@ -1,26 +1,26 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 module.exports = {
   // Banner
   CLUSTER_NODE_PL: 'Cluster Nodes',
   CLUSTER_NODE: 'Cluster Node',
-  CLUSTER_NODE_DESC: 'Cluster nodes are basic servers of the KubeSphere cluster. You can manage cluster nodes on this page.',
+  CLUSTER_NODE_DESC: 'Cluster nodes are basic servers of the Super Kubenetes cluster. You can manage cluster nodes on this page.',
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
   NODE_TYPES_A: 'Nodes are classified into control plane nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',

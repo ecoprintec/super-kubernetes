@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -21,7 +21,7 @@ module.exports = {
   APPS_MANAGEMENT: 'Uygulama Yönetimi',
   UPLOAD_TEMPLATE: 'Şablonu Yükleyin',
   APP_TEMPLATE_DESC: 'Kubesphere, uygulamanız için tam kapsamlı yaşam döngüsü yönetimi sağlar. Uygulama şablonları yükleyebilir, yeni şablonlar oluşturabilir ve bunları hızlıca test edebilirsiniz. Ek olarak, uygulamalarınızı App Store\'a yükleyebilir ve diğer kullanıcıların da bir tık ile kullanmaya başlamalarını sağlayabilirsiniz.',
-  DEVELOP_APP_DESC: 'Uygulama şablonları geliştirmek için Helm çizelgeleri yükleyebilir veya KubeSphere tarafından sağlanan kaynak orkestrasyon aracını kullanabilirsiniz.',
+  DEVELOP_APP_DESC: 'Uygulama şablonları geliştirmek için Helm çizelgeleri yükleyebilir veya Super Kubenetes tarafından sağlanan kaynak orkestrasyon aracını kullanabilirsiniz.',
   DEVELOP_APP_TITLE: 'Uygulama şablonlarını nasıl oluşturabilirim?',
   HOW_PUBLISH_APP_TITLE: 'Uygulamaları App Store\'a nasıl yayınlayabilirim?',
   HOW_PUBLISH_APP_DESC: 'Uygulama şablonu olarak Help çizelgelerini çalışma alanına yükleyebilirsiniz. Bu uygulamalar, onaylandıktan sonra App Store\'a yayınlanacaktır.',

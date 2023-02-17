@@ -1,28 +1,28 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: 'Componentes',
-  SERVICE_COMPONENTS_DESC: 'Este módulo monitorea el estado de varios componentes del servicio en KubeSphere, Kubernetes, OpenPitrix, etc. Muestra el estado de mantenimiento y el tiempo de ejecución del clúster actual, y ayuda a los usuarios a monitorear el estado del clúster y localizar problemas a tiempo.',
-  // KubeSphere
+  SERVICE_COMPONENTS_DESC: 'Este módulo monitorea el estado de varios componentes del servicio en Super Kubenetes, Kubernetes, OpenPitrix, etc. Muestra el estado de mantenimiento y el tiempo de ejecución del clúster actual, y ayuda a los usuarios a monitorear el estado del clúster y localizar problemas a tiempo.',
+  // Super Kubenetes
   STOPPED: 'Stopped',
   RUNNING_TIME: 'Tiempo de ejecución',
-  KS_CONSOLE_DESC: 'Proporciona servicios de consola para KubeSphere.',
+  KS_CONSOLE_DESC: 'Proporciona servicios de consola para Super Kubenetes.',
   KS_APISERVER_DESC: 'Sirve los puntos finales API REST y proporciona la interfaz para el estado compartido del clúster a través del cual interactúan todos los demás componentes, así como el control de seguridad del clúster',
   OPENLDAP_DESC: 'Responsable del almacenamiento centralizado y la gestión de la información de la cuenta del usuario.',
   REDIS_DESC: 'Responsable del almacén de estructura de datos en memoria, utilizado como base de datos, caché y agente de mensajes',

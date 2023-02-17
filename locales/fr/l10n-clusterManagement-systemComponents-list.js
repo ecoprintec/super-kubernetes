@@ -1,28 +1,28 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: 'System Components',
-  SERVICE_COMPONENTS_DESC: 'System components are software components in the KubeSphere system, which provide various functions. You can view the running status of services components on this page.',
-  // KubeSphere
+  SERVICE_COMPONENTS_DESC: 'System components are software components in the Super Kubenetes system, which provide various functions. You can view the running status of services components on this page.',
+  // Super Kubenetes
   STOPPED: 'Stopped',
   RUNNING_TIME: 'Running time',
-  KS_CONSOLE_DESC: 'Provides KubeSphere console services.',
+  KS_CONSOLE_DESC: 'Provides Super Kubenetes console services.',
   KS_APISERVER_DESC: 'Provides REST APIs for cluster management. This component is also used for communication between cluster components and cluster security control.',
   OPENLDAP_DESC: 'Stores and manages user information in a centralized manner.',
   REDIS_DESC: 'Open-source, in-memory data structure store, which is used as a database, cache, and message broker.',

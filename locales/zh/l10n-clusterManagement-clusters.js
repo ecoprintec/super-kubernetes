@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -31,8 +31,8 @@ module.exports = {
   CONNTECT_DIRECT: '直接连接',
   CONNTECT_PROXY: '代理连接',
   INPUT_KUBECONFIG: '成员集群 kubeconfig',
-  CLUSTER_DIRECT_IMPORT_TIP: 'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群。 </br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过 VPN 或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
-  CLUSTER_AGENT_IMPORT_TIP: 'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗。</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过 VPN 或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
+  CLUSTER_DIRECT_IMPORT_TIP: 'Super Kubenetes 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群。 </br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过 VPN 或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
+  CLUSTER_AGENT_IMPORT_TIP: 'Super Kubenetes 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗。</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过 VPN 或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
   CLUSTER_AGENT_TITLE: '请根据集群中提供的代理连接设置加入集群',
   CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理 Agent',
   HOW_TO_GET_KUBECONFIG: '如何获取 kubeconfig?',
@@ -61,7 +61,7 @@ module.exports = {
   // List > Remove Cluster
   RISK_WARNING: '风险警告',
   REMOVE_CLUSTER_TIP_A: '集群被移除后，集群中原有的资源不会被自动清除。',
-  REMOVE_CLUSTER_TIP_B: '集群被移除后，集群中原有的多集群配置数据不会被自动清除，卸载 KubeSphere 或删除关联资源时可能会导致用户数据丢失。请务必参照 <a href="https://kubesphere.io/docs/">KubeSphere 官方文档</a>手动清理被移除集群中原有的多集群配置数据。',
+  REMOVE_CLUSTER_TIP_B: '集群被移除后，集群中原有的多集群配置数据不会被自动清除，卸载 Super Kubenetes 或删除关联资源时可能会导致用户数据丢失。请务必参照 <a href="https://kubesphere.io/docs/">Super Kubenetes 官方文档</a>手动清理被移除集群中原有的多集群配置数据。',
   CLUSTER_CONFIRM_TEXT: '我了解移除集群的风险',
   ENTER_CLUSTER_NAME: '此操作不能撤消。请输入群集名称 <strong>{name}</strong> 以确认您了解此操作的风险。'
 };

@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
   S2I_TARGET_IMAGE_REPOSITORY_DESC: 'Select an image registry for storing the image to be created. If no image registry is available, you need to create an image registry secret. <br/><a href={link} target="_blank">Learn More</a>',
   TRIGGER_TOKEN: 'Trigger Token',
   INVALID_TRIGGER_TOKEN_DESC: 'Invalid token. The token can contain only uppercase letters, lowercase letters, and numbers.',
-  TRIGGER_TOKEN_DESC: 'Set a token used to authenticate a client against KubeSphere. You can set a client to automatically trigger image building on KubeSphere over a webhook. The token can contain only uppercase letters, lowercase letters, and numbers.',
+  TRIGGER_TOKEN_DESC: 'Set a token used to authenticate a client against Super Kubenetes. You can set a client to automatically trigger image building on Super Kubenetes over a webhook. The token can contain only uppercase letters, lowercase letters, and numbers.',
   CODE_RELATIVE_PATH: 'Code Relative Path',
   CODE_RELATIVE_PATH_DESC: 'Set the relative path of the code in the code repository. The default path is /.',
   S2I_ENVIRONMENT_DESC: 'Set environment variables to control the runtime behavior of the image. <a href={link} target="_blank">Learn More</a>',

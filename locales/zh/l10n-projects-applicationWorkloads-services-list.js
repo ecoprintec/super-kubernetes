@@ -1,24 +1,24 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  SERVICE_TYPES_Q: 'KubeSphere 支持哪些服务类型？',
-  SERVICE_TYPES_A: 'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个卷，有状态服务中的每个容器组副本都拥有独立的卷。',
+  SERVICE_TYPES_Q: 'Super Kubenetes 支持哪些服务类型？',
+  SERVICE_TYPES_A: 'Super Kubenetes 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个卷，有状态服务中的每个容器组副本都拥有独立的卷。',
   SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务分别适用于哪些场景？',
   SCENARIOS_FOR_SERVICES_A: '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
   // Service List

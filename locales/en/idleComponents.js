@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 module.exports = {
@@ -35,7 +35,7 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_DIR_DESC: 'The location to store etcd backups files on etcd host machines.',
   CLUSTER_ETCD_BACKUP_PERIOD_DESC: 'Period of running backup etcd job, the unit is minutes.',
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: 'How many backup replicas to keep.',
-  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for KubeSphere',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for Super Kubenetes',
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
   HOW_TO_ADD: 'How to Add',
@@ -46,8 +46,8 @@ module.exports = {
   SSH_KEY_TCAP: 'SSH Key',
   SSH_KEY_SCAP: 'SSH key',
   SSH_AUTH_MODE: 'SSH Authentication Mode',
-  NODE_INTERNAL_IP_DESC: 'Set the internal IP address of the node in the KubeSphere cluster.',
-  NODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the node in the KubeSphere cluster.',
+  NODE_INTERNAL_IP_DESC: 'Set the internal IP address of the node in the Super Kubenetes cluster.',
+  NODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the node in the Super Kubenetes cluster.',
   NODE_ROLE_DESC: 'Set the role of the node in the cluster.',
   NODE_EXTERNAL_IP_DESC: 'Enter the node IP address and port number used for SSH login.',
   NODE_EXTERNAL_IP_EMPTY_DESC: 'Please enter the node IP address and port number used for SSH login.',
@@ -92,7 +92,7 @@ module.exports = {
   ETCD_BACKUP_DIR: 'etcd Backup Dir',
   ETCD_BACKUP_PERIOD: 'etcd Backup Period',
   KEEP_BACKUP_NUMBER: 'Keep Backup Number',
-  KUBESPHERE_SETTINGS: 'KubeSphere Settings',
+  KUBESPHERE_SETTINGS: 'Super Kubenetes Settings',
   // src/clusters/components/Modals/AddNodeType
   ADD_NODE_TYPE: 'Add Node Type',
   NODE_TYPE_DESCRIPTION_DEC: 'The description will help users to select nodes types and use the cluster.',

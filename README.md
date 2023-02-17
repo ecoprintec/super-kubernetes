@@ -1,8 +1,8 @@
 # sqk-super-kubenetes
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/kubesphere/console)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/super-kubenetes/console)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-![KubeSphere Console](docs/images/dashboard-ui.png)
+![Super Kubenetes Console](docs/images/dashboard-ui.png)
 
 ## Getting Started
 

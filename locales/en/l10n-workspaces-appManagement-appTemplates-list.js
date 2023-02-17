@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 module.exports = {
@@ -21,8 +21,8 @@ module.exports = {
   APP_TEMPLATE_PL: 'App Templates',
   APPS_MANAGEMENT: 'App Management',
   UPLOAD_TEMPLATE: 'Upload Template',
-  APP_TEMPLATE_DESC: 'KubeSphere provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
-  DEVELOP_APP_DESC: 'You can upload Helm charts or use the resource orchestration tool provided by KubeSphere to develop app templates.',
+  APP_TEMPLATE_DESC: 'Super Kubenetes provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
+  DEVELOP_APP_DESC: 'You can upload Helm charts or use the resource orchestration tool provided by Super Kubenetes to develop app templates.',
   DEVELOP_APP_TITLE: 'How do I develop app templates?',
   HOW_PUBLISH_APP_TITLE: 'How do I release apps to the App Store?',
   HOW_PUBLISH_APP_DESC: 'You can upload Helm charts as app templates to workspaces. The apps will be released to the App Store after they are approved.',

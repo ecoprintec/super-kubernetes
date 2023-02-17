@@ -1,28 +1,28 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   PLATFORM_ROLE_PL: 'أدوار المنصة',
   // List
   PLATFORM_ROLE_EMPTY_DESC: 'الرجاء إنشاء دور منصة.',
-  ROLE_USERS_MANAGER: 'إدارة جميع المستخدمين على منصة KubeSphere.',
-  ROLE_WORKSPACES_MANAGER: 'إدارة جميع مساحات العمل على منصة KubeSphere.',
-  ROLE_PLATFORM_ADMIN: 'إدارة جميع الموارد على منصة KubeSphere.',
+  ROLE_USERS_MANAGER: 'إدارة جميع المستخدمين على منصة Super Kubenetes.',
+  ROLE_WORKSPACES_MANAGER: 'إدارة جميع مساحات العمل على منصة Super Kubenetes.',
+  ROLE_PLATFORM_ADMIN: 'إدارة جميع الموارد على منصة Super Kubenetes.',
   ROLE_PLATFORM_REGULAR: 'لا يمكن الوصول إلى أي موارد قبل الانضمام إلى مساحة العمل.',
   ROLE_PLATFORM_SELF_PROVISIONER: 'Create workspaces and become an administrator of the created workspaces.',
   CREATION_TIME_TCAP: 'وقت الإنشاء',
@@ -59,7 +59,7 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the KubeSphere platform.',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the Super Kubenetes platform.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Delete

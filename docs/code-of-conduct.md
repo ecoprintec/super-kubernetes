@@ -1,3 +1,3 @@
-# KubeSphere Code of Conduct
+# Super Kubenetes Code of Conduct
 
-Please refer to [KubeSphere Code of Conduct](https://github.com/kubesphere/kubesphere/blob/master/docs/code-of-conduct.md)
+Please refer to [Super Kubenetes Code of Conduct](https://github.com/super-kubenetes/kubesphere/blob/master/docs/code-of-conduct.md)
