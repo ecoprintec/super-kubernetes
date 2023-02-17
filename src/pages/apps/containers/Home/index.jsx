@@ -34,6 +34,8 @@ import PublishedAppStore from 'stores/openpitrix/store'
 import CategoryStore from 'stores/openpitrix/category'
 import { STORE_APP_LIMIT } from 'configs/openpitrix/app'
 
+import Radio from '@material-ui/core/Radio'
+
 import Banner from '../../components/Banner'
 import AppList from '../../components/AppList'
 import ConsoleNav from '../../../console/components/Nav'
@@ -146,9 +148,12 @@ export default class Home extends React.Component {
 
   handleClickCate = (category, tabName) => {
     this.setState({
-      tabName: t(`APP_CATE_${tabName.toUpperCase().replace(/[^A-Z]+/g, '_')}`, {
-        defaultValue: tabName,
-      }),
+      tabName:
+        category === 'new'
+          ? t('NEW_APPS')
+          : t(`APP_CATE_${tabName?.toUpperCase().replace(/[^A-Z]+/g, '_')}`, {
+              defaultValue: tabName,
+            }),
     })
     this.props.rootStore.query({ category })
   }
@@ -196,6 +201,7 @@ export default class Home extends React.Component {
               })}
               onClick={() => this.handleClickCate(cateLatest)}
             >
+              <Radio checked={this.state.tabName === t('NEW_APPS')} />
               <Icon name="cart" size={16} type="dark" className={styles.icon} />
               <span className={styles.name}>{t('NEW_APPS')}</span>
             </li>
@@ -212,6 +218,17 @@ export default class Home extends React.Component {
                 })}
                 onClick={() => this.handleClickCate(category_id, name)}
               >
+                <Radio
+                  checked={
+                    this.state.tabName ===
+                    t(
+                      `APP_CATE_${name.toUpperCase().replace(/[^A-Z]+/g, '_')}`,
+                      {
+                        defaultValue: name,
+                      }
+                    )
+                  }
+                />
                 <Icon
                   name={category_id === uncateKey ? 'tag' : description}
                   size={16}
