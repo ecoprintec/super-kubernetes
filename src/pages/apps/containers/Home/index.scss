@@ -26,7 +26,6 @@ $category-width: 193px;
 
     .apps {
       position: relative;
-      margin-left: $category-width + 20px;
       @media (max-width: 768px) {
         margin-left: $category-width + 20px;
       }
@@ -94,9 +93,7 @@ $category-width: 193px;
 }
 
 .cates {
-  position: fixed;
-  top: 300px;
-  width: $category-width;
+  position: relative;
 
   .group {
     margin-bottom: 28px;
@@ -108,6 +105,12 @@ $category-width: 193px;
     .menu {
       margin-top: 12px;
       margin-left: 12px;
+      -moz-column-count: 4;
+      -moz-column-gap: 20px;
+      -webkit-column-count: 4;
+      -webkit-column-gap: 20px;
+      column-count: 4;
+      column-gap: 20px;
 
       > .item {
         margin-bottom: 12px;
