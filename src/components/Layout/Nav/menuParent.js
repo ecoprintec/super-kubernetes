@@ -11,6 +11,16 @@ export function getParentMenu() {
     },
     {
       tabindex: 0,
+      name: 'Super Quantum Composer',
+      icon: <WidgetsIcon />,
+    },
+    {
+      tabindex: 0,
+      name: 'Super Cloud',
+      icon: <WidgetsIcon />,
+    },
+    {
+      tabindex: 0,
       name: 'APPS',
       icon: <WidgetsIcon />,
     },
