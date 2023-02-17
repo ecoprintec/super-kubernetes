@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -29,7 +29,7 @@ module.exports = {
   PROJECT_ADMINISTRATOR_DESC: 'Selecciona un usuario del espacio de trabajo como administrador del proyecto.',
   PROJECT_ASSIGN_DESC: 'Una vez que el proyecto se asigna a un espacio de trabajo ya no se puedes cambiar.',
   // List > Create
-  CREATE_PROJECT_DESC: 'Un proyecto es un namespace de Kubernetes en KubeSphere, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
+  CREATE_PROJECT_DESC: 'Un proyecto es un namespace de Kubernetes en Super Kubenetes, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
   PROJECT_NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
   PROJECT_NAME_INVALID_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
   CANCEL: 'Cancelar',

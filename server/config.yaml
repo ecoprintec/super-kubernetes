@@ -35,7 +35,7 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: KubeSphere
+  title: Super Kubenetes
   description: ""
   encryptKey: kubesphere
 
@@ -43,8 +43,8 @@ client:
     kubesphere: 3.1.0
 
   # kubesphere urls
-  issueUrl: https://github.com/kubesphere/kubesphere/issues/new/choose
-  reposUrl: https://github.com/kubesphere/kubesphere
+  issueUrl: https://github.com/super-kubenetes/kubesphere/issues/new/choose
+  reposUrl: https://github.com/super-kubenetes/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
     en:
@@ -651,14 +651,14 @@ client:
       max_number_of_channel: 20
 
   supportLinks:
-    github: "https://github.com/kubesphere/kubesphere"
-    githubPr: "https://github.com/kubesphere/kubesphere"
-    star: "https://github.com/kubesphere/kubesphere"
-    githubFork: "https://github.com/kubesphere/kubesphere"
+    github: "https://github.com/super-kubenetes/kubesphere"
+    githubPr: "https://github.com/super-kubenetes/kubesphere"
+    star: "https://github.com/super-kubenetes/kubesphere"
+    githubFork: "https://github.com/super-kubenetes/kubesphere"
     slack: "https://kubesphere.slack.com/"
     doc: "https://kubesphere.com.cn/docs/v3.3/"
     forum: "https://kubesphere.com.cn/forum/"
-    issues: "https://github.com/kubesphere/kubesphere/issues"
+    issues: "https://github.com/super-kubenetes/kubesphere/issues"
     contactUs: "https://kubesphere.cloud/ticket/"
     kse: "https://kubesphere.cloud/self-service/qkcp/"
     ksc: "https://kubesphere.cloud/"

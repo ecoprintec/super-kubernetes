@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -48,7 +48,7 @@ module.exports = {
   S2I_TARGET_IMAGE_REPOSITORY_DESC: 'Oluşturulacak görüntüyü depolamak için bir görüntü kaydı seçin. Görüntü kaydı yoksa, bir görüntü kayıt defteri sırrı oluşturmanız gerekir. <br/><a href={link} target="_blank">Daha Fazla Bilgi Edinin</a>',
   TRIGGER_TOKEN: 'Tetik anahtarı',
   INVALID_TRIGGER_TOKEN_DESC: 'Geçersiz jeton. Belirteç yalnızca büyük harf, küçük harf ve sayı içerebilir.',
-  TRIGGER_TOKEN_DESC: 'KubeSphere\'e karşı bir istemcinin kimliğini doğrulamak için kullanılan bir belirteç ayarlayın. Bir istemciyi, bir web kancası üzerinden KubeSphere\'de görüntü oluşturmayı otomatik olarak tetikleyecek şekilde ayarlayabilirsiniz. Belirteç yalnızca büyük harf, küçük harf ve sayı içerebilir.',
+  TRIGGER_TOKEN_DESC: 'Super Kubenetes\'e karşı bir istemcinin kimliğini doğrulamak için kullanılan bir belirteç ayarlayın. Bir istemciyi, bir web kancası üzerinden Super Kubenetes\'de görüntü oluşturmayı otomatik olarak tetikleyecek şekilde ayarlayabilirsiniz. Belirteç yalnızca büyük harf, küçük harf ve sayı içerebilir.',
   CODE_RELATIVE_PATH: 'Göreceli Yol',
   CODE_RELATIVE_PATH_DESC: 'Kod deposundaki kodun göreli yolunu ayarlayın. Varsayılan yol /.',
   S2I_ENVIRONMENT_DESC: 'Görüntünün çalışma zamanı davranışını kontrol etmek için ortam değişkenlerini ayarlayın. <a href={link} target="_blank">Daha Fazla Bilgi Edinin</a>',

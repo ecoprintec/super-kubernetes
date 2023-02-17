@@ -1,25 +1,25 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   CLUSTER_NODE_PL: 'Küme Düğümleri',
   CLUSTER_NODE: 'Küme Düğümü',
-  CLUSTER_NODE_DESC: 'Küme düğümleri, KubeSphere kümesinin temel sunucularıdır. Bu sayfada küme düğümlerini yönetebilirsiniz.',
+  CLUSTER_NODE_DESC: 'Küme düğümleri, Super Kubenetes kümesinin temel sunucularıdır. Bu sayfada küme düğümlerini yönetebilirsiniz.',
   NODE_TYPES_Q: 'Küme düğümlerinin türleri nelerdir?',
   NODE_TYPES_A: 'Düğümler, kontrol düzlemi düğümleri ve çalışan düğümleri olarak sınıflandırılır.',
   WHAT_IS_NODE_TAINTS_Q: 'Düğüm Kusurları nelerdir?',

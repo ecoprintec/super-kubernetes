@@ -1,24 +1,24 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   EDGE_NODE_PL: 'Kenar Düğümleri',
-  EDGE_NODE_DESC: 'Kenar düğümler, KubeSphere kümesinin dışına dağıtılan sunuculardır. Bunları yönetmek için KubeSphere kümesine kenar düğümler ekleyebilirsiniz.',
+  EDGE_NODE_DESC: 'Kenar düğümler, Super Kubenetes kümesinin dışına dağıtılan sunuculardır. Bunları yönetmek için Super Kubenetes kümesine kenar düğümler ekleyebilirsiniz.',
   // Node Count
   // List
   EDGE_NODE_EMPTY_DESC: 'Lütfen kümeye bir kenar düğüm ekleyin.',
@@ -36,8 +36,8 @@ module.exports = {
   ADD_DEFAULT_TAINT: 'Varsayılan kusur ekleyin {params}',
   EDGE_NODE: 'Kenar Düğümleri',
   INTERNAL_IP_ADDRESS: 'Dahili IP Adresi',
-  EDGENODE_INTERNAL_IP_DESC: 'KubeSphere kümesindeki uç düğümün dahili IP adresini ayarlayın.',
-  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Lütfen KubeSphere kümesindeki uç düğümün dahili IP adresini ayarlayın.',
+  EDGENODE_INTERNAL_IP_DESC: 'Super Kubenetes kümesindeki uç düğümün dahili IP adresini ayarlayın.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Lütfen Super Kubenetes kümesindeki uç düğümün dahili IP adresini ayarlayın.',
   COPY_SUCCESSFUL: 'Başarıyla kopyalandı.',
   // List > View Log
   LOGS: 'Günlükler',

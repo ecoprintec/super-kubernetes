@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -46,7 +46,7 @@ module.exports = {
   PROJECT_ROLE: '项目角色',
   SELECT_ROLE_TIP: '请选择角色。',
   ADD_PROJECT: '添加项目',
-  CLUSTER_UPGRADE_REQUIRED: '当前 KubeSphere 版本不支持此功能，请将 KubeSphere 升级到 {version} 或以上版本。',
+  CLUSTER_UPGRADE_REQUIRED: '当前 Super Kubenetes 版本不支持此功能，请将 Super Kubenetes 升级到 {version} 或以上版本。',
   // List > Set Departments > DevOps Project Role
   DEVOPS_PROJECT_ROLE: 'DevOps 项目角色',
   ADD_DEVOPS_PROJECT: '添加 DevOps 项目'

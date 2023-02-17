@@ -83,10 +83,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kubesphere/kube-design.git"
+    "url": "https://github.com/super-kubenetes/kube-design.git"
   },
   "bugs": {
-    "url": "https://github.com/kubesphere/kube-design/issues"
+    "url": "https://github.com/super-kubenetes/kube-design/issues"
   },
-  "homepage": "https://github.com/kubesphere/kube-design#readme"
+  "homepage": "https://github.com/super-kubenetes/kube-design#readme"
 }

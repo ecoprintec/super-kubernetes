@@ -1,33 +1,33 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
-  APPLICATIONS_DESC: 'An app provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including workloads, services and ingresses.',
+  APPLICATIONS_DESC: 'An app provides users with comprehensive business functions in one package. App templates in Super Kubenetes are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including workloads, services and ingresses.',
   APP_PL: '앱',
-  APP_TYPES_Q: 'What app types does KubeSphere support?',
-  APP_TYPES_A: 'KubeSphere supports templated-based apps and composed apps. Template-based apps are created from You can deploy apps from the KubeSphere App Store or an app template. Composed apps are customized by users.',
+  APP_TYPES_Q: 'What app types does Super Kubenetes support?',
+  APP_TYPES_A: 'Super Kubenetes supports templated-based apps and composed apps. Template-based apps are created from You can deploy apps from the Super Kubenetes App Store or an app template. Composed apps are customized by users.',
   HOW_TO_USE_APP_GOVERN_Q: 'How do I use Application Governance?',
   HOW_TO_USE_APP_GOVERN_A: 'You can enable Application Governance when you create a composed app.',
   DEPLOY_SAMPLE_APP: 'Deploy Sample App',
   // List
   NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',
-  TEMPLATE_BASED_APP_EMPTY_DESC: 'Please create an app from the KubeSphere App Store or an app template.',
+  TEMPLATE_BASED_APP_EMPTY_DESC: 'Please create an app from the Super Kubenetes App Store or an app template.',
   APP: 'App',
   VERSION: 'Version',
   CREATING: 'Creating',
@@ -35,10 +35,10 @@ module.exports = {
   DELETING: 'Deleting',
   // List > Create
   CREATE_APP: 'Create App',
-  CREATE_APP_DESC: 'Create an app from the KubeSphere App Store or an app template.',
+  CREATE_APP_DESC: 'Create an app from the Super Kubenetes App Store or an app template.',
   FROM_APP_STORE: 'From App Store',
   FROM_APP_TEMPLATE: 'From App Template',
-  FROM_APP_STORE_DESC: 'Create an app from the KubeSphere App Store.',
+  FROM_APP_STORE_DESC: 'Create an app from the Super Kubenetes App Store.',
   // List > Create > From App Template
   SELECT_APP_REPOSITORY: 'Select app repository',
   CURRENT_WORKSPACE: 'Current workspace',

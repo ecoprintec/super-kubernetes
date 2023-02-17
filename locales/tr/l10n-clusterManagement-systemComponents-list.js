@@ -1,28 +1,28 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: 'Sistem bileşenleri',
-  SERVICE_COMPONENTS_DESC: 'Sistem bileşenleri, KubeSphere sistemindeki çeşitli işlevleri sağlayan yazılım bileşenleridir. Servis bileşenlerinin çalışma durumunu bu sayfada görüntüleyebilirsiniz.',
-  // KubeSphere
+  SERVICE_COMPONENTS_DESC: 'Sistem bileşenleri, Super Kubenetes sistemindeki çeşitli işlevleri sağlayan yazılım bileşenleridir. Servis bileşenlerinin çalışma durumunu bu sayfada görüntüleyebilirsiniz.',
+  // Super Kubenetes
   STOPPED: 'Durduruldu',
   RUNNING_TIME: 'Çalışma süresi',
-  KS_CONSOLE_DESC: 'KubeSphere konsol hizmetleri sağlar.',
+  KS_CONSOLE_DESC: 'Super Kubenetes konsol hizmetleri sağlar.',
   KS_APISERVER_DESC: 'Küme yönetimi için REST API\'leri sağlar. Bu bileşen ayrıca küme bileşenleri ve küme güvenlik denetimi arasındaki iletişim için de kullanılır.',
   OPENLDAP_DESC: 'Kullanıcı bilgilerini merkezi bir şekilde depolar ve yönetir.',
   REDIS_DESC: 'Veritabanı, önbellek ve ileti aracısı olarak kullanılan açık kaynaklı, bellek içi veri yapısı deposu.',

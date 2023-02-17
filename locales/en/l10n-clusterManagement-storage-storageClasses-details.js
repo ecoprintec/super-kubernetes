@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 module.exports = {
@@ -23,12 +23,12 @@ module.exports = {
   // More > Set as Default Storage Class
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
   SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
-  STORAGE_CLASS_SET_DEFAULT_DESC: 'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
+  STORAGE_CLASS_SET_DEFAULT_DESC: 'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a Super Kubenetes cluster.',
   // More > Edit Authorization Rules
   SET_AUTHORIZATION_RULES: 'Set Authorization Rules',
   AUTHORIZATION_RULES: 'Authorization Rules',
   AUTHORIZATION_RULES_DESC: 'Set authorization rules so that the storage class can be accessed only in specific projects and workspaces.',
-  AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade KubeSphere to v3.3.0 or later, or manually install <a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
+  AUTHORIZATION_NOT_SUPPORT: 'The cluster currently does not support this feature. Please upgrade Super Kubenetes to v3.3.0 or later, or manually install <a href="https://github.com/super-kubenetes/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
   OPERATOR_IN: 'In',
   OPERATOR_NOT_IN: 'Not in',
   // More > Set Volume Permissions

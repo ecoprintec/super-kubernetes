@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -31,8 +31,8 @@ module.exports = {
   USERNAME_DESC: 'اسم المستخدم يمكن أن يحتوي فقط على أحرف صغيرة وأرقام ووصلات (-) ونقاط (.) ، ويجب أن تبدأ وتنتهي بحرف صغير أو عدد. أقصى طول هو 32 حرفاً.',
   PASSWORD_DESC: 'The password must contain at least one number, one lowercase letter, one uppercase letter, and one special character (~!@#$%^&*()-_=+\\|[{}];:\'",<.>/? or space). The length must be 8 to 64 characters.',
   PASSWORD_INVALID_DESC: 'كلمة المرور غير صالحة. يجب أن تحتوي كلمة المرور على رقم واحد على الأقل، وحرف صغير واحد، وحرف كبير واحد. يجب أن يكون الطول 8 إلى 64 حرفاً.',
-  PLATFORM_ROLE_DESC: 'تعيين دور المستخدم على منصة KubeSphere.',
-  USER_SETTING_EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم KubeSphere.',
+  PLATFORM_ROLE_DESC: 'تعيين دور المستخدم على منصة Super Kubenetes.',
+  USER_SETTING_EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم Super Kubenetes.',
   USERNAME_EXISTS: 'اسم المستخدم موجود بالفعل. الرجاء إدخال اسم مستخدم آخر.',
   USERNAME_EMPTY_DESC: 'يُرجى إدخال اسم مستخدم.',
   PLATFORM_ROLE: 'دور المنصة',

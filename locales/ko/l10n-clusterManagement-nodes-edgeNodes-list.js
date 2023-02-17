@@ -1,24 +1,24 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   EDGE_NODE_PL: 'Edge Nodes',
-  EDGE_NODE_DESC: 'Edge nodes are servers deployed outside the KubeSphere cluster. You can add edge nodes to the KubeSphere cluster to manage them.',
+  EDGE_NODE_DESC: 'Edge nodes are servers deployed outside the Super Kubenetes cluster. You can add edge nodes to the Super Kubenetes cluster to manage them.',
   // Node Count
   // List
   EDGE_NODE_EMPTY_DESC: 'Please add an edge node to the cluster.',
@@ -36,8 +36,8 @@ module.exports = {
   ADD_DEFAULT_TAINT: 'Add the default taint {params}',
   EDGE_NODE: 'Edge Node',
   INTERNAL_IP_ADDRESS: 'Internal IP Address',
-  EDGENODE_INTERNAL_IP_DESC: 'Set the internal IP address of the edge node in the KubeSphere cluster.',
-  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the edge node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_DESC: 'Set the internal IP address of the edge node in the Super Kubenetes cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the edge node in the Super Kubenetes cluster.',
   COPY_SUCCESSFUL: 'Copied successfully.',
   // List > View Log
   LOGS: 'Logs',

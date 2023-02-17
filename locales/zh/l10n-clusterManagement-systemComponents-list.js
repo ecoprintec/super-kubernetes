@@ -1,28 +1,28 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: '系统组件',
-  SERVICE_COMPONENTS_DESC: '系统组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
-  // KubeSphere
+  SERVICE_COMPONENTS_DESC: '系统组件是 Super Kubenetes 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
+  // Super Kubenetes
   STOPPED: '已停止',
   RUNNING_TIME: '运行时间',
-  KS_CONSOLE_DESC: '提供 KubeSphere 的控制台服务。',
+  KS_CONSOLE_DESC: '提供 Super Kubenetes 的控制台服务。',
   KS_APISERVER_DESC: '提供用于集群管理的 API 接口。此组件同时也用于集群内部模块通信和集群安全控制。',
   OPENLDAP_DESC: '集中存储和管理用户的帐户信息。',
   REDIS_DESC: '开源内存数据结构化存储组件，用作数据库、缓存和消息中介。',

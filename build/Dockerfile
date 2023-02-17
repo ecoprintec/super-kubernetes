@@ -1,4 +1,4 @@
-# Copyright 2021 The KubeSphere Authors. All rights reserved.
+# Copyright 2021 The Super Kubenetes Authors. All rights reserved.
 # Use of this source code is governed by an Apache license
 # that can be found in the LICENSE file.
 
@@ -8,7 +8,7 @@ FROM node:12-alpine3.14 as builder
 ARG YARN_VERSION=1.22.4
 
 WORKDIR /kubesphere
-ADD . /kubesphere/
+ADD . /super-kubenetes/
 
 RUN apk add --no-cache --virtual .build-deps ca-certificates python2 python3 py3-pip make openssl g++ bash
 RUN npm install yarn@${YARN_VERSION}
@@ -20,14 +20,14 @@ RUN yarn && yarn build
 
 # Copy compiled files
 RUN mkdir -p /out/server
-RUN mv /kubesphere/dist/ /out/
-RUN mv /kubesphere/server/locales \
-       /kubesphere/server/public \
-       /kubesphere/server/views \
-       /kubesphere/server/sample \
-       /kubesphere/server/config.yaml /out/server/
-#RUN ["/bin/bash", "-c", "mv /kubesphere/server/{locales,public,sample,views,config.yaml} /out/server/"]
-RUN mv /kubesphere/package.json /out/
+RUN mv /super-kubenetes/dist/ /out/
+RUN mv /super-kubenetes/server/locales \
+       /super-kubenetes/server/public \
+       /super-kubenetes/server/views \
+       /super-kubenetes/server/sample \
+       /super-kubenetes/server/config.yaml /out/server/
+#RUN ["/bin/bash", "-c", "mv /super-kubenetes/server/{locales,public,sample,views,config.yaml} /out/server/"]
+RUN mv /super-kubenetes/package.json /out/
 
 ##############
 # Final Image
@@ -35,11 +35,11 @@ RUN mv /kubesphere/package.json /out/
 FROM node:12-alpine3.14 as base_os_context
 
 RUN adduser -D -g kubesphere -u 1002 kubesphere && \
-    mkdir -p /opt/kubesphere/console && \
-    chown -R kubesphere:kubesphere /opt/kubesphere/console
+    mkdir -p /opt/super-kubenetes/console && \
+    chown -R kubesphere:kubesphere /opt/super-kubenetes/console
 
-WORKDIR /opt/kubesphere/console
-COPY --from=builder /out/ /opt/kubesphere/console/
+WORKDIR /opt/super-kubenetes/console
+COPY --from=builder /out/ /opt/super-kubenetes/console/
 
 RUN mv dist/server.js server/server.js
 USER kubesphere

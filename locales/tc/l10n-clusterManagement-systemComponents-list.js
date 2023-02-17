@@ -1,28 +1,28 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   SYSTEM_COMPONENT_PL: '服務組件',
-  SERVICE_COMPONENTS_DESC: '服務組件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助用戶監測集群的狀況和即時定位問題。',
-  // KubeSphere
+  SERVICE_COMPONENTS_DESC: '服務組件提供 Super Kubenetes、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助用戶監測集群的狀況和即時定位問題。',
+  // Super Kubenetes
   STOPPED: 'Stopped',
   RUNNING_TIME: '運行時間',
-  KS_CONSOLE_DESC: '提供 KubeSphere 的控制台服務',
+  KS_CONSOLE_DESC: '提供 Super Kubenetes 的控制台服務',
   KS_APISERVER_DESC: '整個集群管理的 API 介面和集群内部各個模組之間通信的樞紐，以及集群安全控制',
   OPENLDAP_DESC: '負責集中儲存和管理用戶帳號資訊',
   REDIS_DESC: '將結構化的數據儲存在記憶體中的儲存系統',

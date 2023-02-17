@@ -5,7 +5,7 @@ export function getParentMenu() {
   return [
     {
       tabindex: 0,
-      name: 'Super Kubesphere',
+      name: 'Super Kubenetes',
       icon: <WidgetsIcon />,
       menu: true,
     },

@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Attributes
@@ -22,12 +22,12 @@ module.exports = {
   // More > Set as Default Storage Class
   SET_DEFAULT_STORAGE_CLASS_TITLE: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
   SET_AS_DEFAULT_STORAGE_CLASS: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
-  STORAGE_CLASS_SET_DEFAULT_DESC: 'Varsayılan depolama sınıfı ayarlandıktan sonra, herhangi bir özel gereksinim eklenmemişse, sistem varsayılan olarak bu sınıfın birimlerini oluşturacaktır. KubeSphere kümesinde yalnızca bir varsayılan depolama sınıfına izin verilir.',
+  STORAGE_CLASS_SET_DEFAULT_DESC: 'Varsayılan depolama sınıfı ayarlandıktan sonra, herhangi bir özel gereksinim eklenmemişse, sistem varsayılan olarak bu sınıfın birimlerini oluşturacaktır. Super Kubenetes kümesinde yalnızca bir varsayılan depolama sınıfına izin verilir.',
   // More > Edit Authorization Rules
   SET_AUTHORIZATION_RULES: 'Yetkilendirme Kuralları Belirleyin',
   AUTHORIZATION_RULES: 'Yetkilendirme Kuralları Belirleyin',
   AUTHORIZATION_RULES_DESC: 'Depolama sınıfına yalnızca belirli projelerde ve çalışma alanlarında erişilebilmesi için yetkilendirme kuralları ayarlayın.',
-  AUTHORIZATION_NOT_SUPPORT: 'Küme şu anda bu özelliği desteklemiyor. Lütfen KubeSphere\'i v3.3.0 veya sonraki bir sürümüne yükseltin veya manuel olarak yükleyin.<a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
+  AUTHORIZATION_NOT_SUPPORT: 'Küme şu anda bu özelliği desteklemiyor. Lütfen Super Kubenetes\'i v3.3.0 veya sonraki bir sürümüne yükseltin veya manuel olarak yükleyin.<a href="https://github.com/super-kubenetes/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
   OPERATOR_IN: 'İçinde',
   OPERATOR_NOT_IN: 'İçinde değil',
   // More > Set Volume Permissions

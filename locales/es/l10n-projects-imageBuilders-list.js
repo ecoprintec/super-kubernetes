@@ -1,19 +1,19 @@
 /*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KubeSphere Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KubeSphere Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -48,7 +48,7 @@ module.exports = {
   S2I_TARGET_IMAGE_REPOSITORY_DESC: 'Select a Secret with push permissions to the image repository. De lo contrario, puedes <a href={link} target="_blank">crear una nueva credencial de repositorio de imágenes</a> .',
   TRIGGER_TOKEN: 'Secret Code',
   INVALID_TRIGGER_TOKEN_DESC: 'It can only contain upper and lower case letters, numbers.',
-  TRIGGER_TOKEN_DESC: 'Set a token used to authenticate a client against KubeSphere when the client attempts to trigger image building on KubeSphere. The token can contain only uppercase letters, lowercase letters, and numbers.',
+  TRIGGER_TOKEN_DESC: 'Set a token used to authenticate a client against Super Kubenetes when the client attempts to trigger image building on Super Kubenetes. The token can contain only uppercase letters, lowercase letters, and numbers.',
   CODE_RELATIVE_PATH: 'Ruta relativa del código (opcional):',
   CODE_RELATIVE_PATH_DESC: 'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',
   S2I_ENVIRONMENT_DESC: 'Los desarrolladores de aplicaciones pueden usar las siguientes variables de entorno para configurar el comportamiento en tiempo de ejecución de esta imagen; para configuraciones detalladas, consulta <a href={link} target="_blank">plantillas de compilación</a> .',

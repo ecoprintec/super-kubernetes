@@ -1,6 +1,6 @@
 # Kube Design
 
-Kube Design is a set of React component libraries created for KubeSphere console.
+Kube Design is a set of React component libraries created for Super Kubenetes console.
 
 [![NPM](https://img.shields.io/npm/v/@kube-design/components.svg)](https://www.npmjs.com/package/@kube-design/components)
 
