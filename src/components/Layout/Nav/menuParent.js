@@ -24,25 +24,5 @@ export function getParentMenu() {
       name: 'APPS',
       icon: <WidgetsIcon />,
     },
-    {
-      tabindex: 0,
-      name: 'SO',
-      icon: <WidgetsIcon />,
-    },
-    {
-      tabindex: 0,
-      name: 'SQ',
-      icon: <WidgetsIcon />,
-    },
-    {
-      tabindex: 0,
-      name: 'SS',
-      icon: <WidgetsIcon />,
-    },
-    {
-      tabindex: 0,
-      name: 'Billing',
-      icon: <WidgetsIcon />,
-    },
   ]
 }
