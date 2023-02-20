@@ -440,12 +440,16 @@ class Nav extends React.Component {
                     </MuiButton>
                     {globals.user && (
                       <Accordion
-                        expanded={true}
+                        expanded={rootStore.expandedAcordion === 'toolbox'}
+                        onChange={this.handleChangeArcodion('toolbox')}
                         className={styles.accordionGlobal}
                         elevation={0}
                       >
                         <AccordionSummary
                           className={styles.accordionSummaryGlobal}
+                          expandIcon={
+                            <ExpandMoreIcon className="expand-platform-icon" />
+                          }
                         >
                           <MuiButton className={styles.navsglobal}>
                             <BuildIcon />
