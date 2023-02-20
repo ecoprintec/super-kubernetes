@@ -17,11 +17,49 @@
  */
 
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import { inject, observer } from 'mobx-react'
+import { get, set } from 'lodash'
 import { renderRoutes, getIndexRoute } from 'utils/router.config'
 import { Nav } from 'components/Layout'
+import ClusterStore from 'stores/cluster'
 
+@inject('rootStore')
+@observer
 class AccessLayout extends Component {
+  constructor(props) {
+    super(props)
+
+    this.store = new ClusterStore()
+  }
+
+  componentDidMount() {
+    this.props.rootStore.getRules({ cluster: this.props.rootStore.clusterName })
+    this.init({ cluster: this.props.rootStore.clusterName })
+  }
+
+  async init(params) {
+    this.store.initializing = true
+
+    if (params.cluster) {
+      await Promise.all([
+        this.store.fetchDetail({ name: params }),
+        this.props.rootStore.getRules({ cluster: params }),
+      ])
+      await this.props.history.push(this.props.location)
+      set(
+        globals,
+        `clusterConfig.${this.props.rootStore.clusterName}`,
+        this.store.detail.configz
+      )
+    }
+    this.store.initializing = false
+  }
+
+  getClusterNavsMenu() {
+    const menu = globals.app.getClusterNavs(this.props.rootStore.clusterName)
+    return menu
+  }
+
   render() {
     const { match, route, location } = this.props
     const navs = globals.app.getAccessNavs()
@@ -32,7 +70,10 @@ class AccessLayout extends Component {
         <div className="ks-page-side">
           <Nav
             className="ks-page-nav"
-            navs={navs}
+            navsCluster={this.getClusterNavsMenu()}
+            navsManageApp={globals.app.getManageAppNavs()}
+            navsAccessControl={navs}
+            navsPlatformSettings={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
           />

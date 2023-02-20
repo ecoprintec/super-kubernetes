@@ -10,17 +10,19 @@ $trans-speed: 0.2s;
   }
 
   & > ul {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    margin-top: 10px;
     & > li {
       transition: all $trans-speed ease-in-out;
       margin-bottom: 12px;
       & > a,
       .title {
-        display: block;
-        padding: 7px;
+        display: flex;
+        padding: 8px 4px;
         color: inherit;
         font-weight: 400;
         cursor: pointer;
+        font-size: 12px !important;
 
         @media (max-width: 1366px) {
           padding: 7px 0;
@@ -33,7 +35,6 @@ $trans-speed: 0.2s;
           }
 
           .kubed-icon-chevron-down {
-            margin-top: 4px;
             transition: all $trans-speed ease-in-out;
           }
         }
@@ -45,7 +46,7 @@ $trans-speed: 0.2s;
       }
 
       &.select {
-        border-left: 5px solid $darkblue-color02;
+        border-left: 3px solid $darkblue-color02;
         & > a {
           color: $darkblue-color01;
 
@@ -80,7 +81,7 @@ $trans-speed: 0.2s;
 
       &.open {
         .innerNav > li {
-          height: 40px;
+          height: fit-content;
           margin-top: 8px;
           opacity: 1;
           transition: height $trans-speed ease-in-out,
@@ -88,7 +89,7 @@ $trans-speed: 0.2s;
             opacity $trans-speed ease-in-out 0.1s;
         }
         &.childSelect {
-          border-left: 5px solid $primary;
+          border-left: 3px solid $primary;
           color: $darkblue-color03;
         }
       }
@@ -99,7 +100,7 @@ $trans-speed: 0.2s;
           fill: $darkblue-color01;
         }
         color: $darkblue-color01;
-        border-left: 5px solid rgba(63, 81, 181, 0.5);
+        border-left: 3px solid rgba(63, 81, 181, 0.5);
         background-color: transparent;
         border-radius: 0px;
       }
@@ -155,8 +156,9 @@ $trans-speed: 0.2s;
       margin-top $trans-speed ease-in-out 0.1s, opacity $trans-speed ease-in-out;
     & > a {
       display: block;
-      padding: 7px 5px 10px 24px;
+      padding: 6px 5px 6px 14px;
       border-radius: 8px;
+      font-size: 11px;
     }
 
     &.select,
@@ -252,7 +254,16 @@ $trans-speed: 0.2s;
   padding: 0 !important;
   background-color: transparent !important;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  .accordionSummaryPlatform {
+    border-radius: 4px;
+    height: 38px;
+    min-height: unset !important;
+    &:hover {
+      color: #283593 !important;
+    }
+  }
   .accordionSummaryGlobal {
     padding: 0 !important;
     min-height: unset !important;
@@ -276,6 +287,15 @@ $trans-speed: 0.2s;
     text-align: start;
     font-size: 12px;
     text-overflow: ellipsis;
+  }
+  .accordionDetailsPlatform {
+    flex-direction: column;
+    padding: 0px;
+    white-space: nowrap;
+    text-align: start;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
   }
 }
 .navsglobal {
@@ -303,4 +323,38 @@ $trans-speed: 0.2s;
   color: #283593;
   font-weight: 500;
   margin-top: 10px;
+}
+.AccordionFirstSummary {
+  font-size: 10px !important;
+  width: 160px;
+  overflow: hidden;
+  display: flex !important;
+  justify-content: start !important;
+  padding-left: 4px !important;
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+.ProjectLiTag {
+  margin-top: 8px;
+  display: block;
+  padding: 10px 5px 8px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  &:hover {
+    background-color: rgba(140, 158, 255, 0.24);
+    color: #283593 !important;
+  }
+  a:hover {
+    color: #283593;
+  }
+  a {
+    color: black;
+    width: 100%;
+    display: block;
+  }
+}
+.selectProject {
+  background-color: rgba(140, 158, 255, 0.24);
+  color: #283593 !important;
 }

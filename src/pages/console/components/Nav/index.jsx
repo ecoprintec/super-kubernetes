@@ -1,7 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import { getWebsiteUrl } from 'utils'
 import classnames from 'classnames'
 import { Icon } from '@kube-design/components'
 import Tabs from '@material-ui/core/Tabs'
@@ -17,7 +16,6 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Dashboard from '@material-ui/icons/Dashboard'
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import BuildIcon from '@material-ui/icons/Build'
 import TabPanel from './TabPanel'
 import { getParentMenu } from '../../../../components/Layout/Nav/menuParent'
@@ -70,7 +68,6 @@ export default class ConsoleNav extends React.Component {
   render() {
     const { rootStore } = this.props
     const { value, expanded } = this.state
-    const { url, api } = getWebsiteUrl()
 
     return (
       <Box component={'div'} position="relative">
@@ -223,53 +220,6 @@ export default class ConsoleNav extends React.Component {
                     &nbsp;
                     {t('WORKBENCH')}
                   </MuiButton>
-                  {this.isLoggedIn && (
-                    <Accordion
-                      expanded={expanded === 'panelGuide'}
-                      onChange={this.handleChangeArcodion('panelGuide')}
-                      className={styles.accordionGlobal}
-                      elevation={0}
-                    >
-                      <AccordionSummary
-                        className={styles.accordionSummaryGlobal}
-                        expandIcon={<ExpandMoreIcon />}
-                      >
-                        <MuiButton className={styles.navsglobal}>
-                          <LibraryBooksIcon />
-                          &nbsp;
-                          {t('GUIDE')}
-                        </MuiButton>
-                      </AccordionSummary>
-                      <AccordionDetails
-                        className={styles.accordionDetailsGlobal}
-                      >
-                        <MuiButton
-                          onClick={() => {
-                            window.open(url)
-                          }}
-                          className={classnames(
-                            styles.navsglobal,
-                            styles.arcordionItem
-                          )}
-                        >
-                          <Icon name="hammer" />
-                          &nbsp;{t('USER_GUIDE')}
-                        </MuiButton>
-                        <MuiButton
-                          onClick={() => {
-                            window.open(api)
-                          }}
-                          className={classnames(
-                            styles.navsglobal,
-                            styles.arcordionItem
-                          )}
-                        >
-                          <Icon name="api" />
-                          &nbsp;{t('API_DOCUMENT')}
-                        </MuiButton>
-                      </AccordionDetails>
-                    </Accordion>
-                  )}
                   {globals.user && (
                     <Accordion
                       expanded={expanded === 'panelTool'}

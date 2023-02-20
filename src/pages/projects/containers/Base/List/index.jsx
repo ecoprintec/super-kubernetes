@@ -19,10 +19,10 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Slide } from '@material-ui/core'
+// import { Slide } from '@material-ui/core'
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
-import Selector from 'projects/components/Selector'
+// import Selector from 'projects/components/Selector'
 
 @inject('rootStore', 'projectStore')
 @observer
@@ -51,7 +51,7 @@ class ProjectLayout extends Component {
   render() {
     const { match, location, rootStore } = this.props
     const { workspace, cluster, namespace } = match.params
-    const { detail } = this.props.projectStore
+    // const { detail } = this.props.projectStore
 
     const navs = globals.app.getProjectNavs({
       cluster,
@@ -59,10 +59,20 @@ class ProjectLayout extends Component {
       project: namespace,
     })
 
+    const isProjectNavs = {
+      name: 'projects',
+      title: 'Project detail',
+      icon: 'enterprise',
+      authKey: 'services',
+      authAction: 'manage',
+      cate: 'project',
+      children: navs[0].items,
+    }
+
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Slide
+          {/* <Slide
             timeout={{ enter: 300, exit: 400 }}
             in={rootStore.openMenu}
             direction={'right'}
@@ -81,13 +91,17 @@ class ProjectLayout extends Component {
                 onChange={this.handleChange}
               />
             </div>
-          </Slide>
+          </Slide> */}
           <Nav
             className="ks-page-nav"
-            navs={navs}
+            navsProjects={isProjectNavs}
+            navsCluster={globals.app.getClusterNavs(rootStore.clusterName)}
+            navsManageApp={globals.app.getManageAppNavs()}
+            navsAccessControl={globals.app.getAccessNavs()}
+            navsPlatformSettings={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
-            haveNavTitle
+            // haveNavTitle
           />
         </div>
         <div className="ks-page-main">{renderRoutes(this.getRoutes(navs))}</div>

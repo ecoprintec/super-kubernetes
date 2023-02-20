@@ -17,15 +17,15 @@
  */
 
 import React from 'react'
+import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-
 import { Tooltip, Icon } from '@kube-design/components'
-
 import Link from './Link'
-
 import styles from './index.scss'
 
+@inject('rootStore')
+@observer
 export default class NavItem extends React.Component {
   static propTypes = {
     item: PropTypes.object,
@@ -34,19 +34,18 @@ export default class NavItem extends React.Component {
     onClick: PropTypes.func,
     onOpen: PropTypes.func,
     disabled: PropTypes.bool,
+    cate: PropTypes.string,
+    isWorkSpaceNav: PropTypes.any,
   }
 
   checkSelect = (item = {}) => {
     const { current } = this.props
-
     if (item.children) {
       return item.children.some(child => this.checkSelect(child))
     }
-
     if (item.tabs) {
       return item.tabs.some(tab => this.checkSelect(tab))
     }
-
     return current.startsWith(item.name)
   }
 
@@ -78,10 +77,17 @@ export default class NavItem extends React.Component {
   }
 
   render() {
-    const { item, prefix, disabled, onClick, isOpen } = this.props
+    const {
+      item,
+      prefix,
+      disabled,
+      onClick,
+      isOpen,
+      isWorkSpaceNav,
+      navsProjects,
+    } = this.props
     const itemDisabled = (disabled || item.disabled) && !item.showInDisable
-
-    if (item.children) {
+    if (isWorkSpaceNav && item.children) {
       return (
         <li
           className={classnames({
@@ -91,7 +97,18 @@ export default class NavItem extends React.Component {
           })}
         >
           <div className={styles.title} onClick={this.handleOpen}>
-            <Icon name={item.icon} /> {t(item.title)}
+            <div style={{ width: '90%', display: 'flex' }}>
+              <Icon name={item.icon} />
+              <div
+                style={{
+                  width: 120,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                {t(item.title)}
+              </div>
+            </div>
             {!item.open && (
               <Icon name="chevron-down" className={styles.rightIcon} />
             )}
@@ -108,7 +125,169 @@ export default class NavItem extends React.Component {
                     [styles.disabled]: childDisabled,
                   })}
                 >
-                  <Link to={`${prefix}/${child.name}`} disabled={childDisabled}>
+                  <Link
+                    to={
+                      item.cluster
+                        ? `/${prefix}/${item.cluster}/${child.name}`
+                        : `/${prefix}/${child.name}`
+                    }
+                    disabled={childDisabled}
+                  >
+                    {t(child.title)}
+                    {childDisabled && this.renderDisabledTip(child)}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </li>
+      )
+    }
+    if (navsProjects && item.children) {
+      return (
+        <li
+          className={classnames({
+            [styles.childSelect]: this.checkSelect(item),
+            [styles.open]: item.open || isOpen,
+            [styles.disabled]: itemDisabled,
+          })}
+        >
+          <div className={styles.title} onClick={this.handleOpen}>
+            <div style={{ width: '90%', display: 'flex' }}>
+              <Icon name={item.icon} />
+              <div
+                style={{
+                  width: 120,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                {t(item.title)}
+              </div>
+            </div>
+            {!item.open && (
+              <Icon name="chevron-down" className={styles.rightIcon} />
+            )}
+          </div>
+          <ul className={styles.innerNav}>
+            {item.children.map(child => {
+              const childDisabled =
+                (disabled || child.disabled) && !child.showInDisable
+              if (child.children) {
+                return (
+                  <li key={child.name} style={{ cursor: 'pointer' }}>
+                    {t(child.title)}
+                    {child.children.map(secondChild => {
+                      return (
+                        <ul
+                          key={secondChild.name}
+                          className={classnames({
+                            [styles.select]: this.checkSelect(secondChild),
+                            [styles.disabled]: childDisabled,
+                          })}
+                        >
+                          <li
+                            className={classnames(
+                              {
+                                [styles.selectProject]: this.checkSelect(
+                                  secondChild
+                                ),
+                              },
+                              styles.ProjectLiTag
+                            )}
+                          >
+                            <Link
+                              key={secondChild.name}
+                              to={
+                                item.cluster
+                                  ? `/${prefix}/${item.cluster}/${secondChild.name}`
+                                  : `/${prefix}/${secondChild.name}`
+                              }
+                              disabled={childDisabled}
+                            >
+                              <span>{t(secondChild.title)}</span>
+                              {childDisabled &&
+                                this.renderDisabledTip(secondChild)}
+                            </Link>
+                          </li>
+                        </ul>
+                      )
+                    })}
+                  </li>
+                )
+              }
+              return (
+                <li
+                  key={child.name}
+                  className={classnames({
+                    [styles.select]: this.checkSelect(child),
+                    [styles.disabled]: childDisabled,
+                  })}
+                >
+                  <Link
+                    to={
+                      item.cluster
+                        ? `/${prefix}/${item.cluster}/${child.name}`
+                        : `/${prefix}/${child.name}`
+                    }
+                    disabled={childDisabled}
+                  >
+                    {t(child.title)}
+                    {childDisabled && this.renderDisabledTip(child)}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </li>
+      )
+    }
+    if (item.children) {
+      return (
+        <li
+          className={classnames({
+            [styles.childSelect]: this.checkSelect(item),
+            [styles.open]: item.open || isOpen,
+            [styles.disabled]: itemDisabled,
+          })}
+        >
+          <div className={styles.title} onClick={this.handleOpen}>
+            <div style={{ width: '90%', display: 'flex' }}>
+              <Icon name={item.icon} />
+              <div
+                style={{
+                  width: 120,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                {t(item.title)}
+              </div>
+            </div>
+            {!item.open && (
+              <Icon name="chevron-down" className={styles.rightIcon} />
+            )}
+          </div>
+          <ul className={styles.innerNav}>
+            {item.children.map(child => {
+              const childDisabled =
+                (disabled || child.disabled) && !child.showInDisable
+              return (
+                <li
+                  key={child.name}
+                  className={classnames({
+                    [styles.select]: this.checkSelect(child),
+                    [styles.disabled]: childDisabled,
+                  })}
+                >
+                  <Link
+                    to={
+                      item.cluster
+                        ? `/${prefix}/${item.cluster}/${child.name}`
+                        : `/${prefix}/${child.name}`
+                    }
+                    disabled={childDisabled}
+                  >
                     {t(child.title)}
                     {childDisabled && this.renderDisabledTip(child)}
                   </Link>
@@ -129,7 +308,11 @@ export default class NavItem extends React.Component {
         })}
       >
         <Link
-          to={`${prefix}/${item.name}`}
+          to={
+            item.cluster
+              ? `/${prefix}/${item.cluster}/${item.name}`
+              : `/${prefix}/${item.name}`
+          }
           onClick={onClick}
           disabled={itemDisabled}
         >

@@ -21,7 +21,6 @@ import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import { trimEnd } from 'lodash'
 import classnames from 'classnames'
-import { getWebsiteUrl } from 'utils'
 import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 import './index.css'
@@ -38,7 +37,6 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Icon } from '@kube-design/components'
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import BuildIcon from '@material-ui/icons/Build'
 import TabPanel from './TabPanel'
 import { getParentMenu } from './menuParent'
@@ -52,12 +50,17 @@ import KubeTools from '../../KubeTools'
 class Nav extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    navs: PropTypes.array.isRequired,
+    navsCluster: PropTypes.array,
+    navsManageApp: PropTypes.array,
+    navsAccessControl: PropTypes.array,
+    navsPlatformSettings: PropTypes.array,
     prefix: PropTypes.string,
     checkSelect: PropTypes.func,
     onItemClick: PropTypes.func,
     innerRef: PropTypes.object,
     haveNavTitle: PropTypes.any,
+    navsWorkspace: PropTypes.any,
+    navsProjects: PropTypes.any,
   }
 
   static defaultProps = {
@@ -72,7 +75,14 @@ class Nav extends React.Component {
     super(props)
 
     this.state = {
-      openedNav: this.getOpenedNav(),
+      workspacelink: location.pathname
+        .split('/', 3)
+        .join('/')
+        .substring(1),
+      projectlink: location.pathname
+        .split('/', 6)
+        .join('/')
+        .substring(1),
       value: 0,
     }
   }
@@ -81,9 +91,28 @@ class Nav extends React.Component {
     return Boolean(globals.user)
   }
 
+  get arrayOfCate() {
+    return {
+      '/clusters': 'cluster',
+      '/access': 'access',
+      '/apps-manage': 'apps',
+      '/settings': 'platformsettings',
+      '/workspaces': 'access',
+      '/projects': 'access',
+      '/devops': 'access',
+    }
+  }
+
   componentDidMount() {
     this._ismounted = true
     this.props.rootStore.checkIsNavMounted(this._ismounted)
+    Object.keys(this.arrayOfCate).forEach(cate => {
+      if (this.props.location.pathname.startsWith(cate)) {
+        this.props.rootStore.checkExpandedAcordion(this.arrayOfCate[cate])
+      } else if (this.props.location.pathname.includes(cate)) {
+        this.props.rootStore.checkExpandedAcordion(this.arrayOfCate[cate])
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -93,7 +122,6 @@ class Nav extends React.Component {
 
   handleLinkClick = link => () => {
     this.props.rootStore.routing.push(link)
-    this.props.rootStore.closeGlobalMenu()
   }
 
   get currentPath() {
@@ -106,72 +134,53 @@ class Nav extends React.Component {
     return pathname.slice(length + 1)
   }
 
-  getOpenedNav() {
-    let name = ''
-    const { navs } = this.props
-    const current = this.currentPath
-    navs.forEach(nav => {
-      nav.items.forEach(item => {
-        if (
-          item.children &&
-          item.children.some(child => {
-            if (child.name === current) {
-              return true
-            }
-            if (child.tabs) {
-              return child.tabs.some(tab => tab.name === current)
-            }
-
-            return false
-          })
-        ) {
-          name = item.name
-        }
-      })
-    })
-
-    return name
-  }
-
   handleItemOpen = name => {
     this.setState(({ openedNav }) => ({
       openedNav: openedNav === name ? '' : name,
     }))
   }
 
-  handleChangeArcodion = panel => (event, isExpanded) => {
-    this.setState({ ...this.state, expanded: isExpanded ? panel : false })
+  handleChangeArcodion = panel => () => {
+    if (this.props.rootStore.expandedAcordion === panel) {
+      this.props.rootStore.checkExpandedAcordion('')
+      return
+    }
+    this.props.rootStore.checkExpandedAcordion(panel)
   }
 
   render() {
     const {
       className,
-      navs,
-      match,
+      navsCluster,
+      navsManageApp,
+      navsAccessControl,
+      navsPlatformSettings,
+      navsWorkspace,
+      navsProjects,
       innerRef,
       onItemClick,
       disabled,
       rootStore,
       haveNavTitle,
+      isWorkSpaceNav,
+      location,
     } = this.props
-    const { openedNav, value, expanded } = this.state
+    const { openedNav, value, workspacelink, projectlink } = this.state
     const current = this.currentPath
-    const prefix = trimEnd(match.url, '/')
-    const { url, api } = getWebsiteUrl()
-
     const handleChange = (event, newValue) => {
       this.setState({ ...this.state, value: newValue })
     }
-
+    const navs = [
+      navsCluster,
+      navsManageApp,
+      navsAccessControl,
+      navsPlatformSettings,
+      navsWorkspace || '',
+      navsProjects || '',
+    ]
     const handleOpenMenu = () => {
       this.props.rootStore.onOpenMenu()
     }
-
-    const handleOpenGlobalMenu = () => {
-      this.props.rootStore.onOpenMenu()
-      this.props.rootStore.openGlobalMenu()
-    }
-
     return (
       <div>
         <div
@@ -233,9 +242,7 @@ class Nav extends React.Component {
                     label={menuItem.name}
                     id={`vertical-tab-${menuItem.tabindex}`}
                     aria-controls={`vertical-tabpanel-${menuItem.tabindex}`}
-                    onClick={
-                      !menuItem.menu ? handleOpenMenu : handleOpenGlobalMenu
-                    }
+                    onClick={handleOpenMenu}
                     className={styles.parent_nav_tabs}
                   ></Tab>
                 )
@@ -246,195 +253,217 @@ class Nav extends React.Component {
             value={value}
             index={0}
             openMenuTabpanel={rootStore.openMenu}
-            nodeChild={navs.map(nav => (
-              <div key={nav.cate} className={styles.subNav}>
-                {nav.title && <p>{t(nav.title)}</p>}
-                <ul>
-                  {nav.items.map(item => (
-                    <NavItem
-                      key={item.name}
-                      item={item}
-                      prefix={prefix}
-                      current={current}
-                      onClick={onItemClick}
-                      isOpen={item.name === openedNav}
-                      onOpen={this.handleItemOpen}
-                      disabled={disabled}
-                    />
-                  ))}
-                </ul>
-              </div>
-            ))}
           >
-            {rootStore.isGlobalMenu && (
-              <Grow timeout={300} in={rootStore.isGlobalMenu}>
-                <Box component={'div'}>
-                  {this.isLoggedIn && (
-                    <Box
-                      component={'div'}
-                      display={'flex'}
-                      flexDirection={'column'}
-                      alignItems={'flex-start'}
-                      width={197}
-                    >
-                      {globals.app.enableGlobalNav && (
-                        <Accordion
-                          expanded={expanded === 'panelPlatform'}
-                          onChange={this.handleChangeArcodion('panelPlatform')}
-                          className={styles.accordionGlobal}
-                          elevation={0}
+            <Grow timeout={300} in={rootStore.openMenu}>
+              <Box component={'div'}>
+                {this.isLoggedIn && (
+                  <Box
+                    component={'div'}
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'flex-start'}
+                    width={197}
+                  >
+                    {globals.app.enableGlobalNav && (
+                      <Accordion
+                        className={styles.accordionGlobal}
+                        elevation={0}
+                        expanded={true}
+                      >
+                        <AccordionSummary
+                          className={styles.accordionSummaryGlobal}
                         >
-                          <AccordionSummary
-                            className={styles.accordionSummaryGlobal}
-                            expandIcon={<ExpandMoreIcon />}
-                          >
-                            <MuiButton className={styles.navsglobal}>
-                              <SettingsIcon />
-                              &nbsp;
-                              {t('PLATFORM')}
-                            </MuiButton>
-                          </AccordionSummary>
-                          <AccordionDetails
-                            className={styles.accordionDetailsGlobal}
-                          >
-                            {globals.user &&
-                              globals.app.enableGlobalNav &&
-                              globals.app
-                                .getGlobalNavs()
-                                .map((platformItem, platfromKey) => {
-                                  return (
-                                    <MuiButton
-                                      key={platfromKey}
-                                      onClick={this.handleLinkClick(
-                                        `/${platformItem.name}`
-                                      )}
-                                      className={classnames(
-                                        {
-                                          [styles.active]:
-                                            location.pathname === '/',
-                                        },
-                                        styles.navsglobal,
-                                        styles.arcordionItem
-                                      )}
+                          <MuiButton className={styles.navsglobal}>
+                            <SettingsIcon />
+                            &nbsp;
+                            {t('PLATFORM')}
+                          </MuiButton>
+                        </AccordionSummary>
+                        <AccordionDetails
+                          className={styles.accordionDetailsPlatform}
+                        >
+                          {globals.user &&
+                            globals.app.enableGlobalNav &&
+                            globals.app
+                              .getGlobalNavs()
+                              .map((platformItem, platfromKey) => {
+                                return (
+                                  <Accordion
+                                    key={platfromKey}
+                                    expanded={
+                                      rootStore.expandedAcordion ===
+                                      platformItem.cate
+                                    }
+                                    onChange={this.handleChangeArcodion(
+                                      platformItem.cate
+                                    )}
+                                    className={styles.accordionGlobal}
+                                    elevation={0}
+                                  >
+                                    <AccordionSummary
+                                      expandIcon={
+                                        <ExpandMoreIcon className="expand-platform-icon" />
+                                      }
+                                      className={
+                                        styles.accordionSummaryPlatform
+                                      }
                                     >
-                                      <Icon
-                                        name={platformItem.icon}
-                                        size={20}
-                                      />
-                                      &nbsp;
-                                      <div className={styles.arcordionItemName}>
+                                      <MuiButton
+                                        className={styles.AccordionFirstSummary}
+                                      >
+                                        <Icon
+                                          name={platformItem.icon}
+                                          size={20}
+                                        />
+                                        &nbsp;
                                         {t(platformItem.title)}
-                                      </div>
-                                    </MuiButton>
-                                  )
-                                })}
-                          </AccordionDetails>
-                        </Accordion>
-                      )}
-                      {globals.app.enableAppStore && (
-                        <MuiButton
-                          onClick={this.handleLinkClick('/apps')}
-                          className={classnames(
-                            {
-                              [styles.active]: location.pathname === '/apps',
-                            },
-                            styles.navsglobal
-                          )}
-                        >
-                          <AppsIcon />
-                          &nbsp;
-                          {t('APP_STORE')}
-                        </MuiButton>
-                      )}
+                                      </MuiButton>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                      {navs.map(
+                                        function(nav) {
+                                          if (
+                                            nav[0] &&
+                                            nav[0].cate === platformItem.cate
+                                          ) {
+                                            return (
+                                              <div
+                                                key={nav[0].cate}
+                                                className={styles.subNav}
+                                              >
+                                                {nav[0].title && (
+                                                  <p>{t(nav[0].title)}</p>
+                                                )}
+                                                <ul>
+                                                  {nav[0].items.map(item => {
+                                                    return (
+                                                      <NavItem
+                                                        cate={nav[0].cate}
+                                                        key={item.name}
+                                                        item={item}
+                                                        prefix={
+                                                          platformItem.name
+                                                        }
+                                                        current={current}
+                                                        onClick={onItemClick}
+                                                        isOpen={
+                                                          item.name ===
+                                                          openedNav
+                                                        }
+                                                        onOpen={
+                                                          this.handleItemOpen
+                                                        }
+                                                        disabled={disabled}
+                                                      />
+                                                    )
+                                                  })}
+                                                  {isWorkSpaceNav &&
+                                                    platformItem.cate ===
+                                                      'access' && (
+                                                      <NavItem
+                                                        cate={nav[0].cate}
+                                                        item={isWorkSpaceNav}
+                                                        prefix={workspacelink}
+                                                        current={current}
+                                                        onClick={onItemClick}
+                                                        isWorkSpaceNav
+                                                        isOpen={
+                                                          isWorkSpaceNav.name ===
+                                                          openedNav
+                                                        }
+                                                        onOpen={
+                                                          this.handleItemOpen
+                                                        }
+                                                        disabled={disabled}
+                                                      />
+                                                    )}
+                                                  {navsProjects &&
+                                                    platformItem.cate ===
+                                                      'access' && (
+                                                      <NavItem
+                                                        cate={nav[0].cate}
+                                                        item={navsProjects}
+                                                        prefix={projectlink}
+                                                        current={current}
+                                                        onClick={onItemClick}
+                                                        navsProjects
+                                                        isOpen={
+                                                          navsProjects.name ===
+                                                          openedNav
+                                                        }
+                                                        onOpen={
+                                                          this.handleItemOpen
+                                                        }
+                                                        disabled={disabled}
+                                                      />
+                                                    )}
+                                                </ul>
+                                              </div>
+                                            )
+                                          }
+                                        }.bind(this)
+                                      )}
+                                    </AccordionDetails>
+                                  </Accordion>
+                                )
+                              })}
+                        </AccordionDetails>
+                      </Accordion>
+                    )}
+                    {globals.app.enableAppStore && (
                       <MuiButton
-                        onClick={this.handleLinkClick('/dashboard')}
+                        onClick={this.handleLinkClick('/apps')}
                         className={classnames(
                           {
-                            [styles.active]: location.pathname === '/dashboard',
+                            [styles.active]: location.pathname === '/apps',
                           },
                           styles.navsglobal
                         )}
                       >
-                        <Dashboard />
+                        <AppsIcon />
                         &nbsp;
-                        {t('WORKBENCH')}
+                        {t('APP_STORE')}
                       </MuiButton>
-                      {this.isLoggedIn && (
-                        <Accordion
-                          expanded={expanded === 'panelGuide'}
-                          onChange={this.handleChangeArcodion('panelGuide')}
-                          className={styles.accordionGlobal}
-                          elevation={0}
-                        >
-                          <AccordionSummary
-                            className={styles.accordionSummaryGlobal}
-                            expandIcon={<ExpandMoreIcon />}
-                          >
-                            <MuiButton className={styles.navsglobal}>
-                              <LibraryBooksIcon />
-                              &nbsp;
-                              {t('GUIDE')}
-                            </MuiButton>
-                          </AccordionSummary>
-                          <AccordionDetails
-                            className={styles.accordionDetailsGlobal}
-                          >
-                            <MuiButton
-                              onClick={() => {
-                                window.open(url)
-                              }}
-                              className={classnames(
-                                styles.navsglobal,
-                                styles.arcordionItem
-                              )}
-                            >
-                              <Icon name="hammer" />
-                              &nbsp;{t('USER_GUIDE')}
-                            </MuiButton>
-                            <MuiButton
-                              onClick={() => {
-                                window.open(api)
-                              }}
-                              className={classnames(
-                                styles.navsglobal,
-                                styles.arcordionItem
-                              )}
-                            >
-                              <Icon name="api" />
-                              &nbsp;{t('API_DOCUMENT')}
-                            </MuiButton>
-                          </AccordionDetails>
-                        </Accordion>
+                    )}
+                    <MuiButton
+                      onClick={this.handleLinkClick('/dashboard')}
+                      className={classnames(
+                        {
+                          [styles.active]: location.pathname === '/dashboard',
+                        },
+                        styles.navsglobal
                       )}
-                      {globals.user && (
-                        <Accordion
-                          expanded={expanded === 'panelTool'}
-                          onChange={this.handleChangeArcodion('panelTool')}
-                          className={styles.accordionGlobal}
-                          elevation={0}
+                    >
+                      <Dashboard />
+                      &nbsp;
+                      {t('WORKBENCH')}
+                    </MuiButton>
+                    {globals.user && (
+                      <Accordion
+                        expanded={true}
+                        className={styles.accordionGlobal}
+                        elevation={0}
+                      >
+                        <AccordionSummary
+                          className={styles.accordionSummaryGlobal}
                         >
-                          <AccordionSummary
-                            className={styles.accordionSummaryGlobal}
-                            expandIcon={<ExpandMoreIcon />}
-                          >
-                            <MuiButton className={styles.navsglobal}>
-                              <BuildIcon />
-                              &nbsp;
-                              {t('TOOLBOX')}
-                            </MuiButton>
-                          </AccordionSummary>
-                          <AccordionDetails
-                            className={styles.accordionDetailsGlobal}
-                          >
-                            <KubeTools />
-                          </AccordionDetails>
-                        </Accordion>
-                      )}
-                    </Box>
-                  )}
-                </Box>
-              </Grow>
-            )}
+                          <MuiButton className={styles.navsglobal}>
+                            <BuildIcon />
+                            &nbsp;
+                            {t('TOOLBOX')}
+                          </MuiButton>
+                        </AccordionSummary>
+                        <AccordionDetails
+                          className={styles.accordionDetailsGlobal}
+                        >
+                          <KubeTools />
+                        </AccordionDetails>
+                      </Accordion>
+                    )}
+                  </Box>
+                )}
+              </Box>
+            </Grow>
           </TabPanel>
         </div>
         <div

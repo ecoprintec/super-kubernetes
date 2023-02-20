@@ -47,7 +47,7 @@ export default [
           { path: `${PATH}/cd`, component: CDList, exact: true },
           { path: `${PATH}/code-repo`, component: CRList, exact: true },
           { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
-          { path: `${PATH}/roles`, component: Roles, exact: true },
+          { path: `${PATH}/devops-roles`, component: Roles, exact: true },
           { path: `${PATH}/members`, component: Members, exact: true },
           { path: `${PATH}/credentials`, component: Credential, exact: true },
         ],

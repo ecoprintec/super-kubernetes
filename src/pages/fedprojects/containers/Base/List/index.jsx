@@ -18,10 +18,9 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
-import Selector from 'projects/components/Selector'
+// import Selector from 'projects/components/Selector'
 
 @inject('rootStore', 'projectStore')
 @observer
@@ -37,13 +36,13 @@ export default class FederatedProjectLayout extends Component {
   handleChange = url => this.routing.push(url)
 
   render() {
-    const { match, route, location, rootStore } = this.props
-    const { detail } = this.props.projectStore
+    const { match, route, location } = this.props
+    // const { detail } = this.props.projectStore
 
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Slide
+          {/* <Slide
             timeout={{ enter: 300, exit: 400 }}
             in={rootStore.openMenu}
             direction={'right'}
@@ -65,13 +64,13 @@ export default class FederatedProjectLayout extends Component {
                 isFederated
               />
             </div>
-          </Slide>
+          </Slide> */}
           <Nav
             className="ks-page-nav"
             navs={globals.app.getFederatedProjectNavs()}
             location={location}
             match={match}
-            haveNavTitle
+            // haveNavTitle
           />
         </div>
         <div className="ks-page-main">{renderRoutes(route.routes)}</div>

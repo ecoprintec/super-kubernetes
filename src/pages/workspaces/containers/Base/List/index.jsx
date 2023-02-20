@@ -18,23 +18,53 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 
 import { renderRoutes, getIndexRoute } from 'utils/router.config'
+import ClusterStore from 'stores/cluster'
 
 import { Nav } from 'components/Layout'
-import Selector from 'workspaces/components/Selector'
-import { Slide } from '@material-ui/core'
+// import Selector from 'workspaces/components/Selector'
+// import { Slide } from '@material-ui/core'
 
 @inject('rootStore', 'workspaceStore')
 @observer
 class WorkspaceLayout extends Component {
+  constructor(props) {
+    super(props)
+
+    this.store = new ClusterStore()
+  }
+
   get workspace() {
     return this.props.match.params.workspace
   }
 
   get routing() {
     return this.props.rootStore.routing
+  }
+
+  componentDidMount() {
+    this.props.rootStore.getRules({ cluster: this.props.rootStore.clusterName })
+    this.init({ cluster: this.props.rootStore.clusterName })
+  }
+
+  async init(params) {
+    this.store.initializing = true
+
+    if (params.cluster) {
+      await Promise.all([
+        this.store.fetchDetail({ name: params }),
+        this.props.rootStore.getRules({ cluster: params }),
+      ])
+      await this.props.history.push(this.props.location)
+      set(
+        globals,
+        `clusterConfig.${this.props.rootStore.clusterName}`,
+        this.store.detail.configz
+      )
+    }
+    this.store.initializing = false
   }
 
   enterWorkspace = async workspace =>
@@ -47,14 +77,23 @@ class WorkspaceLayout extends Component {
       route: { routes = [], path },
       rootStore,
     } = this.props
-    const { detail } = this.props.workspaceStore
+    // const { detail } = this.props.workspaceStore
     const navs = globals.app.getWorkspaceNavs(this.workspace)
     const indexPath = get(navs, '[0].items[0].name')
+    const isWorkSpaceNav = {
+      name: 'workspace',
+      title: 'Workspace Detail',
+      icon: 'enterprise',
+      authKey: 'app-templates',
+      authAction: 'manage',
+      cate: 'workspaces',
+      children: navs[0].items,
+    }
 
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Slide
+          {/* <Slide
             timeout={{ enter: 300, exit: 400 }}
             in={rootStore.openMenu}
             direction={'right'}
@@ -73,13 +112,18 @@ class WorkspaceLayout extends Component {
                 onChange={this.enterWorkspace}
               />
             </div>
-          </Slide>
+          </Slide> */}
           <Nav
             className="ks-page-nav"
-            navs={navs}
+            isWorkSpaceNav={isWorkSpaceNav}
+            navsWorkspace={navs}
+            navsCluster={globals.app.getClusterNavs(rootStore.clusterName)}
+            navsManageApp={globals.app.getManageAppNavs()}
+            navsAccessControl={globals.app.getAccessNavs()}
+            navsPlatformSettings={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
-            haveNavTitle
+            // haveNavTitle
           />
         </div>
         <div className="ks-page-main">

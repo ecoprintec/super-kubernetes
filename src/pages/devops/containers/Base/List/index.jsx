@@ -23,8 +23,8 @@ import { get } from 'lodash'
 
 import { renderRoutes, getIndexRoute } from 'utils/router.config'
 import { Nav } from 'components/Layout'
-import Selector from 'projects/components/Selector'
-import { Slide } from '@material-ui/core'
+// import Selector from 'projects/components/Selector'
+// import { Slide } from '@material-ui/core'
 import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
@@ -57,13 +57,23 @@ class DevOpsListLayout extends Component {
 
   render() {
     const { match, route, location, rootStore } = this.props
-    const { initializing, detail } = this.props.devopsStore
+    const { initializing } = this.props.devopsStore
 
     const navs = globals.app.getDevOpsNavs({
       devops: this.devops,
       cluster: this.cluster,
       workspace: this.workspace,
     })
+
+    const isDevopsNavs = {
+      name: 'devops',
+      title: 'Devops detail',
+      icon: 'strategy-group',
+      authKey: 'services',
+      authAction: 'manage',
+      cate: 'devop',
+      children: navs[0].items,
+    }
 
     const _navs = this.isHostCluster
       ? navs
@@ -85,7 +95,7 @@ class DevOpsListLayout extends Component {
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Slide
+          {/* <Slide
             timeout={{ enter: 300, exit: 400 }}
             in={rootStore.openMenu}
             direction={'right'}
@@ -107,13 +117,17 @@ class DevOpsListLayout extends Component {
                 cluster={this.cluster}
               />
             </div>
-          </Slide>
+          </Slide> */}
           <Nav
             className="ks-page-nav"
-            navs={_navs}
+            navsProjects={isDevopsNavs}
+            navsCluster={globals.app.getClusterNavs(rootStore.clusterName)}
+            navsManageApp={globals.app.getManageAppNavs()}
+            navsAccessControl={globals.app.getAccessNavs()}
+            navsPlatformSettings={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
-            haveNavTitle
+            // haveNavTitle
           />
         </div>
 
