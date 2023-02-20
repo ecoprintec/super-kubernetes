@@ -1,4 +1,7 @@
 import WidgetsIcon from '@material-ui/icons/Widgets'
+import Help from '@material-ui/icons/Help'
+import Computer from '@material-ui/icons/Computer'
+import CloudCircle from '@material-ui/icons/CloudCircle'
 import React from 'react'
 
 export function getParentMenu() {
@@ -12,17 +15,17 @@ export function getParentMenu() {
     {
       tabindex: 0,
       name: 'Super Quantum Composer',
-      icon: <WidgetsIcon />,
+      icon: <Computer />,
     },
     {
       tabindex: 0,
       name: 'Super Cloud',
-      icon: <WidgetsIcon />,
+      icon: <CloudCircle />,
     },
     {
       tabindex: 0,
-      name: 'APPS',
-      icon: <WidgetsIcon />,
+      name: 'Helps',
+      icon: <Help />,
     },
   ]
 }
