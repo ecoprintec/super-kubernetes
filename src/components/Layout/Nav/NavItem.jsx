@@ -21,6 +21,7 @@ import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Tooltip, Icon } from '@kube-design/components'
+import MUITooltip from '@material-ui/core/Tooltip'
 import Link from './Link'
 import styles from './index.scss'
 
@@ -89,58 +90,65 @@ export default class NavItem extends React.Component {
     const itemDisabled = (disabled || item.disabled) && !item.showInDisable
     if (isWorkSpaceNav && item.children) {
       return (
-        <li
-          className={classnames({
-            [styles.childSelect]: this.checkSelect(item),
-            [styles.open]: item.open || isOpen,
-            [styles.disabled]: itemDisabled,
-          })}
-        >
-          <div className={styles.title} onClick={this.handleOpen}>
-            <div style={{ width: '90%', display: 'flex' }}>
-              <Icon name={item.icon} />
-              <div
-                style={{
-                  width: 120,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                {t(item.title)}
-              </div>
-            </div>
-            {!item.open && (
-              <Icon name="chevron-down" className={styles.rightIcon} />
-            )}
-          </div>
-          <ul className={styles.innerNav}>
-            {item.children.map(child => {
-              const childDisabled =
-                (disabled || child.disabled) && !child.showInDisable
-              return (
-                <li
-                  key={child.name}
-                  className={classnames({
-                    [styles.select]: this.checkSelect(child),
-                    [styles.disabled]: childDisabled,
-                  })}
-                >
-                  <Link
-                    to={
-                      item.cluster
-                        ? `/${prefix}/${item.cluster}/${child.name}`
-                        : `/${prefix}/${child.name}`
-                    }
-                    disabled={childDisabled}
-                  >
-                    {t(child.title)}
-                    {childDisabled && this.renderDisabledTip(child)}
-                  </Link>
-                </li>
-              )
+        <MUITooltip title={t(item.title)}>
+          <li
+            className={classnames({
+              [styles.childSelect]: this.checkSelect(item),
+              [styles.open]: item.open || isOpen,
+              [styles.disabled]: itemDisabled,
             })}
-          </ul>
-        </li>
+          >
+            <div className={styles.title} onClick={this.handleOpen}>
+              <div style={{ width: '90%', display: 'flex' }}>
+                <Icon name={item.icon} />
+                <div
+                  style={{
+                    width: 120,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {t(item.title)}
+                </div>
+              </div>
+              {!item.open && (
+                <Icon name="chevron-down" className={styles.rightIcon} />
+              )}
+            </div>
+            <ul className={styles.innerNav}>
+              {item.children.map(child => {
+                const childDisabled =
+                  (disabled || child.disabled) && !child.showInDisable
+                return (
+                  <MUITooltip
+                    key={child.name}
+                    title={t(child.title)}
+                    placement={'right'}
+                  >
+                    <li
+                      className={classnames({
+                        [styles.select]: this.checkSelect(child),
+                        [styles.disabled]: childDisabled,
+                      })}
+                    >
+                      <Link
+                        to={
+                          item.cluster
+                            ? `/${prefix}/${item.cluster}/${child.name}`
+                            : `/${prefix}/${child.name}`
+                        }
+                        disabled={childDisabled}
+                      >
+                        {t(child.title)}
+                        {childDisabled && this.renderDisabledTip(child)}
+                      </Link>
+                    </li>
+                  </MUITooltip>
+                )
+              })}
+            </ul>
+          </li>
+        </MUITooltip>
       )
     }
     if (navsProjects && item.children) {
@@ -186,30 +194,32 @@ export default class NavItem extends React.Component {
                             [styles.disabled]: childDisabled,
                           })}
                         >
-                          <li
-                            className={classnames(
-                              {
-                                [styles.selectProject]: this.checkSelect(
-                                  secondChild
-                                ),
-                              },
-                              styles.ProjectLiTag
-                            )}
-                          >
-                            <Link
-                              key={secondChild.name}
-                              to={
-                                item.cluster
-                                  ? `/${prefix}/${item.cluster}/${secondChild.name}`
-                                  : `/${prefix}/${secondChild.name}`
-                              }
-                              disabled={childDisabled}
+                          <MUITooltip title={t(secondChild.title)}>
+                            <li
+                              className={classnames(
+                                {
+                                  [styles.selectProject]: this.checkSelect(
+                                    secondChild
+                                  ),
+                                },
+                                styles.ProjectLiTag
+                              )}
                             >
-                              <span>{t(secondChild.title)}</span>
-                              {childDisabled &&
-                                this.renderDisabledTip(secondChild)}
-                            </Link>
-                          </li>
+                              <Link
+                                key={secondChild.name}
+                                to={
+                                  item.cluster
+                                    ? `/${prefix}/${item.cluster}/${secondChild.name}`
+                                    : `/${prefix}/${secondChild.name}`
+                                }
+                                disabled={childDisabled}
+                              >
+                                <span>{t(secondChild.title)}</span>
+                                {childDisabled &&
+                                  this.renderDisabledTip(secondChild)}
+                              </Link>
+                            </li>
+                          </MUITooltip>
                         </ul>
                       )
                     })}
@@ -217,25 +227,27 @@ export default class NavItem extends React.Component {
                 )
               }
               return (
-                <li
-                  key={child.name}
-                  className={classnames({
-                    [styles.select]: this.checkSelect(child),
-                    [styles.disabled]: childDisabled,
-                  })}
-                >
-                  <Link
-                    to={
-                      item.cluster
-                        ? `/${prefix}/${item.cluster}/${child.name}`
-                        : `/${prefix}/${child.name}`
-                    }
-                    disabled={childDisabled}
+                <MUITooltip title={t(child.title)}>
+                  <li
+                    key={child.name}
+                    className={classnames({
+                      [styles.select]: this.checkSelect(child),
+                      [styles.disabled]: childDisabled,
+                    })}
                   >
-                    {t(child.title)}
-                    {childDisabled && this.renderDisabledTip(child)}
-                  </Link>
-                </li>
+                    <Link
+                      to={
+                        item.cluster
+                          ? `/${prefix}/${item.cluster}/${child.name}`
+                          : `/${prefix}/${child.name}`
+                      }
+                      disabled={childDisabled}
+                    >
+                      {t(child.title)}
+                      {childDisabled && this.renderDisabledTip(child)}
+                    </Link>
+                  </li>
+                </MUITooltip>
               )
             })}
           </ul>
@@ -244,82 +256,91 @@ export default class NavItem extends React.Component {
     }
     if (item.children) {
       return (
-        <li
-          className={classnames({
-            [styles.childSelect]: this.checkSelect(item),
-            [styles.open]: item.open || isOpen,
-            [styles.disabled]: itemDisabled,
-          })}
-        >
-          <div className={styles.title} onClick={this.handleOpen}>
-            <div style={{ width: '90%', display: 'flex' }}>
-              <Icon name={item.icon} />
-              <div
-                style={{
-                  width: 120,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                {t(item.title)}
-              </div>
-            </div>
-            {!item.open && (
-              <Icon name="chevron-down" className={styles.rightIcon} />
-            )}
-          </div>
-          <ul className={styles.innerNav}>
-            {item.children.map(child => {
-              const childDisabled =
-                (disabled || child.disabled) && !child.showInDisable
-              return (
-                <li
-                  key={child.name}
-                  className={classnames({
-                    [styles.select]: this.checkSelect(child),
-                    [styles.disabled]: childDisabled,
-                  })}
-                >
-                  <Link
-                    to={
-                      item.cluster
-                        ? `/${prefix}/${item.cluster}/${child.name}`
-                        : `/${prefix}/${child.name}`
-                    }
-                    disabled={childDisabled}
-                  >
-                    {t(child.title)}
-                    {childDisabled && this.renderDisabledTip(child)}
-                  </Link>
-                </li>
-              )
+        <MUITooltip title={t(item.title)}>
+          <li
+            className={classnames({
+              [styles.childSelect]: this.checkSelect(item),
+              [styles.open]: item.open || isOpen,
+              [styles.disabled]: itemDisabled,
             })}
-          </ul>
-        </li>
+          >
+            <div className={styles.title} onClick={this.handleOpen}>
+              <div style={{ width: '90%', display: 'flex' }}>
+                <Icon name={item.icon} />
+                <div
+                  style={{
+                    width: 120,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {t(item.title)}
+                </div>
+              </div>
+              {!item.open && (
+                <Icon name="chevron-down" className={styles.rightIcon} />
+              )}
+            </div>
+            <ul className={styles.innerNav}>
+              {item.children.map(child => {
+                const childDisabled =
+                  (disabled || child.disabled) && !child.showInDisable
+                return (
+                  <MUITooltip
+                    key={child.name}
+                    title={t(child.title)}
+                    placement={'right'}
+                  >
+                    <li
+                      className={classnames({
+                        [styles.select]: this.checkSelect(child),
+                        [styles.disabled]: childDisabled,
+                      })}
+                    >
+                      <Link
+                        to={
+                          item.cluster
+                            ? `/${prefix}/${item.cluster}/${child.name}`
+                            : `/${prefix}/${child.name}`
+                        }
+                        disabled={childDisabled}
+                      >
+                        {t(child.title)}
+                        {childDisabled && this.renderDisabledTip(child)}
+                      </Link>
+                    </li>
+                  </MUITooltip>
+                )
+              })}
+            </ul>
+          </li>
+        </MUITooltip>
       )
     }
 
     return (
-      <li
-        key={item.name}
-        className={classnames({
-          [styles.select]: this.checkSelect(item),
-          [styles.disabled]: itemDisabled,
-        })}
-      >
-        <Link
-          to={
-            item.cluster
-              ? `/${prefix}/${item.cluster}/${item.name}`
-              : `/${prefix}/${item.name}`
-          }
-          onClick={onClick}
-          disabled={itemDisabled}
+      <MUITooltip title={item.name}>
+        <li
+          key={item.name}
+          className={classnames({
+            [styles.select]: this.checkSelect(item),
+            [styles.disabled]: itemDisabled,
+          })}
         >
-          <Icon name={item.icon} /> {t(item.title)}
-          {itemDisabled && this.renderDisabledTip(item)}
-        </Link>
-      </li>
+          <Link
+            to={
+              item.cluster
+                ? `/${prefix}/${item.cluster}/${item.name}`
+                : `/${prefix}/${item.name}`
+            }
+            onClick={onClick}
+            disabled={itemDisabled}
+          >
+            <Icon name={item.icon} /> {t(item.title)}
+            {itemDisabled && this.renderDisabledTip(item)}
+          </Link>
+        </li>
+      </MUITooltip>
     )
   }
 }

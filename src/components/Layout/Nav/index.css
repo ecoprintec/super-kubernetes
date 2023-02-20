@@ -54,7 +54,7 @@
 }
 
 .MuiAccordionDetails-root {
-  padding: 8px 5px !important;
+  padding: 8px 5px 8px 10px !important;
 }
 .menu-content::-webkit-scrollbar {
   width: 5px;
