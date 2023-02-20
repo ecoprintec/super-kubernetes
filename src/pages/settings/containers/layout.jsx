@@ -17,18 +17,55 @@
  */
 
 import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
+import ClusterStore from 'stores/cluster'
+import { set } from 'lodash'
 
+@inject('rootStore')
+@observer
 class AccessLayout extends Component {
+  constructor(props) {
+    super(props)
+    this.store = new ClusterStore()
+  }
+
+  componentDidMount() {
+    this.props.rootStore.getRules({ cluster: this.props.rootStore.clusterName })
+    this.init({ cluster: this.props.rootStore.clusterName })
+  }
+
+  async init(params) {
+    this.store.initializing = true
+
+    if (params.cluster) {
+      await Promise.all([
+        this.store.fetchDetail({ name: params }),
+        this.props.rootStore.getRules({ cluster: params }),
+      ])
+      await this.props.history.push(this.props.location)
+      set(
+        globals,
+        `clusterConfig.${this.props.rootStore.clusterName}`,
+        this.store.detail.configz
+      )
+    }
+    this.store.initializing = false
+  }
+
   render() {
-    const { match, route, location } = this.props
+    const { match, route, location, rootStore } = this.props
+
     return (
       <div className="ks-page">
         <div className="ks-page-side">
           <Nav
             className="ks-page-nav"
-            navs={globals.app.getPlatformSettingsNavs()}
+            navsCluster={globals.app.getClusterNavs(rootStore.clusterName)}
+            navsManageApp={globals.app.getManageAppNavs()}
+            navsAccessControl={globals.app.getAccessNavs()}
+            navsPlatformSettings={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
           />

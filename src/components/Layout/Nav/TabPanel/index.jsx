@@ -7,21 +7,13 @@ export default class TabPanel extends React.Component {
   // { children, value, index, menuAction, ...other } = tabprops;
   static propTypes = {
     children: PropTypes.node,
-    nodeChild: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
     openMenuTabpanel: PropTypes.bool,
   }
 
   render() {
-    const {
-      value,
-      children,
-      nodeChild,
-      index,
-      openMenuTabpanel,
-      ...other
-    } = this.props
+    const { value, children, index, openMenuTabpanel, ...other } = this.props
     return (
       <div
         role="tabpanel"
@@ -29,8 +21,9 @@ export default class TabPanel extends React.Component {
         id={`vertical-tabpanel-${index}`}
         aria-labelledby={`vertical-tab-${index}`}
         {...other}
+        className={'menu-content'}
       >
-        {value === index && nodeChild && (
+        {value === index && children && (
           <Grow
             timeout={400}
             in={openMenuTabpanel}
@@ -38,7 +31,7 @@ export default class TabPanel extends React.Component {
             exit
             unmountOnExit
           >
-            <ul className="ul-wrapper">{children || nodeChild}</ul>
+            <ul className="ul-wrapper">{children}</ul>
           </Grow>
         )}
       </div>

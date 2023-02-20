@@ -42,10 +42,14 @@ export default class RootStore {
   openMenu = false
 
   @observable
-  isGlobalMenu = false
+  isNavMounted = false
 
   @observable
-  isNavMounted = false
+  expandedAcordion = ''
+
+  // set New Cluster here
+  @observable
+  clusterName = 'default'
 
   constructor() {
     this.websocket = new WebSocketStore()
@@ -76,6 +80,11 @@ export default class RootStore {
   }
 
   @action
+  checkExpandedAcordion = checkedCate => {
+    this.expandedAcordion = checkedCate
+  }
+
+  @action
   toggleGlobalNav = () => {
     this.showGlobalNav = !this.showGlobalNav
   }
@@ -88,16 +97,6 @@ export default class RootStore {
   @action
   onOpenMenu = () => {
     this.openMenu = true
-  }
-
-  @action
-  openGlobalMenu = () => {
-    this.isGlobalMenu = true
-  }
-
-  @action
-  closeGlobalMenu = () => {
-    this.isGlobalMenu = false
   }
 
   @action

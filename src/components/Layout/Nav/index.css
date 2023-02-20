@@ -41,3 +41,39 @@
 .MuiAccordion-root.Mui-expanded {
   margin: 0px !important;
 }
+
+.MuiAccordionSummary-root {
+  padding: 0px !important;
+  justify-content: flex-start !important;
+}
+.MuiAccordionSummary-root.Mui-expanded.src-components-Layout-Nav-index__accordionSummaryPlatform {
+  min-height: unset !important;
+  border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.MuiAccordionDetails-root {
+  padding: 8px 5px !important;
+}
+.menu-content::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+.menu-content::-webkit-scrollbar-thumb {
+  width: 3px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-left: 2px;
+  border-radius: 8px;
+  display: none;
+}
+.menu-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 20px;
+  height: calc(100vh - 200px);
+  padding-right: 5px;
+}
+.menu-content:hover::-webkit-scrollbar-thumb {
+  display: block;
+}

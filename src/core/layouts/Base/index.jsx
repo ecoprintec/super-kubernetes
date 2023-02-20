@@ -111,11 +111,7 @@ class BaseLayout extends Component {
   }
 
   handleToggleOpenMenu = () => {
-    if (this.props.rootStore.isGlobalMenu === true) {
-      this.props.rootStore.closeGlobalMenu()
-    } else if (this.props.rootStore.isGlobalMenu === false) {
-      this.props.rootStore.toggleOpenMenu()
-    }
+    this.props.rootStore.toggleOpenMenu()
   }
 
   render() {

@@ -20,9 +20,9 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { debounce, get, unset } from 'lodash'
 import { renderRoutes } from 'utils/router.config'
-import { Slide } from '@material-ui/core'
+// import { Slide } from '@material-ui/core'
 import { Nav } from 'components/Layout'
-import Selector from 'clusters/components/Selector'
+// import Selector from 'clusters/components/Selector'
 
 @inject('rootStore', 'clusterStore')
 @observer
@@ -53,7 +53,7 @@ class ClusterLayout extends Component {
       unset(globals, `need_rebuild_${this.cluster}_nav`)
       this.forceUpdate()
     }
-  }, 3000)
+  }, 5000)
 
   render() {
     const { match, route, location, rootStore } = this.props
@@ -62,7 +62,7 @@ class ClusterLayout extends Component {
     return (
       <div className="ks-page">
         <div className="ks-page-side">
-          <Slide
+          {/* <Slide
             timeout={{ enter: 300, exit: 400 }}
             in={rootStore.openMenu}
             direction={'right'}
@@ -81,14 +81,17 @@ class ClusterLayout extends Component {
                 onChange={this.enterCluster}
               />
             </div>
-          </Slide>
+          </Slide> */}
           <Nav
             className="ks-page-nav"
-            navs={globals.app.getClusterNavs(this.cluster)}
+            navsCluster={globals.app.getClusterNavs(rootStore.clusterName)}
+            navsManageApp={globals.app.getManageAppNavs()}
+            navsAccessControl={globals.app.getAccessNavs()}
+            navsPlatformSettings={globals.app.getPlatformSettingsNavs()}
             location={location}
             match={match}
             disabled={!detail.isReady}
-            haveNavTitle
+            // haveNavTitle
           />
         </div>
         <div className="ks-page-main">{renderRoutes(route.routes)}</div>

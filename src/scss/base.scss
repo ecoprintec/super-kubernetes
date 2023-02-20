@@ -238,8 +238,7 @@ pre {
     width: auto;
     padding: 0 12px 0 0;
     z-index: 1;
-    height: calc(100vh - 188px);
-    overflow-y: auto;
+    height: calc(100vh - 30px);
     display: flex;
     position: fixed;
     transition: 0.2s ease-in-out;

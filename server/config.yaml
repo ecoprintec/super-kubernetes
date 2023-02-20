@@ -89,26 +89,30 @@ client:
       title: CLUSTER_MANAGEMENT
       desc: CLUSTER_DESC
       icon: cluster
+      cate: cluster
     - name: access
       title: ACCESS_CONTROL
       icon: key
       authKey: users|roles|workspaces
+      cate: access
     - name: apps-manage
       title: APP_STORE_MANAGEMENT
       icon: openpitrix
       authKey: app-templates
       authAction: manage
       ksModule: openpitrix.appstore
+      cate: apps
     - name: settings
       title: PLATFORM_SETTINGS
       icon: cogwheel
       authKey: platform-settings
       authAction: manage
+      cate: platformsettings
 
   clusterNavs:
     - cate: cluster
       items:
-        - name: overview
+        - name: cluster-overview
           title: OVERVIEW
           icon: dashboard
           skipAuth: true
@@ -229,7 +233,7 @@ client:
           showInDisable: true
           children:
             - {
-                name: base-info,
+                name: cluster-base-info,
                 title: BASIC_INFORMATION,
                 skipAuth: true,
                 showInDisable: true,
@@ -241,7 +245,7 @@ client:
                 multiCluster: true,
               }
             - { name: members, title: CLUSTER_MEMBER_PL }
-            - { name: roles, title: CLUSTER_ROLE_PL }
+            - { name: cluster-roles, title: CLUSTER_ROLE_PL }
             - {
                 name: log-collections,
                 title: LOG_RECEIVER_PL,
@@ -314,36 +318,28 @@ client:
             ksModule: devops,
             skipAuth: true,
           }
-        - name: apps
-          title: APPS_MANAGEMENT
-          icon: appcenter
-          children:
-            - {
-                name: apps,
-                title: APP_TEMPLATE_PL,
-                icon: appcenter,
-                authKey: app-templates,
-                ksModule: openpitrix.appstore,
-              }
-            - {
-                name: repos,
-                title: APP_REPOSITORY_PL,
-                authKey: "app-repos",
-                ksModule: openpitrix,
-              }
-        - name: management
-          title: WORKSPACE_SETTINGS
-          icon: cogwheel
-          children:
-            - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
-            - {
-                name: quota,
-                title: WORKSPACE_QUOTA_PL,
-                authKey: "workspace-settings",
-              }
-            - { name: roles, title: WORKSPACE_ROLE_PL }
-            - { name: members, title: WORKSPACE_MEMBER_PL }
-            - { name: groups, title: DEPARTMENT_PL }
+        - {
+            name: apps,
+            title: APP_TEMPLATE_PL,
+            icon: appcenter,
+            authKey: app-templates,
+            ksModule: openpitrix.appstore,
+          }
+        - {
+            name: repos,
+            title: APP_REPOSITORY_PL,
+            authKey: "app-repos",
+            ksModule: openpitrix,
+        }
+        - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
+        - {
+            name: quota,
+            title: WORKSPACE_QUOTA_PL,
+            authKey: "workspace-settings",
+          }
+        - { name: roles, title: WORKSPACE_ROLE_PL }
+        - { name: members, title: WORKSPACE_MEMBER_PL }
+        - { name: groups, title: DEPARTMENT_PL }
 
   # apps manage page navigations
   manageAppNavs:
@@ -529,7 +525,7 @@ client:
           children:
             - { name: base-info, title: BASIC_INFORMATION, skipAuth: true }
             - { name: credentials, title: CREDENTIAL_PL }
-            - { name: roles, title: DEVOPS_PROJECT_ROLE_PL }
+            - { name: devops-roles, title: DEVOPS_PROJECT_ROLE_PL }
             - { name: members, title: DEVOPS_PROJECT_MEMBER_PL }
 
   # system workspace rules control

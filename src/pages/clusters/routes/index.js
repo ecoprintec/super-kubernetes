@@ -21,6 +21,7 @@ import { getIndexRoute } from 'utils/router.config'
 import AlertMessages from 'projects/containers/Alerting/Messages'
 import AlertPolicies from 'projects/containers/Alerting/Policies'
 
+import RootStore from 'stores/root'
 import ClusterLayout from '../containers/layout'
 import ListLayout from '../containers/Base/List'
 
@@ -63,6 +64,8 @@ import Gateway from '../containers/Gateway'
 
 const PATH = '/clusters/:cluster'
 
+const ClusterRootStore = new RootStore()
+
 export default [
   {
     path: '/clusters',
@@ -71,7 +74,7 @@ export default [
       ? null
       : {
           from: '/clusters',
-          to: '/clusters/default/overview',
+          to: `/clusters/${ClusterRootStore.clusterName}/cluster-overview`,
           exact: true,
         },
     exact: true,
@@ -91,7 +94,7 @@ export default [
         component: ListLayout,
         routes: [
           {
-            path: `${PATH}/overview`,
+            path: `${PATH}/cluster-overview`,
             component: Overview,
             exact: true,
           },
@@ -208,7 +211,7 @@ export default [
             component: AlertPolicies,
           },
           {
-            path: `${PATH}/base-info`,
+            path: `${PATH}/cluster-base-info`,
             component: BaseInfo,
             exact: true,
           },
@@ -223,7 +226,7 @@ export default [
             exact: true,
           },
           {
-            path: `${PATH}/roles`,
+            path: `${PATH}/cluster-roles`,
             component: Roles,
             exact: true,
           },
@@ -260,7 +263,11 @@ export default [
             component: Gateway,
             exact: true,
           },
-          getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
+          getIndexRoute({
+            path: PATH,
+            to: `${PATH}/cluster-overview`,
+            exact: true,
+          }),
           getIndexRoute({
             path: `${PATH}/workloads`,
             to: `${PATH}/deployments`,
