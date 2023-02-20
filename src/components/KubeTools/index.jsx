@@ -25,6 +25,7 @@ import { safeParseJSON } from 'utils'
 import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
 import { Icon } from '@kube-design/components'
+import { Tooltip } from '@material-ui/core'
 import styles from '../Layout/Nav/index.scss'
 import '../Layout/Nav/index.css'
 
@@ -176,7 +177,6 @@ export default class KubeTools extends React.Component {
       <div>
         {this.enabledTools.map(group => (
           <div key={group.group} className={styles.toolsGroup}>
-            <div className={styles.groupTitle}>{t(group.group)}</div>
             <div className={styles.groupContent}>
               {group.data.map(item => (
                 <div
@@ -186,18 +186,20 @@ export default class KubeTools extends React.Component {
                   data-action={item.action}
                   onClick={item.onClick || this.handleToolItemClick}
                 >
-                  <MuiButton
-                    className={classnames(
-                      styles.navsglobal,
-                      styles.arcordionItem
-                    )}
-                  >
-                    <Icon name={item.icon} />
-                    &nbsp;
-                    <div className={styles.arcordionItemName}>
-                      {t(item.title)}
-                    </div>
-                  </MuiButton>
+                  <Tooltip title={t(item.title)}>
+                    <MuiButton
+                      className={classnames(
+                        styles.navsglobal,
+                        styles.arcordionItem
+                      )}
+                    >
+                      <Icon name={item.icon} />
+                      &nbsp;
+                      <div className={styles.arcordionItemName}>
+                        {t(item.title)}
+                      </div>
+                    </MuiButton>
+                  </Tooltip>
                 </div>
               ))}
             </div>
