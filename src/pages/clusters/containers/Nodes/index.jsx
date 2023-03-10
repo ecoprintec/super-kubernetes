@@ -214,7 +214,7 @@ export default class Nodes extends React.Component {
   getLastValue = (node, type, unit) => {
     const metricsData = this.monitoringStore.data
     const result = get(metricsData[type], 'data.result') || []
-    const metrics = result.find(item => get(item, 'metric.node') === node.name)
+    const metrics = result.find(item => get(item, 'metric.node') === node?.name)
     return getValueByUnit(get(metrics, 'value[1]', 0), unit)
   }
 

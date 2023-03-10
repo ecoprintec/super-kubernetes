@@ -201,7 +201,8 @@ export default class PV extends React.Component {
         dataIndex: '_originData.spec.persistentVolumeReclaimPolicy',
         isHideable: true,
         width: '7.74%',
-        render: record => record._originData.spec.persistentVolumeReclaimPolicy,
+        render: record =>
+          record?._originData?.spec?.persistentVolumeReclaimPolicy,
       },
       {
         title: t('CREATION_TIME_TCAP'),
