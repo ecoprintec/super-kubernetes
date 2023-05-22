@@ -1,19 +1,19 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of Super Kubenetes Console.
+ * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * KuberixEnterprise Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ * Super Kubenetes Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   "HOST_CLUSTER": "호스트 클러스터",
@@ -21,7 +21,7 @@ module.exports = {
   "CLUSTER_CONDITIONS": "클러스터 조건",
   "PROVIDER": "공급자",
   "KUBERNETES_VERSION": "쿠버네티스 버전",
-  "KUBESPHERE_VERSION": "KuberixEnterprise 버전",
+  "KUBESPHERE_VERSION": "Super Kubenetes 버전",
   "VISIBILITY_PARTIAL": "일부 작업 공간에 표시",
   "VISIBILITY_PUBLIC": "모든 작업 공간에 표시",
   "CLUSTER_BASE_INFO_DESC": "기본 정보는 클러스터에 대한 개요를 제공합니다. 클러스터 정보를 보고 편집할 수 있습니다.",
@@ -33,6 +33,7 @@ module.exports = {
   "KUBECONFIG_DESC": "현재 클러스터에 대한 액세스 정보를 구성하는 데 사용되는 파일입니다.",
   "KUBERNETES_STATUS": "쿠버네티스 상태",
   "API_REQUESTS_PER_SECOND": "초당 API 요청",
+  VALUE_REQUESTS_SECOND: '{value, plural, =1 {1 요청} other {# 요청}}/s',
   "API_REQUEST_LATENCY": "API 요청 지연 시간",
   "SCHEDULING_OPERATIONS": "스케줄링 작업",
   "SCHEDULING_OPERATION": "스케줄링 작업",
