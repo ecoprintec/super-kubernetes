@@ -1,35 +1,35 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                            you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  SERVICE_ACCOUNT_PL: 'Service Accounts',
-  SERVICE_ACCOUNT_DESC: 'A service account provides the processes that run in a pod with an identity that can be used to access the API server.',
+  SERVICE_ACCOUNT_PL: '서비스 계정',
+  SERVICE_ACCOUNT_DESC: '서비스 계정은 Pod에서 실행되는 프로세스에 API 서버에 액세스하는 데 사용할 수 있는 ID를 제공합니다.',
   // List
-  SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
+  SERVICE_ACCOUNT_EMPTY_DESC: '서비스 계정을 만드세요.',
   // List > Create
-  INVALID_YAML_FILE_FORMAT: 'Invalid YAML file format.',
+  INVALID_YAML_FILE_FORMAT: '잘못된 YAML 파일 형식입니다.',
   // List > Create > Project Role
-  PROJECT_ROLE_SI: 'Project Role',
-  SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
+  PROJECT_ROLE_SI: '프로젝트 역할',
+  SELECT_PROJECT_ROLE_DESC: '권한을 지정할 프로젝트 역할을 선택하십시오.',
   // List > Edit
   // List > Edit YAML
   // List > Change Role
-  CHANGE_ROLE: 'Change Role',
+  CHANGE_ROLE: '역할 변경',
   // List > Delete
-  SERVICE_ACCOUNT_LOW: 'service account'
+  SERVICE_ACCOUNT_LOW: '서비스 계정'
 };

@@ -1,19 +1,19 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Attributes
@@ -21,9 +21,9 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   // More > Edit Settings > Containers
   // More > Edit Settings > Volumes
-  PLEASE_USE_RELATIVE_PATH: 'Please use a relative path.',
-  RELATIVE_PATH_NOT_SUPPORT: 'Unsupported relative path format.',
-  MOUNT_PATH_INCORRECT: 'Incorrect mount path.',
+  PLEASE_USE_RELATIVE_PATH: '상대 경로를 사용하십시오.' ,
+  RELATIVE_PATH_NOT_SUPPORT: '지원되지 않는 상대 경로 형식입니다.' ,
+  MOUNT_PATH_INCORRECT: '마운트 경로가 잘못되었습니다.' ,
   // More > Edit Settings > Pod Scheduling Rules
   // More > Edit Settings > Cluster Differences
   // More > Edit YAML
@@ -35,5 +35,5 @@ module.exports = {
   // Metadata
   // Monitoring
   // Events
-  REASON: 'Reason'
+  REASON: '이유'
 };

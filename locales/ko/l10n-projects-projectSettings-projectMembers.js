@@ -1,33 +1,27 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Banner
-  PROJECT_MEMBER: 'Project Member',
-  PROJECT_MEMBER_PL: 'Project Members',
-  PROJECT_MEMBER_DESC: 'Project members can view or manage project resources. The project administrator can invite members who belong to the workspace to the project and manage project members.',
-  // List
-  // List > Change Role
-  // List > Remove
-  REMOVE: 'Remove',
-  // Invite
-  INVITE_MEMBER_DESC: 'Invite members of the current workspace to the project.',
-  PROJECT_MEMBER_EMPTY_DESC: 'Please invite a member of the current workspace to the project.',
-  INVITE_MEMBER_SEARCH_PLACEHOLDER: 'Enter a username to invite members',
-  // Invite > Assign Role
-  ASSIGN_ROLE: 'Assign Role'
-};
+  "PROJECT_MEMBER": "프로젝트 멤버",
+  "PROJECT_MEMBER_PL": "프로젝트 구성원",
+  "PROJECT_MEMBER_DESC": "프로젝트 구성원은 프로젝트 리소스를 보거나 관리할 수 있습니다. 프로젝트 관리자는 작업공간에 속한 구성원을 프로젝트에 초대하고 프로젝트 구성원을 관리할 수 있습니다.",
+  "REMOVE": "삭제",
+  "INVITE_MEMBER_DESC": "현재 작업 영역의 구성원을 프로젝트에 초대합니다.",
+  "PROJECT_MEMBER_EMPTY_DESC": "현재 작업 공간의 구성원을 프로젝트에 초대하십시오.",
+  "INVITE_MEMBER_SEARCH_PLACEHOLDER": "회원을 초대하려면 사용자 이름을 입력하세요",
+  "ASSIGN_ROLE": "역할 할당"
+}

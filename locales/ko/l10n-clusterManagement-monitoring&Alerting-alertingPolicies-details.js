@@ -17,15 +17,13 @@
  */
 module.exports = {
   // Attributes
-  DURATION: 'Duration',
-  // Alert Rules
-  ALERTING_RULE: 'Alert Rules',
-  MONITORING_TARGETS_SCAP: 'Monitoring targets',
-  TRIGGER_CONDITION_SCAP: 'Trigger condition',
-  METRIC_MONITORING: 'Metric Monitoring',
-  ALERT_MONITORING: 'Alert Monitoring',
-  NOTIFICATION_SUMMARY_COLON: 'Summary: ',
-  DETAILS_COLON: 'Details: ',
-  // Alerting History
-  NO_DATA_DESC: 'No Data Found'
+  DURATION: '지속',
+  "ALERTING_RULE": "알림 규칙",
+  "MONITORING_TARGETS_SCAP": "모니터링 대상",
+  "ACTIVATION_CONDITION_SCAP": "활성화 조건",
+  "METRIC_MONITORING": "메트릭 모니터링",
+  "ALERT_MONITORING": "알림 모니터링",
+  "NOTIFICATION_SUMMARY_COLON": "요약: ",
+  "DETAILS_COLON": "세부 사항: ",
+  "NO_DATA_DESC": "데이터가 없습니다."
 };

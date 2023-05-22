@@ -1,38 +1,38 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Title
-  TOTAL_EVENTS_TODAY: 'A total of <span class={className}> {events} </span> resource events were collected today.',
-  NO_RESOURCE_EVENTS_TODAY: 'No Resource Events Collected Today',
+  TOTAL_EVENTS_TODAY: '오늘 총 <span class={className}> {events} </span>개의 리소스 이벤트가 수집되었습니다.',
+  NO_RESOURCE_EVENTS_TODAY: '오늘 수집된 리소스 이벤트 없음',
   // Search
   // Querying Rules
-  RESOURCE_EVENTS_12H: 'Resource events in the last 12 hours',
-  RESOURCE_EVENT_WORKSPACE_TIP: 'Enter a workspace name to search for container logs.',
-  RESOURCE_EVENT_PROJECT_TIP: 'Enter a project name to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_TYPE_TIP: 'Enter a resource type to search for container logs.',
-  RESOURCE_EVENT_RESOURCE_NAME_TIP: 'Enter a resource name to search for container logs.',
-  RESOURCE_EVENT_MESSAGE_TIP: 'Enter a message to search for resource events.',
-  RESOURCE_EVENT_CATEGORY_TIP: 'Enter a category name to search for container logs.',
-  RESOURCE_EVENT_REASON_TIP: 'Enter a reason to search for container logs.',
-  SEARCH_BY_MESSAGE: 'Search by Message',
-  SEARCH_BY_WORKSPACE: 'Search by Workspace',
-  SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
-  SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
-  SEARCH_BY_REASON: 'Search by Reason',
-  SEARCH_BY_CATEGORY: 'Search by Category'
+  RESOURCE_EVENTS_12H: '12시간 내 자원 이벤트 추세',
+  RESOURCE_EVENT_WORKSPACE_TIP: '컨테이너 로그를 검색하려면 작업 영역 이름을 입력하세요.',
+  RESOURCE_EVENT_PROJECT_TIP: '컨테이너 로그를 검색할 프로젝트 이름을 입력하세요.',
+  RESOURCE_EVENT_RESOURCE_TYPE_TIP: '컨테이너 로그를 검색할 리소스 유형을 입력하세요.',
+  RESOURCE_EVENT_RESOURCE_NAME_TIP: '컨테이너 로그를 검색할 리소스 이름을 입력하세요.',
+  RESOURCE_EVENT_MESSAGE_TIP: '리소스 이벤트를 검색할 메시지를 입력하세요.',
+  RESOURCE_EVENT_CATEGORY_TIP: '컨테이너 로그를 검색할 카테고리 이름을 입력하세요.',
+  RESOURCE_EVENT_REASON_TIP: '컨테이너 로그를 검색하는 이유를 입력하세요.',
+  SEARCH_BY_MESSAGE: '메시지로 검색',
+  SEARCH_BY_WORKSPACE: '작업 공간으로 검색',
+  SEARCH_BY_RESOURCE_TYPE: '리소스 유형으로 검색',
+  SEARCH_BY_RESOURCE_NAME: '리소스 이름으로 검색',
+  SEARCH_BY_REASON: '이유로 검색',
+  SEARCH_BY_CATEGORY: '카테고리로 검색'
 };

@@ -8,23 +8,23 @@ export function getParentMenu() {
   return [
     {
       tabindex: 0,
-      name: 'Super Kubenetes',
+      name: t('Super Kubenetes'),
       icon: <WidgetsIcon />,
       menu: true,
     },
     {
       tabindex: 0,
-      name: 'Super Quantum Composer',
+      name: t('Super Quantum Composer'),
       icon: <Computer />,
     },
     {
       tabindex: 0,
-      name: 'Super Cloud',
+      name: t('Super Cloud'),
       icon: <CloudCircle />,
     },
     {
       tabindex: 0,
-      name: 'Helps',
+      name: t('Helps'),
       icon: <Help />,
     },
   ]

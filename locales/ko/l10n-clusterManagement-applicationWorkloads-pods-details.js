@@ -1,70 +1,71 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                                                                                                                 you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Attributes
-  NODE_IP_ADDRESS: 'Node IP Address',
-  CLUSTER: 'Cluster',
+  // Details
+  NODE_IP_ADDRESS: '노드 IP 주소',
+  CLUSTER: '클러스터',
   // Resource Status > Containers
-  CONTAINER_PL: 'Containers',
-  PROBE_PL: 'Probes',
-  HOOK_PL: 'Hooks',
+  CONTAINER_PL: '컨테이너',
+  PROBE_PL: '프로브',
+  HOOK_PL: '훅',
   // Resource Status > Containers > Container Logs
-  CONTAINER_LOGS_NOT_SUPPORTED: 'The container does not support real-time logs currently. Please try again later.',
-  CONTAINER_LOGS: 'Container Logs',
-  // Resource Status > Details > Container Details > Attributes
-  COMMAND: 'Command',
-  IMAGE_ID: 'Image ID',
-  IMAGE_PULL_POLICY: 'Image Pull Policy',
-  CONTAINER_DETAILS_PAGE_SCAP: 'Container details page.',
-  CPU_VALUE: 'CPU: {value, plural, =1 {1 core} other {# cores}}',
-  MEMORY_VALUE: 'Memory: {value}',
+  CONTAINER_LOGS_NOT_SUPPORTED: '컨테이너는 현재 실시간 로그를 지원하지 않습니다. 나중에 다시 시도 해주십시오.',
+  CONTAINER_LOGS: '컨테이너 로그',
+  // Resource Status > Details > Container Details > Details
+  COMMAND: '명령',
+  IMAGE_ID: '이미지 아이디',
+  IMAGE_PULL_POLICY: '이미지 풀 정책',
+  CONTAINER_DETAILS_PAGE_SCAP: '컨테이너 세부정보 페이지',
+  MEMORY_VALUE: '메모리: {value}',
   NVIDIA_COM_GPU_VALUE: 'GPU: {value}',
   // Resource Status > Details > Container Details > Terminal
-  LOADING: 'Loading...',
-  RESOURCE_LIMITS: 'Resource Limits',
-  RESOURCE_REQUESTS: 'Resource Requests',
-  TERMINAL: 'Terminal',
+  LOADING: '로드 중...',
+  RESOURCE_LIMITS: '리소스 제한',
+  RESOURCE_REQUESTS: '리소스 요청',
+  TERMINAL: '터미널',
   // Resource Status > Details > Container Details > Resource Status
-  RESTART_PL: 'Restarts',
-  RESTART: 'Restart',
-  STORAGE_DEVICES: 'Storage Devices',
-  LIVENESS_PROBE: 'Liveness Probe',
-  READINESS_PROBE: 'Readiness Probe',
-  STARTUP_PROBE: 'Startup Probe',
-  REQUEST_TYPE: 'Request type',
+  RESTART_PL: '재시작',
+  RESTART: '재시작',
+  STORAGE_DEVICES: '저장 장치',
+  LIVENESS_PROBE: '라이브니스 프로브',
+  READINESS_PROBE: '준비 프로브',
+  STARTUP_PROBE: '시동 프로브',
+  REQUEST_TYPE: '요청 유형',
   // Resource Status > Details > Container Details > Monitoring
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
-  NO_LOG_DATA_FOUND: 'No Log Data Found',
-  NO_LOG_DATA_FOUND_TIP: 'No log data is found.',
+  NO_RESOURCE: '{resource}가 없습니다.',
+  LOG_DATA_LOW: '로그 데이터',
   // Resource Status > Volumes
-  VOLUME_PL: 'Volumes',
-  TYPE_CONFIGMAP: 'Volume type: configmap',
-  TYPE_SECRET: 'Volume type: secret',
-  TYPE_EMPTYDIR: 'Volume type: emptyDir',
-  TYPE_HOSTPATH: 'Volume type: host path',
+  NO_LOG_DATA_FOUND: '로그 데이터를 찾을 수 없음',
+  NO_LOG_DATA_FOUND_TIP: '로그 데이터를 찾을 수 없습니다.',
+  VOLUME_PL: '볼륨',
+  TYPE_CONFIGMAP: '볼륨 유형: configmap',
+  TYPE_SECRET: '볼륨 유형: secret',
+  TYPE_EMPTYDIR: '볼륨 유형: emptyDir',
+  TYPE_HOSTPATH: '볼륨 유형: 호스트 경로',
   // Scheduling Information
-  REASON_VALUE: 'Reason: {value}',
-  MESSAGE_VALUE: 'Message: {value}',
-  UPDATED_AT_VALUE: 'Updated At: {value}',
+  REASON_VALUE: '이유: {value}',
+  MESSAGE_VALUE: '메시지: {value}',
+  UPDATED_AT_VALUE: '업데이트된 날짜: {value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: 'No Monitoring Data',
-  OUTBOUND: 'Outbound',
-  INBOUND: 'Inbound'
+  NO_MONITORING_DATA: '모니터링 데이터 없음',
+  OUTBOUND: '아웃바운드',
+  INBOUND: '인바운드'
 };

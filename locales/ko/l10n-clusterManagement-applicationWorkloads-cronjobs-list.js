@@ -31,6 +31,6 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Start/Pause
-  PAUSE: 'Pause',
-  START: 'Start'
+  PAUSE: '일시정지',
+  START: '시작'
 };

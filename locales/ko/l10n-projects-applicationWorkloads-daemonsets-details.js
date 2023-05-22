@@ -1,19 +1,19 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // More > Roll Back
@@ -26,9 +26,9 @@ module.exports = {
   // Attributes
   // Resource Status
   // Revision Records
-  REVISION_RECORDS_DESC: 'A revision record is generated after the workload is created or modified, which can be used to roll back the workload settings. A maximum of 10 revision records can be retained.',
+  REVISION_RECORDS_DESC: '워크로드가 생성되거나 수정된 후에 개정 레코드가 생성되며, 이는 워크로드 설정을 롤백하는 데 사용할 수 있습니다. 최대 10개의 수정 기록을 보유할 수 있습니다.',
   // Metadata
   // Monitoring
   // Environment Variables
-  ENVIRONMENT_VARIABLE: 'Environment Variable'
+  ENVIRONMENT_VARIABLE: '환경 변수'
 };

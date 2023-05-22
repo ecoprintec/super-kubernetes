@@ -1,47 +1,47 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                 you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Attributes
-  QOS_CLASS: 'QoS Class',
-  NODE_NAME: 'Node Name',
-  POD_IP_ADDRESS: 'Pod IP Address',
+  // Details
+  QOS_CLASS: 'QoS 클래스',
+  NODE_NAME: '노드 이름',
+  POD_IP_ADDRESS: 'Pod IP 주소',
   // Run Records
-  JOB_UNFINISHED: 'Unfinished',
+  JOB_UNFINISHED: '완료되지 않은',
   // Resource Status
-  TERMINATED: 'Terminated',
+  TERMINATED: '종료됨',
   // Scheduling Information
-  SCHEDULED_TO_NODE: 'Scheduled to {value}',
-  SCHEDULING_NOT_SUCCESSFUL: 'Scheduling Not Successful',
-  SCHEDULING_INFORMATION: 'Scheduling Information',
-  SCHEDULING_RESULT: 'Scheduling Result',
-  POD_SCHEDULING_METHOD: 'Pod Scheduling Method',
-  POD_ASSIGNED_DESC: 'The system schedules a pod to a node with sufficient available resources based on the resource requests of the Pod.',
-  STATUS_INFORMATION: 'Status Information',
-  WORKLOAD_CONDITION_AVAILABLE: 'Available',
-  WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
-  NOT_SUCCESSFUL: 'Not successful',
-  CURRENT_STATUS: 'Current status',
-  POD_CONDITION_INITIALIZED: 'Initialized',
-  POD_CONDITION_INITIALIZED_DESC: 'Starts all init containers in the pod.',
-  POD_CONDITION_READY: 'Pod Ready',
-  POD_CONDITION_READY_DESC: 'Starts running the pod and allows the pod to be accessed.',
-  POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
-  POD_CONDITION_CONTAINERSREADY_DESC: 'Starts all containers in the pod.',
-  POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
-  POD_CONDITION_PODSCHEDULED_DESC: 'Schedules the pod to a node in the cluster.'
+  SCHEDULED_TO_NODE: '{value}로 예약됨',
+  SCHEDULING_NOT_SUCCESSFUL: '예약 실패',
+  SCHEDULING_INFORMATION: '스케줄링 정보',
+  SCHEDULING_RESULT: '예약 결과',
+  POD_SCHEDULING_METHOD: 'Pod 스케줄링 방법',
+  POD_ASSIGNED_DESC: '시스템은 Pod의 리소스 요청에 따라 사용 가능한 리소스가 충분한 노드에 Pod를 예약합니다.' ,
+  STATUS_INFORMATION: '상태 정보',
+  WORKLOAD_CONDITION_AVAILABLE: '사용 가능',
+  WORKLOAD_CONDITION_PROGRESSING: '진행 중',
+  NOT_SUCCESSFUL: '성공하지 않음',
+  CURRENT_STATUS: '현재 상태',
+  POD_CONDITION_INITIALIZED: '초기화',
+  POD_CONDITION_INITIALIZED_DESC: '파드의 모든 컨테이너를 시작합니다.' ,
+  POD_CONDITION_READY: '파드 레디',
+  POD_CONDITION_READY_DESC: 'Pod 실행을 시작하고 파드에 액세스할 수 있습니다.' ,
+  POD_CONDITION_CONTAINERSREADY: '컨테이너 준비',
+  POD_CONDITION_CONTAINERSREADY_DESC: '파드의 모든 컨테이너를 시작합니다.' ,
+  POD_CONDITION_PODSCHEDULED: '파드 예약',
+  POD_CONDITION_PODSCHEDULED_DESC: '파드를 클러스터의 노드로 예약합니다.'
 };

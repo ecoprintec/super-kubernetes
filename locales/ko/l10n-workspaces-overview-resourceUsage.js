@@ -1,29 +1,29 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  OVERVIEW: 'Overview',
+  OVERVIEW: '개요',
   // Description
-  WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
+  WORKSPACE_OVERVIEW_DESC: '작업 영역의 리소스 상태를 봅니다.',
   // Statistics
-  ROLE_PL: 'Roles',
+  ROLE_PL: '역할',
   // Physical Resources
-  PHYSICAL_RESOURCES: 'Physical Resources',
-  CRONJOB: 'Cronjob',
-  CLUSTER_VALUE: 'Cluster: {value}'
+  PHYSICAL_RESOURCES: '물리적 자원',
+  CRONJOB: '크론잡',
+  CLUSTER_VALUE: '클러스터: {value}'
 };

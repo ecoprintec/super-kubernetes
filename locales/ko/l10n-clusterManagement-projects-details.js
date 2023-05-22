@@ -1,19 +1,19 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                      you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Attributes
@@ -23,9 +23,9 @@ module.exports = {
   // Overview > Resource Status > Physical Resources
   // Pods
   // Gateway
-  GATEWAY: 'Gateway',
-  GATEWAY_NOT_ENABLED: 'Gateway Not Enabled',
-  ENABLE_GATEWAY_TIP: 'To use the gateway, please configure the gateway in the cluster or the project.',
+  GATEWAY: '게이트웨이',
+  GATEWAY_NOT_ENABLED: '게이트웨이를 사용할 수 없음',
+  ENABLE_GATEWAY_TIP: '게이트웨이를 사용하려면 클러스터 또는 프로젝트에서 게이트웨이를 구성하세요.',
   // Quotas > Default Container Quotas
-  QUOTA_PL: 'Quotas'
+  QUOTA_PL: '할당량'
 };

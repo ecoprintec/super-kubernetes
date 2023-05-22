@@ -1,27 +1,27 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                            you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // List > Delete
-  VOLUME_SNAPSHOT_CONTENT: 'Volume Snapshot Content',
-  VOLUME_SNAPSHOT_CONTENT_PL: 'Volume Snapshot Contents',
-  VOLUME_SNAPSHOT_CONTENT_LOW: 'volume snapshot content',
-  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: 'Please create a volume snapshot.',
-  READY: 'Ready',
-  UNREADY: 'Unready',
-  DELETION_POLICY: 'Deletion Policy'
+  VOLUME_SNAPSHOT_CONTENT: '볼륨 스냅샷 콘텐츠',
+  VOLUME_SNAPSHOT_CONTENT_PL: '볼륨 스냅샷 콘텐츠',
+  VOLUME_SNAPSHOT_CONTENT_LOW: '볼륨 스냅샷 콘텐츠',
+  VOLUME_SNAPSHOT_CONTENT_EMPTY_DESC: '볼륨 스냅샷을 생성하십시오.',
+  READY: '준비된',
+  UNREADY: '준비되지 않은',
+  DELETION_POLICY: '삭제 정책'
 };

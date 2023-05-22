@@ -1,28 +1,26 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Attributes
-  CUSTOM_SERVICE: 'Custom Service',
-  VIRTUAL_IP: 'VirtualIP',
-  // Resource Status
-  CONTAINER_PORT_SCAP: 'Container port',
-  SERVICE_PORT_SCAP: 'Service port',
-  NO_AVAILABLE_RESOURCE_VALUE: 'No Available {resource}',
-  NO_RESOURCE_FOUND: 'No Resource Found',
-  REVISION_RECORD: 'Revision record'
-};
+  "CUSTOM_SERVICE": "맞춤 서비스",
+  "VIRTUAL_IP": "가상아이피",
+  "CONTAINER_PORT_SCAP": "컨테이너 포트",
+  "SERVICE_PORT_SCAP": "서비스 포트",
+  "NO_AVAILABLE_RESOURCE_VALUE": "사용 가능한 {resource}이(가) 없음",
+  "NO_RESOURCE_FOUND": "리소스를 찾을 수 없음",
+  "REVISION_RECORD": "개정 기록"
+}

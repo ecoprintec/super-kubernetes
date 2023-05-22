@@ -1,32 +1,32 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                  you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  WORKSPACE_QUOTA_PL: 'Workspace Quotas',
-  WORKSPACE_QUOTAS_DESC: 'Workspace quotas are used to control the total resource usage of all projects and DevOps projects in a workspace.',
+  WORKSPACE_QUOTA_PL: '워크스페이스 할당량',
+  WORKSPACE_QUOTAS_DESC: '워크스페이스 할당량은 작업 공간에 있는 모든 프로젝트 및 DevOps 프로젝트의 총 리소스 사용량을 제어하는 데 사용됩니다.',
   // Resource Quotas
-  RESOURCE_QUOTA_PL: 'Resource Quotas',
-  USED_PERCENT: 'Used: {percent}%',
-  RESOURCE_LIMIT: 'Resource limit',
+  RESOURCE_QUOTA_PL: '리소스 할당량',
+  USED_PERCENT: '사용됨: {percent}%',
+  RESOURCE_LIMIT: '리소스 제한',
   // Resource Quotas > Edit Quotas
-  EDIT_WORKSPACE_QUOTAS: 'Edit Workspace Quotas',
-  CPU_REQUEST: 'CPU Request',
-  CPU_LIMIT: 'CPU Limit',
-  MEMORY_REQUEST: 'Memory Request',
-  MEMORY_LIMIT: 'Memory Limit'
+  EDIT_WORKSPACE_QUOTAS: '워크스페이스 할당량 편집',
+  CPU_REQUEST: 'CPU 요청',
+  CPU_LIMIT: 'CPU 제한',
+  MEMORY_REQUEST: '메모리 요청',
+  MEMORY_LIMIT: '메모리 제한'
 };

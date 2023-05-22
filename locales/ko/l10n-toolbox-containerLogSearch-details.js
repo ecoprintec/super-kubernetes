@@ -1,40 +1,32 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Title
-  // Search Bar
-  KEYWORD: 'Keyword',
-  EXACT_QUERY: 'Exact Query',
-  FUZZY_QUERY: 'Fuzzy Query',
-  // Time Topology
-  TIME_TOPOLOGY: 'Time Topology ',
-  SEARCH_RESULTS: 'Search Results',
-  DISPLAY: 'Display',
-  HIDE: 'Hide',
-  STOP_REAL_TIME_CONTAINER_LOG: 'Pause real-time container logs',
-  START_REAL_TIME_CONTAINER_LOG: 'View real-time container logs',
-  // Refresh Rate
-  REFRESH_RATE_COLON: 'Refresh Rate: ',
-  // Time Topology > Histogram
-  CONTAINER_LOG_COUNT: 'Container Logs',
-  // List
-  LOG: 'Log',
-  // List > Container Log Details
-  // List > Container Log Details > Container Log Source
-  CONTAINER_LOG_SOURCE: 'Container Log Source'
-};
+  "KEYWORD": "키워드",
+  "EXACT_QUERY": "Exact 쿼리",
+  "FUZZY_QUERY": "Fuzzy  쿼리",
+  "TIME_TOPOLOGY": "시간 토폴로지",
+  "SEARCH_RESULTS": "검색 결과",
+  "DISPLAY": "디스플레이",
+  "HIDE": "숨기기",
+  "STOP_REAL_TIME_CONTAINER_LOG": "실시간 컨테이너 로그 일시 중지",
+  "START_REAL_TIME_CONTAINER_LOG": "실시간 컨테이너 로그 보기",
+  "REFRESH_RATE_COLON": "새로고침 빈도: ",
+  "CONTAINER_LOG_COUNT": "컨테이너 로그",
+  "LOG": "로그",
+  "CONTAINER_LOG_SOURCE": "컨테이너 로그 소스"
+}

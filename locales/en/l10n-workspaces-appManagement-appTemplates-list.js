@@ -61,4 +61,9 @@ module.exports = {
   FILE_MAX_ICON_DESC: 'The icon size should not exceed 20 KB. Please try again.',
   HOMEPAGE: 'Homepage',
   OPTIONAL: 'Optional',
+  Home: 'Home',
+  Helps: 'Helps',
+  'Super Kubenetes': 'Super Kubenetes',
+  'Super Quantum Composer': 'Super Quantum Composer',
+  'Super Cloud': 'Super Cloud'
 }

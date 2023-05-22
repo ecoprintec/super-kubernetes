@@ -1,30 +1,30 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:              you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  PERSISTENT_VOLUME: 'Persistent Volume',
-  PERSISTENT_VOLUME_PL: 'Persistent Volumes',
-  PERSISTENT_VOLUME_LOW: 'persistent volume',
+  PERSISTENT_VOLUME: '퍼시스턴트 볼륨',
+  PERSISTENT_VOLUME_PL: '퍼시스턴트 볼륨',
+  PERSISTENT_VOLUME_LOW: '퍼시스턴트 볼륨',
   // List
-  PV_STATUS_AVAILABLE: 'Available',
-  PV_STATUS_BOUND: 'Bound',
-  PV_STATUS_RELEASED: '릴리즈됨',
-  PV_STATUS_FAILED: 'Failed',
-  RECYCLING_STRATEGY: 'Recycling Strategy',
-  VOLUME_EMPTY_DESC: 'Please bind a persistent volume claim to a workload.'
+  PV_STATUS_AVAILABLE: '사용 가능',
+  PV_STATUS_BOUND: '바운드',
+  PV_STATUS_RELEASED: '릴리즈',
+  PV_STATUS_FAILED: '실패',
+  RECYCLING_STRATEGY: '재활용 전략',
+  VOLUME_EMPTY_DESC: '퍼시스턴트 볼륨 클레임을 워크로드에 바인딩하십시오.'
 };

@@ -1,30 +1,30 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                                                               you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  VOLUME_SNAPSHOT_CLASS_PL: 'Volume Snapshot Classes',
-  VOLUME_SNAPSHOT_CLASS: 'Volume Snapshot Class',
-  VOLUME_SNAPSHOT_CLASS_DESC: 'Volume snapshot classes provide a way for administrators to define storage types used for volume snapshots.',
-  VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: 'Please create a volume snapshot class.',
+  VOLUME_SNAPSHOT_CLASS_PL: '볼륨 스냅샷 클래스',
+  VOLUME_SNAPSHOT_CLASS: '볼륨 스냅샷 클래스',
+  VOLUME_SNAPSHOT_CLASS_DESC: '볼륨 스냅샷 클래스는 관리자가 볼륨 스냅샷에 사용되는 스토리지 유형을 정의할 수 있는 방법을 제공합니다.',
+  VOLUME_SNAPSHOT_CLASS_EMPTY_DESC: '볼륨 스냅샷 클래스를 생성하십시오.',
   // List > Create
-  SNAPSHOT_CLASS_SETTINGS: 'Volume Snapshot Class Settings',
-  SNAPSHOT_CLASS_PROVISIONER_DESC: 'Enter the name of a CSI plugin.',
-  SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC: 'Please enter the name of a CSI plugin.',
+  SNAPSHOT_CLASS_SETTINGS: '볼륨 스냅샷 클래스 설정',
+  SNAPSHOT_CLASS_PROVISIONER_DESC: 'CSI 플러그인의 이름을 입력하세요.',
+  SNAPSHOT_CLASS_PROVISIONER_EMPTY_DESC: 'CSI 플러그인의 이름을 입력하세요.',
   // List > Delete
-  VOLUME_SNAPSHOT_CLASS_LOW: 'volume snapshot class',
-  DELETE_VOLUME_SNAPSHOT_CLASS: 'Delete Volume Snapshot Class'
+  VOLUME_SNAPSHOT_CLASS_LOW:'볼륨 스냅샷 클래스',
+  DELETE_VOLUME_SNAPSHOT_CLASS:'볼륨 스냅샷 클래스 삭제'
 };

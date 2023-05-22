@@ -1,43 +1,42 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                                                                 you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  WORKSPACE_PL: 'Workspaces',
-  WORKSPACE_DESC: 'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+  WORKSPACE_PL: '워크스페이스',
+  WORKSPACE_DESC: '워크스페이스는 프로젝트 및 DevOps 프로젝트를 구성하고, 리소스 액세스를 관리하고, 팀 내에서 정보를 공유하는 데 사용되는 분리된 논리적 단위입니다.',
   // List
-  CLUSTER_PL: 'Clusters',
+  CLUSTER_PL: '클러스터',
   // List > Create > Basic Information
-  CREATE_WORKSPACE: 'Create Workspace',
-  WORKSPACE_NAME_EMPTY_DESC: 'Please enter a workspace name.',
-  WORKSPACE_CREATE_DESC: 'Set the basic information about the workspace.',
-  ADMINISTRATOR: 'Administrator',
-  WORKSPACE_NAME_EXISTS_DESC: 'The workspace name already exists.',
-  INVALID_WORKSPACE_NAME: 'Invalid workspace name.',
+  CREATE_WORKSPACE: '워크스페이스 생성',
+  WORKSPACE_NAME_EMPTY_DESC: '워크스페이스 이름을 입력하세요.',
+  WORKSPACE_CREATE_DESC: '워크스페이스에 대한 기본 정보를 설정합니다.',
+  ADMINISTRATOR: '관리자',
+  WORKSPACE_NAME_EXISTS_DESC: '워크스페이스 이름이 이미 있습니다.',
   // List > Create > Cluster Settings
-  SELECT_CLUSTERS_DESC: 'Select clusters to be used in the workspace.',
-  NO_CLUSTER_AVAILABLE: 'No Cluster Available',
-  NO_CLUSTER_AVAILABLE_DESC: 'No cluster is available. After the workspace is created, please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  WORKSPACE_NO_CLUSTER_TIP: 'Please contact the platform or cluster administrator to authorize a cluster to the workspace.',
-  AVAILABLE_CLUSTERS: 'Available Clusters',
-  CLUSTER_SETTINGS: 'Cluster Settings',
-  SELECT_HOST_CLUSTER_WARNING: 'The current system is a multi-cluster system. Please avoid creating resources in the host cluster if possible. Excessive loads in the host cluster will decrease the stability of the multi-cluster system.',
+  SELECT_CLUSTERS_DESC: '워크스페이스에서 사용할 클러스터를 선택하십시오.',
+  NO_CLUSTER_AVAILABLE: '사용 가능한 클러스터가 없습니다.',
+  NO_CLUSTER_AVAILABLE_DESC: '사용 가능한 클러스터가 없습니다. 작업 영역이 생성된 후 플랫폼 또는 클러스터 관리자에게 문의하여 작업 영역에 대한 클러스터 권한을 부여하십시오.',
+  WORKSPACE_NO_CLUSTER_TIP: '클러스터를 워크스페이스에 승인하려면 플랫폼 또는 클러스터 관리자에게 문의하십시오.',
+  AVAILABLE_CLUSTERS: '사용 가능한 클러스터',
+  CLUSTER_SETTINGS: '클러스터 설정',
+  SELECT_HOST_CLUSTER_WARNING: '현재 시스템은 멀티 클러스터 시스템입니다. 가능하면 호스트 클러스터에 리소스를 생성하지 마십시오. 호스트 클러스터의 과도한 로드는 멀티 클러스터 시스템의 안정성을 저하시킵니다.',
   // List > Edit Information
   // List > Delete
-  DELETE_WORKSPACE: 'Delete Workspace',
-  WORKSPACE_LOW: 'workspace'
+  DELETE_WORKSPACE: '워크스페이스 삭제',
+  WORKSPACE_LOW: '워크스페이스'
 };

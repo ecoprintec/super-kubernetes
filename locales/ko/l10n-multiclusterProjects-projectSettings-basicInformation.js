@@ -1,36 +1,36 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:              you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   // Project Information
-  PROJECT_NAME: 'Project name',
+  PROJECT_NAME: '프로젝트 이름',
   // Default Container Quotas
-  NO_REQUEST_TCAP: 'No Request',
-  NO_LIMIT_TCAP: 'No Limit',
-  CPU_REQUEST_LOW: 'CPU request',
-  CPU_LIMIT_LOW: 'CPU limit',
-  CPU_REQUEST_CORE: '{value} Core',
-  CPU_LIMIT_CORE: '{value} Core',
+  NO_REQUEST_TCAP: '요청 없음',
+  NO_LIMIT_TCAP: '무제한',
+  CPU_REQUEST_LOW: 'CPU 요청',
+  CPU_LIMIT_LOW: 'CPU 제한',
+  CPU_REQUEST_CORE: '{value} 코어',
+  CPU_LIMIT_CORE: '{value} 코어',
   MEMORY_REQUEST_MIB: '{value} Mi',
   MEMORY_LIMIT_MIB: '{value} Mi',
   // Manage > Edit Information
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas
   // Manage > Delete Project
-  DELETE_PROJECT: 'Delete Project'
+  DELETE_PROJECT: '프로젝트 삭제'
 };

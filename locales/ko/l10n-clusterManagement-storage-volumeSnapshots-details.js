@@ -1,27 +1,27 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                                                    you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // More > Create Volume
-  CREATE_VOLUME: 'Create Volume',
-  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Volume Snapshot Class Not Found',
-  SNAPSHOT_CLASS_NOT_EXIST: 'The volume snapshot class of the volume snapshot does not exist.',
-  // Attributes
+  CREATE_VOLUME: '볼륨 생성',
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: '볼륨 스냅샷 클래스를 찾을 수 없음',
+  SNAPSHOT_CLASS_NOT_EXIST: '볼륨 스냅샷의 볼륨 스냅샷 클래스가 존재하지 않습니다.',
+  // Details
   // Data Source
-  STORAGE_CLASS_SCAP: 'Storage class',
-  DATA_SOURCE: 'Data Source'
+  STORAGE_CLASS_SCAP: '스토리지 클래스',
+  DATA_SOURCE: '데이터 소스'
 };

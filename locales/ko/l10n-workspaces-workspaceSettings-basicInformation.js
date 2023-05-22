@@ -1,48 +1,42 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Navigation Pane
-  WORKSPACE_SETTINGS: 'Workspace Settings',
-  // Banner
-  WORKSPACE_BASIC_INFO_DESC: 'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
-  WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
-  WORKSPACE_BASE_INFO_A1: 'Contact the platform or cluster administrator to apply for more clusters.',
-  // Workspace Information
-  WORKSPACE_INFO: 'Workspace Information',
-  WORKSPACE_MEMBER_TCAP: 'Workspace member',
-  WORKSPACE_MEMBER_TCAP_PL: 'Workspace members',
-  WS_MEMBER_SCAP: 'Workspace member',
-  WS_MEMBER_SCAP_PL: 'Workspace members',
-  DEVOPS_PROJECT_TCAP: 'DevOps project',
-  DEVOPS_PROJECT_TCAP_PL: 'DevOps projects',
-  DEVOPS_PROJECT_LOW: 'DevOps project',
-  DEVOPS_PROJECT_LOW_PL: 'DevOps projects',
-  PROJECTS: 'Projects',
-  // Workspace Information > Edit Information
-  // Network Isolation
-  ON: 'On',
-  OFF: 'Off',
-  WS_NETWORK_ISOLATION: 'Workspace network isolation',
-  NETWORK_POLICY_UNINSATLLED_DESC: 'The network policy component is not installed in this cluster.',
-  // Delete Workspace
-  DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
-  // Delete Workspace > Delete
-  DELETE_WORKSPACE_PROJECTS_DESC: 'Delete projects in the workspace',
-  DELETE_WORKSPACE_DESC: 'The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
-  DELETE_WORKSPACE_TIP: 'Are you sure you want to delete the workspace <strong>{resource}</strong>? The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.'
-};
+  "WORKSPACE_SETTINGS": "워크스페이스 설정",
+  "WORKSPACE_BASIC_INFO_DESC": "기본 정보는 작업 공간의 개요를 제공합니다. 작업 공간의 기본 정보를 볼 수 있습니다.",
+  "WORKSPACE_BASE_INFO_Q1": "작업 공간에 더 많은 클러스터를 신청하려면 어떻게 해야 하나요?",
+  "WORKSPACE_BASE_INFO_A1": "더 많은 클러스터를 신청하려면 플랫폼 또는 클러스터 관리자에게 문의하세요.",
+  "WORKSPACE_INFO": "워크스페이스 정보",
+  "WORKSPACE_MEMBER_TCAP": "워크스페이스 멤버",
+  "WORKSPACE_MEMBER_TCAP_PL": "작업 공간 구성원",
+  "WS_MEMBER_SCAP": "워크스페이스 멤버",
+  "WS_MEMBER_SCAP_PL": "작업 공간 구성원",
+  "DEVOPS_PROJECT_TCAP": "DevOps 프로젝트",
+  "DEVOPS_PROJECT_TCAP_PL": "DevOps 프로젝트",
+  "DEVOPS_PROJECT_LOW": "DevOps 프로젝트",
+  "DEVOPS_PROJECT_LOW_PL": "DevOps 프로젝트",
+  "PROJECTS": "프로젝트",
+  "ON": "On",
+  "OFF": "Off",
+  "WS_NETWORK_ISOLATION": "워크스페이스 네트워크 격리",
+  "NETWORK_POLICY_UNINSATLLED_DESC": "네트워크 정책 구성 요소가 이 클러스터에 설치되어 있지 않습니다.",
+  "DELETE_DESC": "리소스를 삭제하시겠습니까? 리소스를 삭제한 후에는 복원할 수 없습니다.",
+  "SURE_TO_DELETE_WORKSPACE": "워크스페이스을 삭제하시겠습니까?",
+  "DELETE_WORKSPACE_PROJECTS_DESC": "워크스페이스에서 프로젝트 삭제",
+  "DELETE_WORKSPACE_DESC": "워크스페이스을 삭제한 후에는 복원할 수 없으며 워크스페이스의 모든 리소스가 제거됩니다.",
+  "DELETE_WORKSPACE_TIP": "<strong>{resource}</strong> 워크스페이스을 삭제하시겠습니까? 삭제된 워크스페이스은 복원할 수 없으며 워크스페이스의 모든 리소스가 제거됩니다."
+}

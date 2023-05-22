@@ -1,62 +1,62 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                        you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Navigation pane
-  STORAGE: 'Storage',
+  STORAGE: '스토리지',
   // Banner
-  PERSISTENT_VOLUME_CLAIM_DESC: 'Persistent volume claims define storage requirements. The system creates persistent volumes according to persistent volume claims.',
-  PERSISTENT_VOLUME_CLAIM: 'Persistent Volume Claim',
-  PERSISTENT_VOLUME_CLAIM_PL: 'Persistent Volume Claims',
-  WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
-  WHAT_IS_STORAGE_CLASS_A: 'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
-  WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
-  WHAT_IS_LOCAL_VOLUME_A: 'A local volume is a volume created in the local file system of the cluster.',
+  PERSISTENT_VOLUME_CLAIM_DESC: '퍼시스턴트 볼륨 클레임은 스토리지 요구 사항을 정의합니다. 시스템은 퍼시스턴트 볼륨 클레임에 따라 퍼시스턴트 볼륨을 생성합니다.',
+  PERSISTENT_VOLUME_CLAIM: '퍼시스턴트 볼륨 클레임',
+  PERSISTENT_VOLUME_CLAIM_PL: '퍼시스턴트 볼륨 클레임',
+  WHAT_IS_STORAGE_CLASS_Q: '스토리지 클래스란?',
+  WHAT_IS_STORAGE_CLASS_A: '스토리지 클래스는 클러스터 관리자가 설정한 스토리지 유형입니다. 다양한 스토리지 클래스는 클러스터 사용자에게 다양한 유형의 볼륨을 제공합니다.',
+  WHAT_IS_LOCAL_VOLUME_Q: '로컬 볼륨이란?',
+  WHAT_IS_LOCAL_VOLUME_A: '로컬 볼륨은 클러스터의 로컬 파일 시스템에 생성된 볼륨입니다.',
   // List
-  VOLUME_STATUS_BOUND: 'Bound',
-  VOLUME_STATUS_LOST: 'Lost',
-  VOLUME_STATUS_PENDING: 'Pending',
-  VOLUME_STATUS_TERMINATING: 'Terminating',
-  VOLUME_STATUS_UPDATING: 'Updating',
-  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk Expanding',
-  PERSISTENT_VOLUME_CLAIM_EMPTY_DESC: 'Please create a persistent volume claim.',
-  MOUNT_STATUS: 'Mount Status',
-  MOUNTED: 'Mounted',
-  NOT_MOUNTED: 'Not mounted',
-  ACCESS_MODE_TCAP: 'Access Mode',
-  RWO_DESC: 'RWO: Single-node read and write',
-  ROX_DESC: 'ROX: Multi-node readonly',
-  RWX_DESC: 'RWX: Multi-node read and write',
+  VOLUME_STATUS_BOUND: '바운드',
+  VOLUME_STATUS_LOST: '잃어버린',
+  VOLUME_STATUS_PENDING: '보류 중',
+  VOLUME_STATUS_TERMINATING: '종료',
+  VOLUME_STATUS_UPDATING: '업데이트',
+  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '디스크 확장',
+  PERSISTENT_VOLUME_CLAIM_EMPTY_DESC: '퍼시스턴트 볼륨 클레임을 생성하십시오.',
+  MOUNT_STATUS: '마운트 상태',
+  MOUNTED: '장착',
+  NOT_MOUNTED: '마운트되지 않음',
+  ACCESS_MODE_TCAP: '액세스 모드',
+  RWO_DESC: 'RWO: Single-node 읽고 쓰기',
+  ROX_DESC: 'ROX: Multi-node 읽기 전용',
+  RWX_DESC: 'RWX: Multi-node 읽고 쓰기',
   // List > Create > Basic Information
-  CREATE: 'Create',
-  CREATE_PERSISTENT_VOLUME_CLAIM: 'Create Persistent Volume Claim',
+  CREATE: '생성',
+  CREATE_PERSISTENT_VOLUME_CLAIM: '퍼시스턴트 볼륨 클레임 생성',
   // List > Create > Storage Settings
-  CREATION_METHOD: 'Creation Method',
-  CREATE_VOLUME_BY_STORAGE_CLASS: 'From Storage Class',
-  CREATE_VOLUME_BY_SNAPSHOT: 'From Volume Snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Select a storage class to create a volume.',
-  VOLUME_CAPACITY: 'Volume Capacity',
-  PARAM_REQUIRED: 'This parameter is required.',
-  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
-  VOLUME_STORAGE_CLASS_DESC: 'Select a storage class to create a volume of a specific type.',
+  CREATION_METHOD: '작성 방법',
+  CREATE_VOLUME_BY_STORAGE_CLASS: '스토리지 클래스에서',
+  CREATE_VOLUME_BY_SNAPSHOT: '볼륨 스냅샷에서',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: '볼륨을 생성할 스냅샷을 선택하십시오.',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME: '볼륨을 생성할 스토리지 클래스를 선택하십시오.',
+  VOLUME_CAPACITY: '볼륨 용량',
+  PARAM_REQUIRED: '이 매개변수는 필수입니다.',
+  VOLUME_SIZE_TIP: '볼륨 용량은 0보다 커야 합니다.',
+  VOLUME_STORAGE_CLASS_DESC: '특정 유형의 볼륨을 생성하려면 스토리지 클래스를 선택하십시오.',
   // List > Advanced Settings
   // List > Edit
   // List > Edit YAML
   // List > Delete
-  PERSISTENT_VOLUME_CLAIM_LOW: 'persistent volume claim'
+  PERSISTENT_VOLUME_CLAIM_LOW: '퍼시스턴트 볼륨 클레임'
 };

@@ -2,7 +2,7 @@
  * This file is part of Super Kubenetes Console.
  * Copyright (C) 2019 The Super Kubenetes Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * Super Kubenetes Console is free software:                                                 you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -18,14 +18,21 @@
 module.exports = {
   // Banner
   // Cluster Information
-  NODES: 'Nodes',
-  DISK: 'Disk',
-  CLUSTER_INFORMATION: 'Cluster Information',
+  NODES: '노드',
+  DISK: '디스크',
+  CLUSTER_INFORMATION: '클러스터 정보',
   // Cluster Information > Edit Information
-  CLUSTER_NAME: 'Cluster Name',
-  EDIT_CLUSTER_INFO_DESC: 'Edit basic information about the cluster.',
+  CLUSTER_NAME: '클러스터 이름',
+  EDIT_CLUSTER_INFO_DESC: '클러스터에 대한 기본 정보를 수정합니다.',
+  // Unbind Cluster
+  UNBIND: '바인딩 해제',
+  UNBIND_CLUSTER: '클러스터 바인딩 해제',
+  UNBIND_CLUSTER_DESC: '클러스터가 바인딩 해제되면 Super Kubenetes는 클러스터를 관리할 수 없습니다. 클러스터의 Kubernetes 리소스는 삭제되지 않습니다. 작업과 관련된 위험을 이해할 수 있도록 클러스터 이름 <strong>{name}</strong>을(를) 입력하십시오.',
+  UNBIND_SUCCESS: '바인드 해제 성공',
+  SURE_TO_UNBIND_CLUSTER: '이 수술의 위험을 이해합니다',
+  UNBIND_CLUSTER_Q: '클러스터 바인딩 해제',
   // Remove Cluster
-  REMOVE_CLUSTER: 'Remove Cluster',
-  REMOVE_CLUSTER_DESC: 'After the cluster is removed, Super Kubenetes will not be able to manage the cluster. Resources in the cluster will not be deleted. Enter the cluster name <strong>{name}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_SUCCESS: 'Removed successfully.'
+  REMOVE_CLUSTER: '클러스터 삭제',
+  REMOVE_CLUSTER_DESC: '클러스터가 제거된 후에는 Super Kubenetes에서 클러스터를 관리할 수 없습니다. 클러스터의 리소스는 삭제되지 않습니다. 클러스터 이름 <strong>{name}</strong>을(를) 입력하여 이 작업의 위험을 이해하고 있음을 확인합니다.',
+  REMOVE_SUCCESS: '성공적으로 제거되었습니다.'
 };

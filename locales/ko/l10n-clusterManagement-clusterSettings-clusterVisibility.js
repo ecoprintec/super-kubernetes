@@ -1,41 +1,41 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2019 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software:                                                             you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
-  CLUSTER_VISIBILITY: 'Cluster Visibility',
-  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
-  UNAUTHORIZED: 'Unauthorized',
-  CLUSTER_VISIBILITY_DESC: 'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
-  CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
-  CLUSTER_VISIBILITY_A1: 'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
-  CLUSTER_VISIBILITY_Q2: 'What are public clusters?',
-  CLUSTER_VISIBILITY_A2: 'Public clusters can be accessed by all platform users. Users can create and schedule resources on public clusters.',
+  CLUSTER_VISIBILITY: '클러스터 가시성',
+  EDIT_VISIBILITY_DESC: '워크스페이스에서 클러스터 가시성을 편집합니다.',
+  UNAUTHORIZED: '무단',
+  CLUSTER_VISIBILITY_DESC: '클러스터 가시성은 워크스페이스에 대한 클러스터 권한 부여를 제어합니다. 클러스터에 워크스페이스에 대한 권한이 부여되면 워크스페이스에서 클러스터 리소스를 보고 관리할 수 있습니다.',
+  CLUSTER_VISIBILITY_Q1: '특정 워크스페이스에 대해 클러스터를 어떻게 승인합니까?',
+  CLUSTER_VISIBILITY_A1: '가시성 편집을 클릭하여 특정 워크스페이스에 클러스터를 할당할 수 있습니다.',
+  CLUSTER_VISIBILITY_Q2: '공공 클러스터란?',
+  CLUSTER_VISIBILITY_A2: '공개 클러스터는 모든 플랫폼 사용자가 액세스할 수 있습니다. 사용자는 공용 클러스터에서 리소스를 생성하고 예약할 수 있습니다.',
   // List
-  WORKSPACE: 'Workspace',
-  CLUSTER_VISIBILITY_SCAP: 'Cluster visibility',
-  AUTHORIZATION_TIME_TCAP: 'Authorization Time',
+  WORKSPACE: '워크스페이스',
+  CLUSTER_VISIBILITY_SCAP: '클러스터 가시성',
+  AUTHORIZATION_TIME_TCAP: '승인 시간',
   // List > Edit Visibility
-  EDIT_VISIBILITY: 'Edit Visibility',
-  AUTHORIZED: 'Authorized',
-  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
-  HOST_CLUSTER_VISIBILITY_WARNING: 'The stability of the multi-cluster system will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
-  CLUSTER_VISIBILITY_REMOVE_WARNING: 'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
-  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
-  REMOVE_WORKSPACE_CONFIRM_SI: 'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-  REMOVE_WORKSPACE_CONFIRM_PL: 'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.'
+  EDIT_VISIBILITY: '가시성 편집',
+  AUTHORIZED: '권한을 부여받은',
+  SET_PUBLIC_CLUSTER: '공개 클러스터로 설정',
+  HOST_CLUSTER_VISIBILITY_WARNING: '호스트 클러스터에 과부하가 걸리면 멀티 클러스터 시스템의 안정성이 떨어집니다. 워크스페이스에 호스트 클러스터를 할당할 때 주의하십시오.',
+  CLUSTER_VISIBILITY_REMOVE_WARNING: '클러스터를 사용하기 위한 작업공간에 대한 권한이 제거된 후 클러스터에 있는 작업공간의 모든 리소스가 삭제됩니다.',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: '권한 제거',
+  REMOVE_WORKSPACE_CONFIRM_SI: '워크스페이스 이름 <strong>{resource}</strong>을(를) 입력하여 이 작업의 위험을 이해하고 있음을 확인합니다.',
+  REMOVE_WORKSPACE_CONFIRM_PL: '워크스페이스 이름 <strong>{resource}</strong>을 입력하여 이 작업의 위험을 이해하고 있음을 확인합니다.'
 };

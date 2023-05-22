@@ -1,24 +1,22 @@
 /*
- * This file is part of Super Kubenetes Console.
- * Copyright (C) 2022 The Super Kubenetes Console Authors.
+ * This file is part of KuberixEnterprise Console.
+ * Copyright (C) 2019 The KuberixEnterprise Console Authors.
  *
- * Super Kubenetes Console is free software: you can redistribute it and/or modify
+ * KuberixEnterprise Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Super Kubenetes Console is distributed in the hope that it will be useful,
+ * KuberixEnterprise Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Super Kubenetes Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Banner
-  CLUSTER_MEMBER_PL: 'Cluster Members',
-  CLUSTER_MEMBER: 'Cluster Member',
-  // Invite
-  INVITE_CLUSTER_MEMBER_DESC: 'Invite users to the cluster.'
-};
+  "CLUSTER_MEMBER_PL": "클러스터 구성원",
+  "CLUSTER_MEMBER": "클러스터 구성원",
+  "INVITE_CLUSTER_MEMBER_DESC": "이 클러스터에 새 구성원을 초대할 수 있습니다."
+}
