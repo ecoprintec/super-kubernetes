@@ -5,7 +5,7 @@ module.exports = {
   'installing-on-linux': 'installing-on-linux',
   'Learn More': 'Learn More...',
   'What’s on this Page': 'What’s on this Page',
-  'what-is-Super Kubenetes': 'What is Super Kubenetes',
+  'what-is-SuperKubenetes': 'What is Super Kubenetes',
   ecosystem: 'Super Kubenetes Ecosystem Tools',
   features: 'Features',
   "what's-new-in-3.3.0": "What's New in 3.3.0",

@@ -27,7 +27,7 @@ export default class TreeMenu extends React.Component {
                   to="/docs/introduction/what-is-SuperKubenetes/"
                   activeStyle={activeStyle}
                 >
-                  {t('what-is-Super Kubenetes')}
+                  {t('what-is-SuperKubenetes')}
                 </NavLink>
               </li>
               <li className={styles['list']}>

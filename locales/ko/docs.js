@@ -5,7 +5,7 @@ module.exports = {
   'installing-on-linux': 'Linux에 설치',
   'Learn More': '자세히 알아보기...',
   'What’s on this Page': '이 페이지에 있는 내용',
-  'what-is-Super Kubenetes': 'Super Kubenetes란 무엇인가',
+  'what-is-SuperKubenetes': 'Super Kubenetes란 무엇인가',
   ecosystem: 'Super Kubenetes 에코시스템 도구',
   features: '특징',
   "what's-new-in-3.3.0": "3.3.0의 새로운 기능",
