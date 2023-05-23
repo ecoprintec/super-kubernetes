@@ -369,7 +369,7 @@ export default class TreeMenu extends React.Component {
                       to="/docs/installing-on-kubernetes/hosted-kubernetes/install-SuperKubenetes-on-aks/"
                       activeStyle={activeStyle}
                     >
-                      {t('install-Super Kubenetes-on-aks')}
+                      {t('install-SuperKubenetes-on-aks')}
                     </NavLink>
                   </li>
                   <li className={styles['list']}>
@@ -377,7 +377,7 @@ export default class TreeMenu extends React.Component {
                       to="/docs/installing-on-kubernetes/hosted-kubernetes/install-SuperKubenetes-on-eks/"
                       activeStyle={activeStyle}
                     >
-                      {t('install-Super Kubenetes-on-eks')}
+                      {t('install-SuperKubenetes-on-eks')}
                     </NavLink>
                   </li>
                   <li className={styles['list']}>
@@ -385,7 +385,7 @@ export default class TreeMenu extends React.Component {
                       to="/docs/installing-on-kubernetes/hosted-kubernetes/install-SuperKubenetes-on-do/"
                       activeStyle={activeStyle}
                     >
-                      {t('install-Super Kubenetes-on-do')}
+                      {t('install-SuperKubenetes-on-do')}
                     </NavLink>
                   </li>
                   <li className={styles['list']}>
@@ -393,7 +393,7 @@ export default class TreeMenu extends React.Component {
                       to="/docs/installing-on-kubernetes/hosted-kubernetes/install-SuperKubenetes-on-gke/"
                       activeStyle={activeStyle}
                     >
-                      {t('install-Super Kubenetes-on-gke')}
+                      {t('install-SuperKubenetes-on-gke')}
                     </NavLink>
                   </li>
                 </ul>
@@ -419,7 +419,7 @@ export default class TreeMenu extends React.Component {
                   to="/docs/installing-on-kubernetes/uninstall-SuperKubenetes-from-k8s/"
                   activeStyle={activeStyle}
                 >
-                  {t('uninstall-Super Kubenetes-from-k8s')}
+                  {t('uninstall-SuperKubenetes-from-k8s')}
                 </NavLink>
               </li>
             </ul>
