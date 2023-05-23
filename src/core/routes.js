@@ -49,6 +49,7 @@ const DevOps = lazy(() =>
   import(/* webpackChunkName: "devops" */ 'devops/App.jsx')
 )
 const App = lazy(() => import(/* webpackChunkName: "apps" */ 'apps/App.jsx'))
+const Docs = lazy(() => import(/* webpackChunkName: "docs" */ 'docs/App.jsx'))
 
 export default [
   { path: `/`, component: LandingPage, exact: true },
@@ -98,6 +99,10 @@ export default [
         path: '/settings',
         component: Settings,
         name: 'Platform Settings',
+      },
+      {
+        path: '/docs',
+        component: Docs,
       },
       {
         path: '*',

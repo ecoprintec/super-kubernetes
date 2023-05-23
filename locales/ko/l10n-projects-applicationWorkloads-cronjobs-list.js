@@ -1,19 +1,19 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software:                                                   you can redistribute it and/or modify
+ *  Console is free software:                                                   you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -26,7 +26,7 @@ module.exports = {
   // List > Create > Basic Information
   SCHEDULE: '일정',
   ENTER_SCHEDULE_TIP: '일정을 선택하세요.',
-  CRONJOB_CRON_DESC: '크론잡에 대한 일정을 설정합니다. KuberixEnterprise는 기본적으로 UTC를 사용하며 시간대에 따라 일정을 조정해야 합니다. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">자세히 알아보기</a>',
+  CRONJOB_CRON_DESC: '크론잡에 대한 일정을 설정합니다. 는 기본적으로 UTC를 사용하며 시간대에 따라 일정을 조정해야 합니다. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">자세히 알아보기</a>',
   // List > Create > Advanced settings
   MAXIMUM_DELAY: '최대 시작 지연(초)',
   SUCCESSFUL_JOBS_RETAINED: '성공적인 일자리 유지',

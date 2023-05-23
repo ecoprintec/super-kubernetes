@@ -1,24 +1,24 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software:                                                 you can redistribute it and/or modify
+ *  Console is free software:                                                 you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   EDGE_NODE_PL: '엣지 노드',
-  EDGE_NODE_DESC: '엣지 노드는 KuberixEnterprise 클러스터 외부에 배치된 서버입니다. KuberixEnterprise 클러스터에 엣지 노드를 추가하여 관리할 수 있습니다.' ,
+  EDGE_NODE_DESC: '엣지 노드는  클러스터 외부에 배치된 서버입니다.  클러스터에 엣지 노드를 추가하여 관리할 수 있습니다.' ,
   // Node Count
   // List
   EDGE_NODE_EMPTY_DESC: '클러스터에 엣지 노드를 추가하십시오.' ,
@@ -37,8 +37,8 @@ module.exports = {
   ADD_DEFAULT_TAINT: '기본 얼룩 {params} 추가',
   EDGE_NODE: '엣지 노드',
   INTERNAL_IP_ADDRESS: '내부 IP 주소',
-  EDGENODE_INTERNAL_IP_DESC: 'KuberixEnterprise 클러스터에서 에지 노드의 내부 IP 주소를 설정합니다.' ,
-  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'KuberixEnterprise 클러스터에서 Edge 노드의 내부 IP 주소를 설정하십시오.' ,
+  EDGENODE_INTERNAL_IP_DESC: ' 클러스터에서 에지 노드의 내부 IP 주소를 설정합니다.' ,
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: ' 클러스터에서 Edge 노드의 내부 IP 주소를 설정하십시오.' ,
   COPY_SUCCESSFUL: '복사 성공' ,
   // List > View Log
   LOGS: '로그',

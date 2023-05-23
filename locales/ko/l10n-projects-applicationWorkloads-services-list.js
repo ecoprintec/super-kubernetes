@@ -1,22 +1,22 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software: you can redistribute it and/or modify
+ *  Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  "SERVICE_TYPES_Q": "KuberixEnterprise는 어떤 서비스 유형을 지원합니까?",
+  "SERVICE_TYPES_Q": "는 어떤 서비스 유형을 지원합니까?",
   "SERVICE_TYPES_A": "Kuberix Enterprise는 Stateless 서비스와 Stateful 서비스를 지원합니다. Stateless 서비스의 파드 복제본은 동일한 볼륨을 공유하지만 Stateful 서비스의 각 파드 복제본에는 개별적인 볼륨이 있습니다.",
   "SCENARIOS_FOR_SERVICES_Q": "Stateless 서비스와 Stateful 서비스의 사용 사례는 무엇입니까?",
   "SCENARIOS_FOR_SERVICES_A": "Stateless 서비스는 Nginx 및 Tomcat과 같이 데이터 지속성이 필요하지 않은 방식에 적용되며 Stateful 서비스는 MySQL 데이터베이스, Kafka 및 Zookeeper와 같이 데이터 지속성이 필요한 방식에 적용됩니다.",

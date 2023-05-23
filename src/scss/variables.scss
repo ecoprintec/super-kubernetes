@@ -143,6 +143,9 @@ $font-family: 'Maven Pro', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial,
   'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
 $font-family-id: 'Maven Pro', $font-family;
 $font-family-code: 'PT Mono', Monaco, Menlo, Consolas, 'Courier New', monospace;
+$font-family-1: Roboto, $font-family;
+$font-family-2: Proxima Nova, $font-family;
+$mobile-max-width: 768px;
 
 $size-small: 12px;
 $size-normal: 14px;

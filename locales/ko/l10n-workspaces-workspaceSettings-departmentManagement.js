@@ -1,19 +1,19 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software:                                  you can redistribute it and/or modify
+ *  Console is free software:                                  you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
@@ -46,7 +46,7 @@ module.exports = {
   PROJECT_ROLE: '프로젝트 역할',
   SELECT_ROLE_TIP: '역할을 선택하세요.',
   ADD_PROJECT: '프로젝트 추가',
-  CLUSTER_UPGRADE_REQUIRED: '현재 KuberixEnterprise 버전은 이 기능을 지원하지 않습니다. KuberixEnterprise를 {version} 이상으로 업그레이드하십시오.',
+  CLUSTER_UPGRADE_REQUIRED: '현재  버전은 이 기능을 지원하지 않습니다. 를 {version} 이상으로 업그레이드하십시오.',
   // List > Set Departments > DevOps Project Role
   DEVOPS_PROJECT_ROLE: 'DevOps 프로젝트 역할',
   ADD_DEVOPS_PROJECT: 'DevOps 프로젝트 추가'

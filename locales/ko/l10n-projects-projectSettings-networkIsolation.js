@@ -1,19 +1,19 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software: you can redistribute it and/or modify
+ *  Console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   "NETWORK_ISOLATION_DESC": "네트워크 격리를 구성함으로써 사용자는 동일한 클러스터 내의 Pod 간 트래픽과 외부로부터의 트래픽을 제어하여 애플리케이션 격리를 구현하고 애플리케이션 보안을 강화할 수 있습니다.",

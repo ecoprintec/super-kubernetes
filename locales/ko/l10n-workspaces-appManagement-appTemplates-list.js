@@ -1,27 +1,27 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software:                                                       you can redistribute it and/or modify
+ *  Console is free software:                                                       you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Banner
   APP_TEMPLATE_PL: '앱 템플릿',
   APPS_MANAGEMENT: '앱 관리',
   UPLOAD_TEMPLATE: '템플릿 업로드',
-  APP_TEMPLATE_DESC: 'KuberixEnterprise는 앱에 대한 전체 수명 주기 관리를 제공합니다. 새로운 앱 템플릿을 업로드하거나 생성하고 빠르게 테스트할 수 있습니다. 또한 다른 사용자가 클릭 한 번으로 배포할 수 있도록 앱을 App Store에 게시할 수 있습니다.',
-  DEVELOP_APP_DESC: 'Helm 차트를 업로드하거나 KuberixEnterprise에서 제공하는 리소스 조정 도구를 사용하여 앱 템플릿을 개발할 수 있습니다.',
+  APP_TEMPLATE_DESC: '는 앱에 대한 전체 수명 주기 관리를 제공합니다. 새로운 앱 템플릿을 업로드하거나 생성하고 빠르게 테스트할 수 있습니다. 또한 다른 사용자가 클릭 한 번으로 배포할 수 있도록 앱을 App Store에 게시할 수 있습니다.',
+  DEVELOP_APP_DESC: 'Helm 차트를 업로드하거나 에서 제공하는 리소스 조정 도구를 사용하여 앱 템플릿을 개발할 수 있습니다.',
   DEVELOP_APP_TITLE: '앱 템플릿은 어떻게 개발하나요?',
   HOW_PUBLISH_APP_TITLE: '앱 스토어에 앱을 출시하려면 어떻게 해야 하나요?',
   HOW_PUBLISH_APP_DESC: 'Helm 차트를 작업 공간에 앱 템플릿으로 업로드할 수 있습니다. 앱은 승인 후 앱 스토어에 출시됩니다.',

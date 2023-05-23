@@ -1,19 +1,19 @@
 /*
- * This file is part of KuberixEnterprise Console.
- * Copyright (C) 2019 The KuberixEnterprise Console Authors.
+ * This file is part of  Console.
+ * Copyright (C) 2019 The  Console Authors.
  *
- * KuberixEnterprise Console is free software:                                                                  you can redistribute it and/or modify
+ *  Console is free software:                                                                  you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * KuberixEnterprise Console is distributed in the hope that it will be useful,
+ *  Console is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with KuberixEnterprise Console.  If not, see <https://www.gnu.org/licenses/>.
+ * along with  Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
   // Attributes
@@ -22,12 +22,12 @@ module.exports = {
   // More > Set as Default Storage Class
   SET_DEFAULT_STORAGE_CLASS_TITLE: '기본 스토리지 클래스로 설정',
   SET_AS_DEFAULT_STORAGE_CLASS: '기본 스토리지 클래스로 설정',
-  STORAGE_CLASS_SET_DEFAULT_DESC: '기본 스토리지 클래스가 설정된 후 특별한 요구 사항이 추가되지 않으면 시스템은 기본적으로 이 클래스의 볼륨을 생성합니다. KuberixEnterprise 클러스터에는 하나의 기본 스토리지 클래스만 허용됩니다.',
+  STORAGE_CLASS_SET_DEFAULT_DESC: '기본 스토리지 클래스가 설정된 후 특별한 요구 사항이 추가되지 않으면 시스템은 기본적으로 이 클래스의 볼륨을 생성합니다.  클러스터에는 하나의 기본 스토리지 클래스만 허용됩니다.',
   // More > Edit Authorization Rules
   SET_AUTHORIZATION_RULES: '권한 부여 규칙 설정',
   AUTHORIZATION_RULES: '승인 규칙',
   AUTHORIZATION_RULES_DESC: '특정 프로젝트 및 작업 공간에서만 스토리지 클래스에 액세스할 수 있도록 권한 부여 규칙을 설정합니다.',
-  AUTHORIZATION_NOT_SUPPORT: '클러스터는 현재 이 기능을 지원하지 않습니다. KuberixEnterprise를 v3.3.0 이상으로 업그레이드하거나 <a href="https://github.com/kuberixenterprise/storageclass-accessor" target="_blank">storageclass-accessor</a>를 수동으로 설치하세요.',
+  AUTHORIZATION_NOT_SUPPORT: '클러스터는 현재 이 기능을 지원하지 않습니다. 를 v3.3.0 이상으로 업그레이드하거나 <a href="https://github.com//storageclass-accessor" target="_blank">storageclass-accessor</a>를 수동으로 설치하세요.',
   OPERATOR_IN: '안에',
   OPERATOR_NOT_IN: '에 없음',
   // More > Set Volume Permissions
@@ -48,7 +48,7 @@ module.exports = {
   INCREMENT_DESC: '스토리지 클래스의 CSI 플러그인에 따라 볼륨 크기 증분을 설정합니다.',
   RESTART_WORKLOAD_AUTOMATICALLY: '자동으로 작업량 다시 시작',
   RESTART_WORKLOAD_AUTOMATICALLY_DESC: '시스템이 자동으로 볼륨 상태를 확인하여 워크로드를 다시 시작해야 하는지 여부를 결정합니다.',
-  RESTART_WORKLOAD_AUTOMATICALLY_TIP: '시간 초과 기간이 만료될 때 볼륨이 성공적으로 확장되지 않으면 시스템은 워크로드에 "restart.KuberixEnterprise.io/skip" 주석을 추가하여 워크로드가 더 이상 다시 시작되지 않도록 합니다. 워크로드에 대한 자동 재시작 기능을 다시 활성화하려면 워크로드의 주석을 수동으로 삭제해야 합니다.',
+  RESTART_WORKLOAD_AUTOMATICALLY_TIP: '시간 초과 기간이 만료될 때 볼륨이 성공적으로 확장되지 않으면 시스템은 워크로드에 "restart..io/skip" 주석을 추가하여 워크로드가 더 이상 다시 시작되지 않도록 합니다. 워크로드에 대한 자동 재시작 기능을 다시 활성화하려면 워크로드의 주석을 수동으로 삭제해야 합니다.',
   // More > Delete
   // Persistent Volume Claims > Persistent Volume Claims
   MAXIMUM_SIZE_SCAP: '최대 크기',

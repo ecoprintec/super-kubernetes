@@ -17,6 +17,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Dashboard from '@material-ui/icons/Dashboard'
 import BuildIcon from '@material-ui/icons/Build'
+import Help from '@material-ui/icons/Help'
 import TabPanel from './TabPanel'
 import { getParentMenu } from '../../../../components/Layout/Nav/menuParent'
 import avataImg from '../../../../assets/pp_boy4.jpg'
@@ -244,6 +245,19 @@ export default class ConsoleNav extends React.Component {
                       </AccordionDetails>
                     </Accordion>
                   )}
+                  <MuiButton
+                    onClick={this.handleLinkClick('/docs')}
+                    className={classnames(
+                      {
+                        [styles.active]: location.pathname === '/docs',
+                      },
+                      styles.navsglobal
+                    )}
+                  >
+                    <Help />
+                    &nbsp;
+                    {t('Helps')}
+                  </MuiButton>
                 </Box>
               )}
             </Box>

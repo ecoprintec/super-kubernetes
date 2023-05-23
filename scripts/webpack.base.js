@@ -49,11 +49,20 @@ module.exports = {
       include: root('src/assets'),
       use: 'url-loader?limit=100000',
     },
+    {
+      test: /\.node$/,
+      loader: 'node-loader',
+    },
+    {
+      test: /\.md$/,
+      use: "raw-loader",
+    },         
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: ['.js', '.jsx', '.scss', '.md'],
     symlinks: false,
     modules: [root('src'), root('src/pages'), 'node_modules'],
+    alias : {'@':root('docs'),},
   },
   plugins: [
     new HappyPack({
