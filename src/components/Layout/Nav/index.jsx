@@ -38,6 +38,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Icon } from '@kube-design/components'
 import BuildIcon from '@material-ui/icons/Build'
+import Help from '@material-ui/icons/Help'
 import TabPanel from './TabPanel'
 import { getParentMenu } from './menuParent'
 import styles from './index.scss'
@@ -121,7 +122,8 @@ class Nav extends React.Component {
   }
 
   handleLinkClick = link => () => {
-    this.props.rootStore.routing.push(link)
+    if (link == '/docs') window.open(link, '_blank')
+    else this.props.rootStore.routing.push(link)
   }
 
   get currentPath() {
@@ -192,63 +194,6 @@ class Nav extends React.Component {
               haveNavTitle && rootStore.openMenu === false ? '0.3s' : 'unset',
           }}
         >
-          <div className={styles.navparent}>
-            <Tab
-              icon={
-                <div className="avatar-menu-icon">
-                  <Avatar src={avataImg}></Avatar>
-                  <div className="avatar-dot-status"></div>
-                </div>
-              }
-              className={`${styles.parent_nav_tabs} ${styles.avatar}`}
-            ></Tab>
-            <Link to={'/'}>
-              <Tab
-                icon={
-                  <div
-                    className="left-menu-parent-icon"
-                    style={{ color: 'rgba(0, 0, 0, 0.24)' }}
-                  >
-                    <HomeIcon />
-                  </div>
-                }
-                label={t('Home')}
-                className={styles.parent_nav_tabs}
-              ></Tab>
-            </Link>
-            <Tabs
-              orientation="vertical"
-              variant="scrollable"
-              value={value}
-              onChange={handleChange}
-              TabIndicatorProps={{
-                style: {
-                  background: '#283593',
-                  width: '5px',
-                  borderRadius: '5px',
-                  left: 0,
-                },
-              }}
-            >
-              {getParentMenu().map((menuItem, parentkey) => {
-                return (
-                  <Tab
-                    key={parentkey}
-                    icon={
-                      <div className="left-menu-parent-icon">
-                        {menuItem.icon}
-                      </div>
-                    }
-                    label={menuItem.name}
-                    id={`vertical-tab-${menuItem.tabindex}`}
-                    aria-controls={`vertical-tabpanel-${menuItem.tabindex}`}
-                    onClick={handleOpenMenu}
-                    className={styles.parent_nav_tabs}
-                  ></Tab>
-                )
-              })}
-            </Tabs>
-          </div>
           <TabPanel
             value={value}
             index={0}
@@ -466,6 +411,19 @@ class Nav extends React.Component {
                     )}
                   </Box>
                 )}
+                <MuiButton
+                  onClick={this.handleLinkClick('/docs')}
+                  className={classnames(
+                    {
+                      [styles.active]: location.pathname === '/docs',
+                    },
+                    styles.navsglobal
+                  )}
+                >
+                  <Help />
+                  &nbsp;
+                  {t('Helps')}
+                </MuiButton>
               </Box>
             </Grow>
           </TabPanel>
@@ -473,7 +431,7 @@ class Nav extends React.Component {
         <div
           className="nav-underfixed"
           style={{
-            width: rootStore.openMenu === true ? 400 : 95,
+            width: rootStore.openMenu === true ? 230 : 20,
             transition: '0.45s',
           }}
         ></div>

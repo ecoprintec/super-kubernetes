@@ -73,6 +73,7 @@
   padding-bottom: 20px;
   height: calc(100vh - 200px);
   padding-right: 5px;
+  padding-left: 10px;
 }
 .menu-content:hover::-webkit-scrollbar-thumb {
   display: block;

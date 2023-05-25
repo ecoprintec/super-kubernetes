@@ -39,7 +39,7 @@ export default class RootStore {
   oauthServers = []
 
   @observable
-  openMenu = false
+  openMenu = true
 
   @observable
   isNavMounted = false

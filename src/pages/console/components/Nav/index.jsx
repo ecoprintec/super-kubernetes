@@ -51,7 +51,8 @@ export default class ConsoleNav extends React.Component {
   }
 
   handleLinkClick = link => () => {
-    this.props.rootStore.routing.push(link)
+    if (link == '/docs') window.open(link, '_blank')
+    else this.props.rootStore.routing.push(link)
   }
 
   handleOpenGlobalMenu = () => {
@@ -73,63 +74,6 @@ export default class ConsoleNav extends React.Component {
     return (
       <Box component={'div'} position="relative">
         <Box display={'flex'} className={styles.dashboard_leftsidebar}>
-          <div className={styles.navparent}>
-            <Tab
-              icon={
-                <div className="avatar-menu-icon">
-                  <Avatar src={avataImg}></Avatar>
-                  <div className="avatar-dot-status"></div>
-                </div>
-              }
-              className={`${styles.parent_nav_tabs} ${styles.avatar}`}
-            ></Tab>
-            <Link to={'/'}>
-              <Tab
-                icon={
-                  <div
-                    className="left-menu-parent-icon"
-                    style={{ color: 'rgba(0, 0, 0, 0.24)' }}
-                  >
-                    <HomeIcon />
-                  </div>
-                }
-                label={t('Home')}
-                className={styles.parent_nav_tabs}
-              ></Tab>
-            </Link>
-            <Tabs
-              orientation="vertical"
-              variant="scrollable"
-              value={value}
-              onChange={this.handleChangeTab}
-              TabIndicatorProps={{
-                style: {
-                  background: '#283593',
-                  width: '5px',
-                  borderRadius: '5px',
-                  left: 0,
-                },
-              }}
-            >
-              {getParentMenu().map((menuItem, parentkey) => {
-                return (
-                  <Tab
-                    key={parentkey}
-                    icon={
-                      <div className="left-menu-parent-icon">
-                        {menuItem.icon}
-                      </div>
-                    }
-                    label={menuItem.name}
-                    id={`vertical-tab-${menuItem.tabindex}`}
-                    aria-controls={`vertical-tabpanel-${menuItem.tabindex}`}
-                    onClick={this.handleOpenGlobalMenu}
-                    className={styles.parent_nav_tabs}
-                  ></Tab>
-                )
-              })}
-            </Tabs>
-          </div>
           <TabPanel
             value={value}
             index={0}
@@ -266,7 +210,7 @@ export default class ConsoleNav extends React.Component {
         <div
           className="nav-underfixed"
           style={{
-            width: rootStore.openMenu === true ? 300 : 95,
+            width: rootStore.openMenu === true ? 200 : 100,
             transition: '0.45s',
           }}
         ></div>
